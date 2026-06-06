@@ -1,0 +1,47 @@
+# ===== START =====
+cd /mnt/c/source/dic && docker-compose up -d
+
+# ===== STOP =====
+docker-compose down
+
+# ===== BUILD (có cache) =====
+docker-compose up -d --build
+
+# ===== BUILD frontend only =====
+docker-compose up -d --build frontend
+
+# ===== BUILD backend only =====
+docker-compose up -d --build backend
+
+# ===== BUILD SẠCH (xóa image + cache, build lại từ đầu) =====
+docker-compose down && docker rmi dic-frontend dic-backend && docker builder prune -af && docker-compose build --no-cache && docker-compose up -d
+
+# ===== XÓA CACHE docker builder =====
+docker builder prune -af
+
+# ===== XÓA IMAGE =====
+docker rmi dic-frontend dic-backend
+
+# ===== XEM LOGS =====
+docker logs dic-backend-1 --tail 30
+docker logs dic-frontend-1 --tail 30
+
+# ===== CHẠY MIGRATIONS =====
+cat backend-python/migrations/001_initial_schema.sql | docker exec -i dic-postgres-1 psql -U postgres -d english_word_splitter
+cat backend-python/migrations/002_macro_news.sql | docker exec -i dic-postgres-1 psql -U postgres -d english_word_splitter
+cat backend-python/migrations/003_public_searches.sql | docker exec -i dic-postgres-1 psql -U postgres -d english_word_splitter
+
+# ===== SEED DATA =====
+bash seed.sh
+
+# ===== CHECK HỆ THỐNG =====
+bash check.sh
+
+# ===== XÓA TẤT CẢ CONTAINERS =====
+docker rm -f $(docker ps -aq)
+
+# ===== XÓA TẤT CẢ IMAGES =====
+docker rmi -f $(docker images -q)
+
+# ===== XÓA TẤT CẢ (containers + images + volumes + networks) =====
+docker system prune -af --volumes

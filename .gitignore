@@ -1,0 +1,10 @@
+node_modules/
+.env
+.kiro/
+audio/
+frontend/dist/
+shared/dist/
+__pycache__/
+*.pyc
+venv/
+.vscode/

@@ -1,0 +1,13 @@
+node_modules
+audio
+.git
+.gitignore
+*.md
+.env
+.kiro
+frontend/node_modules
+backend/node_modules
+shared/node_modules
+frontend/dist
+backend/dist
+shared/dist
