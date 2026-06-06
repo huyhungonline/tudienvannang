@@ -1,10 +1,19 @@
 #!/bin/bash
 # Seed sample data for public_searches table
-# Usage: wsl -e bash -c "cd /mnt/c/source/dic && bash seed.sh"
+# Usage: bash seed.sh
 
+# Auto-detect container name (works on both local and VPS)
+POSTGRES_CONTAINER=$(docker ps --format '{{.Names}}' | grep postgres | head -1)
+
+if [ -z "$POSTGRES_CONTAINER" ]; then
+  echo "❌ Postgres container not found. Is Docker running?"
+  exit 1
+fi
+
+echo "Using container: $POSTGRES_CONTAINER"
 echo "========== SEEDING public_searches =========="
 
-docker exec -i dic-postgres-1 psql -U postgres -d english_word_splitter <<'SQL'
+docker exec -i "$POSTGRES_CONTAINER" psql -U postgres -d english_word_splitter <<'SQL'
 INSERT INTO public_searches (input_text, target_language) VALUES
 ('Oil has been moving within a broad trading range, with key support levels formed near prior consolidation zones and resistance near recent highs.', 'ja'),
 ('The Federal Reserve held interest rates steady, signaling patience amid mixed economic data.', 'ja'),
@@ -27,4 +36,4 @@ fi
 
 echo ""
 echo "========== VERIFY =========="
-docker exec -i dic-postgres-1 psql -U postgres -d english_word_splitter -c "SELECT count(*) as total FROM public_searches;"
+docker exec -i "$POSTGRES_CONTAINER" psql -U postgres -d english_word_splitter -c "SELECT count(*) as total FROM public_searches;"

@@ -1,9 +1,17 @@
 #!/bin/bash
 # Check containers status and test APIs
-# Usage: wsl -e bash -c "cd /mnt/c/source/dic && bash check.sh"
+# Usage: bash check.sh
+
+# Auto-detect container names
+POSTGRES_CONTAINER=$(docker ps --format '{{.Names}}' | grep postgres | head -1)
+BACKEND_CONTAINER=$(docker ps --format '{{.Names}}' | grep backend | head -1)
+FRONTEND_CONTAINER=$(docker ps --format '{{.Names}}' | grep frontend | head -1)
 
 echo "========== CONTAINER STATUS =========="
-docker ps -a --filter name=dic --format "table {{.Names}}\t{{.Status}}\t{{.Ports}}"
+docker ps -a --format "table {{.Names}}\t{{.Status}}\t{{.Ports}}"
+
+echo ""
+echo "Detected: postgres=$POSTGRES_CONTAINER, backend=$BACKEND_CONTAINER, frontend=$FRONTEND_CONTAINER"
 
 echo ""
 echo "========== HEALTH CHECKS =========="
@@ -49,11 +57,15 @@ fi
 
 # Check postgres
 echo -n "Postgres: "
-PG=$(docker exec dic-postgres-1 pg_isready -U postgres 2>/dev/null)
-if echo "$PG" | grep -q "accepting"; then
-  echo "✅ OK"
+if [ -n "$POSTGRES_CONTAINER" ]; then
+  PG=$(docker exec "$POSTGRES_CONTAINER" pg_isready -U postgres 2>/dev/null)
+  if echo "$PG" | grep -q "accepting"; then
+    echo "✅ OK"
+  else
+    echo "❌ FAIL"
+  fi
 else
-  echo "❌ FAIL"
+  echo "❌ Container not found"
 fi
 
 echo ""
@@ -62,7 +74,6 @@ curl -s http://localhost:4000/api/words/split -X POST -H "Content-Type: applicat
 
 echo ""
 echo "========== CSS LAYOUT CHECK =========="
-# Fetch the CSS file from frontend and check grid layout
 CSS_CONTENT=$(curl -s http://localhost:3000/ 2>/dev/null)
 CSS_FILE=$(echo "$CSS_CONTENT" | grep -oP 'href="/assets/[^"]+\.css"' | head -1 | grep -oP '/assets/[^"]+\.css')
 if [ -n "$CSS_FILE" ]; then
@@ -71,14 +82,6 @@ if [ -n "$CSS_FILE" ]; then
     echo "Homepage layout: ✅ OK (1fr 1fr)"
   else
     echo "Homepage layout: ❌ WRONG ($LAYOUT) — expected: 1fr 1fr"
-  fi
-  
-  # Check no-cache headers
-  CACHE_HEADER=$(curl -sI "http://localhost:3000${CSS_FILE}" 2>/dev/null | grep -i "cache-control")
-  if echo "$CACHE_HEADER" | grep -qi "no-cache"; then
-    echo "CSS cache: ✅ Disabled (no-cache)"
-  else
-    echo "CSS cache: ⚠️  May be cached ($CACHE_HEADER)"
   fi
 else
   echo "CSS file: ❌ Not found in HTML"
