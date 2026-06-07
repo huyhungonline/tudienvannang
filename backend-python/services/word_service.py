@@ -1,6 +1,16 @@
 import re
 import asyncio
-from services import dictionary_service, translation_service
+from functools import partial
+from deep_translator import GoogleTranslator
+from services import dictionary_service, translation_service, tokenizer_service, multilang_dictionary_service
+
+
+# Source language map for sentence translation
+SOURCE_LANG_MAP = {
+    "ja": "ja",
+    "zh": "zh-CN",
+    "vi": "vi",
+}
 
 
 def split_words(text: str) -> list[str]:
@@ -26,8 +36,25 @@ def _get_translation(entry: dict, target_language: str) -> str:
     return entry.get(key, "")
 
 
-async def split_and_process(text: str, target_language: str) -> dict:
+def _translate_sentence_to_english(text: str, source_lang: str) -> str:
+    """Translate sentence from source language to English."""
+    try:
+        lang_code = SOURCE_LANG_MAP.get(source_lang, source_lang)
+        result = GoogleTranslator(source=lang_code, target="en").translate(text)
+        return result if result else ""
+    except Exception as e:
+        print(f"Sentence translation error ({source_lang} → en): {e}")
+        return ""
+
+
+async def split_and_process(text: str, target_language: str, source_language: str = "en") -> dict:
     """Orchestrate dictionary lookup + translation for all words."""
+
+    # Non-English source: use tokenizer + multilang dictionary
+    if source_language != "en":
+        return await _process_multilang(text, source_language)
+
+    # English source: existing logic
     unique_words = split_words(text)
 
     # Process all words concurrently
@@ -38,7 +65,6 @@ async def split_and_process(text: str, target_language: str) -> dict:
     for entry in entries:
         display_word = entry["word"]
         audio_file_name = entry.get("audioFileName")
-        # Nếu file mp3 có 2 từ trở lên, chú thích tên file
         if audio_file_name and " " in audio_file_name:
             display_word = f"{entry['word']} ({audio_file_name})"
 
@@ -50,6 +76,44 @@ async def split_and_process(text: str, target_language: str) -> dict:
         })
 
     sentence_translation = await translation_service.translate_sentence(text, target_language)
+
+    return {
+        "words": words,
+        "sentenceTranslation": sentence_translation,
+    }
+
+
+async def _process_multilang(text: str, source_language: str) -> dict:
+    """Process non-English text: tokenize → translate each token to English."""
+    tokens = tokenizer_service.tokenize(text, source_language)
+
+    # Limit tokens
+    if len(tokens) > 50:
+        tokens = tokens[:50]
+
+    # Translate each token concurrently
+    tasks = [
+        multilang_dictionary_service.get_or_create(
+            token["word"], source_language, token.get("reading", "")
+        )
+        for token in tokens
+    ]
+    entries = await asyncio.gather(*tasks)
+
+    words = []
+    for entry in entries:
+        words.append({
+            "word": entry["word"],
+            "ipa": entry["reading"],  # romaji/pinyin goes in IPA field
+            "audioData": None,         # no audio for non-English
+            "translation": entry["meaningEn"],
+        })
+
+    # Translate full sentence to English
+    loop = asyncio.get_running_loop()
+    sentence_translation = await loop.run_in_executor(
+        None, partial(_translate_sentence_to_english, text, source_language)
+    )
 
     return {
         "words": words,

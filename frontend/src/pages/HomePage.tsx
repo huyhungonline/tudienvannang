@@ -1,8 +1,9 @@
 import { useState, useCallback } from 'react';
 import { Link } from 'react-router-dom';
-import type { WordEntry, TargetLanguage, ProcessedResult } from 'shared';
+import type { WordEntry, TargetLanguage, SourceLanguage, ProcessedResult } from 'shared';
 import { InputPanel } from '../components/InputPanel';
 import { LanguageSelector } from '../components/LanguageSelector';
+import { SourceLanguageSelector } from '../components/SourceLanguageSelector';
 import { ResultPanel } from '../components/ResultPanel';
 import { SentenceTranslation } from '../components/SentenceTranslation';
 import { RecentSearches } from '../components/RecentSearches';
@@ -17,11 +18,12 @@ export function HomePage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [targetLanguage, setTargetLanguage] = useState<TargetLanguage>('ja');
+  const [sourceLanguage, setSourceLanguage] = useState<SourceLanguage>('en');
   const [currentText, setCurrentText] = useState('');
   const [externalText, setExternalText] = useState<string | undefined>(undefined);
   const [saveMessage, setSaveMessage] = useState<string | null>(null);
 
-  const fetchWords = useCallback(async (text: string, language: TargetLanguage) => {
+  const fetchWords = useCallback(async (text: string, target: TargetLanguage, source: SourceLanguage) => {
     if (!text.trim()) {
       setWords([]);
       setSentenceTranslation('');
@@ -36,7 +38,8 @@ export function HomePage() {
     try {
       const result = await post<ProcessedResult>('/words/split', {
         text,
-        targetLanguage: language,
+        targetLanguage: target,
+        sourceLanguage: source,
       });
       setWords(result.words);
       setSentenceTranslation(result.sentenceTranslation);
@@ -55,19 +58,26 @@ export function HomePage() {
 
   const handleSubmit = useCallback((text: string) => {
     setCurrentText(text);
-    fetchWords(text, targetLanguage);
-  }, [fetchWords, targetLanguage]);
+    fetchWords(text, targetLanguage, sourceLanguage);
+  }, [fetchWords, targetLanguage, sourceLanguage]);
 
-  const handleLanguageChange = useCallback((language: TargetLanguage) => {
+  const handleTargetLanguageChange = useCallback((language: TargetLanguage) => {
     setTargetLanguage(language);
-    if (currentText.trim()) {
-      fetchWords(currentText, language);
+    if (currentText.trim() && sourceLanguage === 'en') {
+      fetchWords(currentText, language, sourceLanguage);
     }
-  }, [fetchWords, currentText]);
+  }, [fetchWords, currentText, sourceLanguage]);
+
+  const handleSourceLanguageChange = useCallback((language: SourceLanguage) => {
+    setSourceLanguage(language);
+    if (currentText.trim()) {
+      fetchWords(currentText, targetLanguage, language);
+    }
+  }, [fetchWords, currentText, targetLanguage]);
 
   const handleRetry = () => {
     if (currentText.trim()) {
-      fetchWords(currentText, targetLanguage);
+      fetchWords(currentText, targetLanguage, sourceLanguage);
     }
   };
 
@@ -92,7 +102,7 @@ export function HomePage() {
   const handleSelectRecentSearch = (text: string) => {
     setExternalText(text);
     setCurrentText(text);
-    fetchWords(text, targetLanguage);
+    fetchWords(text, targetLanguage, sourceLanguage);
   };
 
   return (
@@ -108,8 +118,16 @@ export function HomePage() {
         <RecentSearches onSelect={handleSelectRecentSearch} />
       </div>
       <div className="right-column">
-        <LanguageSelector onLanguageChange={handleLanguageChange} />
-        <ResultPanel words={words} loading={loading} targetLanguage={targetLanguage} />
+        <SourceLanguageSelector onLanguageChange={handleSourceLanguageChange} />
+        {sourceLanguage === 'en' && (
+          <LanguageSelector onLanguageChange={handleTargetLanguageChange} />
+        )}
+        <ResultPanel
+          words={words}
+          loading={loading}
+          targetLanguage={sourceLanguage === 'en' ? targetLanguage : undefined}
+          sourceLanguage={sourceLanguage}
+        />
         {words.length > 0 && (
           <div className="save-history-section">
             {isAuthenticated ? (

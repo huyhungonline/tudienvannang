@@ -6,6 +6,7 @@ from datetime import datetime
 class SplitRequest(BaseModel):
     text: str
     targetLanguage: Optional[str] = "ja"
+    sourceLanguage: Optional[str] = "en"
 
 
 class WordEntry(BaseModel):
