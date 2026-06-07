@@ -9,14 +9,13 @@ const SOURCE_OPTIONS: { value: SourceLanguage; label: string }[] = [
   { value: 'en', label: 'English' },
   { value: 'ja', label: 'Japanese' },
   { value: 'vi', label: 'Vietnamese' },
-  { value: 'zh', label: 'Chinese' },
 ];
 
 const STORAGE_KEY = 'selectedSourceLanguage';
 
 function getInitialLanguage(): SourceLanguage {
   const stored = sessionStorage.getItem(STORAGE_KEY);
-  if (stored === 'en' || stored === 'ja' || stored === 'vi' || stored === 'zh') {
+  if (stored === 'en' || stored === 'ja' || stored === 'vi') {
     return stored;
   }
   return 'en';

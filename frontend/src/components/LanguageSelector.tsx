@@ -8,7 +8,6 @@ interface LanguageSelectorProps {
 const LANGUAGE_OPTIONS: { value: TargetLanguage; label: string }[] = [
   { value: 'ja', label: 'Japanese' },
   { value: 'vi', label: 'Vietnamese' },
-  { value: 'zh', label: 'Chinese' },
 ];
 
 const STORAGE_KEY = 'selectedLanguage';
