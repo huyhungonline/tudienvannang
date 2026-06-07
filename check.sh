@@ -88,4 +88,8 @@ else
 fi
 
 echo ""
+echo "========== TEST MULTILANG (Japanese → English) =========="
+curl -s http://localhost:4000/api/words/split -X POST -H "Content-Type: application/json" -d '{"text":"経済は回復している","targetLanguage":"ja","sourceLanguage":"ja"}' | python3 -m json.tool 2>/dev/null || echo "❌ Could not get response"
+
+echo ""
 echo "========== DONE =========="

@@ -108,6 +108,12 @@ export function HomePage() {
   return (
     <div className="home-page">
       <div className="left-column">
+        <div className="language-bar">
+          <SourceLanguageSelector onLanguageChange={handleSourceLanguageChange} />
+          {sourceLanguage === 'en' && (
+            <LanguageSelector onLanguageChange={handleTargetLanguageChange} />
+          )}
+        </div>
         <InputPanel onSubmit={handleSubmit} externalText={externalText} />
         <SentenceTranslation
           translation={sentenceTranslation}
@@ -118,10 +124,6 @@ export function HomePage() {
         <RecentSearches onSelect={handleSelectRecentSearch} />
       </div>
       <div className="right-column">
-        <SourceLanguageSelector onLanguageChange={handleSourceLanguageChange} />
-        {sourceLanguage === 'en' && (
-          <LanguageSelector onLanguageChange={handleTargetLanguageChange} />
-        )}
         <ResultPanel
           words={words}
           loading={loading}

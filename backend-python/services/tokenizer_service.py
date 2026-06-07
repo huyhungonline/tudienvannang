@@ -49,12 +49,23 @@ def _tokenize_japanese(text: str) -> list[dict]:
         # Get reading (katakana → romaji)
         reading = ""
         if hasattr(word, 'feature') and word.feature:
-            parts = str(word.feature).split(",")
-            # Try to get reading from feature
-            if len(parts) >= 7 and parts[6] != '*':
-                reading = _katakana_to_romaji(parts[6])
-            elif len(parts) >= 8 and parts[7] != '*':
-                reading = _katakana_to_romaji(parts[7])
+            feature_str = str(word.feature)
+            import re as _re
+            # Try kana/lForm fields - these return katakana, convert to romaji
+            kana_value = ""
+            lform_match = _re.search(r"lForm='([^']*)'", feature_str)
+            kana_match = _re.search(r"kana='([^']*)'", feature_str)
+            pron_match = _re.search(r"pron='([^']*)'", feature_str)
+            
+            if pron_match and pron_match.group(1):
+                kana_value = pron_match.group(1)
+            elif kana_match and kana_match.group(1):
+                kana_value = kana_match.group(1)
+            elif lform_match and lform_match.group(1):
+                kana_value = lform_match.group(1)
+            
+            if kana_value:
+                reading = _katakana_to_romaji(kana_value)
 
         tokens.append({"word": surface, "reading": reading})
 
