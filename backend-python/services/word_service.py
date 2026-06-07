@@ -47,12 +47,24 @@ def _translate_sentence_to_english(text: str, source_lang: str) -> str:
         return ""
 
 
+def _translate_sentence_to_target(text: str, source_lang: str, target_lang: str) -> str:
+    """Translate sentence from source language to target language."""
+    try:
+        src_code = SOURCE_LANG_MAP.get(source_lang, source_lang)
+        tgt_code = SOURCE_LANG_MAP.get(target_lang, target_lang)
+        result = GoogleTranslator(source=src_code, target=tgt_code).translate(text)
+        return result if result else ""
+    except Exception as e:
+        print(f"Sentence translation error ({source_lang} → {target_lang}): {e}")
+        return ""
+
+
 async def split_and_process(text: str, target_language: str, source_language: str = "en") -> dict:
     """Orchestrate dictionary lookup + translation for all words."""
 
     # Non-English source: use tokenizer + multilang dictionary
     if source_language != "en":
-        return await _process_multilang(text, source_language)
+        return await _process_multilang(text, source_language, target_language)
 
     # English source: existing logic
     unique_words = split_words(text)
@@ -83,18 +95,22 @@ async def split_and_process(text: str, target_language: str, source_language: st
     }
 
 
-async def _process_multilang(text: str, source_language: str) -> dict:
-    """Process non-English text: tokenize → translate each token to English."""
+async def _process_multilang(text: str, source_language: str, target_language: str = "en") -> dict:
+    """Process non-English text: tokenize → translate each token."""
     tokens = tokenizer_service.tokenize(text, source_language)
 
     # Limit tokens
     if len(tokens) > 50:
         tokens = tokens[:50]
 
+    # Determine actual target for word translation
+    # If target == source, default to English
+    actual_target = target_language if target_language != source_language else "en"
+
     # Translate each token concurrently
     tasks = [
         multilang_dictionary_service.get_or_create(
-            token["word"], source_language, token.get("reading", "")
+            token["word"], source_language, token.get("reading", ""), actual_target
         )
         for token in tokens
     ]
@@ -104,15 +120,15 @@ async def _process_multilang(text: str, source_language: str) -> dict:
     for entry in entries:
         words.append({
             "word": entry["word"],
-            "ipa": entry["reading"],  # romaji/pinyin goes in IPA field
-            "audioData": None,         # no audio for non-English
-            "translation": entry["meaningEn"],
+            "ipa": entry["reading"],
+            "audioData": None,
+            "translation": entry["translation"],
         })
 
-    # Translate full sentence to English
+    # Translate full sentence
     loop = asyncio.get_running_loop()
     sentence_translation = await loop.run_in_executor(
-        None, partial(_translate_sentence_to_english, text, source_language)
+        None, partial(_translate_sentence_to_target, text, source_language, actual_target)
     )
 
     return {
