@@ -34,6 +34,7 @@ echo "=== Chạy migrations ==="
 cat backend-python/migrations/001_initial_schema.sql | docker exec -i tudienvannang_postgres_1 psql -U postgres -d english_word_splitter 2>/dev/null || true
 cat backend-python/migrations/002_macro_news.sql | docker exec -i tudienvannang_postgres_1 psql -U postgres -d english_word_splitter 2>/dev/null || true
 cat backend-python/migrations/003_public_searches.sql | docker exec -i tudienvannang_postgres_1 psql -U postgres -d english_word_splitter 2>/dev/null || true
+cat backend-python/migrations/004_multilang_dictionary.sql | docker exec -i tudienvannang_postgres_1 psql -U postgres -d english_word_splitter 2>/dev/null || true
 
 echo ""
 echo "=== Kiểm tra containers ==="
