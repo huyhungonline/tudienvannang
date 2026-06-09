@@ -31,9 +31,15 @@ def _tokenize_english(text: str) -> list[dict]:
 
 
 def _tokenize_japanese(text: str) -> list[dict]:
-    """Tokenize Japanese text using fugashi (MeCab)."""
+    """Tokenize Japanese text using fugashi (MeCab).
+    Only keep meaningful words: nouns, verbs, adjectives, adverbs.
+    Skip particles, auxiliary verbs, conjunctions, symbols.
+    """
     import fugashi
     tagger = _get_japanese_tagger()
+
+    # POS categories to KEEP (meaningful words)
+    KEEP_POS = {'名詞', '動詞', '形容詞', '副詞', '形状詞', '連体詞'}
 
     tokens = []
     seen = set()
@@ -44,9 +50,29 @@ def _tokenize_japanese(text: str) -> list[dict]:
             continue
         if surface in seen:
             continue
-        # Skip single-character tokens (particles like は, を, し, て)
+        # Skip single-character tokens
         if len(surface) == 1:
             continue
+
+        # Filter by POS - only keep meaningful words
+        pos = ""
+        if hasattr(word, 'feature') and word.feature:
+            feature_str = str(word.feature)
+            # Extract POS from feature (first field before comma or pos1)
+            import re as _re
+            pos_match = _re.search(r"pos='([^']*)'", feature_str)
+            if pos_match:
+                pos = pos_match.group(1)
+            else:
+                # Fallback: first field in comma-separated
+                parts = feature_str.split(",")
+                if parts:
+                    pos = parts[0].strip()
+
+        # Skip if POS not in keep list
+        if pos and pos not in KEEP_POS:
+            continue
+
         seen.add(surface)
 
         # Get reading (katakana → romaji)
