@@ -13,12 +13,14 @@ logger = logging.getLogger(__name__)
 
 
 async def scheduled_refresh():
-    """Background task that refreshes macro news every 6 hours."""
+    """Background task that refreshes macro news every 12 hours (EN + JA)."""
     while True:
-        await asyncio.sleep(6 * 3600)  # 6 hours
+        await asyncio.sleep(12 * 3600)  # 12 hours
         try:
-            logger.info("Running scheduled macro news refresh...")
-            await macro_news_service.refresh_news()
+            logger.info("Running scheduled macro news refresh (EN)...")
+            await macro_news_service.refresh_news("en")
+            logger.info("Running scheduled macro news refresh (JA)...")
+            await macro_news_service.refresh_news("ja")
             logger.info("Scheduled macro news refresh completed.")
         except Exception as e:
             logger.error(f"Scheduled macro news refresh failed: {e}")
@@ -49,8 +51,9 @@ async def lifespan(app: FastAPI):
     # Initial refresh if DB is empty
     try:
         if await macro_news_service.is_db_empty():
-            logger.info("Macro news DB is empty, triggering initial refresh...")
-            asyncio.create_task(macro_news_service.refresh_news())
+            logger.info("Macro news DB is empty, triggering initial refresh (EN + JA)...")
+            asyncio.create_task(macro_news_service.refresh_news("en"))
+            asyncio.create_task(macro_news_service.refresh_news("ja"))
     except Exception as e:
         logger.error(f"Failed to check/trigger initial macro news refresh: {e}")
 

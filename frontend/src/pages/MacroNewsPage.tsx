@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-import { get, post } from '../api/client';
+import { get } from '../api/client';
 
 interface MacroNewsItem {
   id: string;
@@ -41,7 +41,6 @@ export function MacroNewsPage() {
   const [selectedDate, setSelectedDate] = useState<string | null>(null);
   const [language, setLanguage] = useState<NewsLanguage>('en');
   const [loading, setLoading] = useState(true);
-  const [refreshing, setRefreshing] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   const fetchLatestNews = useCallback(async (lang: NewsLanguage) => {
@@ -85,22 +84,6 @@ export function MacroNewsPage() {
       console.error(err);
     } finally {
       setLoading(false);
-    }
-  };
-
-  const handleRefresh = async () => {
-    setRefreshing(true);
-    setError(null);
-    try {
-      const data = await post<{ news: MacroNewsItem[]; message: string }>(`/macro-news/refresh?language=${language}`, {});
-      setNews(data.news || []);
-      setSelectedDate(null);
-      await fetchHistoryDates(language);
-    } catch (err) {
-      setError('Failed to refresh macro news.');
-      console.error(err);
-    } finally {
-      setRefreshing(false);
     }
   };
 
@@ -157,23 +140,14 @@ export function MacroNewsPage() {
       <div className="macro-news-content">
         <div className="macro-news-header">
           <h1>Macro News {selectedDate ? `(${formatDateShort(selectedDate)})` : ''}</h1>
-          <div className="macro-news-controls">
-            <select
-              className="macro-news-lang-select"
-              value={language}
-              onChange={(e) => handleLanguageChange(e.target.value as NewsLanguage)}
-            >
-              <option value="en">English</option>
-              <option value="ja">日本語</option>
-            </select>
-            <button
-              className="btn-refresh"
-              onClick={handleRefresh}
-              disabled={refreshing}
-            >
-              {refreshing ? 'Refreshing...' : '🔄 Refresh'}
-            </button>
-          </div>
+          <select
+            className="macro-news-lang-select"
+            value={language}
+            onChange={(e) => handleLanguageChange(e.target.value as NewsLanguage)}
+          >
+            <option value="en">English</option>
+            <option value="ja">日本語</option>
+          </select>
         </div>
 
         {error && <div className="macro-news-error">{error}</div>}
