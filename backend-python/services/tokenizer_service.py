@@ -44,6 +44,9 @@ def _tokenize_japanese(text: str) -> list[dict]:
             continue
         if surface in seen:
             continue
+        # Skip single-character tokens (particles like は, を, し, て)
+        if len(surface) == 1:
+            continue
         seen.add(surface)
 
         # Get reading (katakana → romaji)

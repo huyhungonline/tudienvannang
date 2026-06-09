@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { get, post } from '../api/client';
 
 interface MacroNewsItem {
@@ -6,6 +6,7 @@ interface MacroNewsItem {
   category: string;
   title: string;
   content: string;
+  language?: string;
   updated_at: string;
 }
 
@@ -13,6 +14,8 @@ interface HistoryResponse {
   dates: string[];
   items: MacroNewsItem[];
 }
+
+type NewsLanguage = 'en' | 'ja';
 
 const CATEGORY_LABELS: Record<string, string> = {
   gold: '🥇 Gold',
@@ -22,27 +25,30 @@ const CATEGORY_LABELS: Record<string, string> = {
   central_banks: '🏛️ Central Banks',
 };
 
+const CATEGORY_LABELS_JA: Record<string, string> = {
+  gold: '🥇 金（ゴールド）',
+  silver: '🥈 銀（シルバー）',
+  oil: '🛢️ 原油',
+  us_treasury: '🏦 米国債',
+  central_banks: '🏛️ 中央銀行',
+};
+
 const CATEGORY_ORDER = ['gold', 'silver', 'oil', 'us_treasury', 'central_banks'];
 
 export function MacroNewsPage() {
   const [news, setNews] = useState<MacroNewsItem[]>([]);
   const [historyDates, setHistoryDates] = useState<string[]>([]);
   const [selectedDate, setSelectedDate] = useState<string | null>(null);
+  const [language, setLanguage] = useState<NewsLanguage>('en');
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  // Load latest news on mount
-  useEffect(() => {
-    fetchLatestNews();
-    fetchHistoryDates();
-  }, []);
-
-  const fetchLatestNews = async () => {
+  const fetchLatestNews = useCallback(async (lang: NewsLanguage) => {
     try {
       setError(null);
       setLoading(true);
-      const data = await get<{ news: MacroNewsItem[] }>('/macro-news');
+      const data = await get<{ news: MacroNewsItem[] }>(`/macro-news?language=${lang}`);
       setNews(data.news || []);
       setSelectedDate(null);
     } catch (err) {
@@ -51,23 +57,28 @@ export function MacroNewsPage() {
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
 
-  const fetchHistoryDates = async () => {
+  const fetchHistoryDates = useCallback(async (lang: NewsLanguage) => {
     try {
-      const data = await get<HistoryResponse>('/macro-news/history?days=20');
+      const data = await get<HistoryResponse>(`/macro-news/history?days=20&language=${lang}`);
       setHistoryDates(data.dates || []);
     } catch (err) {
       console.error('Failed to load history dates:', err);
     }
-  };
+  }, []);
+
+  useEffect(() => {
+    fetchLatestNews(language);
+    fetchHistoryDates(language);
+  }, [language, fetchLatestNews, fetchHistoryDates]);
 
   const fetchNewsByDate = async (date: string) => {
     try {
       setError(null);
       setLoading(true);
       setSelectedDate(date);
-      const data = await get<{ news: MacroNewsItem[] }>(`/macro-news/by-date/${date}`);
+      const data = await get<{ news: MacroNewsItem[] }>(`/macro-news/by-date/${date}?language=${language}`);
       setNews(data.news || []);
     } catch (err) {
       setError(`Failed to load news for ${date}.`);
@@ -81,16 +92,20 @@ export function MacroNewsPage() {
     setRefreshing(true);
     setError(null);
     try {
-      const data = await post<{ news: MacroNewsItem[]; message: string }>('/macro-news/refresh', {});
+      const data = await post<{ news: MacroNewsItem[]; message: string }>(`/macro-news/refresh?language=${language}`, {});
       setNews(data.news || []);
       setSelectedDate(null);
-      await fetchHistoryDates();
+      await fetchHistoryDates(language);
     } catch (err) {
       setError('Failed to refresh macro news.');
       console.error(err);
     } finally {
       setRefreshing(false);
     }
+  };
+
+  const handleLanguageChange = (lang: NewsLanguage) => {
+    setLanguage(lang);
   };
 
   const formatDate = (dateStr: string) => {
@@ -110,6 +125,8 @@ export function MacroNewsPage() {
     }
   };
 
+  const labels = language === 'ja' ? CATEGORY_LABELS_JA : CATEGORY_LABELS;
+
   const sortedNews = CATEGORY_ORDER
     .map((cat) => news.find((item) => item.category === cat))
     .filter((item): item is MacroNewsItem => item !== undefined);
@@ -117,13 +134,13 @@ export function MacroNewsPage() {
   return (
     <div className="macro-news-page">
       <div className="macro-news-sidebar">
-        <h3>Lịch sử nhận định</h3>
+        <h3>{language === 'ja' ? '履歴' : 'Lịch sử nhận định'}</h3>
         <button
           className="sidebar-item sidebar-latest"
-          onClick={fetchLatestNews}
+          onClick={() => fetchLatestNews(language)}
           data-active={selectedDate === null ? 'true' : 'false'}
         >
-          📌 Mới nhất
+          📌 {language === 'ja' ? '最新' : 'Mới nhất'}
         </button>
         {historyDates.map((date) => (
           <button
@@ -140,13 +157,23 @@ export function MacroNewsPage() {
       <div className="macro-news-content">
         <div className="macro-news-header">
           <h1>Macro News {selectedDate ? `(${formatDateShort(selectedDate)})` : ''}</h1>
-          <button
-            className="btn-refresh"
-            onClick={handleRefresh}
-            disabled={refreshing}
-          >
-            {refreshing ? 'Refreshing...' : '🔄 Refresh All'}
-          </button>
+          <div className="macro-news-controls">
+            <select
+              className="macro-news-lang-select"
+              value={language}
+              onChange={(e) => handleLanguageChange(e.target.value as NewsLanguage)}
+            >
+              <option value="en">English</option>
+              <option value="ja">日本語</option>
+            </select>
+            <button
+              className="btn-refresh"
+              onClick={handleRefresh}
+              disabled={refreshing}
+            >
+              {refreshing ? 'Refreshing...' : '🔄 Refresh'}
+            </button>
+          </div>
         </div>
 
         {error && <div className="macro-news-error">{error}</div>}
@@ -155,14 +182,14 @@ export function MacroNewsPage() {
           <div className="macro-news-loading">Loading macro news...</div>
         ) : sortedNews.length === 0 && !error ? (
           <div className="macro-news-empty">
-            <p>No macro news available. Click "Refresh All" to generate analysis.</p>
+            <p>No macro news available. Click "Refresh" to generate analysis.</p>
           </div>
         ) : (
           <div className="macro-news-grid">
             {sortedNews.map((item) => (
               <div key={item.id || item.category} className="macro-news-card">
                 <div className="macro-news-card-header">
-                  <h2>{CATEGORY_LABELS[item.category] || item.title}</h2>
+                  <h2>{labels[item.category] || item.title}</h2>
                   <span className="macro-news-updated">
                     Last updated: {formatDate(item.updated_at)}
                   </span>

@@ -971,3 +971,18 @@ body {
 .btn-use-text:hover {
   background: #1d4ed8;
 }
+
+/* Macro News Controls */
+.macro-news-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.macro-news-lang-select {
+  padding: 0.4rem 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  background: #fff;
+}
