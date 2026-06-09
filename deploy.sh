@@ -9,37 +9,41 @@ VPS_USER="root"
 VPS_DIR="/root/tudienvannang"
 COMMIT_MSG="${1:-deploy update}"
 
-echo "=== [1/3] Push code lên GitHub ==="
+echo "=== [1/4] Push code lên GitHub ==="
 git add .
 git commit -m "$COMMIT_MSG" || echo "Nothing to commit"
 git push origin main
 
 echo ""
-echo "=== [2/3] SSH vào VPS và pull code ==="
+echo "=== [2/4] Sync .env lên VPS ==="
+scp .env ${VPS_USER}@${VPS_HOST}:${VPS_DIR}/.env
+echo "✅ .env synced"
+
+echo ""
+echo "=== [3/4] SSH vào VPS: pull + rebuild ==="
 ssh ${VPS_USER}@${VPS_HOST} << 'REMOTE'
 cd /root/tudienvannang
 git pull origin main
 
 echo ""
-echo "=== [3/3] Rebuild Docker ==="
+echo "=== [4/4] Rebuild Docker ==="
 docker-compose down
 docker-compose up -d --build
 
 echo ""
 echo "=== Chờ postgres khởi động... ==="
-sleep 5
+sleep 8
 
 echo ""
 echo "=== Chạy migrations ==="
-cat backend-python/migrations/001_initial_schema.sql | docker exec -i tudienvannang_postgres_1 psql -U postgres -d english_word_splitter 2>/dev/null || true
-cat backend-python/migrations/002_macro_news.sql | docker exec -i tudienvannang_postgres_1 psql -U postgres -d english_word_splitter 2>/dev/null || true
-cat backend-python/migrations/003_public_searches.sql | docker exec -i tudienvannang_postgres_1 psql -U postgres -d english_word_splitter 2>/dev/null || true
-cat backend-python/migrations/004_multilang_dictionary.sql | docker exec -i tudienvannang_postgres_1 psql -U postgres -d english_word_splitter 2>/dev/null || true
+for f in backend-python/migrations/*.sql; do
+    cat "$f" | docker exec -i tudienvannang_postgres_1 psql -U postgres -d english_word_splitter 2>/dev/null || true
+done
 
 echo ""
 echo "=== Kiểm tra containers ==="
 docker ps --format "table {{.Names}}\t{{.Status}}\t{{.Ports}}"
 
 echo ""
-echo "=== Done! App chạy tại http://14.225.198.235:3000 ==="
+echo "=== Done! App chạy tại https://phantichvimo.com ==="
 REMOTE
