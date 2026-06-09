@@ -12,6 +12,7 @@
   "dependencies": {
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-google-recaptcha": "^3.1.0",
     "react-router-dom": "^6.26.0",
     "shared": "*"
   },
@@ -21,6 +22,7 @@
     "@testing-library/user-event": "^14.5.2",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
+    "@types/react-google-recaptcha": "^2.1.9",
     "@vitejs/plugin-react": "^4.3.1",
     "fast-check": "^3.20.0",
     "jsdom": "^24.1.1",

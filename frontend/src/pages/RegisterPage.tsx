@@ -1,5 +1,6 @@
-import { useState, type FormEvent } from 'react';
+import { useState, useRef, type FormEvent } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import ReCAPTCHA from 'react-google-recaptcha';
 import { useAuth } from '../context/AuthContext';
 import { post, ApiError } from '../api/client';
 import type { User } from 'shared';
@@ -8,6 +9,8 @@ interface RegisterResponse {
   token: string;
   user: User;
 }
+
+const SITE_KEY = import.meta.env.VITE_RECAPTCHA_SITE_KEY || '';
 
 function validateEmail(email: string): string | null {
   if (!email.trim()) return 'Email is required.';
@@ -31,6 +34,7 @@ function validatePassword(password: string): string | null {
 export function RegisterPage() {
   const navigate = useNavigate();
   const { login } = useAuth();
+  const recaptchaRef = useRef<ReCAPTCHA>(null);
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -45,31 +49,23 @@ export function RegisterPage() {
     ? 'Passwords do not match.'
     : null;
 
+  const handleCaptchaChange = (token: string | null) => {
+    setCaptchaToken(token || '');
+  };
+
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setError(null);
 
     const emailErr = validateEmail(email);
-    if (emailErr) {
-      setError(emailErr);
-      return;
-    }
+    if (emailErr) { setError(emailErr); return; }
 
     const passErr = validatePassword(password);
-    if (passErr) {
-      setError(passErr);
-      return;
-    }
+    if (passErr) { setError(passErr); return; }
 
-    if (password !== confirmPassword) {
-      setError('Passwords do not match.');
-      return;
-    }
+    if (password !== confirmPassword) { setError('Passwords do not match.'); return; }
 
-    if (!captchaToken) {
-      setError('Please complete the CAPTCHA verification.');
-      return;
-    }
+    if (!captchaToken) { setError('Please complete the CAPTCHA verification.'); return; }
 
     setLoading(true);
 
@@ -85,6 +81,8 @@ export function RegisterPage() {
       if (err instanceof ApiError) {
         if (err.status === 403) {
           setError('CAPTCHA verification failed. Please try again.');
+          recaptchaRef.current?.reset();
+          setCaptchaToken('');
         } else if (err.status === 400 && err.message.toLowerCase().includes('already')) {
           setError('This email is already registered.');
         } else {
@@ -143,20 +141,15 @@ export function RegisterPage() {
           {confirmError && <span className="field-error">{confirmError}</span>}
         </div>
 
-        <div className="form-field captcha-field">
-          <label>
-            <input
-              type="checkbox"
-              checked={!!captchaToken}
-              onChange={(e) => setCaptchaToken(e.target.checked ? 'dev-captcha-token' : '')}
+        {SITE_KEY && (
+          <div className="form-field">
+            <ReCAPTCHA
+              ref={recaptchaRef}
+              sitekey={SITE_KEY}
+              onChange={handleCaptchaChange}
             />
-            {' '}I am not a robot
-          </label>
-          <div
-            className="captcha-placeholder"
-            data-sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY || ''}
-          />
-        </div>
+          </div>
+        )}
 
         <button type="submit" className="btn-submit" disabled={loading}>
           {loading ? 'Creating account...' : 'Register'}
