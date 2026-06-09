@@ -54,6 +54,10 @@ def _tokenize_japanese(text: str) -> list[dict]:
         if len(surface) == 1:
             continue
 
+        # Skip short hiragana-only tokens (2 chars) - usually verb conjugations/particles
+        if len(surface) == 2 and re.match(r'^[\u3040-\u309F]+$', surface):
+            continue
+
         # Filter by POS - only keep meaningful words
         pos = ""
         if hasattr(word, 'feature') and word.feature:
