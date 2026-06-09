@@ -135,12 +135,6 @@ export function HomePage() {
         <RecentSearches onSelect={handleSelectRecentSearch} />
       </div>
       <div className="right-column">
-        <ResultPanel
-          words={words}
-          loading={loading}
-          targetLanguage={sourceLanguage === 'en' ? targetLanguage : undefined}
-          sourceLanguage={sourceLanguage}
-        />
         {words.length > 0 && (
           <div className="save-history-section">
             {isAuthenticated ? (
@@ -157,6 +151,12 @@ export function HomePage() {
             )}
           </div>
         )}
+        <ResultPanel
+          words={words}
+          loading={loading}
+          targetLanguage={sourceLanguage === 'en' ? targetLanguage : undefined}
+          sourceLanguage={sourceLanguage}
+        />
       </div>
     </div>
   );
