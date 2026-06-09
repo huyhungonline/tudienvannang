@@ -38,8 +38,8 @@ def _tokenize_japanese(text: str) -> list[dict]:
     import fugashi
     tagger = _get_japanese_tagger()
 
-    # POS categories to KEEP (meaningful words)
-    KEEP_POS = {'名詞', '動詞', '形容詞', '副詞', '形状詞', '連体詞'}
+    # POS categories to SKIP (particles, auxiliaries, symbols)
+    SKIP_POS = {'助詞', '助動詞', '接続詞', '感動詞', '記号', '補助記号', '空白'}
 
     tokens = []
     seen = set()
@@ -64,13 +64,19 @@ def _tokenize_japanese(text: str) -> list[dict]:
             if pos_match:
                 pos = pos_match.group(1)
             else:
-                # Fallback: first field in comma-separated
-                parts = feature_str.split(",")
-                if parts:
-                    pos = parts[0].strip()
+                # Try pos1 field
+                pos1_match = _re.search(r"pos1='([^']*)'", feature_str)
+                if pos1_match:
+                    pos = pos1_match.group(1)
+                else:
+                    # Fallback: first comma-separated field
+                    parts = feature_str.split(",")
+                    if parts:
+                        pos = parts[0].strip()
 
-        # Skip if POS not in keep list
-        if pos and pos not in KEEP_POS:
+        # Skip if POS is a particle/auxiliary (skip list approach)
+        SKIP_POS = {'助詞', '助動詞', '接続詞', '感動詞', '記号', '補助記号', '空白'}
+        if pos and pos in SKIP_POS:
             continue
 
         seen.add(surface)
