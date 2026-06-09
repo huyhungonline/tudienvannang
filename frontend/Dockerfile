@@ -3,6 +3,9 @@ FROM node:20-alpine AS build
 
 WORKDIR /app
 
+ARG VITE_RECAPTCHA_SITE_KEY=""
+ENV VITE_RECAPTCHA_SITE_KEY=$VITE_RECAPTCHA_SITE_KEY
+
 # Copy root package files for workspace resolution
 COPY package.json package-lock.json ./
 COPY shared/package.json ./shared/
