@@ -1,5 +1,5 @@
-import { useState, useCallback } from 'react';
-import { Link } from 'react-router-dom';
+import { useState, useCallback, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import type { WordEntry, TargetLanguage, SourceLanguage, ProcessedResult } from 'shared';
 import { InputPanel } from '../components/InputPanel';
 import { LanguageSelector } from '../components/LanguageSelector';
@@ -13,6 +13,7 @@ import { ApiError } from '../api/client';
 
 export function HomePage() {
   const { isAuthenticated } = useAuth();
+  const location = useLocation();
   const [words, setWords] = useState<WordEntry[]>([]);
   const [sentenceTranslation, setSentenceTranslation] = useState('');
   const [loading, setLoading] = useState(false);
@@ -22,6 +23,18 @@ export function HomePage() {
   const [currentText, setCurrentText] = useState('');
   const [externalText, setExternalText] = useState<string | undefined>(undefined);
   const [saveMessage, setSaveMessage] = useState<string | null>(null);
+
+  // Handle navigation from My Page with pre-filled text
+  useEffect(() => {
+    const state = location.state as { text?: string } | null;
+    if (state?.text) {
+      setExternalText(state.text);
+      setCurrentText(state.text);
+      fetchWords(state.text, targetLanguage, sourceLanguage);
+      // Clear state so refresh doesn't re-trigger
+      window.history.replaceState({}, document.title);
+    }
+  }, [location.state]);
 
   const fetchWords = useCallback(async (text: string, target: TargetLanguage, source: SourceLanguage) => {
     if (!text.trim()) {
@@ -133,13 +146,13 @@ export function HomePage() {
             {isAuthenticated ? (
               <>
                 <button className="btn-save-history" onClick={handleSaveToHistory}>
-                  Save to History
+                  Save
                 </button>
                 {saveMessage && <span className="save-success">{saveMessage}</span>}
               </>
             ) : (
               <p className="login-prompt">
-                <Link to="/login">Log in</Link> or <Link to="/register">register</Link> to save search history.
+                <Link to="/login">Log in</Link> or <Link to="/register">register</Link> to save.
               </p>
             )}
           </div>

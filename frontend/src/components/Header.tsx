@@ -11,12 +11,12 @@ export function Header() {
         <nav className="header-nav">
           <Link to="/">Home</Link>
           <Link to="/macro-news">Macro News</Link>
-          {isAuthenticated && <Link to="/history">History</Link>}
         </nav>
       </div>
       <div className="header-right">
         {isAuthenticated ? (
           <>
+            <Link to="/my-page" className="btn-mypage">My Page</Link>
             <span className="header-email">{user?.email}</span>
             <button className="btn-logout" onClick={logout}>Logout</button>
           </>

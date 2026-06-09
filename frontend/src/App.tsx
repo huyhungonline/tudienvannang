@@ -18,6 +18,7 @@ function App() {
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/history" element={<HistoryPage />} />
+            <Route path="/my-page" element={<HistoryPage />} />
             <Route path="/macro-news" element={<MacroNewsPage />} />
           </Routes>
         </main>
