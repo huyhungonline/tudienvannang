@@ -67,7 +67,7 @@ async def lifespan(app: FastAPI):
     await db.close_pool()
 
 
-app = FastAPI(title="English Word Splitter API", lifespan=lifespan)
+app = FastAPI(title="English Word Splitter API", lifespan=lifespan, redirect_slashes=False)
 
 # CORS middleware - allow all origins for development
 app.add_middleware(

@@ -6,7 +6,7 @@ from middleware.auth import get_current_user
 router = APIRouter(prefix="/api/history")
 
 
-@router.get("/")
+@router.get("")
 async def list_history(user_id: str = Depends(get_current_user)):
     try:
         records = await history_service.get_all(user_id)
@@ -41,7 +41,7 @@ async def get_history(record_id: str, user_id: str = Depends(get_current_user)):
         raise HTTPException(status_code=500, detail="Internal server error")
 
 
-@router.post("/", status_code=201)
+@router.post("", status_code=201)
 async def save_history(body: HistorySaveRequest, user_id: str = Depends(get_current_user)):
     try:
         words_dicts = [w.model_dump() for w in body.words]
