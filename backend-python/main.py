@@ -48,22 +48,22 @@ async def lifespan(app: FastAPI):
     except Exception as e:
         logger.error(f"Failed to run macro_news migration: {e}")
 
-    # Initial refresh if DB is empty
-    try:
-        if await macro_news_service.is_db_empty():
-            logger.info("Macro news DB is empty, triggering initial refresh (EN + JA)...")
-            asyncio.create_task(macro_news_service.refresh_news("en"))
-            asyncio.create_task(macro_news_service.refresh_news("ja"))
-    except Exception as e:
-        logger.error(f"Failed to check/trigger initial macro news refresh: {e}")
+    # Initial refresh disabled temporarily
+    # try:
+    #     if await macro_news_service.is_db_empty():
+    #         logger.info("Macro news DB is empty, triggering initial refresh (EN + JA)...")
+    #         asyncio.create_task(macro_news_service.refresh_news("en"))
+    #         asyncio.create_task(macro_news_service.refresh_news("ja"))
+    # except Exception as e:
+    #     logger.error(f"Failed to check/trigger initial macro news refresh: {e}")
 
-    # Start background scheduler
-    refresh_task = asyncio.create_task(scheduled_refresh())
+    # Background scheduler disabled temporarily
+    # refresh_task = asyncio.create_task(scheduled_refresh())
 
     yield
 
-    # Shutdown: cancel background task and close DB pool
-    refresh_task.cancel()
+    # Shutdown
+    # refresh_task.cancel()
     await db.close_pool()
 
 
