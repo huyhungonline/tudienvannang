@@ -125,7 +125,7 @@ export function HomePage() {
           <SourceLanguageSelector onLanguageChange={handleSourceLanguageChange} />
           <LanguageSelector onLanguageChange={handleTargetLanguageChange} />
         </div>
-        <InputPanel onSubmit={handleSubmit} externalText={externalText} />
+        <InputPanel onSubmit={handleSubmit} externalText={externalText} sourceLanguage={sourceLanguage} />
         <SentenceTranslation
           translation={sentenceTranslation}
           loading={loading}
