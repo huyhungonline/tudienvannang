@@ -57,15 +57,15 @@ export function InputPanel({ onSubmit, externalText, sourceLanguage = 'en', onAu
     const isEnOnly = /^[a-zA-Z0-9\s\.,;:!?'"()\-\[\]{}\/\\@#$%^&*+=<>~`]+$/.test(text);
 
     if (sourceLanguage === 'en') {
-      if (isJP) return 'Văn bản có chứa tiếng Nhật. Vui lòng chọn Source Language = Japanese.';
-      if (isVN) return 'Văn bản có chứa tiếng Việt. Vui lòng chọn Source Language = Vietnamese.';
+      if (isJP) return 'Text contains Japanese. Please select Source Language = Japanese.';
+      if (isVN) return 'Text contains Vietnamese. Please select Source Language = Vietnamese.';
     }
     if (sourceLanguage === 'ja') {
-      if (!isJP && text.length > 3) return 'Văn bản không phải tiếng Nhật. Vui lòng kiểm tra Source Language.';
+      if (!isJP && text.length > 3) return 'Text does not appear to be Japanese. Please check Source Language.';
     }
     if (sourceLanguage === 'vi') {
-      if (isJP) return 'Văn bản có chứa tiếng Nhật. Vui lòng chọn Source Language = Japanese.';
-      if (!isVN && isEnOnly && text.length > 3) return 'Văn bản có vẻ là tiếng Anh. Vui lòng chọn Source Language = English.';
+      if (isJP) return 'Text contains Japanese. Please select Source Language = Japanese.';
+      if (!isVN && isEnOnly && text.length > 3) return 'Text appears to be English. Please select Source Language = English.';
     }
     return null;
   }, [text, sourceLanguage]);
@@ -82,18 +82,18 @@ export function InputPanel({ onSubmit, externalText, sourceLanguage = 'en', onAu
         className="input-textarea"
         value={text}
         onChange={(e) => setText(e.target.value)}
-        placeholder={sourceLanguage === 'en' ? 'Paste or type English text here...' : 'Nhập văn bản cần dịch...'}
+        placeholder={sourceLanguage === 'en' ? 'Paste or type English text here...' : 'Enter text to translate...'}
         rows={10}
       />
       <div className="input-footer">
         {sourceLanguage === 'en' && (
           <span className={`word-count ${isOverLimit ? 'over-limit' : ''}`}>
-            {wordCount}/50 từ
+            {wordCount}/50 words
           </span>
         )}
         {isOverLimit && (
           <span className="word-limit-warning">
-            Đoạn văn quá dài. Vui lòng nhập tối đa 50 từ.
+            Text is too long. Please enter a maximum of 50 words.
           </span>
         )}
         {mismatchWarning && (
@@ -101,7 +101,7 @@ export function InputPanel({ onSubmit, externalText, sourceLanguage = 'en', onAu
         )}
       </div>
       <button className="btn-split" onClick={handleSubmit} disabled={!text.trim() || isOverLimit}>
-        Tách từ & Dịch nghĩa
+        Analyze & Translate
       </button>
     </div>
   );

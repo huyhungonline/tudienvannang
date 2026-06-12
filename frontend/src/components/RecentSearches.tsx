@@ -25,7 +25,7 @@ export function RecentSearches({ onSelect }: RecentSearchesProps) {
 
   return (
     <div className="recent-searches">
-      <h3 className="recent-searches-title">Các đoạn văn đã tra cứu gần đây</h3>
+      <h3 className="recent-searches-title">Recent Searches</h3>
       <ul className="recent-searches-list">
         {searches.map((s) => (
           <li key={s.id} className="recent-search-item">
