@@ -14,11 +14,11 @@ function formatRelativeTime(isoString: string): string {
   const then = new Date(isoString).getTime();
   const diff = Math.floor((now - then) / 1000);
 
-  if (diff < 60) return 'vừa xong';
-  if (diff < 3600) return `${Math.floor(diff / 60)} phút trước`;
-  if (diff < 86400) return `${Math.floor(diff / 3600)} giờ trước`;
-  if (diff < 2592000) return `${Math.floor(diff / 86400)} ngày trước`;
-  return `${Math.floor(diff / 2592000)} tháng trước`;
+  if (diff < 60) return 'just now';
+  if (diff < 3600) return `${Math.floor(diff / 60)} min ago`;
+  if (diff < 86400) return `${Math.floor(diff / 3600)} hours ago`;
+  if (diff < 2592000) return `${Math.floor(diff / 86400)} days ago`;
+  return `${Math.floor(diff / 2592000)} months ago`;
 }
 
 export function ReadingPostsPage() {
@@ -45,8 +45,8 @@ export function ReadingPostsPage() {
     e.preventDefault();
     setError('');
 
-    if (!username.trim()) { setError('Vui lòng nhập tên'); return; }
-    if (!content.trim()) { setError('Vui lòng nhập nội dung bài đọc'); return; }
+    if (!username.trim()) { setError('Please enter your name'); return; }
+    if (!content.trim()) { setError('Please enter the reading content'); return; }
 
     setLoading(true);
     try {
@@ -57,7 +57,7 @@ export function ReadingPostsPage() {
       setPosts([newPost, ...posts]);
       setContent('');
     } catch {
-      setError('Không thể đăng bài. Vui lòng thử lại.');
+      setError('Failed to post. Please try again.');
     } finally {
       setLoading(false);
     }
@@ -79,13 +79,13 @@ export function ReadingPostsPage() {
       <form className="reading-post-form" onSubmit={handleSubmit}>
         <input
           type="text"
-          placeholder="Tên của bạn"
+          placeholder="Your name"
           value={username}
           onChange={e => setUsername(e.target.value)}
           maxLength={50}
         />
         <textarea
-          placeholder="Chia sẻ bài đọc hay..."
+          placeholder="Share an interesting reading..."
           value={content}
           onChange={e => setContent(e.target.value)}
           maxLength={5000}
@@ -93,13 +93,13 @@ export function ReadingPostsPage() {
         />
         {error && <p className="form-error">{error}</p>}
         <button type="submit" disabled={loading}>
-          {loading ? 'Đang đăng...' : 'Đăng bài'}
+          {loading ? 'Posting...' : 'Post'}
         </button>
       </form>
 
       <div className="reading-posts-list">
         {posts.length === 0 ? (
-          <p className="empty-state">Chưa có bài đọc nào. Hãy là người đầu tiên chia sẻ!</p>
+          <p className="empty-state">No posts yet. Be the first to share!</p>
         ) : (
           posts.map(p => (
             <div key={p.id} className="reading-post-card">
