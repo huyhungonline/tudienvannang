@@ -31,10 +31,19 @@ export function HomePage() {
       setExternalText(state.text);
       setCurrentText(state.text);
       fetchWords(state.text, targetLanguage, sourceLanguage);
-      // Clear state so refresh doesn't re-trigger
       window.history.replaceState({}, document.title);
+      return;
     }
-  }, [location.state]);
+    // Handle query param ?text= from Reading page
+    const params = new URLSearchParams(location.search);
+    const textParam = params.get('text');
+    if (textParam) {
+      setExternalText(textParam);
+      setCurrentText(textParam);
+      fetchWords(textParam, targetLanguage, sourceLanguage);
+      window.history.replaceState({}, document.title, '/');
+    }
+  }, [location.state, location.search]);
 
   const fetchWords = useCallback(async (text: string, target: TargetLanguage, source: SourceLanguage) => {
     if (!text.trim()) {

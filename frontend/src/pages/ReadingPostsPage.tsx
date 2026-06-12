@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { get, post } from '../api/client';
 
 interface ReadingPost {
@@ -22,6 +23,7 @@ function formatRelativeTime(isoString: string): string {
 }
 
 export function ReadingPostsPage() {
+  const navigate = useNavigate();
   const [posts, setPosts] = useState<ReadingPost[]>([]);
   const [username, setUsername] = useState('');
   const [content, setContent] = useState('');
@@ -106,6 +108,9 @@ export function ReadingPostsPage() {
               <div className="post-header">
                 <span className="post-username">{p.username}</span>
                 <span className="post-time">{formatRelativeTime(p.created_at)}</span>
+                <button className="translate-btn" onClick={() => navigate('/?text=' + encodeURIComponent(p.content))} title="Analyze & Translate">
+                  🔤
+                </button>
               </div>
               <div className="post-content">{p.content}</div>
               <button className="like-btn" onClick={() => handleLike(p.id)}>
