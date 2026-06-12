@@ -6,7 +6,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 import db
-from routes import words, audio, auth, history, macro_news
+from routes import words, audio, auth, history, macro_news, reading_posts
 from services import macro_news_service
 
 logger = logging.getLogger(__name__)
@@ -84,6 +84,7 @@ app.include_router(audio.router)
 app.include_router(auth.router)
 app.include_router(history.router)
 app.include_router(macro_news.router)
+app.include_router(reading_posts.router)
 
 
 @app.get("/api/health")

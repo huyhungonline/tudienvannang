@@ -122,10 +122,10 @@ export function HomePage() {
     <div className="home-page">
       <div className="left-column">
         <div className="language-bar">
-          <SourceLanguageSelector onLanguageChange={handleSourceLanguageChange} />
+          <SourceLanguageSelector onLanguageChange={handleSourceLanguageChange} value={sourceLanguage} />
           <LanguageSelector onLanguageChange={handleTargetLanguageChange} />
         </div>
-        <InputPanel onSubmit={handleSubmit} externalText={externalText} sourceLanguage={sourceLanguage} />
+        <InputPanel onSubmit={handleSubmit} externalText={externalText} sourceLanguage={sourceLanguage} onAutoDetectLanguage={handleSourceLanguageChange} />
         <SentenceTranslation
           translation={sentenceTranslation}
           loading={loading}

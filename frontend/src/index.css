@@ -986,3 +986,134 @@ body {
   font-size: 0.85rem;
   background: #fff;
 }
+
+/* Reading Posts Page */
+.reading-posts-page {
+  background: #fff;
+  border-radius: 8px;
+  padding: 2rem;
+  border: 1px solid #e0e0e0;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.reading-posts-page h2 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 1.5rem;
+}
+
+.reading-post-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.reading-post-form input {
+  padding: 0.6rem 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 0.95rem;
+}
+
+.reading-post-form textarea {
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 0.95rem;
+  font-family: inherit;
+  resize: vertical;
+  line-height: 1.5;
+}
+
+.reading-post-form input:focus,
+.reading-post-form textarea:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1);
+}
+
+.reading-post-form button {
+  padding: 0.6rem 1.2rem;
+  background: #2563eb;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  align-self: flex-start;
+}
+
+.reading-post-form button:hover:not(:disabled) {
+  background: #1d4ed8;
+}
+
+.reading-post-form button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.reading-posts-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.reading-post-card {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 1rem;
+  background: #fafafa;
+}
+
+.post-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.post-username {
+  font-weight: 600;
+  color: #333;
+  font-size: 0.9rem;
+}
+
+.post-time {
+  font-size: 0.8rem;
+  color: #888;
+}
+
+.post-content {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #444;
+  white-space: pre-wrap;
+  margin-bottom: 0.75rem;
+}
+
+.like-btn {
+  background: none;
+  border: 1px solid #e0e0e0;
+  border-radius: 20px;
+  padding: 0.3rem 0.75rem;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.like-btn:hover {
+  background: #fef2f2;
+  border-color: #fca5a5;
+}
+
+.empty-state {
+  color: #888;
+  font-style: italic;
+  text-align: center;
+  padding: 2rem 0;
+}

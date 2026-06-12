@@ -5,6 +5,7 @@ interface InputPanelProps {
   onSubmit: (text: string) => void;
   externalText?: string;
   sourceLanguage?: SourceLanguage;
+  onAutoDetectLanguage?: (lang: SourceLanguage) => void;
 }
 
 function countWords(text: string): number {
@@ -21,7 +22,14 @@ function hasVietnamese(text: string): boolean {
   return /[àáảãạăắằẳẵặâấầẩẫậèéẻẽẹêếềểễệìíỉĩịòóỏõọôốồổỗộơớờởỡợùúủũụưứừửữựỳýỷỹỵđ]/i.test(text);
 }
 
-export function InputPanel({ onSubmit, externalText, sourceLanguage = 'en' }: InputPanelProps) {
+function detectLanguage(text: string): SourceLanguage | null {
+  if (hasJapanese(text)) return 'ja';
+  if (hasVietnamese(text)) return 'vi';
+  if (/^[a-zA-Z0-9\s\.,;:!?'"()\-\[\]{}\/\\@#$%^&*+=<>~`]+$/.test(text)) return 'en';
+  return null;
+}
+
+export function InputPanel({ onSubmit, externalText, sourceLanguage = 'en', onAutoDetectLanguage }: InputPanelProps) {
   const [text, setText] = useState('');
 
   useEffect(() => {
@@ -29,6 +37,15 @@ export function InputPanel({ onSubmit, externalText, sourceLanguage = 'en' }: In
       setText(externalText);
     }
   }, [externalText]);
+
+  // Auto-detect language when text changes
+  useEffect(() => {
+    if (!text.trim() || !onAutoDetectLanguage) return;
+    const detected = detectLanguage(text);
+    if (detected && detected !== sourceLanguage) {
+      onAutoDetectLanguage(detected);
+    }
+  }, [text]);
 
   const wordCount = useMemo(() => countWords(text), [text]);
   const isOverLimit = sourceLanguage === 'en' && wordCount > 50;

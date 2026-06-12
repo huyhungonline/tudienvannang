@@ -3,6 +3,7 @@ import type { SourceLanguage } from 'shared';
 
 interface SourceLanguageSelectorProps {
   onLanguageChange: (language: SourceLanguage) => void;
+  value?: SourceLanguage;
 }
 
 const SOURCE_OPTIONS: { value: SourceLanguage; label: string }[] = [
@@ -21,17 +22,25 @@ function getInitialLanguage(): SourceLanguage {
   return 'en';
 }
 
-export function SourceLanguageSelector({ onLanguageChange }: SourceLanguageSelectorProps) {
-  const [language, setLanguage] = useState<SourceLanguage>(getInitialLanguage);
+export function SourceLanguageSelector({ onLanguageChange, value }: SourceLanguageSelectorProps) {
+  const [language, setLanguage] = useState<SourceLanguage>(value || getInitialLanguage);
+
+  // Sync from parent (auto-detect)
+  useEffect(() => {
+    if (value && value !== language) {
+      setLanguage(value);
+      sessionStorage.setItem(STORAGE_KEY, value);
+    }
+  }, [value]);
 
   useEffect(() => {
     onLanguageChange(language);
   }, [language, onLanguageChange]);
 
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const value = e.target.value as SourceLanguage;
-    setLanguage(value);
-    sessionStorage.setItem(STORAGE_KEY, value);
+    const val = e.target.value as SourceLanguage;
+    setLanguage(val);
+    sessionStorage.setItem(STORAGE_KEY, val);
   };
 
   return (

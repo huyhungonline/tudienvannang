@@ -10,6 +10,7 @@ export function Header() {
         <Link to="/" className="header-title">English Word Splitter</Link>
         <nav className="header-nav">
           <Link to="/">Home</Link>
+          <Link to="/reading-posts">Reading</Link>
           {/* <Link to="/macro-news">Macro News</Link> */}
         </nav>
       </div>
