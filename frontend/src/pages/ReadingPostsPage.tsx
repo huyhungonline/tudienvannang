@@ -25,22 +25,35 @@ function formatRelativeTime(isoString: string): string {
 export function ReadingPostsPage() {
   const navigate = useNavigate();
   const [posts, setPosts] = useState<ReadingPost[]>([]);
+  const [total, setTotal] = useState(0);
   const [username, setUsername] = useState('');
   const [content, setContent] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const [loadingMore, setLoadingMore] = useState(false);
 
   useEffect(() => {
-    fetchPosts();
+    fetchPosts(0);
   }, []);
 
-  async function fetchPosts() {
+  async function fetchPosts(offset: number) {
     try {
-      const data = await get<{ posts: ReadingPost[] }>('/reading-posts');
-      setPosts(data.posts);
+      const data = await get<{ posts: ReadingPost[]; total: number }>(`/reading-posts?limit=10&offset=${offset}`);
+      if (offset === 0) {
+        setPosts(data.posts);
+      } else {
+        setPosts(prev => [...prev, ...data.posts]);
+      }
+      setTotal(data.total);
     } catch {
       /* ignore */
     }
+  }
+
+  async function handleLoadMore() {
+    setLoadingMore(true);
+    await fetchPosts(posts.length);
+    setLoadingMore(false);
   }
 
   async function handleSubmit(e: React.FormEvent) {
@@ -57,6 +70,7 @@ export function ReadingPostsPage() {
         content: content.trim(),
       });
       setPosts([newPost, ...posts]);
+      setTotal(prev => prev + 1);
       setContent('');
     } catch {
       setError('Failed to post. Please try again.');
@@ -118,6 +132,11 @@ export function ReadingPostsPage() {
               </button>
             </div>
           ))
+        )}
+        {posts.length < total && (
+          <button className="btn-load-more" onClick={handleLoadMore} disabled={loadingMore}>
+            {loadingMore ? 'Loading...' : 'Read more'}
+          </button>
         )}
       </div>
     </div>

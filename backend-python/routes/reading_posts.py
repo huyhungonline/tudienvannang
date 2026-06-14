@@ -1,4 +1,4 @@
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Query
 from pydantic import BaseModel, Field
 
 import db
@@ -12,14 +12,17 @@ class CreatePostRequest(BaseModel):
 
 
 @router.get("")
-async def get_reading_posts():
-    """Return all reading posts ordered by newest first."""
+async def get_reading_posts(limit: int = Query(default=10, le=100), offset: int = Query(default=0, ge=0)):
+    """Return reading posts with pagination, ordered by newest first."""
     posts = await db.query(
-        "SELECT id, username, content, like_count, created_at FROM reading_posts ORDER BY created_at DESC"
+        "SELECT id, username, content, like_count, created_at FROM reading_posts ORDER BY created_at DESC LIMIT $1 OFFSET $2",
+        limit,
+        offset,
     )
     for post in posts:
         post["created_at"] = post["created_at"].isoformat()
-    return {"posts": posts}
+    total = await db.query_one("SELECT COUNT(*) as count FROM reading_posts")
+    return {"posts": posts, "total": total["count"] if total else 0}
 
 
 @router.post("", status_code=201)
