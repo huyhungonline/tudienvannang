@@ -1,8 +1,21 @@
+import { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 
 export function Header() {
   const { user, isAuthenticated, logout } = useAuth();
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    function handleClickOutside(e: MouseEvent) {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
+        setDropdownOpen(false);
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
 
   return (
     <header className="header">
@@ -11,16 +24,23 @@ export function Header() {
         <nav className="header-nav">
           <Link to="/">Home</Link>
           <Link to="/reading-posts">Reading</Link>
-          {/* <Link to="/macro-news">Macro News</Link> */}
         </nav>
       </div>
       <div className="header-right">
         {isAuthenticated ? (
-          <>
-            <Link to="/my-page" className="btn-mypage">My Page</Link>
-            <span className="header-email">{user?.email}</span>
-            <button className="btn-logout" onClick={logout}>Logout</button>
-          </>
+          <div className="avatar-wrapper" ref={dropdownRef}>
+            <button className="avatar-btn" onClick={() => setDropdownOpen(!dropdownOpen)}>
+              {user?.email?.charAt(0).toUpperCase() || 'U'}
+            </button>
+            {dropdownOpen && (
+              <div className="avatar-dropdown">
+                <span className="dropdown-email">{user?.email}</span>
+                <Link to="/my-page" className="dropdown-item" onClick={() => setDropdownOpen(false)}>My Page</Link>
+                <Link to="/reset-password" className="dropdown-item" onClick={() => setDropdownOpen(false)}>Reset Password</Link>
+                <button className="dropdown-item dropdown-logout" onClick={() => { logout(); setDropdownOpen(false); }}>Logout</button>
+              </div>
+            )}
+          </div>
         ) : (
           <>
             <Link to="/login">Login</Link>

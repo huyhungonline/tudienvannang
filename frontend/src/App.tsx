@@ -7,6 +7,7 @@ import { RegisterPage } from './pages/RegisterPage';
 import { HistoryPage } from './pages/HistoryPage';
 import { MacroNewsPage } from './pages/MacroNewsPage';
 import { ReadingPostsPage } from './pages/ReadingPostsPage';
+import { ResetPasswordPage } from './pages/ResetPasswordPage';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
             <Route path="/my-page" element={<HistoryPage />} />
             <Route path="/macro-news" element={<MacroNewsPage />} />
             <Route path="/reading-posts" element={<ReadingPostsPage />} />
+            <Route path="/reset-password" element={<ResetPasswordPage />} />
           </Routes>
         </main>
       </div>

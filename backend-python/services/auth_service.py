@@ -136,3 +136,23 @@ def verify_token(token: str) -> dict | None:
         return {"userId": payload["userId"]}
     except jwt.PyJWTError:
         return None
+
+
+async def change_password(user_id: str, current_password: str, new_password: str) -> None:
+    row = await db.query_one(
+        "SELECT password_hash FROM users WHERE id = $1",
+        user_id,
+    )
+    if not row:
+        raise LookupError("User not found")
+
+    if not _verify_password(current_password, row["password_hash"]):
+        raise LookupError("Current password is incorrect")
+
+    if not validate_password(new_password):
+        raise ValueError(
+            "Password must be at least 8 characters with 1 uppercase, 1 lowercase, and 1 digit"
+        )
+
+    new_hash = _hash_password(new_password)
+    await db.execute("UPDATE users SET password_hash = $1 WHERE id = $2", new_hash, user_id)
