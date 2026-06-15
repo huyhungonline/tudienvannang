@@ -163,7 +163,7 @@ export function HomePage() {
         <ResultPanel
           words={words}
           loading={loading}
-          targetLanguage={sourceLanguage === 'en' ? targetLanguage : undefined}
+          targetLanguage={targetLanguage}
           sourceLanguage={sourceLanguage}
         />
       </div>

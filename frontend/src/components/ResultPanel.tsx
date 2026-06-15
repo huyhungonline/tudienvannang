@@ -8,10 +8,11 @@ interface ResultPanelProps {
   sourceLanguage?: SourceLanguage;
 }
 
-const LANGUAGE_HEADERS: Record<TargetLanguage, string> = {
+const LANGUAGE_HEADERS: Record<string, string> = {
   ja: '日本語',
   vi: 'Tiếng Việt',
   zh: '中文',
+  en: 'English',
 };
 
 const READING_HEADERS: Record<string, string> = {
@@ -47,7 +48,7 @@ export function ResultPanel({ words, loading, targetLanguage, sourceLanguage = '
             <tr>
               <th>Word</th>
               <th>{READING_HEADERS[sourceLanguage] || 'Reading'}</th>
-              <th>English</th>
+              <th>{targetLanguage ? LANGUAGE_HEADERS[targetLanguage] || 'Translation' : 'English'}</th>
             </tr>
           </thead>
           <tbody>
