@@ -9,9 +9,9 @@ interface ResultPanelProps {
 }
 
 const LANGUAGE_HEADERS: Record<string, string> = {
-  ja: '日本語',
-  vi: 'Tiếng Việt',
-  zh: '中文',
+  ja: 'Japanese',
+  vi: 'Vietnamese',
+  zh: 'Chinese',
   en: 'English',
 };
 
