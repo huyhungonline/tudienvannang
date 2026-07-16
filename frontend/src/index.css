@@ -1226,3 +1226,57 @@ body {
   margin-top: 0.25rem;
   padding-top: 0.5rem;
 }
+
+/* About Page */
+.about-page {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.about-lang-switcher {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.about-lang-switcher button {
+  padding: 0.4rem 1rem;
+  border: 1px solid #ccc;
+  background: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.about-lang-switcher button.active {
+  background: #2563eb;
+  color: #fff;
+  border-color: #2563eb;
+}
+
+.about-content h1 {
+  font-size: 1.6rem;
+  margin-bottom: 1rem;
+}
+
+.about-content h2 {
+  font-size: 1.2rem;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.about-content p {
+  line-height: 1.7;
+  margin-bottom: 1rem;
+}
+
+.about-content ul,
+.about-content ol {
+  padding-left: 1.5rem;
+  line-height: 1.8;
+}
+
+.about-content li {
+  margin-bottom: 0.3rem;
+}
