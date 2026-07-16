@@ -1,15 +1,18 @@
+import uuid
+
 import db
 
 
 async def save(user_id: str, input_text: str, target_language: str, sentence_translation: str, words: list[dict]) -> dict:
     """Save a search history record with word entries."""
     pool = await db.get_pool()
+    user_uuid = uuid.UUID(user_id)
     async with pool.acquire() as conn:
         async with conn.transaction():
             history_row = await conn.fetchrow(
                 "INSERT INTO search_history (user_id, input_text, target_language, sentence_translation) "
                 "VALUES ($1, $2, $3, $4) RETURNING id, created_at",
-                user_id, input_text, target_language, sentence_translation,
+                user_uuid, input_text, target_language, sentence_translation,
             )
             history_id = history_row["id"]
 
@@ -54,10 +57,11 @@ async def get_recent_public(limit: int = 10) -> list[dict]:
 
 async def get_all(user_id: str) -> list[dict]:
     """Get all search history records for a user."""
+    user_uuid = uuid.UUID(user_id)
     rows = await db.query(
         "SELECT id, user_id, input_text, target_language, sentence_translation, created_at "
         "FROM search_history WHERE user_id = $1 ORDER BY created_at DESC",
-        user_id,
+        user_uuid,
     )
 
     histories = []
@@ -91,10 +95,12 @@ async def get_all(user_id: str) -> list[dict]:
 
 async def get_by_id(user_id: str, record_id: str) -> dict | None:
     """Get a single search history record."""
+    user_uuid = uuid.UUID(user_id)
+    record_uuid = uuid.UUID(record_id)
     row = await db.query_one(
         "SELECT id, user_id, input_text, target_language, sentence_translation, created_at "
         "FROM search_history WHERE id = $1 AND user_id = $2",
-        record_id, user_id,
+        record_uuid, user_uuid,
     )
     if not row:
         return None
@@ -127,8 +133,10 @@ async def get_by_id(user_id: str, record_id: str) -> dict | None:
 
 async def delete_record(user_id: str, record_id: str) -> bool:
     """Delete a search history record."""
+    user_uuid = uuid.UUID(user_id)
+    record_uuid = uuid.UUID(record_id)
     result = await db.execute(
         "DELETE FROM search_history WHERE id = $1 AND user_id = $2",
-        record_id, user_id,
+        record_uuid, user_uuid,
     )
     return result.endswith("1")

@@ -1,5 +1,5 @@
 import { useState, useCallback, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import type { WordEntry, TargetLanguage, SourceLanguage, ProcessedResult } from 'shared';
 import { InputPanel } from '../components/InputPanel';
 import { LanguageSelector } from '../components/LanguageSelector';
@@ -14,6 +14,7 @@ import { ApiError } from '../api/client';
 export function HomePage() {
   const { isAuthenticated } = useAuth();
   const location = useLocation();
+  const navigate = useNavigate();
   const [words, setWords] = useState<WordEntry[]>([]);
   const [sentenceTranslation, setSentenceTranslation] = useState('');
   const [loading, setLoading] = useState(false);
@@ -116,6 +117,11 @@ export function HomePage() {
       setTimeout(() => setSaveMessage(null), 3000);
     } catch (err) {
       if (err instanceof ApiError) {
+        if (err.status === 401) {
+          localStorage.removeItem('token');
+          navigate('/login');
+          return;
+        }
         setError(err.message);
       }
     }
