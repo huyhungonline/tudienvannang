@@ -1227,6 +1227,98 @@ body {
   padding-top: 0.5rem;
 }
 
+/* ===================== */
+/* Mobile Responsive     */
+/* ===================== */
+@media (max-width: 768px) {
+  .app {
+    padding: 0.5rem;
+  }
+
+  /* Header mobile */
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    padding: 0.75rem;
+  }
+
+  .header-left {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    width: 100%;
+  }
+
+  .header-nav {
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .header-right {
+    width: 100%;
+    justify-content: flex-end;
+  }
+
+  /* Home page columns stack */
+  .home-page {
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+  }
+
+  /* Language bar stack */
+  .language-bar {
+    flex-direction: column;
+  }
+
+  /* Input textarea smaller on mobile */
+  .input-textarea {
+    min-height: 120px;
+    font-size: 0.95rem;
+  }
+
+  /* Result table scroll horizontally */
+  .result-panel {
+    overflow-x: auto;
+  }
+
+  .result-table th,
+  .result-table td {
+    padding: 0.4rem 0.5rem;
+    font-size: 0.8rem;
+  }
+
+  /* Auth pages full width */
+  .login-page,
+  .register-page,
+  .history-page {
+    padding: 1.25rem;
+    margin: 0;
+    max-width: 100%;
+  }
+
+  /* Reading posts */
+  .reading-posts-page {
+    padding: 1rem;
+    max-width: 100%;
+  }
+
+  /* Recent searches */
+  .recent-searches {
+    margin-top: 1rem;
+  }
+
+  /* Save history section */
+  .save-history-section {
+    justify-content: flex-start;
+  }
+
+  /* Avatar dropdown */
+  .avatar-dropdown {
+    right: -10px;
+  }
+}
+
 /* About Page */
 .about-page {
   max-width: 700px;
