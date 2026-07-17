@@ -9,6 +9,7 @@ import { MacroNewsPage } from './pages/MacroNewsPage';
 import { ReadingPostsPage } from './pages/ReadingPostsPage';
 import { ResetPasswordPage } from './pages/ResetPasswordPage';
 import { AboutPage } from './pages/AboutPage';
+import { VisaPointsPage } from './pages/VisaPointsPage';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
             <Route path="/reading-posts" element={<ReadingPostsPage />} />
             <Route path="/reset-password" element={<ResetPasswordPage />} />
             <Route path="/about" element={<AboutPage />} />
+            <Route path="/visa-points" element={<VisaPointsPage />} />
           </Routes>
         </main>
       </div>
