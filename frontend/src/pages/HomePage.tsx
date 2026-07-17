@@ -10,6 +10,8 @@ import { RecentSearches } from '../components/RecentSearches';
 import { useAuth } from '../context/AuthContext';
 import { post } from '../api/client';
 import { ApiError } from '../api/client';
+import { jsPDF } from 'jspdf';
+import autoTable from 'jspdf-autotable';
 
 export function HomePage() {
   const { isAuthenticated } = useAuth();
@@ -149,6 +151,49 @@ export function HomePage() {
     fetchWords(text, targetLanguage, sourceLanguage);
   };
 
+  const handleDownloadPdf = () => {
+    const doc = new jsPDF();
+
+    // Header - brand
+    doc.setFontSize(16);
+    doc.setTextColor(37, 99, 235);
+    doc.text('jaenglish.com', 105, 15, { align: 'center' });
+
+    // Vocabulary table
+    doc.setFontSize(12);
+    doc.setTextColor(0, 0, 0);
+    doc.text('Vocabulary List', 14, 28);
+
+    const tableData = words.map((w) => [w.word, w.ipa, w.translation]);
+    autoTable(doc, {
+      startY: 32,
+      head: [['Word', 'IPA', 'Translation']],
+      body: tableData,
+      styles: { fontSize: 10 },
+      headStyles: { fillColor: [37, 99, 235] },
+    });
+
+    // Original text section
+    const finalY = (doc as any).lastAutoTable?.finalY || 50;
+    doc.setFontSize(12);
+    doc.text('Original Text', 14, finalY + 12);
+    doc.setFontSize(10);
+    const splitText = doc.splitTextToSize(currentText, 180);
+    doc.text(splitText, 14, finalY + 20);
+
+    // Sentence translation
+    if (sentenceTranslation) {
+      const textEndY = finalY + 20 + splitText.length * 5;
+      doc.setFontSize(12);
+      doc.text('Translation', 14, textEndY + 8);
+      doc.setFontSize(10);
+      const splitTranslation = doc.splitTextToSize(sentenceTranslation, 180);
+      doc.text(splitTranslation, 14, textEndY + 16);
+    }
+
+    doc.save('vocabulary.pdf');
+  };
+
   return (
     <div className="home-page">
       <div className="left-column">
@@ -169,6 +214,9 @@ export function HomePage() {
       <div className="right-column">
         {words.length > 0 && (
           <div className="save-history-section">
+            <button className="btn-download-pdf" onClick={handleDownloadPdf}>
+              Download PDF
+            </button>
             {isAuthenticated ? (
               <>
                 <button className="btn-save-history" onClick={handleSaveToHistory}>

@@ -302,6 +302,36 @@ body {
   background: #1d4ed8;
 }
 
+/* Download PDF button */
+.btn-download-pdf {
+  padding: 0.6rem 1.2rem;
+  background: #16a34a;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.btn-download-pdf:hover {
+  background: #15803d;
+}
+
+/* Download PDF button */
+.btn-download-pdf {
+  padding: 0.6rem 1.2rem;
+  background: #16a34a;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.btn-download-pdf:hover {
+  background: #15803d;
+}
+
 /* Auth pages */
 .login-page,
 .register-page,
