@@ -17,7 +17,7 @@ function getInitialLanguage(): TargetLanguage {
   if (stored === 'ja' || stored === 'vi' || stored === 'zh') {
     return stored;
   }
-  return 'ja';
+  return 'vi';
 }
 
 export function LanguageSelector({ onLanguageChange }: LanguageSelectorProps) {

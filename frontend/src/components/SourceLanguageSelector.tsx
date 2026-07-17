@@ -19,7 +19,7 @@ function getInitialLanguage(): SourceLanguage {
   if (stored === 'en' || stored === 'ja' || stored === 'vi') {
     return stored;
   }
-  return 'en';
+  return 'ja';
 }
 
 export function SourceLanguageSelector({ onLanguageChange, value }: SourceLanguageSelectorProps) {

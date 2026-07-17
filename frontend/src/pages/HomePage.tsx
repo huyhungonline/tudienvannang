@@ -19,8 +19,8 @@ export function HomePage() {
   const [sentenceTranslation, setSentenceTranslation] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [targetLanguage, setTargetLanguage] = useState<TargetLanguage>('ja');
-  const [sourceLanguage, setSourceLanguage] = useState<SourceLanguage>('en');
+  const [targetLanguage, setTargetLanguage] = useState<TargetLanguage>('vi');
+  const [sourceLanguage, setSourceLanguage] = useState<SourceLanguage>('ja');
   const [currentText, setCurrentText] = useState('');
   const [externalText, setExternalText] = useState<string | undefined>(undefined);
   const [saveMessage, setSaveMessage] = useState<string | null>(null);
