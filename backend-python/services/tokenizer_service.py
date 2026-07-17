@@ -34,12 +34,18 @@ def _tokenize_japanese(text: str) -> list[dict]:
     """Tokenize Japanese text using fugashi (MeCab).
     Only keep meaningful words: nouns, verbs, adjectives, adverbs.
     Skip particles, auxiliary verbs, conjunctions, symbols.
+    Use lemma (base form) for verbs/adjectives to avoid conjugated fragments.
     """
     import fugashi
     tagger = _get_japanese_tagger()
 
-    # POS categories to SKIP (particles, auxiliaries, symbols)
-    SKIP_POS = {'助詞', '助動詞', '接続詞', '感動詞', '記号', '補助記号', '空白'}
+    # POS categories to SKIP (particles, auxiliaries, symbols, suffixes)
+    SKIP_POS = {'助詞', '助動詞', '接続詞', '感動詞', '記号', '補助記号', '空白', '接尾辞'}
+    # POS2 subcategories to SKIP (non-independent verbs used as auxiliaries)
+    SKIP_POS2 = {'非自立可能'}
+
+    # POS categories that should use lemma (base form) instead of surface
+    LEMMA_POS = {'動詞', '形容詞', '形状詞'}
 
     tokens = []
     seen = set()
@@ -48,65 +54,79 @@ def _tokenize_japanese(text: str) -> list[dict]:
         # Skip punctuation and whitespace
         if not surface.strip() or re.match(r'^[\s\u3000-\u303F\uFF00-\uFFEF。、！？「」『』（）]+$', surface):
             continue
-        if surface in seen:
-            continue
+
         # Skip single-character tokens
         if len(surface) == 1:
             continue
 
-        # Skip short hiragana-only tokens (2 chars) - usually verb conjugations/particles
-        if len(surface) == 2 and re.match(r'^[\u3040-\u309F]+$', surface):
-            continue
-
-        # Filter by POS - only keep meaningful words
+        # Extract POS
         pos = ""
+        feature_str = ""
         if hasattr(word, 'feature') and word.feature:
             feature_str = str(word.feature)
-            # Extract POS from feature (first field before comma or pos1)
             import re as _re
             pos_match = _re.search(r"pos='([^']*)'", feature_str)
             if pos_match:
                 pos = pos_match.group(1)
             else:
-                # Try pos1 field
                 pos1_match = _re.search(r"pos1='([^']*)'", feature_str)
                 if pos1_match:
                     pos = pos1_match.group(1)
                 else:
-                    # Fallback: first comma-separated field
                     parts = feature_str.split(",")
                     if parts:
                         pos = parts[0].strip()
 
-        # Skip if POS is a particle/auxiliary (skip list approach)
-        SKIP_POS = {'助詞', '助動詞', '接続詞', '感動詞', '記号', '補助記号', '空白'}
+        # Skip if POS is a particle/auxiliary/suffix
         if pos and pos in SKIP_POS:
             continue
 
-        seen.add(surface)
+        # Extract POS2 (subcategory) and skip non-independent verbs (auxiliaries like しまう, する)
+        pos2 = ""
+        if feature_str:
+            import re as _re
+            pos2_match = _re.search(r"pos2='([^']*)'", feature_str)
+            if pos2_match:
+                pos2 = pos2_match.group(1)
+        if pos2 in SKIP_POS2:
+            continue
+
+        # For verbs/adjectives, use lemma (base form) instead of conjugated surface
+        display_word = surface
+        if pos in LEMMA_POS and feature_str:
+            import re as _re
+            lemma_match = _re.search(r"lemma='([^']*)'", feature_str)
+            if lemma_match and lemma_match.group(1):
+                display_word = lemma_match.group(1)
+
+        # Skip short hiragana-only tokens (3 chars or less) - usually fragments
+        if len(display_word) <= 3 and re.match(r'^[\u3040-\u309F]+$', display_word):
+            continue
+
+        if display_word in seen:
+            continue
+        seen.add(display_word)
 
         # Get reading (katakana → romaji)
         reading = ""
-        if hasattr(word, 'feature') and word.feature:
-            feature_str = str(word.feature)
+        if feature_str:
             import re as _re
-            # Try kana/lForm fields - these return katakana, convert to romaji
             kana_value = ""
-            lform_match = _re.search(r"lForm='([^']*)'", feature_str)
-            kana_match = _re.search(r"kana='([^']*)'", feature_str)
             pron_match = _re.search(r"pron='([^']*)'", feature_str)
-            
+            kana_match = _re.search(r"kana='([^']*)'", feature_str)
+            lform_match = _re.search(r"lForm='([^']*)'", feature_str)
+
             if pron_match and pron_match.group(1):
                 kana_value = pron_match.group(1)
             elif kana_match and kana_match.group(1):
                 kana_value = kana_match.group(1)
             elif lform_match and lform_match.group(1):
                 kana_value = lform_match.group(1)
-            
+
             if kana_value:
                 reading = _katakana_to_romaji(kana_value)
 
-        tokens.append({"word": surface, "reading": reading})
+        tokens.append({"word": display_word, "reading": reading})
 
     return tokens
 

@@ -125,6 +125,7 @@ export function RegisterPage() {
             placeholder="At least 8 characters"
             autoComplete="new-password"
           />
+          <span className="field-hint">At least 8 characters, 1 uppercase, 1 lowercase, 1 digit.</span>
           {passwordError && <span className="field-error">{passwordError}</span>}
         </div>
 

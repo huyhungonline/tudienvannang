@@ -353,6 +353,11 @@ body {
   color: #dc2626;
 }
 
+.field-hint {
+  font-size: 0.8rem;
+  color: #888;
+}
+
 .form-error {
   padding: 0.6rem 0.75rem;
   background: #fef2f2;
