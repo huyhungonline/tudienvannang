@@ -10,8 +10,6 @@ import { RecentSearches } from '../components/RecentSearches';
 import { useAuth } from '../context/AuthContext';
 import { post } from '../api/client';
 import { ApiError } from '../api/client';
-import { jsPDF } from 'jspdf';
-import autoTable from 'jspdf-autotable';
 
 export function HomePage() {
   const { isAuthenticated } = useAuth();
@@ -152,46 +150,38 @@ export function HomePage() {
   };
 
   const handleDownloadPdf = () => {
-    const doc = new jsPDF();
+    const rows = words.map((w) =>
+      `<tr><td>${w.word}</td><td>${w.ipa}</td><td>${w.translation}</td></tr>`
+    ).join('');
 
-    // Header - brand
-    doc.setFontSize(16);
-    doc.setTextColor(37, 99, 235);
-    doc.text('jaenglish.com', 105, 15, { align: 'center' });
+    const html = `<!DOCTYPE html>
+<html><head><meta charset="utf-8"><title>Vocabulary - jaenglish.com</title>
+<style>
+  body { font-family: 'Noto Sans JP', 'Segoe UI', sans-serif; padding: 2rem; color: #333; }
+  .brand { text-align: center; font-size: 1.4rem; font-weight: 700; color: #2563eb; margin-bottom: 1.5rem; }
+  table { width: 100%; border-collapse: collapse; margin-bottom: 1.5rem; }
+  th, td { border: 1px solid #ddd; padding: 0.5rem 0.75rem; text-align: left; font-size: 0.9rem; }
+  th { background: #2563eb; color: #fff; }
+  .section-title { font-size: 1rem; font-weight: 600; margin: 1rem 0 0.5rem; }
+  .text-block { background: #f9f9f9; padding: 0.75rem; border-radius: 4px; border: 1px solid #eee; white-space: pre-wrap; font-size: 0.9rem; line-height: 1.6; }
+  @media print { body { padding: 0; } }
+</style></head><body>
+<div class="brand">jaenglish.com</div>
+<p class="section-title">Vocabulary List</p>
+<table><thead><tr><th>Word</th><th>IPA</th><th>Translation</th></tr></thead><tbody>${rows}</tbody></table>
+<p class="section-title">Original Text</p>
+<div class="text-block">${currentText}</div>
+${sentenceTranslation ? `<p class="section-title">Translation</p><div class="text-block">${sentenceTranslation}</div>` : ''}
+</body></html>`;
 
-    // Vocabulary table
-    doc.setFontSize(12);
-    doc.setTextColor(0, 0, 0);
-    doc.text('Vocabulary List', 14, 28);
-
-    const tableData = words.map((w) => [w.word, w.ipa, w.translation]);
-    autoTable(doc, {
-      startY: 32,
-      head: [['Word', 'IPA', 'Translation']],
-      body: tableData,
-      styles: { fontSize: 10 },
-      headStyles: { fillColor: [37, 99, 235] },
-    });
-
-    // Original text section
-    const finalY = (doc as any).lastAutoTable?.finalY || 50;
-    doc.setFontSize(12);
-    doc.text('Original Text', 14, finalY + 12);
-    doc.setFontSize(10);
-    const splitText = doc.splitTextToSize(currentText, 180);
-    doc.text(splitText, 14, finalY + 20);
-
-    // Sentence translation
-    if (sentenceTranslation) {
-      const textEndY = finalY + 20 + splitText.length * 5;
-      doc.setFontSize(12);
-      doc.text('Translation', 14, textEndY + 8);
-      doc.setFontSize(10);
-      const splitTranslation = doc.splitTextToSize(sentenceTranslation, 180);
-      doc.text(splitTranslation, 14, textEndY + 16);
+    const printWindow = window.open('', '_blank');
+    if (printWindow) {
+      printWindow.document.write(html);
+      printWindow.document.close();
+      printWindow.onload = () => {
+        printWindow.print();
+      };
     }
-
-    doc.save('vocabulary.pdf');
   };
 
   return (
