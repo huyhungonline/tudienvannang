@@ -24,6 +24,7 @@ export function HomePage() {
   const [currentText, setCurrentText] = useState('');
   const [externalText, setExternalText] = useState<string | undefined>(undefined);
   const [saveMessage, setSaveMessage] = useState<string | null>(null);
+  const [langWarning, setLangWarning] = useState<string | null>(null);
 
   // Handle navigation from My Page with pre-filled text
   useEffect(() => {
@@ -81,11 +82,21 @@ export function HomePage() {
 
   const handleSubmit = useCallback((text: string) => {
     setCurrentText(text);
+    if (sourceLanguage === targetLanguage) {
+      setLangWarning('Source and target language cannot be the same.');
+      return;
+    }
+    setLangWarning(null);
     fetchWords(text, targetLanguage, sourceLanguage);
   }, [fetchWords, targetLanguage, sourceLanguage]);
 
   const handleTargetLanguageChange = useCallback((language: TargetLanguage) => {
     setTargetLanguage(language);
+    if (language === sourceLanguage) {
+      setLangWarning('Source and target language cannot be the same.');
+      return;
+    }
+    setLangWarning(null);
     if (currentText.trim() && sourceLanguage === 'en') {
       fetchWords(currentText, language, sourceLanguage);
     }
@@ -93,6 +104,11 @@ export function HomePage() {
 
   const handleSourceLanguageChange = useCallback((language: SourceLanguage) => {
     setSourceLanguage(language);
+    if (language === targetLanguage) {
+      setLangWarning('Source and target language cannot be the same.');
+      return;
+    }
+    setLangWarning(null);
     if (currentText.trim()) {
       fetchWords(currentText, targetLanguage, language);
     }
@@ -140,6 +156,7 @@ export function HomePage() {
           <SourceLanguageSelector onLanguageChange={handleSourceLanguageChange} value={sourceLanguage} />
           <LanguageSelector onLanguageChange={handleTargetLanguageChange} />
         </div>
+        {langWarning && <p className="lang-warning">{langWarning}</p>}
         <InputPanel onSubmit={handleSubmit} externalText={externalText} sourceLanguage={sourceLanguage} onAutoDetectLanguage={handleSourceLanguageChange} />
         <SentenceTranslation
           translation={sentenceTranslation}
