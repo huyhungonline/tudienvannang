@@ -38,6 +38,7 @@ export function Header() {
               <div className="avatar-dropdown">
                 <span className="dropdown-email">{user?.email}</span>
                 <Link to="/my-page" className="dropdown-item" onClick={() => setDropdownOpen(false)}>My Page</Link>
+                <Link to="/admin" className="dropdown-item" onClick={() => setDropdownOpen(false)}>Admin</Link>
                 <Link to="/reset-password" className="dropdown-item" onClick={() => setDropdownOpen(false)}>Reset Password</Link>
                 <button className="dropdown-item dropdown-logout" onClick={() => { logout(); setDropdownOpen(false); }}>Logout</button>
               </div>

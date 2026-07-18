@@ -1272,6 +1272,105 @@ body {
   padding-top: 0.5rem;
 }
 
+/* Admin Page */
+.admin-page {
+  background: #fff;
+  border-radius: 8px;
+  padding: 2rem;
+  border: 1px solid #e0e0e0;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.admin-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.admin-header h2 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #333;
+}
+
+.admin-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  background: #f9f9f9;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+}
+
+.admin-form h3 {
+  width: 100%;
+  font-size: 1rem;
+  margin-bottom: 0.25rem;
+}
+
+.admin-form input[type="email"],
+.admin-form input[type="password"] {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  flex: 1;
+  min-width: 150px;
+}
+
+.admin-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.admin-form-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.admin-table th,
+.admin-table td {
+  padding: 0.6rem 0.75rem;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+  font-size: 0.9rem;
+}
+
+.admin-table th {
+  font-weight: 600;
+  color: #555;
+  background: #fafafa;
+}
+
+.btn-edit {
+  background: none;
+  border: 1px solid #2563eb;
+  color: #2563eb;
+  padding: 0.25rem 0.6rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  margin-right: 0.4rem;
+}
+
+.btn-edit:hover {
+  background: #2563eb;
+  color: #fff;
+}
+
 /* Visa Points Page */
 .visa-points-page {
   background: #fff;

@@ -89,7 +89,7 @@ async def register(email: str, password: str, captcha_token: str) -> dict:
 
     password_hash = _hash_password(password)
     row = await db.query_one(
-        "INSERT INTO users (email, password_hash) VALUES ($1, $2) RETURNING id, email, created_at",
+        "INSERT INTO users (email, password_hash) VALUES ($1, $2) RETURNING id, email, created_at, is_admin",
         email, password_hash,
     )
 
@@ -99,6 +99,7 @@ async def register(email: str, password: str, captcha_token: str) -> dict:
             "id": str(row["id"]),
             "email": row["email"],
             "createdAt": row["created_at"].isoformat(),
+            "isAdmin": row.get("is_admin", False),
         },
         "token": token,
     }
@@ -110,7 +111,7 @@ async def login(email: str, password: str, captcha_token: str) -> dict:
         raise PermissionError("CAPTCHA verification failed")
 
     row = await db.query_one(
-        "SELECT id, email, password_hash, created_at FROM users WHERE email = $1",
+        "SELECT id, email, password_hash, created_at, is_admin FROM users WHERE email = $1",
         email,
     )
     if not row:
@@ -125,6 +126,7 @@ async def login(email: str, password: str, captcha_token: str) -> dict:
             "id": str(row["id"]),
             "email": row["email"],
             "createdAt": row["created_at"].isoformat(),
+            "isAdmin": row.get("is_admin", False),
         },
         "token": token,
     }
