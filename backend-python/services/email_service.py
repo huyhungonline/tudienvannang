@@ -27,8 +27,7 @@ def send_email(to: str, subject: str, html_body: str) -> bool:
         server.quit()
         return True
     except Exception as e:
-        import logging
-        logging.getLogger(__name__).error(f"Email send error to {to}: {e}")
+        print(f"[EMAIL-ERROR] Failed to send to {to}: {e}")
         return False
 
 
