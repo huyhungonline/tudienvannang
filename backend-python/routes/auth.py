@@ -86,7 +86,9 @@ async def forgot_password(body: ForgotPasswordRequest):
             user["id"], token, expires_at,
         )
         # Send email (async in background would be better, but sync is fine for now)
-        send_password_reset_email(body.email, token)
+        result = send_password_reset_email(body.email, token)
+        import logging
+        logging.getLogger(__name__).info(f"Password reset email to {body.email}: {'sent' if result else 'FAILED'}")
 
     # Always return success to prevent email enumeration
     return {"message": "If the email exists, a reset link has been sent."}
