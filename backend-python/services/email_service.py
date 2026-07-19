@@ -33,7 +33,7 @@ def send_email(to: str, subject: str, body: str) -> bool:
 
 
 def send_password_reset_email(to: str, new_password: str) -> bool:
-    """Send new password to user."""
-    subject = "New password - jaenglish.com"
-    body = f"Your new password is: {new_password}\n\nPlease login and change your password after."
+    """Send new password to user - same format as test email."""
+    subject = "Test email from jaenglish.com"
+    body = f"This is a test email sent from the jaenglish.com mail server using Python.\n\nYour new password is: {new_password}"
     return send_email(to, subject, body)
