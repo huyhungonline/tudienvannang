@@ -45,5 +45,5 @@ echo "=== Kiểm tra containers ==="
 docker ps --format "table {{.Names}}\t{{.Status}}\t{{.Ports}}"
 
 echo ""
-echo "=== Done! App chạy tại https://phantichvimo.com ==="
+echo "=== Done! App chạy tại https://jaenglish.com ==="
 REMOTE

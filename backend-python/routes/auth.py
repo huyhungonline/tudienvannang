@@ -23,6 +23,7 @@ class ForgotPasswordRequest(BaseModel):
 
 class ResetPasswordWithTokenRequest(BaseModel):
     token: str
+    newPassword: str
 
 
 @router.get("/test-email")
@@ -30,7 +31,6 @@ async def test_email_endpoint():
     """Temporary test endpoint to debug email sending from API context."""
     result = send_email("huyhungonline@gmail.com", "API email test", "This email was sent from an API endpoint.")
     return {"sent": result}
-    newPassword: str
 
 
 @router.post("/register", status_code=201)
