@@ -8,6 +8,7 @@ import { HistoryPage } from './pages/HistoryPage';
 import { ReadingPostsPage } from './pages/ReadingPostsPage';
 import { ResetPasswordPage } from './pages/ResetPasswordPage';
 import { AboutPage } from './pages/AboutPage';
+import { ForgotPasswordPage } from './pages/ForgotPasswordPage';
 import { VisaPointsPage } from './pages/VisaPointsPage';
 import { AdminPage } from './pages/AdminPage';
 
@@ -25,6 +26,7 @@ function App() {
             <Route path="/my-page" element={<HistoryPage />} />
             <Route path="/reading-posts" element={<ReadingPostsPage />} />
             <Route path="/reset-password" element={<ResetPasswordPage />} />
+            <Route path="/forgot-password" element={<ForgotPasswordPage />} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="/visa-points" element={<VisaPointsPage />} />
             <Route path="/admin" element={<AdminPage />} />

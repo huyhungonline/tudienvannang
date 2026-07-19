@@ -27,10 +27,12 @@ services:
       - JWT_SECRET=${JWT_SECRET}
       - RECAPTCHA_SECRET_KEY=${RECAPTCHA_SECRET_KEY}
       - AUDIO_FILES_PATH=/audio
-      - AZURE_OPENAI_ENDPOINT=${AZURE_OPENAI_ENDPOINT}
-      - AZURE_OPENAI_API_KEY=${AZURE_OPENAI_API_KEY}
-      - AZURE_OPENAI_API_VERSION=${AZURE_OPENAI_API_VERSION}
-      - AZURE_OPENAI_MODEL=${AZURE_OPENAI_MODEL}
+      - SMTP_HOST=${SMTP_HOST:-pro205.emailserver.vn}
+      - SMTP_PORT=${SMTP_PORT:-465}
+      - SMTP_USER=${SMTP_USER:-admin@jaenglish.com}
+      - SMTP_PASSWORD=${SMTP_PASSWORD:-Kmno4kclo3!123}
+      - FROM_EMAIL=${FROM_EMAIL:-admin@jaenglish.com}
+      - APP_URL=${APP_URL:-https://jaenglish.com}
     volumes:
       - ./audio:/audio
     depends_on:

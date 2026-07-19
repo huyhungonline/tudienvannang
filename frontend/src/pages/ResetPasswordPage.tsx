@@ -1,7 +1,79 @@
 import { useState } from 'react';
+import { useSearchParams, Link } from 'react-router-dom';
 import { post } from '../api/client';
 
 export function ResetPasswordPage() {
+  const [searchParams] = useSearchParams();
+  const token = searchParams.get('token');
+
+  // If token present → reset via email link
+  if (token) {
+    return <ResetWithToken token={token} />;
+  }
+
+  // Otherwise → logged-in user changing password
+  return <ChangePassword />;
+}
+
+function ResetWithToken({ token }: { token: string }) {
+  const [newPassword, setNewPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    setError('');
+    setSuccess('');
+    if (!newPassword) { setError('Please enter new password'); return; }
+    if (newPassword !== confirmPassword) { setError('Passwords do not match'); return; }
+
+    setLoading(true);
+    try {
+      await post<{ message: string }>('/auth/reset-password-with-token', {
+        token,
+        newPassword,
+      });
+      setSuccess('Password has been reset successfully!');
+    } catch (err: any) {
+      setError(err?.message || 'Failed to reset password');
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  return (
+    <div className="login-page">
+      <h2>Set New Password</h2>
+      <form className="auth-form" onSubmit={handleSubmit}>
+        <div className="form-field">
+          <label>New Password</label>
+          <input type="password" value={newPassword} onChange={e => setNewPassword(e.target.value)} placeholder="At least 8 characters" />
+          <span className="field-hint">At least 8 characters, 1 uppercase, 1 lowercase, 1 digit.</span>
+        </div>
+        <div className="form-field">
+          <label>Confirm New Password</label>
+          <input type="password" value={confirmPassword} onChange={e => setConfirmPassword(e.target.value)} placeholder="Re-enter password" />
+        </div>
+        {error && <p className="form-error">{error}</p>}
+        {success && (
+          <>
+            <p className="save-success">{success}</p>
+            <p className="auth-link"><Link to="/login">Go to Login</Link></p>
+          </>
+        )}
+        {!success && (
+          <button className="btn-submit" type="submit" disabled={loading}>
+            {loading ? 'Resetting...' : 'Reset Password'}
+          </button>
+        )}
+      </form>
+    </div>
+  );
+}
+
+function ChangePassword() {
   const [currentPassword, setCurrentPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -13,7 +85,6 @@ export function ResetPasswordPage() {
     e.preventDefault();
     setError('');
     setSuccess('');
-
     if (!currentPassword) { setError('Please enter current password'); return; }
     if (!newPassword) { setError('Please enter new password'); return; }
     if (newPassword !== confirmPassword) { setError('New passwords do not match'); return; }
@@ -37,7 +108,7 @@ export function ResetPasswordPage() {
 
   return (
     <div className="login-page">
-      <h2>Reset Password</h2>
+      <h2>Change Password</h2>
       <form className="auth-form" onSubmit={handleSubmit}>
         <div className="form-field">
           <label>Current Password</label>
@@ -46,6 +117,7 @@ export function ResetPasswordPage() {
         <div className="form-field">
           <label>New Password</label>
           <input type="password" value={newPassword} onChange={e => setNewPassword(e.target.value)} />
+          <span className="field-hint">At least 8 characters, 1 uppercase, 1 lowercase, 1 digit.</span>
         </div>
         <div className="form-field">
           <label>Confirm New Password</label>
