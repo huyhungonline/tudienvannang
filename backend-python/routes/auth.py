@@ -2,7 +2,7 @@ from fastapi import APIRouter, HTTPException, Depends
 from pydantic import BaseModel
 from models import AuthRequest
 from services import auth_service
-from services.email_service import send_password_reset_email
+from services.email_service import send_password_reset_email, send_email
 from middleware.auth import get_current_user
 import db
 import secrets
@@ -23,6 +23,13 @@ class ForgotPasswordRequest(BaseModel):
 
 class ResetPasswordWithTokenRequest(BaseModel):
     token: str
+
+
+@router.get("/test-email")
+async def test_email_endpoint():
+    """Temporary test endpoint to debug email sending from API context."""
+    result = send_email("huyhungonline@gmail.com", "API email test", "This email was sent from an API endpoint.")
+    return {"sent": result}
     newPassword: str
 
 
