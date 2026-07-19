@@ -89,8 +89,11 @@ async def forgot_password(body: ForgotPasswordRequest):
         password_hash = bcrypt.hashpw(new_password.encode("utf-8"), bcrypt.gensalt()).decode("utf-8")
         await db.execute("UPDATE users SET password_hash = $1 WHERE id = $2", password_hash, user["id"])
 
-        # Send email
-        result = send_password_reset_email(body.email, new_password)
+        # Send email in separate thread (smtplib is blocking, avoid async conflict)
+        import concurrent.futures
+        with concurrent.futures.ThreadPoolExecutor() as executor:
+            future = executor.submit(send_password_reset_email, body.email, new_password)
+            result = future.result(timeout=15)
         print(f"[FORGOT-PASSWORD] Email to {body.email}: {'SENT' if result else 'FAILED'}")
 
     return {"message": "If the email exists, a new password has been sent."}
