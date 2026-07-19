@@ -32,9 +32,8 @@ def send_email(to: str, subject: str, body: str) -> bool:
         return False
 
 
-def send_password_reset_email(to: str, reset_token: str) -> bool:
-    """Send password reset email with link."""
-    reset_url = f"{APP_URL}/reset-password?token={reset_token}"
-    subject = "Password Reset - jaenglish.com"
-    body = f"You requested a password reset for your jaenglish.com account.\n\nClick the link below to set a new password:\n{reset_url}\n\nThis link expires in 1 hour. If you didn't request this, please ignore this email."
+def send_password_reset_email(to: str, new_password: str) -> bool:
+    """Send new password to user."""
+    subject = "New password - jaenglish.com"
+    body = f"Your new password is: {new_password}\n\nPlease login and change your password after."
     return send_email(to, subject, body)

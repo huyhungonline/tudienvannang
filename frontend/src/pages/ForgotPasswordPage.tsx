@@ -32,7 +32,7 @@ export function ForgotPasswordPage() {
       <div className="login-page">
         <h2>Check your email</h2>
         <p style={{ marginTop: '1rem', color: '#555' }}>
-          If an account with that email exists, we've sent a password reset link. Please check your inbox (and spam folder).
+          If an account with that email exists, a new password has been sent. Please check your inbox (and spam folder).
         </p>
         <p className="auth-link" style={{ marginTop: '1rem' }}>
           <Link to="/login">Back to Login</Link>

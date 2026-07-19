@@ -75,22 +75,25 @@ async def change_password(body: ChangePasswordRequest, user_id: str = Depends(ge
 
 @router.post("/forgot-password")
 async def forgot_password(body: ForgotPasswordRequest):
-    """Send password reset email. Always returns success to avoid email enumeration."""
-    user = await db.query_one("SELECT id FROM users WHERE email = $1", body.email)
+    """Generate new password and send to user email."""
+    user = await db.query_one("SELECT id, email FROM users WHERE email = $1", body.email)
     if user:
-        # Generate token
-        token = secrets.token_urlsafe(32)
-        expires_at = datetime.now(timezone.utc) + timedelta(hours=1)
-        await db.execute(
-            "INSERT INTO password_reset_tokens (user_id, token, expires_at) VALUES ($1, $2, $3)",
-            user["id"], token, expires_at,
-        )
-        # Send email (async in background would be better, but sync is fine for now)
-        result = send_password_reset_email(body.email, token)
+        # Generate random password
+        import string
+        import random
+        chars = string.ascii_letters + string.digits
+        new_password = ''.join(random.choices(chars, k=10)) + 'A1!'  # ensure uppercase, digit, special
+
+        # Update password in DB
+        import bcrypt
+        password_hash = bcrypt.hashpw(new_password.encode("utf-8"), bcrypt.gensalt()).decode("utf-8")
+        await db.execute("UPDATE users SET password_hash = $1 WHERE id = $2", password_hash, user["id"])
+
+        # Send email
+        result = send_password_reset_email(body.email, new_password)
         print(f"[FORGOT-PASSWORD] Email to {body.email}: {'SENT' if result else 'FAILED'}")
 
-    # Always return success to prevent email enumeration
-    return {"message": "If the email exists, a reset link has been sent."}
+    return {"message": "If the email exists, a new password has been sent."}
 
 
 @router.post("/reset-password-with-token")
