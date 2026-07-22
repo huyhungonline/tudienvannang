@@ -81,7 +81,16 @@ async def translate_word(word: str, target_language: str) -> str:
 
 
 async def translate_sentence(text: str, target_language: str) -> str:
-    """Translate a full sentence using deep-translator."""
+    """Translate a full sentence using deep-translator, preserving newlines."""
     lang_code = LANG_MAP.get(target_language, "ja")
     loop = asyncio.get_running_loop()
-    return await loop.run_in_executor(None, partial(_do_translate, text, lang_code))
+    lines = text.split('\n')
+    translated_lines = []
+    for line in lines:
+        stripped = line.strip()
+        if not stripped:
+            translated_lines.append('')
+        else:
+            result = await loop.run_in_executor(None, partial(_do_translate, stripped, lang_code))
+            translated_lines.append(result)
+    return '\n'.join(translated_lines)

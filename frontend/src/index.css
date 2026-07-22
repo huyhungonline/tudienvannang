@@ -172,6 +172,7 @@ body {
 .sentence-translation .translation-text {
   font-size: 1rem;
   color: #333;
+  white-space: pre-wrap;
 }
 
 /* Language Selector */
