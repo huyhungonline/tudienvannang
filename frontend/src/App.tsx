@@ -11,6 +11,7 @@ import { AboutPage } from './pages/AboutPage';
 import { ForgotPasswordPage } from './pages/ForgotPasswordPage';
 import { VisaPointsPage } from './pages/VisaPointsPage';
 import { AdminPage } from './pages/AdminPage';
+import { NewsSubscribePage } from './pages/NewsSubscribePage';
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
             <Route path="/about" element={<AboutPage />} />
             <Route path="/visa-points" element={<VisaPointsPage />} />
             <Route path="/admin" element={<AdminPage />} />
+            <Route path="/news-subscribe" element={<NewsSubscribePage />} />
           </Routes>
         </main>
       </div>

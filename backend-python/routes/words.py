@@ -19,10 +19,10 @@ async def split_words(body: SplitRequest):
     # Word count limit only for English source
     if source_language == "en":
         words_check = word_service.split_words(body.text)
-        if len(words_check) > 50:
+        if len(words_check) > 100:
             raise HTTPException(
                 status_code=400,
-                detail="Đoạn văn quá dài. Vui lòng nhập tối đa 50 từ."
+                detail="Đoạn văn quá dài. Vui lòng nhập tối đa 100 từ."
             )
 
     try:

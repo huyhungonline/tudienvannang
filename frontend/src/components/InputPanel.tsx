@@ -48,7 +48,7 @@ export function InputPanel({ onSubmit, externalText, sourceLanguage = 'en', onAu
   }, [text]);
 
   const wordCount = useMemo(() => countWords(text), [text]);
-  const isOverLimit = sourceLanguage === 'en' && wordCount > 50;
+  const isOverLimit = sourceLanguage === 'en' && wordCount > 100;
 
   const mismatchWarning = useMemo(() => {
     if (!text.trim()) return null;
@@ -88,12 +88,12 @@ export function InputPanel({ onSubmit, externalText, sourceLanguage = 'en', onAu
       <div className="input-footer">
         {sourceLanguage === 'en' && (
           <span className={`word-count ${isOverLimit ? 'over-limit' : ''}`}>
-            {wordCount}/50 words
+            {wordCount}/100 words
           </span>
         )}
         {isOverLimit && (
           <span className="word-limit-warning">
-            Text is too long. Please enter a maximum of 50 words.
+            Text is too long. Please enter a maximum of 100 words.
           </span>
         )}
         {mismatchWarning && (
