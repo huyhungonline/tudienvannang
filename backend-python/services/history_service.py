@@ -55,42 +55,34 @@ async def get_recent_public(limit: int = 10) -> list[dict]:
     ]
 
 
-async def get_all(user_id: str) -> list[dict]:
-    """Get all search history records for a user."""
+async def get_all(user_id: str, limit: int = 10, offset: int = 0) -> dict:
+    """Get paginated search history records for a user."""
     user_uuid = uuid.UUID(user_id)
+
+    total_row = await db.query_one(
+        "SELECT COUNT(*) as count FROM search_history WHERE user_id = $1",
+        user_uuid,
+    )
+    total = total_row["count"] if total_row else 0
+
     rows = await db.query(
         "SELECT id, user_id, input_text, target_language, sentence_translation, created_at "
-        "FROM search_history WHERE user_id = $1 ORDER BY created_at DESC",
-        user_uuid,
+        "FROM search_history WHERE user_id = $1 ORDER BY created_at DESC LIMIT $2 OFFSET $3",
+        user_uuid, limit, offset,
     )
 
     histories = []
     for row in rows:
-        word_rows = await db.query(
-            "SELECT word, ipa_pronunciation, audio_data, translation "
-            "FROM search_history_words WHERE search_history_id = $1 ORDER BY position ASC",
-            row["id"],
-        )
-        words = [
-            {
-                "word": w["word"],
-                "ipa": w["ipa_pronunciation"] or "",
-                "audioData": w["audio_data"],
-                "translation": w["translation"] or "",
-            }
-            for w in word_rows
-        ]
         histories.append({
             "id": str(row["id"]),
             "userId": str(row["user_id"]),
             "inputText": row["input_text"],
             "targetLanguage": row["target_language"],
             "sentenceTranslation": row["sentence_translation"] or "",
-            "words": words,
             "createdAt": row["created_at"].isoformat(),
         })
 
-    return histories
+    return {"records": histories, "total": total}
 
 
 async def get_by_id(user_id: str, record_id: str) -> dict | None:

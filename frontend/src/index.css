@@ -1585,6 +1585,42 @@ body {
   color: #666;
 }
 
+/* Pagination */
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid #eee;
+}
+
+.pagination button {
+  padding: 0.4rem 0.8rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background: #fff;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+.pagination button:hover:not(:disabled) {
+  background: #f0f7ff;
+  border-color: #2563eb;
+  color: #2563eb;
+}
+
+.pagination button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.pagination span {
+  font-size: 0.85rem;
+  color: #666;
+}
+
 /* Visa Points Page */
 .visa-points-page {
   background: #fff;

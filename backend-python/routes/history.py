@@ -7,10 +7,10 @@ router = APIRouter(prefix="/api/history")
 
 
 @router.get("")
-async def list_history(user_id: str = Depends(get_current_user)):
+async def list_history(user_id: str = Depends(get_current_user), limit: int = 10, offset: int = 0):
     try:
-        records = await history_service.get_all(user_id)
-        return {"records": records}
+        result = await history_service.get_all(user_id, limit=limit, offset=offset)
+        return result
     except Exception as e:
         print(f"History list error: {e}")
         raise HTTPException(status_code=500, detail="Internal server error")

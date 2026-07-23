@@ -50,6 +50,12 @@ def _send_html_email(to: str, subject: str, html_body: str) -> bool:
     msg["From"] = FROM_EMAIL
     msg["To"] = to
     msg["Subject"] = subject
+    # Add plain text fallback
+    from html import unescape
+    import re
+    plain_text = re.sub(r'<[^>]+>', '', html_body)
+    plain_text = unescape(plain_text).strip()
+    msg.attach(MIMEText(plain_text, "plain"))
     msg.attach(MIMEText(html_body, "html"))
 
     try:
@@ -58,6 +64,7 @@ def _send_html_email(to: str, subject: str, html_body: str) -> bool:
         server.login(SMTP_USER, SMTP_PASSWORD)
         server.sendmail(FROM_EMAIL, to, msg.as_string())
         server.quit()
+        logger.info(f"[NHK] Email sent successfully to {to}")
         return True
     except Exception as e:
         logger.error(f"[NHK] Failed to send HTML email to {to}: {e}")

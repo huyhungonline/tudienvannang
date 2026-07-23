@@ -179,22 +179,35 @@ function MailerSection() {
   const [content, setContent] = useState('');
   const [loading, setLoading] = useState(false);
   const [loadingSubs, setLoadingSubs] = useState(true);
+  const [totalSubs, setTotalSubs] = useState(0);
+  const [subPage, setSubPage] = useState(0);
   const [result, setResult] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => { fetchSubscribers(); }, []);
+  const SUB_PAGE_SIZE = 20;
 
-  const fetchSubscribers = async () => {
+  useEffect(() => { fetchSubscribers(0); }, []);
+
+  const fetchSubscribers = async (pageNum: number) => {
     setLoadingSubs(true);
     try {
-      const data = await get<Subscriber[]>('/nhk/subscribers');
-      setSubscribers(data);
+      const offset = pageNum * SUB_PAGE_SIZE;
+      const data = await get<{ subscribers: Subscriber[]; total: number }>(`/nhk/subscribers?limit=${SUB_PAGE_SIZE}&offset=${offset}`);
+      setSubscribers(data.subscribers);
+      setTotalSubs(data.total);
     } catch {
       setError('Không thể tải danh sách subscribers.');
     } finally {
       setLoadingSubs(false);
     }
   };
+
+  const handleSubPage = (newPage: number) => {
+    setSubPage(newPage);
+    fetchSubscribers(newPage);
+  };
+
+  const totalSubPages = Math.ceil(totalSubs / SUB_PAGE_SIZE);
 
   const toggleEmail = (email: string) => {
     setSelectedEmails(prev => {
@@ -271,19 +284,28 @@ function MailerSection() {
           ) : subscribers.length === 0 ? (
             <p className="empty-state">Chưa có subscriber nào.</p>
           ) : (
-            <div className="subscriber-list">
-              {subscribers.map(s => (
-                <label key={s.id} className="subscriber-item">
-                  <input
-                    type="checkbox"
-                    checked={selectedEmails.has(s.email)}
-                    onChange={() => toggleEmail(s.email)}
-                  />
-                  <span className="subscriber-email">{s.email}</span>
-                  <span className="subscriber-lang">{s.target_language.toUpperCase()}</span>
-                </label>
-              ))}
-            </div>
+            <>
+              <div className="subscriber-list">
+                {subscribers.map(s => (
+                  <label key={s.id} className="subscriber-item">
+                    <input
+                      type="checkbox"
+                      checked={selectedEmails.has(s.email)}
+                      onChange={() => toggleEmail(s.email)}
+                    />
+                    <span className="subscriber-email">{s.email}</span>
+                    <span className="subscriber-lang">{s.target_language.toUpperCase()}</span>
+                  </label>
+                ))}
+              </div>
+              {totalSubPages > 1 && (
+                <div className="pagination">
+                  <button disabled={subPage === 0} onClick={() => handleSubPage(subPage - 1)}>← Trước</button>
+                  <span>{subPage + 1} / {totalSubPages}</span>
+                  <button disabled={subPage >= totalSubPages - 1} onClick={() => handleSubPage(subPage + 1)}>Sau →</button>
+                </div>
+              )}
+            </>
           )}
         </div>
 

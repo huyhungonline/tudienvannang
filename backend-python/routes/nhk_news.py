@@ -68,11 +68,17 @@ async def trigger():
 
 
 @router.get("/subscribers")
-async def get_subscribers():
-    """Get all active subscribers for admin mail sending."""
+async def get_subscribers(limit: int = 20, offset: int = 0):
+    """Get active subscribers with pagination for admin mail sending."""
     try:
+        total_row = await db.query_one(
+            "SELECT COUNT(*) as count FROM nhk_subscribers WHERE is_active = TRUE"
+        )
+        total = total_row["count"] if total_row else 0
+
         subscribers = await db.query(
-            "SELECT id, email, target_language, is_active, created_at FROM nhk_subscribers WHERE is_active = TRUE ORDER BY created_at DESC"
+            "SELECT id, email, target_language, is_active, created_at FROM nhk_subscribers WHERE is_active = TRUE ORDER BY created_at DESC LIMIT $1 OFFSET $2",
+            limit, offset,
         )
         result = []
         for s in subscribers:
@@ -82,7 +88,7 @@ async def get_subscribers():
                 "target_language": s["target_language"],
                 "created_at": s["created_at"].isoformat() if s["created_at"] else None,
             })
-        return result
+        return {"subscribers": result, "total": total}
     except Exception as e:
         logger.error(f"[NHK] Get subscribers error: {e}")
         raise HTTPException(status_code=500, detail=str(e))
@@ -94,7 +100,7 @@ async def send_manual(body: dict):
 
     Body: { subject: str, content: str, subscriber_emails: list[str] }
     """
-    from services.nhk_mailer_service import _send_html_email
+    from services.email_service import send_email
 
     subject = body.get("subject", "").strip()
     content = body.get("content", "").strip()
@@ -107,25 +113,10 @@ async def send_manual(body: dict):
     if not emails:
         raise HTTPException(status_code=400, detail="At least one email is required")
 
-    # Build simple HTML email
-    html_body = f"""<!DOCTYPE html>
-<html>
-<head><meta charset="utf-8"></head>
-<body style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;padding:20px;">
-    <h2 style="color:#333;">{subject}</h2>
-    <div style="line-height:1.8;color:#444;white-space:pre-wrap;">{content}</div>
-    <hr style="border:1px solid #eee;margin-top:30px;">
-    <p style="color:#999;font-size:12px;">
-        You are receiving this because you subscribed to our newsletter.<br>
-        To unsubscribe, reply "unsubscribe" to this email.
-    </p>
-</body>
-</html>"""
-
     sent = 0
     failed = 0
     for email in emails:
-        success = _send_html_email(email, subject, html_body)
+        success = send_email(email, subject, content)
         if success:
             sent += 1
         else:
