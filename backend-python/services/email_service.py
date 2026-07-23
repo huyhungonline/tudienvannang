@@ -21,7 +21,7 @@ def send_email(to: str, subject: str, body: str) -> bool:
     msg.attach(MIMEText(body, "plain"))
 
     try:
-        server = smtplib.SMTP_SSL(SMTP_HOST, SMTP_PORT, timeout=10)
+        server = smtplib.SMTP_SSL(SMTP_HOST, SMTP_PORT, timeout=30)
         server.ehlo()
         server.login(SMTP_USER, SMTP_PASSWORD)
         server.sendmail(FROM_EMAIL, to, msg.as_string())
