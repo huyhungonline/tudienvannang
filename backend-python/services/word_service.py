@@ -99,6 +99,9 @@ async def _process_multilang(text: str, source_language: str, target_language: s
     """Process non-English text: tokenize → translate each token."""
     tokens = tokenizer_service.tokenize(text, source_language)
 
+    # Filter out tokens that are purely numbers/digits
+    tokens = [t for t in tokens if not re.match(r'^[\d０-９]+$', t["word"])]
+
     # Limit tokens
     if len(tokens) > 50:
         tokens = tokens[:50]

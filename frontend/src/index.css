@@ -1239,6 +1239,21 @@ body {
   margin-bottom: 0.75rem;
 }
 
+.btn-read-more {
+  display: inline-block;
+  margin-left: 0.3rem;
+  background: none;
+  border: none;
+  color: #2563eb;
+  cursor: pointer;
+  font-size: 0.85rem;
+  padding: 0;
+}
+
+.btn-read-more:hover {
+  text-decoration: underline;
+}
+
 .post-footer {
   display: flex;
   align-items: center;
