@@ -14,10 +14,11 @@ interface RecentSearchesProps {
 
 export function RecentSearches({ onSelect }: RecentSearchesProps) {
   const [searches, setSearches] = useState<RecentSearch[]>([]);
+  const [total, setTotal] = useState(0);
 
   useEffect(() => {
-    get<{ records: RecentSearch[] }>('/history/recent-public')
-      .then((data) => setSearches(data.records))
+    get<{ records: RecentSearch[]; total: number }>('/history/recent-public')
+      .then((data) => { setSearches(data.records); setTotal(data.total); })
       .catch(() => {});
   }, []);
 
@@ -26,6 +27,7 @@ export function RecentSearches({ onSelect }: RecentSearchesProps) {
   return (
     <div className="recent-searches">
       <h3 className="recent-searches-title">Recent Searches</h3>
+      <p className="recent-searches-count">{total} total searches</p>
       <ul className="recent-searches-list">
         {searches.map((s) => (
           <li key={s.id} className="recent-search-item">

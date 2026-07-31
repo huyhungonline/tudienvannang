@@ -2,6 +2,7 @@ from fastapi import APIRouter, Depends, HTTPException
 from models import HistorySaveRequest
 from services import history_service
 from middleware.auth import get_current_user
+import db
 
 router = APIRouter(prefix="/api/history")
 
@@ -21,7 +22,9 @@ async def list_recent_public():
     """Get recent search texts from all users (public, no auth required)."""
     try:
         records = await history_service.get_recent_public()
-        return {"records": records}
+        total_row = await db.query_one("SELECT COUNT(*) as count FROM public_searches")
+        total = total_row["count"] if total_row else 0
+        return {"records": records, "total": total}
     except Exception as e:
         print(f"Recent public history error: {e}")
         raise HTTPException(status_code=500, detail="Internal server error")

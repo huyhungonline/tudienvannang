@@ -32,13 +32,13 @@ export function Header() {
       <div className="header-right">
         {isAuthenticated ? (
           <div className="avatar-wrapper" ref={dropdownRef}>
+            <Link to="/my-page" className="header-mypage-link">My Page</Link>
             <button className="avatar-btn" onClick={() => setDropdownOpen(!dropdownOpen)}>
               {user?.email?.charAt(0).toUpperCase() || 'U'}
             </button>
             {dropdownOpen && (
               <div className="avatar-dropdown">
                 <span className="dropdown-email">{user?.email}</span>
-                <Link to="/my-page" className="dropdown-item" onClick={() => setDropdownOpen(false)}>My Page</Link>
                 <Link to="/admin" className="dropdown-item" onClick={() => setDropdownOpen(false)}>Admin</Link>
                 <Link to="/reset-password" className="dropdown-item" onClick={() => setDropdownOpen(false)}>Reset Password</Link>
                 <button className="dropdown-item dropdown-logout" onClick={() => { logout(); setDropdownOpen(false); }}>Logout</button>
