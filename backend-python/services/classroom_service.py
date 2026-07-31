@@ -58,7 +58,22 @@ async def get_classroom_state() -> dict:
         "teacher": teacher,
         "seats": seats,
         "total_students": len(seats),
+        "top_students": await _get_top_students(),
     }
+
+
+async def _get_top_students(limit: int = 5) -> list[dict]:
+    """Returns top N students by search count (updated today)."""
+    rows = await db.query(
+        "SELECT u.email, usc.search_count "
+        "FROM user_search_counts usc "
+        "JOIN users u ON u.id = usc.user_id "
+        "WHERE usc.updated_at >= CURRENT_DATE "
+        "ORDER BY usc.search_count DESC "
+        "LIMIT $1",
+        limit,
+    )
+    return [{"email": r["email"], "search_count": r["search_count"]} for r in rows]
 
 
 async def join_seat(user_id: str, row_number: int, seat_number: int) -> dict:

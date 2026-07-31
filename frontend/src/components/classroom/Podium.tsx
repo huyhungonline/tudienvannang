@@ -41,11 +41,11 @@ export default function Podium({ teacher }: PodiumProps) {
             <span style={{ fontSize: 12, fontWeight: 'bold', color: '#333' }}>
               {teacher.email.split('@')[0]}
             </span>
-            <span style={{ fontSize: 10, color: '#666' }}>Giáo viên</span>
+            <span style={{ fontSize: 10, color: '#666' }}>Teacher</span>
           </>
         ) : (
           <span style={{ fontSize: 13, color: '#999', fontStyle: 'italic' }}>
-            Chưa có giáo viên
+            No teacher yet
           </span>
         )}
       </div>

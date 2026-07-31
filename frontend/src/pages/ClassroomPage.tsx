@@ -79,7 +79,7 @@ export default function ClassroomPage() {
   };
 
   if (loading) {
-    return <div style={{ padding: 40, textAlign: 'center' }}>Đang tải lớp học...</div>;
+    return <div style={{ padding: 40, textAlign: 'center' }}>Loading classroom...</div>;
   }
 
   return (
@@ -98,7 +98,7 @@ export default function ClassroomPage() {
       {/* Header info */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 }}>
         <span style={{ fontSize: 14, color: '#666' }}>
-          Học sinh: {classroom?.total_students ?? 0}/100
+          Students: {classroom?.total_students ?? 0}/100
         </span>
         <div style={{ display: 'flex', gap: 8 }}>
           {!isSeated && !isTeacher && !classroom?.teacher && (
@@ -106,7 +106,7 @@ export default function ClassroomPage() {
               onClick={handleBecomeTeacher}
               style={{ padding: '6px 12px', fontSize: 12, backgroundColor: '#f39c12', color: '#fff', border: 'none', borderRadius: 4, cursor: 'pointer' }}
             >
-              Làm Giáo Viên
+              Become Teacher
             </button>
           )}
           {(isSeated || isTeacher) && (
@@ -114,26 +114,26 @@ export default function ClassroomPage() {
               onClick={handleLeave}
               style={{ padding: '6px 12px', fontSize: 12, backgroundColor: '#e74c3c', color: '#fff', border: 'none', borderRadius: 4, cursor: 'pointer' }}
             >
-              Rời Lớp
+              Leave Class
             </button>
           )}
         </div>
       </div>
 
       {/* Classroom layout */}
-      <Blackboard />
+      <Blackboard topStudents={classroom?.top_students ?? []} />
       <Podium teacher={classroom?.teacher ?? null} />
 
       {/* Instruction */}
       {!isSeated && !isTeacher && (
         <p style={{ textAlign: 'center', fontSize: 13, color: '#888', margin: '8px 0' }}>
-          Click vào ghế trống để chọn chỗ ngồi
+          Click on an empty seat to choose your position
         </p>
       )}
 
       {classroom?.total_students === 100 && !isSeated && !isTeacher && (
         <p style={{ textAlign: 'center', fontSize: 14, color: '#e74c3c', fontWeight: 'bold' }}>
-          Lớp học đã đầy
+          Classroom is full
         </p>
       )}
 

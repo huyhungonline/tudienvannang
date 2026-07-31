@@ -37,7 +37,7 @@ export default function SeatCell({ seat, isCurrentUser, onClick }: SeatCellProps
         transition: 'all 0.15s',
         gap: 2,
       }}
-      title={isOccupied ? seat.email : 'Ghế trống - Click để ngồi'}
+      title={isOccupied ? seat.email : 'Empty seat - Click to sit'}
     >
       {isOccupied ? (
         <>

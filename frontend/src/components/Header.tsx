@@ -24,7 +24,7 @@ export function Header() {
         <nav className="header-nav">
           <Link to="/">Home</Link>
           <Link to="/reading-posts">Reading</Link>
-          <Link to="/classroom">Lớp Học</Link>
+          <Link to="/classroom">Classroom</Link>
           <Link to="/visa-points">Visa Points</Link>
           <Link to="/news-subscribe">News Subscribe</Link>
           <Link to="/about">About</Link>

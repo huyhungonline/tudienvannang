@@ -12,10 +12,16 @@ export interface SeatData {
   search_count: number;
 }
 
+export interface TopStudent {
+  email: string;
+  search_count: number;
+}
+
 export interface ClassroomState {
   id: number;
   name: string;
   teacher: ClassroomUser | null;
   seats: SeatData[];
   total_students: number;
+  top_students: TopStudent[];
 }

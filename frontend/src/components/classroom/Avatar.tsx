@@ -81,7 +81,7 @@ export default function Avatar({ email, userId, searchCount, size = 36, isTeache
             marginBottom: 4,
           }}
         >
-          {email} • Điểm: {searchCount}
+          {email} • Score: {searchCount}
         </div>
       )}
     </div>
