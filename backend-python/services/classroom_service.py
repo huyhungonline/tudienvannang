@@ -12,16 +12,25 @@ async def get_classroom_state() -> dict:
         CLASSROOM_ID,
     )
     if not classroom:
-        return {"id": CLASSROOM_ID, "name": "Main Classroom", "teacher": None, "seats": [], "total_students": 0}
+        return {"id": CLASSROOM_ID, "name": "Main Classroom", "teacher": None, "seats": [], "total_students": 0, "top_students": [], "questions": []}
+
+    # Default teacher is admin if no teacher assigned
+    teacher_id = classroom["teacher_id"]
+    if not teacher_id:
+        admin_row = await db.query_one(
+            "SELECT id FROM users WHERE is_admin = true ORDER BY created_at ASC LIMIT 1"
+        )
+        if admin_row:
+            teacher_id = admin_row["id"]
 
     teacher = None
-    if classroom["teacher_id"]:
+    if teacher_id:
         teacher_row = await db.query_one(
             "SELECT u.id, u.email, COALESCE(usc.search_count, 0) AS search_count "
             "FROM users u "
             "LEFT JOIN user_search_counts usc ON usc.user_id = u.id "
             "WHERE u.id = $1",
-            classroom["teacher_id"],
+            teacher_id,
         )
         if teacher_row:
             teacher = {
@@ -59,7 +68,16 @@ async def get_classroom_state() -> dict:
         "seats": seats,
         "total_students": len(seats),
         "top_students": await _get_top_students(),
+        "questions": await _get_active_questions(),
     }
+
+
+async def _get_active_questions() -> list[str]:
+    """Returns active classroom questions."""
+    rows = await db.query(
+        "SELECT question FROM classroom_questions WHERE is_active = true ORDER BY created_at DESC"
+    )
+    return [r["question"] for r in rows]
 
 
 async def _get_top_students(limit: int = 5) -> list[dict]:

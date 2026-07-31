@@ -121,28 +121,37 @@ export default function ClassroomPage() {
       </div>
 
       {/* Classroom layout */}
-      <Blackboard topStudents={classroom?.top_students ?? []} />
-      <Podium teacher={classroom?.teacher ?? null} />
+      <Blackboard topStudents={classroom?.top_students ?? []} questions={classroom?.questions ?? []} />
 
-      {/* Instruction */}
-      {!isSeated && !isTeacher && (
-        <p style={{ textAlign: 'center', fontSize: 13, color: '#888', margin: '8px 0' }}>
-          Click on an empty seat to choose your position
-        </p>
-      )}
+      {/* Podium + Seating area */}
+      <div style={{ display: 'flex', gap: 16, marginTop: 16 }}>
+        {/* Podium on the left */}
+        <div style={{ flexShrink: 0 }}>
+          <Podium teacher={classroom?.teacher ?? null} />
+        </div>
 
-      {classroom?.total_students === 100 && !isSeated && !isTeacher && (
-        <p style={{ textAlign: 'center', fontSize: 14, color: '#e74c3c', fontWeight: 'bold' }}>
-          Classroom is full
-        </p>
-      )}
+        {/* Seating grid on the right */}
+        <div style={{ flex: 1, overflow: 'auto' }}>
+          {/* Instruction */}
+          {!isSeated && !isTeacher && (
+            <p style={{ textAlign: 'center', fontSize: 13, color: '#888', margin: '8px 0' }}>
+              Click on an empty seat to choose your position
+            </p>
+          )}
 
-      {/* Seating grid */}
-      <SeatingGrid
-        seats={classroom?.seats ?? []}
-        currentUserId={user?.id ?? null}
-        onSeatClick={handleSeatClick}
-      />
+          {classroom?.total_students === 100 && !isSeated && !isTeacher && (
+            <p style={{ textAlign: 'center', fontSize: 14, color: '#e74c3c', fontWeight: 'bold' }}>
+              Classroom is full
+            </p>
+          )}
+
+          <SeatingGrid
+            seats={classroom?.seats ?? []}
+            currentUserId={user?.id ?? null}
+            onSeatClick={handleSeatClick}
+          />
+        </div>
+      </div>
     </div>
   );
 }

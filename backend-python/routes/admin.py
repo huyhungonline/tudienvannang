@@ -111,3 +111,67 @@ async def delete_user(user_id: str, admin_id: str = Depends(require_admin)):
         raise HTTPException(status_code=404, detail="User not found")
     await db.execute("DELETE FROM users WHERE id = $1", uid)
     return {"message": "User deleted"}
+
+
+# === Classroom Questions ===
+
+class CreateQuestionRequest(BaseModel):
+    question: str
+
+
+class UpdateQuestionRequest(BaseModel):
+    question: Optional[str] = None
+    is_active: Optional[bool] = None
+
+
+@router.get("/questions")
+async def list_questions(_: str = Depends(require_admin)):
+    rows = await db.query(
+        "SELECT id, question, is_active, created_at FROM classroom_questions ORDER BY created_at DESC"
+    )
+    return [
+        {
+            "id": r["id"],
+            "question": r["question"],
+            "is_active": r["is_active"],
+            "createdAt": r["created_at"].isoformat(),
+        }
+        for r in rows
+    ]
+
+
+@router.post("/questions", status_code=201)
+async def create_question(body: CreateQuestionRequest, _: str = Depends(require_admin)):
+    if not body.question.strip():
+        raise HTTPException(status_code=400, detail="Question cannot be empty")
+    row = await db.query_one(
+        "INSERT INTO classroom_questions (question) VALUES ($1) RETURNING id, question, is_active, created_at",
+        body.question.strip(),
+    )
+    return {
+        "id": row["id"],
+        "question": row["question"],
+        "is_active": row["is_active"],
+        "createdAt": row["created_at"].isoformat(),
+    }
+
+
+@router.delete("/questions/{question_id}")
+async def delete_question(question_id: int, _: str = Depends(require_admin)):
+    existing = await db.query_one("SELECT id FROM classroom_questions WHERE id = $1", question_id)
+    if not existing:
+        raise HTTPException(status_code=404, detail="Question not found")
+    await db.execute("DELETE FROM classroom_questions WHERE id = $1", question_id)
+    return {"message": "Question deleted"}
+
+
+@router.put("/questions/{question_id}")
+async def update_question(question_id: int, body: UpdateQuestionRequest, _: str = Depends(require_admin)):
+    existing = await db.query_one("SELECT id FROM classroom_questions WHERE id = $1", question_id)
+    if not existing:
+        raise HTTPException(status_code=404, detail="Question not found")
+    if body.question is not None:
+        await db.execute("UPDATE classroom_questions SET question = $1 WHERE id = $2", body.question.strip(), question_id)
+    if body.is_active is not None:
+        await db.execute("UPDATE classroom_questions SET is_active = $1 WHERE id = $2", body.is_active, question_id)
+    return {"message": "Question updated"}

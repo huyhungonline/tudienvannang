@@ -24,4 +24,5 @@ export interface ClassroomState {
   seats: SeatData[];
   total_students: number;
   top_students: TopStudent[];
+  questions: string[];
 }

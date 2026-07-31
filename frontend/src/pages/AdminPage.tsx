@@ -17,7 +17,7 @@ interface Subscriber {
   created_at: string | null;
 }
 
-type AdminView = 'menu' | 'users' | 'mailer';
+type AdminView = 'menu' | 'users' | 'mailer' | 'questions';
 
 export function AdminPage() {
   const { isAuthenticated } = useAuth();
@@ -41,6 +41,9 @@ export function AdminPage() {
           <button className="admin-menu-item" onClick={() => setView('mailer')}>
             ✉️ Gửi mail cho User
           </button>
+          <button className="admin-menu-item" onClick={() => setView('questions')}>
+            📝 Classroom Questions
+          </button>
         </div>
       </div>
     );
@@ -51,6 +54,7 @@ export function AdminPage() {
       <button className="btn-back" onClick={() => setView('menu')}>← Quay lại</button>
       {view === 'users' && <UserManagement />}
       {view === 'mailer' && <MailerSection />}
+      {view === 'questions' && <QuestionsManagement />}
     </div>
   );
 }
@@ -316,6 +320,106 @@ function MailerSection() {
           {loading ? 'Đang gửi...' : `Gửi mail (${selectedEmails.size})`}
         </button>
       </form>
+    </div>
+  );
+}
+
+interface Question {
+  id: number;
+  question: string;
+  is_active: boolean;
+  createdAt: string;
+}
+
+function QuestionsManagement() {
+  const [questions, setQuestions] = useState<Question[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [newQuestion, setNewQuestion] = useState('');
+
+  useEffect(() => { fetchQuestions(); }, []);
+
+  const fetchQuestions = async () => {
+    setLoading(true);
+    try {
+      const data = await get<Question[]>('/admin/questions');
+      setQuestions(data);
+    } catch (err: any) {
+      setError(err?.status === 403 ? 'Admin access required.' : 'Failed to load questions.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleCreate = async (e: FormEvent) => {
+    e.preventDefault();
+    if (!newQuestion.trim()) return;
+    setError(null);
+    try {
+      await post('/admin/questions', { question: newQuestion.trim() });
+      setNewQuestion('');
+      fetchQuestions();
+    } catch (err: any) { setError(err?.message || 'Failed to create question.'); }
+  };
+
+  const handleDelete = async (id: number) => {
+    if (!confirm('Delete this question?')) return;
+    try { await del(`/admin/questions/${id}`); fetchQuestions(); }
+    catch (err: any) { setError(err?.message || 'Failed to delete.'); }
+  };
+
+  const toggleActive = async (q: Question) => {
+    try {
+      await put(`/admin/questions/${q.id}`, { is_active: !q.is_active });
+      fetchQuestions();
+    } catch (err: any) { setError(err?.message || 'Failed to update.'); }
+  };
+
+  if (loading) return <p className="loading-text">Loading...</p>;
+
+  return (
+    <div>
+      <h2>Classroom Questions</h2>
+      <p style={{ fontSize: 13, color: '#666', marginBottom: 12 }}>
+        Active questions are displayed on the classroom blackboard.
+      </p>
+
+      {error && <p className="form-error">{error}</p>}
+
+      <form className="admin-form" onSubmit={handleCreate} style={{ marginBottom: 16 }}>
+        <input
+          type="text"
+          placeholder="Enter a new question..."
+          value={newQuestion}
+          onChange={(e) => setNewQuestion(e.target.value)}
+          style={{ flex: 1 }}
+        />
+        <button type="submit" className="btn-submit">Add</button>
+      </form>
+
+      {questions.length === 0 ? (
+        <p className="empty-state">No questions yet.</p>
+      ) : (
+        <table className="admin-table">
+          <thead><tr><th>Question</th><th>Active</th><th>Created</th><th>Actions</th></tr></thead>
+          <tbody>
+            {questions.map((q) => (
+              <tr key={q.id} style={{ opacity: q.is_active ? 1 : 0.5 }}>
+                <td>{q.question}</td>
+                <td>
+                  <button onClick={() => toggleActive(q)} style={{ cursor: 'pointer', border: 'none', background: 'none', fontSize: 16 }}>
+                    {q.is_active ? '✅' : '❌'}
+                  </button>
+                </td>
+                <td>{new Date(q.createdAt).toLocaleDateString()}</td>
+                <td>
+                  <button className="btn-delete" onClick={() => handleDelete(q.id)}>Delete</button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
     </div>
   );
 }
