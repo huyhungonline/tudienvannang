@@ -1,13 +1,25 @@
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Request
 from models import SplitRequest
 from services import word_service
+from services import classroom_service
+from services.auth_service import verify_token
 import db
 
 router = APIRouter(prefix="/api/words")
 
 
+def get_optional_user_id(request: Request) -> str | None:
+    """Extract user_id from token if present, return None otherwise."""
+    auth_header = request.headers.get("authorization", "")
+    if not auth_header or not auth_header.startswith("Bearer "):
+        return None
+    token = auth_header[7:]
+    payload = verify_token(token)
+    return payload["userId"] if payload else None
+
+
 @router.post("/split")
-async def split_words(body: SplitRequest):
+async def split_words(body: SplitRequest, request: Request):
     if not body.text or not body.text.strip():
         raise HTTPException(status_code=400, detail="Input text is required")
 
@@ -43,6 +55,14 @@ async def split_words(body: SplitRequest):
             )
         except Exception:
             pass  # Don't fail the request if logging fails
+
+        # Increment search count for authenticated users
+        user_id = get_optional_user_id(request)
+        if user_id:
+            try:
+                await classroom_service.increment_search_count(user_id)
+            except Exception:
+                pass  # Don't fail the request if count increment fails
 
         return result
     except Exception as e:

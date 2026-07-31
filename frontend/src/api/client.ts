@@ -50,3 +50,26 @@ export function del<T>(path: string): Promise<T> {
 export function put<T>(path: string, body: unknown): Promise<T> {
   return request<T>('PUT', path, body);
 }
+
+// Classroom API
+import type { ClassroomState } from '../types/classroom';
+
+export function getClassroomState(): Promise<{ classroom: ClassroomState }> {
+  return get('/classroom');
+}
+
+export function joinSeat(row_number: number, seat_number: number): Promise<{ message: string; row_number: number; seat_number: number }> {
+  return post('/classroom/join', { row_number, seat_number });
+}
+
+export function leaveClassroom(): Promise<{ message: string }> {
+  return post('/classroom/leave', {});
+}
+
+export function becomeTeacher(): Promise<{ message: string }> {
+  return post('/classroom/teacher', {});
+}
+
+export function getSearchCount(): Promise<{ search_count: number }> {
+  return get('/user/search-count');
+}
