@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { getClassroomState, joinSeat, leaveClassroom, becomeTeacher, ApiError } from '../api/client';
+import { getClassroomState, joinSeat, leaveClassroom, ApiError } from '../api/client';
 import type { ClassroomState } from '../types/classroom';
 import Blackboard from '../components/classroom/Blackboard';
 import Podium from '../components/classroom/Podium';
@@ -66,18 +66,6 @@ export default function ClassroomPage() {
     }
   };
 
-  const handleBecomeTeacher = async () => {
-    try {
-      await becomeTeacher();
-      await fetchState();
-    } catch (e) {
-      if (e instanceof ApiError) {
-        setError(e.message);
-        setTimeout(() => setError(null), 3000);
-      }
-    }
-  };
-
   if (loading) {
     return <div style={{ padding: 40, textAlign: 'center' }}>Loading classroom...</div>;
   }
@@ -101,14 +89,6 @@ export default function ClassroomPage() {
           Students: {classroom?.total_students ?? 0}/100
         </span>
         <div style={{ display: 'flex', gap: 8 }}>
-          {!isSeated && !isTeacher && !classroom?.teacher && (
-            <button
-              onClick={handleBecomeTeacher}
-              style={{ padding: '6px 12px', fontSize: 12, backgroundColor: '#f39c12', color: '#fff', border: 'none', borderRadius: 4, cursor: 'pointer' }}
-            >
-              Become Teacher
-            </button>
-          )}
           {(isSeated || isTeacher) && (
             <button
               onClick={handleLeave}
@@ -123,34 +103,33 @@ export default function ClassroomPage() {
       {/* Classroom layout */}
       <Blackboard topStudents={classroom?.top_students ?? []} questions={classroom?.questions ?? []} />
 
-      {/* Podium + Seating area */}
-      <div style={{ display: 'flex', gap: 16, marginTop: 16 }}>
-        {/* Podium on the left */}
-        <div style={{ flexShrink: 0 }}>
+      {/* Podium area - shifted left, above seating */}
+      <div style={{ display: 'flex', marginTop: 16 }}>
+        <div style={{ width: 120 }}>
           <Podium teacher={classroom?.teacher ?? null} />
         </div>
+      </div>
 
-        {/* Seating grid on the right */}
-        <div style={{ flex: 1, overflow: 'auto' }}>
-          {/* Instruction */}
-          {!isSeated && !isTeacher && (
-            <p style={{ textAlign: 'center', fontSize: 13, color: '#888', margin: '8px 0' }}>
-              Click on an empty seat to choose your position
-            </p>
-          )}
+      {/* Seating grid below */}
+      <div style={{ marginTop: 12, overflow: 'auto' }}>
+        {/* Instruction */}
+        {!isSeated && !isTeacher && (
+          <p style={{ textAlign: 'center', fontSize: 13, color: '#888', margin: '8px 0' }}>
+            Click on an empty seat to choose your position
+          </p>
+        )}
 
-          {classroom?.total_students === 100 && !isSeated && !isTeacher && (
-            <p style={{ textAlign: 'center', fontSize: 14, color: '#e74c3c', fontWeight: 'bold' }}>
-              Classroom is full
-            </p>
-          )}
+        {classroom?.total_students === 100 && !isSeated && !isTeacher && (
+          <p style={{ textAlign: 'center', fontSize: 14, color: '#e74c3c', fontWeight: 'bold' }}>
+            Classroom is full
+          </p>
+        )}
 
-          <SeatingGrid
-            seats={classroom?.seats ?? []}
-            currentUserId={user?.id ?? null}
-            onSeatClick={handleSeatClick}
-          />
-        </div>
+        <SeatingGrid
+          seats={classroom?.seats ?? []}
+          currentUserId={user?.id ?? null}
+          onSeatClick={handleSeatClick}
+        />
       </div>
     </div>
   );
