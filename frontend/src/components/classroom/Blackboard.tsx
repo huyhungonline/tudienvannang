@@ -34,7 +34,7 @@ export default function Blackboard({ topStudents, questions }: BlackboardProps) 
         boxShadow: 'inset 0 0 30px rgba(0,0,0,0.3)',
       }}
     >
-      <div style={{ fontSize: 24, marginBottom: 16 }}>Virtual Classroom</div>
+      <div style={{ fontSize: 13, marginBottom: 12, color: '#ccc' }}>Virtual Classroom</div>
 
       {/* Question display */}
       {questions.length > 0 && (
