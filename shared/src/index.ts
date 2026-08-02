@@ -35,5 +35,5 @@ export interface SearchHistory {
   createdAt: Date;
 }
 
-export type TargetLanguage = 'ja' | 'vi' | 'zh';
+export type TargetLanguage = 'ja' | 'vi' | 'zh' | 'en';
 export type SourceLanguage = 'en' | 'ja' | 'vi' | 'zh';

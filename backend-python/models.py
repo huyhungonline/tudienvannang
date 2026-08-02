@@ -9,6 +9,15 @@ class SplitRequest(BaseModel):
     sourceLanguage: Optional[str] = "en"
 
 
+class SpeakRequest(BaseModel):
+    text: str
+    language: Optional[str] = "en"
+
+
+class SpeakResponse(BaseModel):
+    audioData: str
+
+
 class WordEntry(BaseModel):
     word: str
     ipa: str

@@ -197,6 +197,7 @@ ${sentenceTranslation ? `<p class="section-title">Translation</p><div class="tex
           translation={sentenceTranslation}
           loading={loading}
           error={error}
+          language={targetLanguage}
           onRetry={error ? handleRetry : undefined}
         />
         <RecentSearches onSelect={handleSelectRecentSearch} />

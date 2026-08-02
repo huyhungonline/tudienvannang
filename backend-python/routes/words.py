@@ -23,7 +23,7 @@ async def split_words(body: SplitRequest, request: Request):
     if not body.text or not body.text.strip():
         raise HTTPException(status_code=400, detail="Input text is required")
 
-    valid_languages = ["ja", "vi", "zh"]
+    valid_languages = ["ja", "vi", "zh", "en"]
     valid_sources = ["en", "ja", "vi", "zh"]
     target_language = body.targetLanguage if body.targetLanguage in valid_languages else "ja"
     source_language = body.sourceLanguage if body.sourceLanguage in valid_sources else "en"

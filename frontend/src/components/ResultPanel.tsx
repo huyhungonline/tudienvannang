@@ -1,5 +1,6 @@
 import type { WordEntry, TargetLanguage, SourceLanguage } from 'shared';
 import { WordEntryRow } from './WordEntryRow';
+import { SpeakButton } from './SpeakButton';
 
 interface ResultPanelProps {
   words: WordEntry[];
@@ -48,6 +49,7 @@ export function ResultPanel({ words, loading, targetLanguage, sourceLanguage = '
             <tr>
               <th>Word</th>
               <th>{READING_HEADERS[sourceLanguage] || 'Reading'}</th>
+              <th>Audio</th>
               <th>{targetLanguage ? LANGUAGE_HEADERS[targetLanguage] || 'Translation' : 'English'}</th>
             </tr>
           </thead>
@@ -56,6 +58,9 @@ export function ResultPanel({ words, loading, targetLanguage, sourceLanguage = '
               <tr key={`${entry.word}-${idx}`}>
                 <td className="word-cell">{entry.word}</td>
                 <td className="reading-cell">{entry.ipa || '-'}</td>
+                <td className="audio-cell">
+                  <SpeakButton text={entry.word} language={sourceLanguage} />
+                </td>
                 <td className="translation-cell">{entry.translation || '-'}</td>
               </tr>
             ))}
