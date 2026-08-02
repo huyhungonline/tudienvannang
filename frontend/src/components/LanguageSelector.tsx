@@ -8,13 +8,14 @@ interface LanguageSelectorProps {
 const LANGUAGE_OPTIONS: { value: TargetLanguage; label: string }[] = [
   { value: 'ja', label: 'Japanese' },
   { value: 'vi', label: 'Vietnamese' },
+  { value: 'en', label: 'English' },
 ];
 
 const STORAGE_KEY = 'selectedLanguage';
 
 function getInitialLanguage(): TargetLanguage {
   const stored = sessionStorage.getItem(STORAGE_KEY);
-  if (stored === 'ja' || stored === 'vi' || stored === 'zh') {
+  if (stored === 'ja' || stored === 'vi' || stored === 'zh' || stored === 'en') {
     return stored;
   }
   return 'vi';

@@ -73,3 +73,7 @@ export function becomeTeacher(): Promise<{ message: string }> {
 export function getSearchCount(): Promise<{ search_count: number }> {
   return get('/user/search-count');
 }
+
+export function speak(text: string, language: string): Promise<{ audioData: string }> {
+  return post('/audio/speak', { text, language });
+}

@@ -1,5 +1,6 @@
 import { useState, useMemo, useEffect } from 'react';
 import type { SourceLanguage } from 'shared';
+import { SpeakButton } from './SpeakButton';
 
 interface InputPanelProps {
   onSubmit: (text: string) => void;
@@ -86,6 +87,7 @@ export function InputPanel({ onSubmit, externalText, sourceLanguage = 'en', onAu
         rows={10}
       />
       <div className="input-footer">
+        <SpeakButton text={text} language={sourceLanguage} />
         {sourceLanguage === 'en' && (
           <span className={`word-count ${isOverLimit ? 'over-limit' : ''}`}>
             {wordCount}/100 words

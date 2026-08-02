@@ -1,11 +1,14 @@
+import { SpeakButton } from './SpeakButton';
+
 interface SentenceTranslationProps {
   translation: string;
   loading: boolean;
   error: string | null;
+  language: string;
   onRetry?: () => void;
 }
 
-export function SentenceTranslation({ translation, loading, error, onRetry }: SentenceTranslationProps) {
+export function SentenceTranslation({ translation, loading, error, language, onRetry }: SentenceTranslationProps) {
   if (loading) {
     return (
       <div className="sentence-translation loading">
@@ -33,7 +36,10 @@ export function SentenceTranslation({ translation, loading, error, onRetry }: Se
 
   return (
     <div className="sentence-translation">
-      <p className="translation-text">{translation}</p>
+      <div className="translation-row">
+        <p className="translation-text">{translation}</p>
+        <SpeakButton text={translation} language={language} />
+      </div>
     </div>
   );
 }

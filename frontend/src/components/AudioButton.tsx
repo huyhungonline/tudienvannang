@@ -1,4 +1,5 @@
 import { useState, useCallback } from 'react';
+import { playBase64Audio } from '../utils/audio';
 
 interface AudioButtonProps {
   audioData: string | null;
@@ -11,26 +12,7 @@ export function AudioButton({ audioData }: AudioButtonProps) {
     if (!audioData) return;
 
     setIsPlaying(true);
-
-    const byteCharacters = atob(audioData);
-    const byteNumbers = new Array(byteCharacters.length);
-    for (let i = 0; i < byteCharacters.length; i++) {
-      byteNumbers[i] = byteCharacters.charCodeAt(i);
-    }
-    const byteArray = new Uint8Array(byteNumbers);
-    const blob = new Blob([byteArray], { type: 'audio/mpeg' });
-    const url = URL.createObjectURL(blob);
-
-    const audio = new Audio(url);
-    audio.onended = () => {
-      setIsPlaying(false);
-      URL.revokeObjectURL(url);
-    };
-    audio.onerror = () => {
-      setIsPlaying(false);
-      URL.revokeObjectURL(url);
-    };
-    audio.play();
+    playBase64Audio(audioData).finally(() => setIsPlaying(false));
   }, [audioData]);
 
   if (!audioData) {
