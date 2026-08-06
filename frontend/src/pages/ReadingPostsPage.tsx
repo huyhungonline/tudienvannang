@@ -53,11 +53,6 @@ export function ReadingPostsPage() {
   const [total, setTotal] = useState(0);
   const [page, setPage] = useState(0);
   const [activeLevel, setActiveLevel] = useState('');
-  const [title, setTitle] = useState('');
-  const [content, setContent] = useState('');
-  const [level, setLevel] = useState('N3');
-  const [error, setError] = useState('');
-  const [loading, setLoading] = useState(false);
 
   const PAGE_SIZE = 5;
 
@@ -81,33 +76,6 @@ export function ReadingPostsPage() {
   function handleLevelFilter(lv: string) {
     setActiveLevel(lv);
     setPage(0);
-  }
-
-  async function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    setError('');
-
-    if (!title.trim()) { setError('Please enter a title'); return; }
-    if (!content.trim()) { setError('Please enter content'); return; }
-
-    setLoading(true);
-    try {
-      const newPost = await post<ReadingPost>('/reading-posts', {
-        username: 'Anonymous',
-        title: title.trim(),
-        content: content.trim(),
-        level,
-      });
-      setPosts([newPost, ...posts]);
-      setTotal(prev => prev + 1);
-      setPage(0);
-      setTitle('');
-      setContent('');
-    } catch {
-      setError('Failed to post. Please try again.');
-    } finally {
-      setLoading(false);
-    }
   }
 
   async function handleLike(postId: number) {
@@ -135,36 +103,6 @@ export function ReadingPostsPage() {
           </button>
         ))}
       </div>
-
-      {/* Submit Form */}
-      <form className="reading-post-form" onSubmit={handleSubmit}>
-        <div className="form-row">
-          <input
-            type="text"
-            placeholder="Post title"
-            value={title}
-            onChange={e => setTitle(e.target.value)}
-            maxLength={200}
-          />
-          <select value={level} onChange={e => setLevel(e.target.value)}>
-            <option value="N3">N3</option>
-            <option value="N2">N2</option>
-            <option value="N1">N1</option>
-            <option value="TOEIC">TOEIC</option>
-          </select>
-        </div>
-        <textarea
-          placeholder="Reading content..."
-          value={content}
-          onChange={e => setContent(e.target.value)}
-          maxLength={5000}
-          rows={5}
-        />
-        {error && <p className="form-error">{error}</p>}
-        <button type="submit" disabled={loading}>
-          {loading ? 'Posting...' : 'Post'}
-        </button>
-      </form>
 
       {/* Posts List */}
       <div className="reading-posts-list">

@@ -17,7 +17,7 @@ interface Subscriber {
   created_at: string | null;
 }
 
-type AdminView = 'menu' | 'users' | 'mailer' | 'questions';
+type AdminView = 'menu' | 'users' | 'mailer' | 'questions' | 'reading';
 
 export function AdminPage() {
   const { isAuthenticated } = useAuth();
@@ -44,6 +44,9 @@ export function AdminPage() {
           <button className="admin-menu-item" onClick={() => setView('questions')}>
             📝 Classroom Questions
           </button>
+          <button className="admin-menu-item" onClick={() => setView('reading')}>
+            📖 Reading Posts
+          </button>
         </div>
       </div>
     );
@@ -55,6 +58,7 @@ export function AdminPage() {
       {view === 'users' && <UserManagement />}
       {view === 'mailer' && <MailerSection />}
       {view === 'questions' && <QuestionsManagement />}
+      {view === 'reading' && <ReadingPostsManagement />}
     </div>
   );
 }
@@ -419,6 +423,159 @@ function QuestionsManagement() {
             ))}
           </tbody>
         </table>
+      )}
+    </div>
+  );
+}
+
+
+interface ReadingPost {
+  id: number;
+  username: string;
+  title: string;
+  content: string;
+  level: string;
+  like_count: number;
+  created_at: string;
+}
+
+function ReadingPostsManagement() {
+  const [posts, setPosts] = useState<ReadingPost[]>([]);
+  const [total, setTotal] = useState(0);
+  const [page, setPage] = useState(0);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [showForm, setShowForm] = useState(false);
+  const [editingId, setEditingId] = useState<number | null>(null);
+  const [title, setTitle] = useState('');
+  const [content, setContent] = useState('');
+  const [level, setLevel] = useState('N3');
+
+  const PAGE_SIZE = 10;
+
+  useEffect(() => { fetchPosts(page); }, [page]);
+
+  const fetchPosts = async (pageNum: number) => {
+    setLoading(true);
+    try {
+      const offset = pageNum * PAGE_SIZE;
+      const data = await get<{ posts: ReadingPost[]; total: number }>(`/reading-posts?limit=${PAGE_SIZE}&offset=${offset}`);
+      setPosts(data.posts);
+      setTotal(data.total);
+    } catch (err: any) {
+      setError('Failed to load posts.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleCreate = async (e: FormEvent) => {
+    e.preventDefault();
+    if (!title.trim() || !content.trim()) { setError('Title and content required'); return; }
+    setError(null);
+    try {
+      await post('/reading-posts', { username: 'Admin', title: title.trim(), content: content.trim(), level });
+      setTitle(''); setContent(''); setShowForm(false);
+      fetchPosts(page);
+    } catch (err: any) { setError(err?.message || 'Failed to create.'); }
+  };
+
+  const handleUpdate = async (e: FormEvent) => {
+    e.preventDefault();
+    if (!editingId) return;
+    setError(null);
+    const body: any = {};
+    if (title.trim()) body.title = title.trim();
+    if (content.trim()) body.content = content.trim();
+    body.level = level;
+    try {
+      await put(`/reading-posts/${editingId}`, body);
+      setEditingId(null); setTitle(''); setContent('');
+      fetchPosts(page);
+    } catch (err: any) { setError(err?.message || 'Failed to update.'); }
+  };
+
+  const handleDelete = async (id: number) => {
+    if (!confirm('Delete this post?')) return;
+    try { await del(`/reading-posts/${id}`); fetchPosts(page); }
+    catch (err: any) { setError(err?.message || 'Failed to delete.'); }
+  };
+
+  const startEdit = (p: ReadingPost) => {
+    setEditingId(p.id); setTitle(p.title); setContent(p.content); setLevel(p.level); setShowForm(false);
+  };
+
+  const totalPages = Math.ceil(total / PAGE_SIZE);
+
+  if (loading && posts.length === 0) return <p className="loading-text">Loading...</p>;
+
+  return (
+    <div>
+      <div className="admin-header">
+        <h2>Reading Posts ({total})</h2>
+        <button className="btn-submit" onClick={() => { setShowForm(!showForm); setEditingId(null); setTitle(''); setContent(''); }}>
+          {showForm ? 'Cancel' : '+ New Post'}
+        </button>
+      </div>
+
+      {error && <p className="form-error">{error}</p>}
+
+      {showForm && (
+        <form className="admin-form" onSubmit={handleCreate}>
+          <input type="text" placeholder="Title" value={title} onChange={e => setTitle(e.target.value)} required />
+          <select value={level} onChange={e => setLevel(e.target.value)}>
+            <option value="N3">N3</option>
+            <option value="N2">N2</option>
+            <option value="N1">N1</option>
+            <option value="TOEIC">TOEIC</option>
+          </select>
+          <textarea placeholder="Content..." value={content} onChange={e => setContent(e.target.value)} rows={6} required />
+          <button type="submit" className="btn-submit">Create Post</button>
+        </form>
+      )}
+
+      {editingId && (
+        <form className="admin-form" onSubmit={handleUpdate}>
+          <h3>Edit Post #{editingId}</h3>
+          <input type="text" placeholder="Title" value={title} onChange={e => setTitle(e.target.value)} />
+          <select value={level} onChange={e => setLevel(e.target.value)}>
+            <option value="N3">N3</option>
+            <option value="N2">N2</option>
+            <option value="N1">N1</option>
+            <option value="TOEIC">TOEIC</option>
+          </select>
+          <textarea placeholder="Content..." value={content} onChange={e => setContent(e.target.value)} rows={6} />
+          <div className="admin-form-actions">
+            <button type="submit" className="btn-submit">Save</button>
+            <button type="button" className="btn-back" onClick={() => setEditingId(null)}>Cancel</button>
+          </div>
+        </form>
+      )}
+
+      <table className="admin-table">
+        <thead><tr><th>Title</th><th>Level</th><th>Likes</th><th>Created</th><th>Actions</th></tr></thead>
+        <tbody>
+          {posts.map(p => (
+            <tr key={p.id}>
+              <td style={{ maxWidth: 200, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{p.title}</td>
+              <td>{p.level}</td>
+              <td>{p.like_count}</td>
+              <td>{new Date(p.created_at).toLocaleDateString()}</td>
+              <td>
+                <button className="btn-edit" onClick={() => startEdit(p)}>Edit</button>
+                <button className="btn-delete" onClick={() => handleDelete(p.id)}>Delete</button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+
+      {totalPages > 1 && (
+        <div className="pagination">
+          <button disabled={page === 0} onClick={() => setPage(p => p - 1)}>← Prev</button>
+          <span>{page + 1} / {totalPages}</span>
+          <button disabled={page >= totalPages - 1} onClick={() => setPage(p => p + 1)}>Next →</button>
+        </div>
       )}
     </div>
   );

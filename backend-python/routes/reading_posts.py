@@ -79,3 +79,40 @@ async def like_reading_post(post_id: int):
     if not result:
         raise HTTPException(status_code=404, detail="Post not found")
     return {"like_count": result["like_count"]}
+
+
+class UpdatePostRequest(BaseModel):
+    title: Optional[str] = Field(default=None, min_length=1, max_length=200)
+    content: Optional[str] = Field(default=None, min_length=1, max_length=5000)
+    level: Optional[PostLevel] = None
+
+
+@router.put("/{post_id}")
+async def update_reading_post(post_id: int, req: UpdatePostRequest):
+    """Update a reading post (admin use)."""
+    existing = await db.query_one("SELECT id FROM reading_posts WHERE id = $1", post_id)
+    if not existing:
+        raise HTTPException(status_code=404, detail="Post not found")
+
+    if req.title is not None:
+        await db.execute("UPDATE reading_posts SET title = $1 WHERE id = $2", req.title.strip(), post_id)
+    if req.content is not None:
+        await db.execute("UPDATE reading_posts SET content = $1 WHERE id = $2", req.content.strip(), post_id)
+    if req.level is not None:
+        await db.execute("UPDATE reading_posts SET level = $1 WHERE id = $2", req.level.value, post_id)
+
+    updated = await db.query_one(
+        "SELECT id, username, title, content, level, like_count, created_at FROM reading_posts WHERE id = $1", post_id
+    )
+    updated["created_at"] = updated["created_at"].isoformat()
+    return updated
+
+
+@router.delete("/{post_id}")
+async def delete_reading_post(post_id: int):
+    """Delete a reading post (admin use)."""
+    existing = await db.query_one("SELECT id FROM reading_posts WHERE id = $1", post_id)
+    if not existing:
+        raise HTTPException(status_code=404, detail="Post not found")
+    await db.execute("DELETE FROM reading_posts WHERE id = $1", post_id)
+    return {"message": "Post deleted"}
