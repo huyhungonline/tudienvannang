@@ -22,6 +22,7 @@ echo "✅ .env synced"
 echo ""
 echo "=== [3/4] SSH vào VPS: pull + rebuild ==="
 ssh ${VPS_USER}@${VPS_HOST} << 'REMOTE'
+set -e
 cd /root/tudienvannang
 git pull origin main
 
