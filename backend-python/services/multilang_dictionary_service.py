@@ -19,10 +19,18 @@ def _translate_word(word: str, source_lang: str, target_lang: str) -> str:
     try:
         src = LANG_MAP.get(source_lang, source_lang)
         tgt = LANG_MAP.get(target_lang, target_lang)
+        # Add context to help Google Translate handle single words better
         result = GoogleTranslator(source=src, target=tgt).translate(word)
+        if not result:
+            # Retry with context sentence for short words
+            padded = f"{word}の意味"  if source_lang == "ja" else f"{word} meaning"
+            result = GoogleTranslator(source=src, target=tgt).translate(padded)
+            # Strip the padding from result if possible
+            if result:
+                result = result.replace("의미", "").replace("meaning", "").replace("nghĩa của", "").replace("ý nghĩa", "").strip()
         return result if result else ""
     except Exception as e:
-        print(f"Translation error ({source_lang} → {target_lang}): {e}")
+        print(f"Translation error ({source_lang} → {target_lang}): {word} --> {e}")
         return ""
 
 

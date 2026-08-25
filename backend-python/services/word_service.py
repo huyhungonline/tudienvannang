@@ -10,6 +10,7 @@ SOURCE_LANG_MAP = {
     "ja": "ja",
     "zh": "zh-CN",
     "vi": "vi",
+    "en": "en",
 }
 
 
@@ -95,6 +96,31 @@ async def split_and_process(text: str, target_language: str, source_language: st
     }
 
 
+async def _batch_translate_words(words: list[str], source_lang: str, target_lang: str) -> list[str]:
+    """Translate multiple words in one Google Translate call using separator."""
+    if not words:
+        return []
+    SEPARATOR = " | "
+    joined = SEPARATOR.join(words)
+    loop = asyncio.get_running_loop()
+    try:
+        src = SOURCE_LANG_MAP.get(source_lang, source_lang)
+        tgt = SOURCE_LANG_MAP.get(target_lang, target_lang)
+        result = await loop.run_in_executor(
+            None, partial(GoogleTranslator(source=src, target=tgt).translate, joined)
+        )
+        if result:
+            parts = [p.strip() for p in result.split("|")]
+            # Pad with empty strings if Google merged some separators
+            while len(parts) < len(words):
+                parts.append("")
+            return parts[:len(words)]
+    except Exception as e:
+        print(f"Batch translation error ({source_lang} → {target_lang}): {e}")
+    # Fallback: return empty translations
+    return [""] * len(words)
+
+
 async def _process_multilang(text: str, source_language: str, target_language: str = "en") -> dict:
     """Process non-English text: tokenize → translate each token."""
     tokens = tokenizer_service.tokenize(text, source_language)
@@ -110,22 +136,17 @@ async def _process_multilang(text: str, source_language: str, target_language: s
     # If target == source, default to English
     actual_target = target_language if target_language != source_language else "en"
 
-    # Translate each token concurrently
-    tasks = [
-        multilang_dictionary_service.get_or_create(
-            token["word"], source_language, token.get("reading", ""), actual_target
-        )
-        for token in tokens
-    ]
-    entries = await asyncio.gather(*tasks)
+    # Batch translate: join all words with separator, translate once, split back
+    words_to_translate = [token["word"] for token in tokens]
+    translations = await _batch_translate_words(words_to_translate, source_language, actual_target)
 
     words = []
-    for entry in entries:
+    for i, token in enumerate(tokens):
         words.append({
-            "word": entry["word"],
-            "ipa": entry["reading"],
+            "word": token["word"],
+            "ipa": token.get("reading", ""),
             "audioData": None,
-            "translation": entry["translation"],
+            "translation": translations[i] if i < len(translations) else "",
         })
 
     # Translate full sentence

@@ -22,13 +22,16 @@ echo "✅ .env synced"
 echo ""
 echo "=== [3/4] SSH vào VPS: pull + rebuild ==="
 ssh ${VPS_USER}@${VPS_HOST} << 'REMOTE'
-set -e
 cd /root/tudienvannang
 git pull origin main
 
 echo ""
 echo "=== [4/4] Rebuild Docker ==="
-docker-compose up -d --build
+docker compose up -d --build --force-recreate
+if [ $? -ne 0 ]; then
+    echo "❌ Docker build failed!"
+    exit 1
+fi
 
 echo ""
 echo "=== Chờ postgres khởi động... ==="
@@ -36,14 +39,20 @@ sleep 8
 
 echo ""
 echo "=== Chạy migrations ==="
-for f in backend-python/migrations/*.sql; do
-    cat "$f" | docker exec -i tudienvannang_postgres_1 psql -U postgres -d english_word_splitter 2>/dev/null || true
-done
+PG_CONTAINER=$(docker ps --format '{{.Names}}' | grep postgres | head -1)
+if [ -n "$PG_CONTAINER" ]; then
+    for f in backend-python/migrations/*.sql; do
+        cat "$f" | docker exec -i "$PG_CONTAINER" psql -U postgres -d english_word_splitter 2>/dev/null || true
+    done
+    echo "✅ Migrations done"
+else
+    echo "⚠️  Postgres container not found!"
+fi
 
 echo ""
 echo "=== Kiểm tra containers ==="
 docker ps --format "table {{.Names}}\t{{.Status}}\t{{.Ports}}"
 
 echo ""
-echo "=== Done! App chạy tại https://jaenglish.com ==="
+echo "=== Done! ==="
 REMOTE
