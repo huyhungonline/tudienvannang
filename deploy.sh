@@ -28,7 +28,6 @@ git pull origin main
 
 echo ""
 echo "=== [4/4] Rebuild Docker ==="
-docker-compose down
 docker-compose up -d --build
 
 echo ""
