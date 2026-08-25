@@ -122,7 +122,9 @@ async def _batch_translate_words(words: list[str], source_lang: str, target_lang
 
 
 async def _process_multilang(text: str, source_language: str, target_language: str = "en") -> dict:
-    """Process non-English text: tokenize → translate each token."""
+    """Process non-English text: tokenize → cache lookup → translate uncached → save."""
+    from services import tts_service
+
     tokens = tokenizer_service.tokenize(text, source_language)
 
     # Filter out tokens that are purely numbers/digits
@@ -133,21 +135,78 @@ async def _process_multilang(text: str, source_language: str, target_language: s
         tokens = tokens[:50]
 
     # Determine actual target for word translation
-    # If target == source, default to English
     actual_target = target_language if target_language != source_language else "en"
 
-    # Batch translate: join all words with separator, translate once, split back
-    words_to_translate = [token["word"] for token in tokens]
-    translations = await _batch_translate_words(words_to_translate, source_language, actual_target)
+    # Step 1: Cache lookup
+    all_words = [token["word"] for token in tokens]
+    cached = await multilang_dictionary_service.batch_lookup(all_words, source_language, actual_target)
 
+    # Step 2: Identify uncached words
+    uncached_words = [w for w in all_words if w not in cached]
+
+    # Step 3: Translate only uncached words
+    new_translations = {}
+    if uncached_words:
+        translated = await _batch_translate_words(uncached_words, source_language, actual_target)
+        for i, word in enumerate(uncached_words):
+            translation = translated[i] if i < len(translated) else ""
+            if translation:
+                new_translations[word] = translation
+
+        # Step 4: Generate audio + save to cache
+        entries_to_save = []
+        for word in uncached_words:
+            translation = new_translations.get(word, "")
+            if not translation:
+                continue
+            # Find reading from tokens
+            reading = ""
+            for token in tokens:
+                if token["word"] == word:
+                    reading = token.get("reading", "")
+                    break
+            # Generate audio
+            audio = await tts_service.generate_audio_base64(word, source_language)
+            entries_to_save.append({
+                "word": word,
+                "source_language": source_language,
+                "target_language": actual_target,
+                "translation": translation,
+                "reading": reading,
+                "audio_data": audio,
+            })
+            # Store in new_translations for merging
+            new_translations[word] = {"translation": translation, "audio_data": audio, "reading": reading}
+
+        # Save to cache (non-blocking)
+        if entries_to_save:
+            await multilang_dictionary_service.batch_save(entries_to_save)
+
+    # Step 5: Merge results preserving original order
     words = []
-    for i, token in enumerate(tokens):
-        words.append({
-            "word": token["word"],
-            "ipa": token.get("reading", ""),
-            "audioData": None,
-            "translation": translations[i] if i < len(translations) else "",
-        })
+    for token in tokens:
+        w = token["word"]
+        if w in cached:
+            words.append({
+                "word": w,
+                "ipa": cached[w]["reading"] or token.get("reading", ""),
+                "audioData": cached[w]["audio_data"],
+                "translation": cached[w]["translation"],
+            })
+        elif w in new_translations and isinstance(new_translations[w], dict):
+            words.append({
+                "word": w,
+                "ipa": new_translations[w]["reading"] or token.get("reading", ""),
+                "audioData": new_translations[w]["audio_data"],
+                "translation": new_translations[w]["translation"],
+            })
+        else:
+            words.append({
+                "word": w,
+                "ipa": token.get("reading", ""),
+                "audioData": None,
+                "translation": new_translations.get(w, "") if isinstance(new_translations.get(w), str) else "",
+            })
 
     # Translate full sentence
     loop = asyncio.get_running_loop()
