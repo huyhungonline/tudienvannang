@@ -32,3 +32,10 @@ def _generate_audio_sync(word: str, language: str) -> str | None:
 async def generate_audio_base64(word: str, language: str) -> str | None:
     """Generate MP3 audio for a word, return base64 string or None on failure."""
     return await asyncio.to_thread(_generate_audio_sync, word, language)
+
+
+# Backward compatibility alias
+async def synthesize_speech(text: str, language: str) -> str:
+    """Alias for generate_audio_base64, used by audio route. Returns empty string on failure."""
+    result = await generate_audio_base64(text, language)
+    return result or ""
