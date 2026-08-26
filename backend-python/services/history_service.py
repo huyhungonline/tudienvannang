@@ -35,7 +35,7 @@ async def save(user_id: str, input_text: str, target_language: str, sentence_tra
     }
 
 
-async def get_recent_public(limit: int = 10) -> list[dict]:
+async def get_recent_public(limit: int = 20) -> list[dict]:
     """Get recent search texts from public_searches (auto-saved on every split)."""
     rows = await db.query(
         "SELECT DISTINCT ON (input_text) id, input_text, target_language, created_at "

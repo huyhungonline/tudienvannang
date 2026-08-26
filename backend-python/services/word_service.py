@@ -97,28 +97,44 @@ async def split_and_process(text: str, target_language: str, source_language: st
 
 
 async def _batch_translate_words(words: list[str], source_lang: str, target_lang: str) -> list[str]:
-    """Translate multiple words in one Google Translate call using separator."""
+    """Translate words one by one via Google Translate. Falls back to pivot via English if direct fails."""
     if not words:
         return []
-    SEPARATOR = " | "
-    joined = SEPARATOR.join(words)
+    src = SOURCE_LANG_MAP.get(source_lang, source_lang)
+    tgt = SOURCE_LANG_MAP.get(target_lang, target_lang)
+    results = []
     loop = asyncio.get_running_loop()
-    try:
-        src = SOURCE_LANG_MAP.get(source_lang, source_lang)
-        tgt = SOURCE_LANG_MAP.get(target_lang, target_lang)
-        result = await loop.run_in_executor(
-            None, partial(GoogleTranslator(source=src, target=tgt).translate, joined)
-        )
-        if result:
-            parts = [p.strip() for p in result.split("|")]
-            # Pad with empty strings if Google merged some separators
-            while len(parts) < len(words):
-                parts.append("")
-            return parts[:len(words)]
-    except Exception as e:
-        print(f"Batch translation error ({source_lang} → {target_lang}): {e}")
-    # Fallback: return empty translations
-    return [""] * len(words)
+    for word in words:
+        translation = ""
+        # Attempt 1: Direct translation
+        try:
+            result = await loop.run_in_executor(
+                None, partial(GoogleTranslator(source=src, target=tgt).translate, word)
+            )
+            translation = result.strip() if result else ""
+        except Exception:
+            pass
+
+        # Attempt 2: If direct failed and not already going through English, pivot via English
+        if not translation and target_lang != "en" and source_lang != "en":
+            try:
+                # source → English
+                en_result = await loop.run_in_executor(
+                    None, partial(GoogleTranslator(source=src, target="en").translate, word)
+                )
+                if en_result and en_result.strip():
+                    # English → target
+                    final = await loop.run_in_executor(
+                        None, partial(GoogleTranslator(source="en", target=tgt).translate, en_result.strip())
+                    )
+                    translation = final.strip() if final else ""
+            except Exception:
+                pass
+
+        if not translation:
+            print(f"Translation failed ({source_lang} → {target_lang}): {word}")
+        results.append(translation)
+    return results
 
 
 async def _process_multilang(text: str, source_language: str, target_language: str = "en") -> dict:
