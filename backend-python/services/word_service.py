@@ -97,43 +97,58 @@ async def split_and_process(text: str, target_language: str, source_language: st
 
 
 async def _batch_translate_words(words: list[str], source_lang: str, target_lang: str) -> list[str]:
-    """Translate words one by one via Google Translate. Falls back to pivot via English if direct fails."""
+    """Translate words: try batch first (one API call), fallback to individual for failed ones."""
     if not words:
         return []
     src = SOURCE_LANG_MAP.get(source_lang, source_lang)
     tgt = SOURCE_LANG_MAP.get(target_lang, target_lang)
-    results = []
     loop = asyncio.get_running_loop()
-    for word in words:
-        translation = ""
-        # Attempt 1: Direct translation
+
+    # Step 1: Try batch translate with newline separator (more reliable than |)
+    results = [""] * len(words)
+    try:
+        joined = "\n".join(words)
+        batch_result = await loop.run_in_executor(
+            None, partial(GoogleTranslator(source=src, target=tgt).translate, joined)
+        )
+        if batch_result:
+            parts = batch_result.split("\n")
+            for i in range(min(len(parts), len(words))):
+                results[i] = parts[i].strip()
+    except Exception as e:
+        print(f"Batch translation error ({source_lang} → {target_lang}): {e}")
+
+    # Step 2: For words that still have empty translation, try individually
+    for i, word in enumerate(words):
+        if results[i]:
+            continue
+        # Direct attempt
         try:
             result = await loop.run_in_executor(
                 None, partial(GoogleTranslator(source=src, target=tgt).translate, word)
             )
-            translation = result.strip() if result else ""
+            if result and result.strip():
+                results[i] = result.strip()
+                continue
         except Exception:
             pass
-
-        # Attempt 2: If direct failed and not already going through English, pivot via English
-        if not translation and target_lang != "en" and source_lang != "en":
+        # Pivot via English if not en target
+        if target_lang != "en" and source_lang != "en":
             try:
-                # source → English
                 en_result = await loop.run_in_executor(
                     None, partial(GoogleTranslator(source=src, target="en").translate, word)
                 )
                 if en_result and en_result.strip():
-                    # English → target
                     final = await loop.run_in_executor(
                         None, partial(GoogleTranslator(source="en", target=tgt).translate, en_result.strip())
                     )
-                    translation = final.strip() if final else ""
+                    if final and final.strip():
+                        results[i] = final.strip()
+                        continue
             except Exception:
                 pass
-
-        if not translation:
+        if not results[i]:
             print(f"Translation failed ({source_lang} → {target_lang}): {word}")
-        results.append(translation)
     return results
 
 
