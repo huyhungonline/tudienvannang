@@ -97,14 +97,13 @@ async def split_and_process(text: str, target_language: str, source_language: st
 
 
 async def _batch_translate_words(words: list[str], source_lang: str, target_lang: str) -> list[str]:
-    """Translate words: try batch first (one API call), fallback to individual for failed ones."""
+    """Translate words via batch (one API call with newline separator)."""
     if not words:
         return []
     src = SOURCE_LANG_MAP.get(source_lang, source_lang)
     tgt = SOURCE_LANG_MAP.get(target_lang, target_lang)
     loop = asyncio.get_running_loop()
 
-    # Step 1: Try batch translate with newline separator (more reliable than |)
     results = [""] * len(words)
     try:
         joined = "\n".join(words)
@@ -117,38 +116,6 @@ async def _batch_translate_words(words: list[str], source_lang: str, target_lang
                 results[i] = parts[i].strip()
     except Exception as e:
         print(f"Batch translation error ({source_lang} → {target_lang}): {e}")
-
-    # Step 2: For words that still have empty translation, try individually
-    for i, word in enumerate(words):
-        if results[i]:
-            continue
-        # Direct attempt
-        try:
-            result = await loop.run_in_executor(
-                None, partial(GoogleTranslator(source=src, target=tgt).translate, word)
-            )
-            if result and result.strip():
-                results[i] = result.strip()
-                continue
-        except Exception:
-            pass
-        # Pivot via English if not en target
-        if target_lang != "en" and source_lang != "en":
-            try:
-                en_result = await loop.run_in_executor(
-                    None, partial(GoogleTranslator(source=src, target="en").translate, word)
-                )
-                if en_result and en_result.strip():
-                    final = await loop.run_in_executor(
-                        None, partial(GoogleTranslator(source="en", target=tgt).translate, en_result.strip())
-                    )
-                    if final and final.strip():
-                        results[i] = final.strip()
-                        continue
-            except Exception:
-                pass
-        if not results[i]:
-            print(f"Translation failed ({source_lang} → {target_lang}): {word}")
     return results
 
 
