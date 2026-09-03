@@ -11,6 +11,7 @@ import { useAuth } from '../context/AuthContext';
 import { post } from '../api/client';
 import { ApiError } from '../api/client';
 import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
 
 export function HomePage() {
   const { isAuthenticated } = useAuth();
@@ -190,19 +191,38 @@ export function HomePage() {
     container.innerHTML = bodyHtml;
     document.body.appendChild(container);
 
-    // Wait a frame so the browser lays out the element before capture
+    // Wait so the browser lays out the element before capture
     await new Promise((r) => setTimeout(r, 100));
 
-    const doc = new jsPDF({ unit: 'px', format: 'a4', orientation: 'portrait' });
-    await doc.html(container, {
-      margin: [20, 20, 20, 20],
-      autoPaging: 'text',
-      html2canvas: { scale: 0.6, backgroundColor: '#ffffff', useCORS: true, logging: false },
-      width: 555,
-      windowWidth: 760,
+    // Capture the DOM as an image (renders all fonts correctly via the browser)
+    const canvas = await html2canvas(container, {
+      scale: 2,
+      backgroundColor: '#ffffff',
+      useCORS: true,
+      logging: false,
     });
-    doc.save(`vocabulary-${Date.now()}.pdf`);
     document.body.removeChild(container);
+
+    const imgData = canvas.toDataURL('image/png');
+    const doc = new jsPDF({ unit: 'pt', format: 'a4', orientation: 'portrait' });
+    const pageWidth = doc.internal.pageSize.getWidth();
+    const pageHeight = doc.internal.pageSize.getHeight();
+    const margin = 20;
+    const imgWidth = pageWidth - margin * 2;
+    const imgHeight = (canvas.height * imgWidth) / canvas.width;
+
+    // Paginate if the image is taller than one page
+    let heightLeft = imgHeight;
+    let position = margin;
+    doc.addImage(imgData, 'PNG', margin, position, imgWidth, imgHeight);
+    heightLeft -= (pageHeight - margin * 2);
+    while (heightLeft > 0) {
+      doc.addPage();
+      position = margin - (imgHeight - heightLeft);
+      doc.addImage(imgData, 'PNG', margin, position, imgWidth, imgHeight);
+      heightLeft -= (pageHeight - margin * 2);
+    }
+    doc.save(`vocabulary-${Date.now()}.pdf`);
   };
 
   return (
