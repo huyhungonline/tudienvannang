@@ -11,7 +11,6 @@ import { useAuth } from '../context/AuthContext';
 import { post } from '../api/client';
 import { ApiError } from '../api/client';
 import jsPDF from 'jspdf';
-import autoTable from 'jspdf-autotable';
 
 export function HomePage() {
   const { isAuthenticated } = useAuth();
@@ -151,56 +150,59 @@ export function HomePage() {
     fetchWords(text, targetLanguage, sourceLanguage);
   };
 
-  const handleDownloadPdf = () => {
-    const doc = new jsPDF({ unit: 'pt', format: 'a4', orientation: 'portrait' });
+  const handleDownloadPdf = async () => {
+    const esc = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    const rows = words.map((w) =>
+      `<tr>
+        <td style="border:1px solid #ddd;padding:6px 10px;font-size:13px;">${esc(w.word)}</td>
+        <td style="border:1px solid #ddd;padding:6px 10px;font-size:13px;">${esc(w.ipa)}</td>
+        <td style="border:1px solid #ddd;padding:6px 10px;font-size:13px;">${esc(w.translation)}</td>
+      </tr>`
+    ).join('');
 
-    // Title
-    doc.setFontSize(18);
-    doc.setTextColor(37, 99, 235);
-    doc.text('jaenglish.com', doc.internal.pageSize.getWidth() / 2, 40, { align: 'center' });
+    const bodyHtml = `
+<div style="font-family:'Noto Sans JP','Yu Gothic','Meiryo','Segoe UI',sans-serif;color:#333;padding:20px;width:760px;box-sizing:border-box;background:#fff;">
+  <div style="text-align:center;font-size:22px;font-weight:700;color:#2563eb;margin-bottom:24px;">jaenglish.com</div>
+  <p style="font-size:16px;font-weight:600;margin:12px 0 8px;">Vocabulary List</p>
+  <table style="width:100%;border-collapse:collapse;margin-bottom:24px;">
+    <thead>
+      <tr>
+        <th style="border:1px solid #ddd;padding:6px 10px;background:#2563eb;color:#fff;font-size:13px;text-align:left;">Word</th>
+        <th style="border:1px solid #ddd;padding:6px 10px;background:#2563eb;color:#fff;font-size:13px;text-align:left;">IPA</th>
+        <th style="border:1px solid #ddd;padding:6px 10px;background:#2563eb;color:#fff;font-size:13px;text-align:left;">Translation</th>
+      </tr>
+    </thead>
+    <tbody>${rows}</tbody>
+  </table>
+  <p style="font-size:16px;font-weight:600;margin:12px 0 8px;">Original Text</p>
+  <div style="background:#f9f9f9;padding:10px;border:1px solid #eee;white-space:pre-wrap;font-size:13px;line-height:1.6;">${esc(currentText)}</div>
+  ${sentenceTranslation ? `<p style="font-size:16px;font-weight:600;margin:12px 0 8px;">Translation</p><div style="background:#f9f9f9;padding:10px;border:1px solid #eee;white-space:pre-wrap;font-size:13px;line-height:1.6;">${esc(sentenceTranslation)}</div>` : ''}
+</div>`;
 
-    // Vocabulary table
-    doc.setFontSize(12);
-    doc.setTextColor(51, 51, 51);
-    doc.text('Vocabulary List', 40, 70);
+    // Render into a container attached to the visible DOM (top-left, behind everything)
+    const container = document.createElement('div');
+    container.style.position = 'fixed';
+    container.style.left = '0';
+    container.style.top = '0';
+    container.style.width = '760px';
+    container.style.background = '#fff';
+    container.style.zIndex = '-9999';
+    container.innerHTML = bodyHtml;
+    document.body.appendChild(container);
 
-    autoTable(doc, {
-      startY: 80,
-      head: [['Word', 'IPA', 'Translation']],
-      body: words.map((w) => [w.word, w.ipa, w.translation]),
-      headStyles: { fillColor: [37, 99, 235], textColor: 255 },
-      styles: { fontSize: 10, cellPadding: 5 },
-      margin: { left: 40, right: 40 },
+    // Wait a frame so the browser lays out the element before capture
+    await new Promise((r) => setTimeout(r, 100));
+
+    const doc = new jsPDF({ unit: 'px', format: 'a4', orientation: 'portrait' });
+    await doc.html(container, {
+      margin: [20, 20, 20, 20],
+      autoPaging: 'text',
+      html2canvas: { scale: 0.6, backgroundColor: '#ffffff', useCORS: true, logging: false },
+      width: 555,
+      windowWidth: 760,
     });
-
-    // Original text + translation below the table
-    // @ts-ignore - lastAutoTable is added by the plugin
-    let y = (doc as any).lastAutoTable.finalY + 24;
-    const pageHeight = doc.internal.pageSize.getHeight();
-    const pageWidth = doc.internal.pageSize.getWidth();
-    const maxWidth = pageWidth - 80;
-
-    const addBlock = (title: string, content: string) => {
-      if (!content) return;
-      if (y > pageHeight - 60) { doc.addPage(); y = 40; }
-      doc.setFontSize(12);
-      doc.setTextColor(51, 51, 51);
-      doc.text(title, 40, y);
-      y += 16;
-      doc.setFontSize(10);
-      const lines = doc.splitTextToSize(content, maxWidth);
-      for (const line of lines) {
-        if (y > pageHeight - 40) { doc.addPage(); y = 40; }
-        doc.text(line, 40, y);
-        y += 14;
-      }
-      y += 12;
-    };
-
-    addBlock('Original Text', currentText);
-    addBlock('Translation', sentenceTranslation);
-
     doc.save(`vocabulary-${Date.now()}.pdf`);
+    document.body.removeChild(container);
   };
 
   return (
