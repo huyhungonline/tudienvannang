@@ -151,40 +151,47 @@ export function HomePage() {
   };
 
   const handleDownloadPdf = () => {
+    const esc = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
     const rows = words.map((w) =>
-      `<tr><td>${w.word}</td><td>${w.ipa}</td><td>${w.translation}</td></tr>`
+      `<tr>
+        <td style="border:1px solid #ddd;padding:6px 10px;font-size:13px;">${esc(w.word)}</td>
+        <td style="border:1px solid #ddd;padding:6px 10px;font-size:13px;">${esc(w.ipa)}</td>
+        <td style="border:1px solid #ddd;padding:6px 10px;font-size:13px;">${esc(w.translation)}</td>
+      </tr>`
     ).join('');
 
-    const html = `<!DOCTYPE html>
-<html><head><meta charset="utf-8"><title>Vocabulary - jaenglish.com</title>
-<style>
-  body { font-family: 'Noto Sans JP', 'Segoe UI', sans-serif; padding: 2rem; color: #333; }
-  .brand { text-align: center; font-size: 1.4rem; font-weight: 700; color: #2563eb; margin-bottom: 1.5rem; }
-  table { width: 100%; border-collapse: collapse; margin-bottom: 1.5rem; }
-  th, td { border: 1px solid #ddd; padding: 0.5rem 0.75rem; text-align: left; font-size: 0.9rem; }
-  th { background: #2563eb; color: #fff; }
-  .section-title { font-size: 1rem; font-weight: 600; margin: 1rem 0 0.5rem; }
-  .text-block { background: #f9f9f9; padding: 0.75rem; border-radius: 4px; border: 1px solid #eee; white-space: pre-wrap; font-size: 0.9rem; line-height: 1.6; }
-  @media print { body { padding: 0; } }
-</style></head><body>
-<div class="brand">jaenglish.com</div>
-<p class="section-title">Vocabulary List</p>
-<table><thead><tr><th>Word</th><th>IPA</th><th>Translation</th></tr></thead><tbody>${rows}</tbody></table>
-<p class="section-title">Original Text</p>
-<div class="text-block">${currentText}</div>
-${sentenceTranslation ? `<p class="section-title">Translation</p><div class="text-block">${sentenceTranslation}</div>` : ''}
-</body></html>`;
+    // Build content with inline styles (jsPDF.html reads inline styles reliably)
+    const bodyHtml = `
+<div style="font-family:'Noto Sans JP','Segoe UI',sans-serif;color:#333;padding:16px;width:720px;">
+  <div style="text-align:center;font-size:20px;font-weight:700;color:#2563eb;margin-bottom:20px;">jaenglish.com</div>
+  <p style="font-size:15px;font-weight:600;margin:12px 0 8px;">Vocabulary List</p>
+  <table style="width:100%;border-collapse:collapse;margin-bottom:20px;">
+    <thead>
+      <tr>
+        <th style="border:1px solid #ddd;padding:6px 10px;background:#2563eb;color:#fff;font-size:13px;text-align:left;">Word</th>
+        <th style="border:1px solid #ddd;padding:6px 10px;background:#2563eb;color:#fff;font-size:13px;text-align:left;">IPA</th>
+        <th style="border:1px solid #ddd;padding:6px 10px;background:#2563eb;color:#fff;font-size:13px;text-align:left;">Translation</th>
+      </tr>
+    </thead>
+    <tbody>${rows}</tbody>
+  </table>
+  <p style="font-size:15px;font-weight:600;margin:12px 0 8px;">Original Text</p>
+  <div style="background:#f9f9f9;padding:10px;border:1px solid #eee;white-space:pre-wrap;font-size:13px;line-height:1.6;">${esc(currentText)}</div>
+  ${sentenceTranslation ? `<p style="font-size:15px;font-weight:600;margin:12px 0 8px;">Translation</p><div style="background:#f9f9f9;padding:10px;border:1px solid #eee;white-space:pre-wrap;font-size:13px;line-height:1.6;">${esc(sentenceTranslation)}</div>` : ''}
+</div>`;
 
-    // Render HTML into an off-screen container, then convert to PDF via jsPDF.html()
+    // Render into a visible off-screen container (html2canvas fails on display:none / negative offsets sometimes)
     const container = document.createElement('div');
-    container.style.position = 'absolute';
-    container.style.left = '-9999px';
+    container.style.position = 'fixed';
     container.style.top = '0';
-    container.style.width = '760px';
-    container.innerHTML = html;
+    container.style.left = '0';
+    container.style.zIndex = '-1';
+    container.style.opacity = '0';
+    container.style.background = '#fff';
+    container.innerHTML = bodyHtml;
     document.body.appendChild(container);
 
-    const pdf = new jsPDF({ unit: 'px', format: 'a4', orientation: 'portrait' });
+    const pdf = new jsPDF({ unit: 'pt', format: 'a4', orientation: 'portrait' });
     pdf.html(container, {
       callback: (doc) => {
         doc.save(`vocabulary-${Date.now()}.pdf`);
@@ -192,8 +199,9 @@ ${sentenceTranslation ? `<p class="section-title">Translation</p><div class="tex
       },
       margin: [20, 20, 20, 20],
       autoPaging: 'text',
+      html2canvas: { scale: 0.75, backgroundColor: '#ffffff' },
       width: 555,
-      windowWidth: 760,
+      windowWidth: 720,
     });
   };
 
