@@ -10,6 +10,7 @@ import { RecentSearches } from '../components/RecentSearches';
 import { useAuth } from '../context/AuthContext';
 import { post } from '../api/client';
 import { ApiError } from '../api/client';
+import jsPDF from 'jspdf';
 
 export function HomePage() {
   const { isAuthenticated } = useAuth();
@@ -174,14 +175,26 @@ export function HomePage() {
 ${sentenceTranslation ? `<p class="section-title">Translation</p><div class="text-block">${sentenceTranslation}</div>` : ''}
 </body></html>`;
 
-    const printWindow = window.open('', '_blank');
-    if (printWindow) {
-      printWindow.document.write(html);
-      printWindow.document.close();
-      printWindow.onload = () => {
-        printWindow.print();
-      };
-    }
+    // Render HTML into an off-screen container, then convert to PDF via jsPDF.html()
+    const container = document.createElement('div');
+    container.style.position = 'absolute';
+    container.style.left = '-9999px';
+    container.style.top = '0';
+    container.style.width = '760px';
+    container.innerHTML = html;
+    document.body.appendChild(container);
+
+    const pdf = new jsPDF({ unit: 'px', format: 'a4', orientation: 'portrait' });
+    pdf.html(container, {
+      callback: (doc) => {
+        doc.save(`vocabulary-${Date.now()}.pdf`);
+        document.body.removeChild(container);
+      },
+      margin: [20, 20, 20, 20],
+      autoPaging: 'text',
+      width: 555,
+      windowWidth: 760,
+    });
   };
 
   return (
