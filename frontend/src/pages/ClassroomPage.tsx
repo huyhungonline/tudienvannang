@@ -6,6 +6,7 @@ import type { ClassroomState } from '../types/classroom';
 import Blackboard from '../components/classroom/Blackboard';
 import Podium from '../components/classroom/Podium';
 import SeatingGrid from '../components/classroom/SeatingGrid';
+import { Spinner } from '../components/Spinner';
 
 export default function ClassroomPage() {
   const { user, isAuthenticated } = useAuth();
@@ -67,7 +68,11 @@ export default function ClassroomPage() {
   };
 
   if (loading) {
-    return <div style={{ padding: 40, textAlign: 'center' }}>Loading classroom...</div>;
+    return (
+      <div style={{ padding: 40, textAlign: 'center', display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 8 }}>
+        <Spinner /> Loading classroom...
+      </div>
+    );
   }
 
   return (

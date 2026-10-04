@@ -2,6 +2,7 @@ import { useState, useEffect, type FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { get, post, put, del, uploadBookImage } from '../api/client';
+import { Spinner } from '../components/Spinner';
 
 interface AdminUser {
   id: string;
@@ -142,7 +143,7 @@ function UserManagement() {
     setEditingId(u.id); setEditEmail(u.email); setEditPassword(''); setEditIsAdmin(u.isAdmin);
   };
 
-  if (loading) return <p className="loading-text">Loading...</p>;
+  if (loading) return <p className="loading-text"><Spinner /> Loading...</p>;
 
   return (
     <div>
@@ -312,7 +313,7 @@ function MailerSection() {
           </div>
 
           {loadingSubs ? (
-            <p className="loading-text">Đang tải...</p>
+            <p className="loading-text"><Spinner /> Đang tải...</p>
           ) : subscribers.length === 0 ? (
             <p className="empty-state">Chưa có subscriber nào.</p>
           ) : (
@@ -403,7 +404,7 @@ function QuestionsManagement() {
     } catch (err: any) { setError(err?.message || 'Failed to update.'); }
   };
 
-  if (loading) return <p className="loading-text">Loading...</p>;
+  if (loading) return <p className="loading-text"><Spinner /> Loading...</p>;
 
   return (
     <div>
@@ -531,7 +532,7 @@ function ReadingPostsManagement() {
 
   const totalPages = Math.ceil(total / PAGE_SIZE);
 
-  if (loading && posts.length === 0) return <p className="loading-text">Loading...</p>;
+  if (loading && posts.length === 0) return <p className="loading-text"><Spinner /> Loading...</p>;
 
   return (
     <div>
@@ -726,12 +727,12 @@ function BooksManagement() {
 
   const totalPages = Math.ceil(total / PAGE_SIZE);
 
-  if (loading && books.length === 0) return <p className="loading-text">Loading...</p>;
+  if (loading && books.length === 0) return <p className="loading-text"><Spinner /> Loading...</p>;
 
   const imagePicker = (
     <div className="book-image-field">
       <input type="file" accept="image/*" onChange={handleImageChange} disabled={uploading} />
-      {uploading && <span className="loading-text">Đang tải ảnh lên...</span>}
+      {uploading && <span className="loading-text"><Spinner size={14} /> Đang tải ảnh lên...</span>}
       {imageUrl && !uploading && (
         <div className="book-image-preview">
           <img src={imageUrl} alt="Preview" />

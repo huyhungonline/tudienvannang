@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { get } from '../api/client';
+import { Spinner } from '../components/Spinner';
 
 interface Book {
   id: number;
@@ -69,7 +70,7 @@ export function BooksPage() {
       {error && <div className="form-error">{error}</div>}
 
       {loading ? (
-        <p className="loading-text">Đang tải...</p>
+        <p className="loading-text"><Spinner /> Đang tải...</p>
       ) : books.length === 0 ? (
         <p className="empty-state">Chưa có sách nào.</p>
       ) : (

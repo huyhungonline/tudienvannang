@@ -235,7 +235,30 @@ body {
 }
 
 .spinner {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
   font-style: italic;
+}
+
+.spinner-icon {
+  display: inline-block;
+  box-sizing: border-box;
+  border: 2px solid rgba(37, 99, 235, 0.2);
+  border-top-color: #2563eb;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  flex-shrink: 0;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.loading-text {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .result-table {

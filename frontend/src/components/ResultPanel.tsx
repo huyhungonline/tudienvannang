@@ -1,6 +1,7 @@
 import type { WordEntry, TargetLanguage, SourceLanguage } from 'shared';
 import { WordEntryRow } from './WordEntryRow';
 import { SpeakButton } from './SpeakButton';
+import { Spinner } from './Spinner';
 
 interface ResultPanelProps {
   words: WordEntry[];
@@ -28,7 +29,7 @@ export function ResultPanel({ words, loading, targetLanguage, sourceLanguage = '
   if (loading) {
     return (
       <div className="result-panel loading">
-        <div className="spinner" aria-label="Loading">Loading...</div>
+        <div className="spinner" aria-label="Loading"><Spinner /> Loading...</div>
       </div>
     );
   }

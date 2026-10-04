@@ -1,4 +1,5 @@
 import { SpeakButton } from './SpeakButton';
+import { Spinner } from './Spinner';
 
 interface SentenceTranslationProps {
   translation: string;
@@ -12,7 +13,7 @@ export function SentenceTranslation({ translation, loading, error, language, onR
   if (loading) {
     return (
       <div className="sentence-translation loading">
-        <p>Translating...</p>
+        <p className="loading-text"><Spinner /> Translating...</p>
       </div>
     );
   }

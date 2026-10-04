@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { get, del, ApiError } from '../api/client';
+import { Spinner } from '../components/Spinner';
 
 interface HistoryRecord {
   id: string;
@@ -79,7 +80,7 @@ export function HistoryPage() {
     return (
       <div className="history-page">
         <h2>My Page</h2>
-        <p className="loading-text">Loading...</p>
+        <p className="loading-text"><Spinner /> Loading...</p>
       </div>
     );
   }
