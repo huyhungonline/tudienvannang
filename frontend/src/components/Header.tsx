@@ -32,12 +32,15 @@ export function Header() {
         {isAuthenticated ? (
           <div className="avatar-wrapper" ref={dropdownRef}>
             <Link to="/my-page" className="header-mypage-link">My Page</Link>
-            <button className="avatar-btn" onClick={() => setDropdownOpen(!dropdownOpen)}>
-              {user?.email?.charAt(0).toUpperCase() || 'U'}
-            </button>
+            <div className="avatar-badge-wrapper">
+              <button className="avatar-btn" onClick={() => setDropdownOpen(!dropdownOpen)}>
+                {user?.email?.charAt(0).toUpperCase() || 'U'}
+              </button>
+              {user?.isVip && <span className="vip-badge">VIP</span>}
+            </div>
             {dropdownOpen && (
               <div className="avatar-dropdown">
-                <span className="dropdown-email">{user?.email}</span>
+                <span className="dropdown-email">{user?.email}{user?.isVip && <span className="vip-badge-inline">VIP</span>}</span>
                 <Link to="/admin" className="dropdown-item" onClick={() => setDropdownOpen(false)}>Admin</Link>
                 <Link to="/reset-password" className="dropdown-item" onClick={() => setDropdownOpen(false)}>Reset Password</Link>
                 <button className="dropdown-item dropdown-logout" onClick={() => { logout(); setDropdownOpen(false); }}>Logout</button>

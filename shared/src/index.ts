@@ -23,6 +23,8 @@ export interface User {
   id: string;
   email: string;
   createdAt: Date;
+  isAdmin?: boolean;
+  isVip?: boolean;
 }
 
 export interface SearchHistory {

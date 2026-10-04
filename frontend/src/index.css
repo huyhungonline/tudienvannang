@@ -1510,6 +1510,38 @@ body {
   background: #1d4ed8;
 }
 
+.avatar-badge-wrapper {
+  position: relative;
+  display: inline-flex;
+}
+
+.vip-badge {
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  color: #fff;
+  font-size: 0.55rem;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  padding: 1px 5px;
+  border-radius: 8px;
+  white-space: nowrap;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+
+.vip-badge-inline {
+  margin-left: 0.4rem;
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  color: #fff;
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 1px 6px;
+  border-radius: 8px;
+  vertical-align: middle;
+}
+
 .avatar-dropdown {
   position: absolute;
   top: 44px;
