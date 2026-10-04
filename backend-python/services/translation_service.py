@@ -1,7 +1,7 @@
 import asyncio
 import time
 from functools import partial
-from deep_translator import GoogleTranslator
+from deep_translator import GoogleTranslator, MyMemoryTranslator
 import eng_to_ipa
 import httpx
 
@@ -9,6 +9,14 @@ LANG_MAP = {
     "ja": "ja",
     "vi": "vi",
     "zh": "zh-CN",
+}
+
+# MyMemoryTranslator requires full locale codes rather than the short codes used elsewhere
+MYMEMORY_LANG_MAP = {
+    "en": "en-US",
+    "ja": "ja-JP",
+    "vi": "vi-VN",
+    "zh-CN": "zh-CN",
 }
 
 DICTIONARY_API_URL = "https://api.dictionaryapi.dev/api/v2/entries/en"
@@ -66,7 +74,8 @@ def get_ipa(word: str) -> str:
 
 def translate_with_retry(text: str, source: str, target: str, retries: int = 2, base_delay: float = 1.5) -> str:
     """Translate via deep-translator, retrying on Google's transient rate-limit error
-    ("too many requests") before giving up. Returns "" on failure."""
+    ("too many requests") before giving up. Falls back to MyMemoryTranslator (a
+    different free provider) if Google still fails after retries. Returns "" on failure."""
     last_error: Exception | None = None
     for attempt in range(retries + 1):
         try:
@@ -78,6 +87,16 @@ def translate_with_retry(text: str, source: str, target: str, retries: int = 2, 
                 time.sleep(base_delay * (attempt + 1))
                 continue
             break
+
+    try:
+        mm_source = MYMEMORY_LANG_MAP.get(source, source)
+        mm_target = MYMEMORY_LANG_MAP.get(target, target)
+        result = MyMemoryTranslator(source=mm_source, target=mm_target).translate(text)
+        if result:
+            return result
+    except Exception as e:
+        print(f"MyMemory fallback translation error ({source} → {target}): {e}")
+
     print(f"Translation error ({source} → {target}): {last_error}")
     return ""
 
