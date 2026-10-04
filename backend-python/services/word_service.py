@@ -1,7 +1,6 @@
 import re
 import asyncio
 from functools import partial
-from deep_translator import GoogleTranslator
 from services import dictionary_service, translation_service, tokenizer_service, multilang_dictionary_service
 
 
@@ -39,25 +38,15 @@ def _get_translation(entry: dict, target_language: str) -> str:
 
 def _translate_sentence_to_english(text: str, source_lang: str) -> str:
     """Translate sentence from source language to English."""
-    try:
-        lang_code = SOURCE_LANG_MAP.get(source_lang, source_lang)
-        result = GoogleTranslator(source=lang_code, target="en").translate(text)
-        return result if result else ""
-    except Exception as e:
-        print(f"Sentence translation error ({source_lang} → en): {e}")
-        return ""
+    lang_code = SOURCE_LANG_MAP.get(source_lang, source_lang)
+    return translation_service.translate_with_retry(text, lang_code, "en")
 
 
 def _translate_sentence_to_target(text: str, source_lang: str, target_lang: str) -> str:
     """Translate sentence from source language to target language."""
-    try:
-        src_code = SOURCE_LANG_MAP.get(source_lang, source_lang)
-        tgt_code = SOURCE_LANG_MAP.get(target_lang, target_lang)
-        result = GoogleTranslator(source=src_code, target=tgt_code).translate(text)
-        return result if result else ""
-    except Exception as e:
-        print(f"Sentence translation error ({source_lang} → {target_lang}): {e}")
-        return ""
+    src_code = SOURCE_LANG_MAP.get(source_lang, source_lang)
+    tgt_code = SOURCE_LANG_MAP.get(target_lang, target_lang)
+    return translation_service.translate_with_retry(text, src_code, tgt_code)
 
 
 async def split_and_process(text: str, target_language: str, source_language: str = "en") -> dict:
@@ -105,17 +94,14 @@ async def _batch_translate_words(words: list[str], source_lang: str, target_lang
     loop = asyncio.get_running_loop()
 
     results = [""] * len(words)
-    try:
-        joined = "\n".join(words)
-        batch_result = await loop.run_in_executor(
-            None, partial(GoogleTranslator(source=src, target=tgt).translate, joined)
-        )
-        if batch_result:
-            parts = batch_result.split("\n")
-            for i in range(min(len(parts), len(words))):
-                results[i] = parts[i].strip()
-    except Exception as e:
-        print(f"Batch translation error ({source_lang} → {target_lang}): {e}")
+    joined = "\n".join(words)
+    batch_result = await loop.run_in_executor(
+        None, partial(translation_service.translate_with_retry, joined, src, tgt)
+    )
+    if batch_result:
+        parts = batch_result.split("\n")
+        for i in range(min(len(parts), len(words))):
+            results[i] = parts[i].strip()
     return results
 
 

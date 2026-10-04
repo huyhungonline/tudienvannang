@@ -1,4 +1,5 @@
 import asyncio
+import time
 from functools import partial
 from deep_translator import GoogleTranslator
 import eng_to_ipa
@@ -63,14 +64,28 @@ def get_ipa(word: str) -> str:
         return "N/A"
 
 
+def translate_with_retry(text: str, source: str, target: str, retries: int = 2, base_delay: float = 1.5) -> str:
+    """Translate via deep-translator, retrying on Google's transient rate-limit error
+    ("too many requests") before giving up. Returns "" on failure."""
+    last_error: Exception | None = None
+    for attempt in range(retries + 1):
+        try:
+            result = GoogleTranslator(source=source, target=target).translate(text)
+            return result if result else ""
+        except Exception as e:
+            last_error = e
+            if "too many requests" in str(e).lower() and attempt < retries:
+                time.sleep(base_delay * (attempt + 1))
+                continue
+            break
+    print(f"Translation error ({source} → {target}): {last_error}")
+    return ""
+
+
 def _do_translate(text: str, dest: str) -> str:
     """Synchronous translation using deep-translator."""
-    try:
-        result = GoogleTranslator(source="en", target=dest).translate(text)
-        return result if result else "N/A"
-    except Exception as e:
-        print(f"Translation error: {e}")
-        return "N/A"
+    result = translate_with_retry(text, "en", dest)
+    return result if result else "N/A"
 
 
 async def translate_word(word: str, target_language: str) -> str:
