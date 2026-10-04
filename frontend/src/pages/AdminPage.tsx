@@ -595,7 +595,7 @@ interface Book {
   title: string;
   description: string;
   content: string;
-  price: number;
+  price: string;
   contact: string;
   image_url: string | null;
   created_at: string;
@@ -667,7 +667,7 @@ function BooksManagement() {
         title: title.trim(),
         description: description.trim(),
         content: content.trim(),
-        price: Number(price) || 0,
+        price: price.trim(),
         contact: contact.trim(),
         image_url: imageUrl,
       });
@@ -686,7 +686,7 @@ function BooksManagement() {
         title: title.trim(),
         description: description.trim(),
         content: content.trim(),
-        price: Number(price) || 0,
+        price: price.trim(),
         contact: contact.trim(),
         image_url: imageUrl,
       });
@@ -705,7 +705,7 @@ function BooksManagement() {
   const startEdit = (b: Book) => {
     setEditingId(b.id);
     setTitle(b.title); setDescription(b.description); setContent(b.content);
-    setPrice(String(b.price)); setContact(b.contact); setImageUrl(b.image_url);
+    setPrice(b.price); setContact(b.contact); setImageUrl(b.image_url);
     setShowForm(false);
   };
 
@@ -752,8 +752,8 @@ function BooksManagement() {
             <input type="text" value={description} onChange={e => setDescription(e.target.value)} required />
           </label>
           <label className="book-form-field">
-            Giá bán (VNĐ)
-            <input type="number" min="0" value={price} onChange={e => setPrice(e.target.value)} required />
+            Giá bán
+            <input type="text" placeholder="VD: 150,000 VNĐ" value={price} onChange={e => setPrice(e.target.value)} required />
           </label>
           <label className="book-form-field">
             Liên hệ mua hàng
@@ -783,8 +783,8 @@ function BooksManagement() {
             <input type="text" value={description} onChange={e => setDescription(e.target.value)} />
           </label>
           <label className="book-form-field">
-            Giá bán (VNĐ)
-            <input type="number" min="0" value={price} onChange={e => setPrice(e.target.value)} />
+            Giá bán
+            <input type="text" placeholder="VD: 150,000 VNĐ" value={price} onChange={e => setPrice(e.target.value)} />
           </label>
           <label className="book-form-field">
             Liên hệ mua hàng
@@ -808,7 +808,7 @@ function BooksManagement() {
             <tr key={b.id}>
               <td>{b.image_url ? <img src={b.image_url} alt={b.title} className="book-thumb" /> : '—'}</td>
               <td style={{ maxWidth: 200, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{b.title}</td>
-              <td>{b.price.toLocaleString('vi-VN')} đ</td>
+              <td>{b.price}</td>
               <td>{b.contact}</td>
               <td>{new Date(b.created_at).toLocaleDateString()}</td>
               <td>

@@ -5,7 +5,7 @@ CREATE TABLE IF NOT EXISTS books (
     title VARCHAR(200) NOT NULL,
     description VARCHAR(1000) NOT NULL,
     content TEXT NOT NULL,
-    price NUMERIC(12, 0) NOT NULL DEFAULT 0,
+    price VARCHAR(100) NOT NULL DEFAULT '',
     contact VARCHAR(255) NOT NULL,
     image_url VARCHAR(500),
     created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW()

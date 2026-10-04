@@ -6,17 +6,13 @@ interface Book {
   title: string;
   description: string;
   content: string;
-  price: number;
+  price: string;
   contact: string;
   image_url: string | null;
   created_at: string;
 }
 
 const CONTENT_PREVIEW_LENGTH = 300;
-
-function formatPrice(price: number): string {
-  return price.toLocaleString('vi-VN') + ' đ';
-}
 
 function BookContent({ content }: { content: string }) {
   const [expanded, setExpanded] = useState(false);
@@ -88,7 +84,7 @@ export function BooksPage() {
                   <div className="book-card-info">
                     <div className="post-header">
                       <h3 className="post-title book-title">{b.title}</h3>
-                      <span className="book-price">{formatPrice(b.price)}</span>
+                      <span className="book-price">{b.price}</span>
                     </div>
                     <p className="book-description">{b.description}</p>
                     <BookContent content={b.content} />

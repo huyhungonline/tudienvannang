@@ -20,7 +20,7 @@ class CreateBookRequest(BaseModel):
     title: str = Field(..., min_length=1, max_length=200)
     description: str = Field(..., min_length=1, max_length=1000)
     content: str = Field(..., min_length=1, max_length=5000)
-    price: float = Field(..., ge=0)
+    price: str = Field(..., min_length=1, max_length=100)
     contact: str = Field(..., min_length=1, max_length=255)
     image_url: Optional[str] = Field(default=None, max_length=500)
 
@@ -29,14 +29,13 @@ class UpdateBookRequest(BaseModel):
     title: Optional[str] = Field(default=None, min_length=1, max_length=200)
     description: Optional[str] = Field(default=None, min_length=1, max_length=1000)
     content: Optional[str] = Field(default=None, min_length=1, max_length=5000)
-    price: Optional[float] = Field(default=None, ge=0)
+    price: Optional[str] = Field(default=None, min_length=1, max_length=100)
     contact: Optional[str] = Field(default=None, min_length=1, max_length=255)
     image_url: Optional[str] = Field(default=None, max_length=500)
 
 
 def _serialize(row: dict) -> dict:
     row["created_at"] = row["created_at"].isoformat()
-    row["price"] = float(row["price"])
     return row
 
 
@@ -101,7 +100,7 @@ async def create_book(req: CreateBookRequest, _: str = Depends(require_admin)):
         req.title.strip(),
         req.description.strip(),
         req.content.strip(),
-        req.price,
+        req.price.strip(),
         req.contact.strip(),
         req.image_url,
     )
@@ -121,7 +120,7 @@ async def update_book(book_id: int, req: UpdateBookRequest, _: str = Depends(req
     if req.content is not None:
         await db.execute("UPDATE books SET content = $1 WHERE id = $2", req.content.strip(), book_id)
     if req.price is not None:
-        await db.execute("UPDATE books SET price = $1 WHERE id = $2", req.price, book_id)
+        await db.execute("UPDATE books SET price = $1 WHERE id = $2", req.price.strip(), book_id)
     if req.contact is not None:
         await db.execute("UPDATE books SET contact = $1 WHERE id = $2", req.contact.strip(), book_id)
     if req.image_url is not None:
