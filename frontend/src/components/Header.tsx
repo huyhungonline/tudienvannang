@@ -20,7 +20,7 @@ export function Header() {
   return (
     <header className="header">
       <div className="header-left">
-        <Link to="/" className="header-title">English Word Splitter</Link>
+        <Link to="/" className="header-title">技術文書検索</Link>
         <nav className="header-nav">
           <Link to="/">Home</Link>
           <Link to="/books">Professional Books</Link>
