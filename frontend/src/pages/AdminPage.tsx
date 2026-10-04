@@ -17,7 +17,7 @@ interface Subscriber {
   created_at: string | null;
 }
 
-type AdminView = 'menu' | 'users' | 'mailer' | 'questions' | 'reading';
+type AdminView = 'menu' | 'users' | 'mailer' | 'questions' | 'reading' | 'books';
 
 export function AdminPage() {
   const { isAuthenticated } = useAuth();
@@ -47,6 +47,9 @@ export function AdminPage() {
           <button className="admin-menu-item" onClick={() => setView('reading')}>
             📖 Reading Posts
           </button>
+          <button className="admin-menu-item" onClick={() => setView('books')}>
+            📚 Quản lý Sách
+          </button>
         </div>
       </div>
     );
@@ -59,6 +62,7 @@ export function AdminPage() {
       {view === 'mailer' && <MailerSection />}
       {view === 'questions' && <QuestionsManagement />}
       {view === 'reading' && <ReadingPostsManagement />}
+      {view === 'books' && <BooksManagement />}
     </div>
   );
 }
@@ -569,6 +573,174 @@ function ReadingPostsManagement() {
               <td>
                 <button className="btn-edit" onClick={() => startEdit(p)}>Edit</button>
                 <button className="btn-delete" onClick={() => handleDelete(p.id)}>Delete</button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+
+      {totalPages > 1 && (
+        <div className="pagination">
+          <button disabled={page === 0} onClick={() => setPage(p => p - 1)}>← Prev</button>
+          <span>{page + 1} / {totalPages}</span>
+          <button disabled={page >= totalPages - 1} onClick={() => setPage(p => p + 1)}>Next →</button>
+        </div>
+      )}
+    </div>
+  );
+}
+
+interface Book {
+  id: number;
+  title: string;
+  description: string;
+  content: string;
+  price: number;
+  contact: string;
+  created_at: string;
+}
+
+function BooksManagement() {
+  const [books, setBooks] = useState<Book[]>([]);
+  const [total, setTotal] = useState(0);
+  const [page, setPage] = useState(0);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [showForm, setShowForm] = useState(false);
+  const [editingId, setEditingId] = useState<number | null>(null);
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
+  const [content, setContent] = useState('');
+  const [price, setPrice] = useState('');
+  const [contact, setContact] = useState('');
+
+  const PAGE_SIZE = 10;
+
+  useEffect(() => { fetchBooks(page); }, [page]);
+
+  const resetForm = () => {
+    setTitle(''); setDescription(''); setContent(''); setPrice(''); setContact('');
+  };
+
+  const fetchBooks = async (pageNum: number) => {
+    setLoading(true);
+    try {
+      const offset = pageNum * PAGE_SIZE;
+      const data = await get<{ books: Book[]; total: number }>(`/books?limit=${PAGE_SIZE}&offset=${offset}`);
+      setBooks(data.books);
+      setTotal(data.total);
+    } catch {
+      setError('Failed to load books.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleCreate = async (e: FormEvent) => {
+    e.preventDefault();
+    if (!title.trim() || !description.trim() || !content.trim() || !contact.trim()) {
+      setError('Vui lòng điền đầy đủ thông tin.');
+      return;
+    }
+    setError(null);
+    try {
+      await post('/books', {
+        title: title.trim(),
+        description: description.trim(),
+        content: content.trim(),
+        price: Number(price) || 0,
+        contact: contact.trim(),
+      });
+      resetForm();
+      setShowForm(false);
+      fetchBooks(page);
+    } catch (err: any) { setError(err?.message || 'Failed to create book.'); }
+  };
+
+  const handleUpdate = async (e: FormEvent) => {
+    e.preventDefault();
+    if (!editingId) return;
+    setError(null);
+    try {
+      await put(`/books/${editingId}`, {
+        title: title.trim(),
+        description: description.trim(),
+        content: content.trim(),
+        price: Number(price) || 0,
+        contact: contact.trim(),
+      });
+      setEditingId(null);
+      resetForm();
+      fetchBooks(page);
+    } catch (err: any) { setError(err?.message || 'Failed to update book.'); }
+  };
+
+  const handleDelete = async (id: number) => {
+    if (!confirm('Delete this book?')) return;
+    try { await del(`/books/${id}`); fetchBooks(page); }
+    catch (err: any) { setError(err?.message || 'Failed to delete.'); }
+  };
+
+  const startEdit = (b: Book) => {
+    setEditingId(b.id);
+    setTitle(b.title); setDescription(b.description); setContent(b.content);
+    setPrice(String(b.price)); setContact(b.contact);
+    setShowForm(false);
+  };
+
+  const totalPages = Math.ceil(total / PAGE_SIZE);
+
+  if (loading && books.length === 0) return <p className="loading-text">Loading...</p>;
+
+  return (
+    <div>
+      <div className="admin-header">
+        <h2>Quản lý Sách ({total})</h2>
+        <button className="btn-submit" onClick={() => { setShowForm(!showForm); setEditingId(null); resetForm(); }}>
+          {showForm ? 'Cancel' : '+ Thêm sách'}
+        </button>
+      </div>
+
+      {error && <p className="form-error">{error}</p>}
+
+      {showForm && (
+        <form className="admin-form" onSubmit={handleCreate}>
+          <input type="text" placeholder="Tiêu đề" value={title} onChange={e => setTitle(e.target.value)} required />
+          <input type="text" placeholder="Mô tả ngắn" value={description} onChange={e => setDescription(e.target.value)} required />
+          <input type="number" min="0" placeholder="Giá bán (VNĐ)" value={price} onChange={e => setPrice(e.target.value)} required />
+          <input type="text" placeholder="Liên hệ mua hàng (SĐT/email/zalo...)" value={contact} onChange={e => setContact(e.target.value)} required />
+          <textarea placeholder="Nội dung / mô tả chi tiết..." value={content} onChange={e => setContent(e.target.value)} rows={6} required />
+          <button type="submit" className="btn-submit">Tạo sách</button>
+        </form>
+      )}
+
+      {editingId && (
+        <form className="admin-form" onSubmit={handleUpdate}>
+          <h3>Sửa sách #{editingId}</h3>
+          <input type="text" placeholder="Tiêu đề" value={title} onChange={e => setTitle(e.target.value)} />
+          <input type="text" placeholder="Mô tả ngắn" value={description} onChange={e => setDescription(e.target.value)} />
+          <input type="number" min="0" placeholder="Giá bán (VNĐ)" value={price} onChange={e => setPrice(e.target.value)} />
+          <input type="text" placeholder="Liên hệ mua hàng" value={contact} onChange={e => setContact(e.target.value)} />
+          <textarea placeholder="Nội dung / mô tả chi tiết..." value={content} onChange={e => setContent(e.target.value)} rows={6} />
+          <div className="admin-form-actions">
+            <button type="submit" className="btn-submit">Save</button>
+            <button type="button" className="btn-back" onClick={() => setEditingId(null)}>Cancel</button>
+          </div>
+        </form>
+      )}
+
+      <table className="admin-table">
+        <thead><tr><th>Tiêu đề</th><th>Giá</th><th>Liên hệ</th><th>Created</th><th>Actions</th></tr></thead>
+        <tbody>
+          {books.map(b => (
+            <tr key={b.id}>
+              <td style={{ maxWidth: 200, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{b.title}</td>
+              <td>{b.price.toLocaleString('vi-VN')} đ</td>
+              <td>{b.contact}</td>
+              <td>{new Date(b.created_at).toLocaleDateString()}</td>
+              <td>
+                <button className="btn-edit" onClick={() => startEdit(b)}>Edit</button>
+                <button className="btn-delete" onClick={() => handleDelete(b.id)}>Delete</button>
               </td>
             </tr>
           ))}

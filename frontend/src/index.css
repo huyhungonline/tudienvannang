@@ -1336,6 +1336,31 @@ body {
   border-color: #2563eb;
 }
 
+.book-title {
+  margin-bottom: 0;
+}
+
+.book-price {
+  margin-left: auto;
+  font-weight: 700;
+  color: #dc2626;
+  font-size: 0.95rem;
+  white-space: nowrap;
+}
+
+.book-description {
+  font-size: 0.9rem;
+  color: #666;
+  font-style: italic;
+  margin-bottom: 0.5rem;
+}
+
+.book-contact {
+  font-size: 0.88rem;
+  color: #333;
+  margin-top: 0.5rem;
+}
+
 .btn-load-more {
   display: block;
   width: 100%;
