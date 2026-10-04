@@ -1647,6 +1647,26 @@ body {
   color: #fff;
 }
 
+.btn-vip {
+  background: none;
+  border: 1px solid #d97706;
+  color: #d97706;
+  padding: 0.25rem 0.6rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  margin-right: 0.4rem;
+}
+
+.btn-vip:hover {
+  background: #d97706;
+  color: #fff;
+}
+
+.btn-vip-active {
+  background: #fffbeb;
+}
+
 .admin-table th {
   font-weight: 600;
   color: #555;

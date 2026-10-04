@@ -29,18 +29,20 @@ class UpdateUserRequest(BaseModel):
     email: Optional[str] = None
     password: Optional[str] = None
     isAdmin: Optional[bool] = None
+    isVip: Optional[bool] = None
 
 
 @router.get("/users")
 async def list_users(_: str = Depends(require_admin)):
     rows = await db.query(
-        "SELECT id, email, is_admin, created_at FROM users ORDER BY created_at DESC"
+        "SELECT id, email, is_admin, is_vip, created_at FROM users ORDER BY created_at DESC"
     )
     return [
         {
             "id": str(r["id"]),
             "email": r["email"],
             "isAdmin": r["is_admin"],
+            "isVip": r["is_vip"],
             "createdAt": r["created_at"].isoformat(),
         }
         for r in rows
@@ -97,6 +99,9 @@ async def update_user(user_id: str, body: UpdateUserRequest, _: str = Depends(re
 
     if body.isAdmin is not None:
         await db.execute("UPDATE users SET is_admin = $1 WHERE id = $2", body.isAdmin, uid)
+
+    if body.isVip is not None:
+        await db.execute("UPDATE users SET is_vip = $1 WHERE id = $2", body.isVip, uid)
 
     return {"message": "User updated"}
 

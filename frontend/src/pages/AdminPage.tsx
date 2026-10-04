@@ -7,6 +7,7 @@ interface AdminUser {
   id: string;
   email: string;
   isAdmin: boolean;
+  isVip: boolean;
   createdAt: string;
 }
 
@@ -130,6 +131,13 @@ function UserManagement() {
     catch (err: any) { setError(err?.message || 'Failed to delete user.'); }
   };
 
+  const handleToggleVip = async (u: AdminUser) => {
+    try {
+      await put(`/admin/users/${u.id}`, { isVip: !u.isVip });
+      fetchUsers();
+    } catch (err: any) { setError(err?.message || 'Failed to update VIP status.'); }
+  };
+
   const startEdit = (u: AdminUser) => {
     setEditingId(u.id); setEditEmail(u.email); setEditPassword(''); setEditIsAdmin(u.isAdmin);
   };
@@ -170,15 +178,22 @@ function UserManagement() {
       )}
 
       <table className="admin-table">
-        <thead><tr><th>Email</th><th>Admin</th><th>Created</th><th>Actions</th></tr></thead>
+        <thead><tr><th>Email</th><th>Admin</th><th>VIP</th><th>Created</th><th>Actions</th></tr></thead>
         <tbody>
           {users.map((u) => (
             <tr key={u.id}>
               <td>{u.email}</td>
               <td>{u.isAdmin ? '✅' : '—'}</td>
+              <td>{u.isVip ? '⭐ VIP' : '—'}</td>
               <td>{new Date(u.createdAt).toLocaleDateString()}</td>
               <td>
                 <button className="btn-edit" onClick={() => startEdit(u)}>Edit</button>
+                <button
+                  className={u.isVip ? 'btn-vip btn-vip-active' : 'btn-vip'}
+                  onClick={() => handleToggleVip(u)}
+                >
+                  {u.isVip ? 'Hủy VIP' : 'Nâng cấp VIP'}
+                </button>
                 <button className="btn-delete" onClick={() => handleDelete(u.id)}>Delete</button>
               </td>
             </tr>
