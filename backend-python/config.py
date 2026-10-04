@@ -8,3 +8,4 @@ JWT_SECRET = os.getenv("JWT_SECRET", "dev-secret-change-me")
 JWT_EXPIRY_DAYS = 7
 RECAPTCHA_SECRET_KEY = os.getenv("RECAPTCHA_SECRET_KEY", "")
 AUDIO_FILES_PATH = os.getenv("AUDIO_FILES_PATH", "./audio")
+BOOK_IMAGES_PATH = os.getenv("BOOK_IMAGES_PATH", "./book_images")

@@ -7,7 +7,10 @@ CREATE TABLE IF NOT EXISTS books (
     content TEXT NOT NULL,
     price NUMERIC(12, 0) NOT NULL DEFAULT 0,
     contact VARCHAR(255) NOT NULL,
+    image_url VARCHAR(500),
     created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW()
 );
+
+ALTER TABLE books ADD COLUMN IF NOT EXISTS image_url VARCHAR(500);
 
 CREATE INDEX IF NOT EXISTS idx_books_created_at ON books(created_at DESC);

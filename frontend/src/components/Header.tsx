@@ -23,7 +23,7 @@ export function Header() {
         <Link to="/" className="header-title">English Word Splitter</Link>
         <nav className="header-nav">
           <Link to="/">Home</Link>
-          <Link to="/books">Bán sách</Link>
+          <Link to="/books">Professional Books</Link>
           <Link to="/visa-points">Visa Points</Link>
           <Link to="/about">About</Link>
         </nav>

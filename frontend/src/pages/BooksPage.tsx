@@ -8,6 +8,7 @@ interface Book {
   content: string;
   price: number;
   contact: string;
+  image_url: string | null;
   created_at: string;
 }
 
@@ -67,7 +68,7 @@ export function BooksPage() {
 
   return (
     <div className="reading-posts-page books-page">
-      <h2>Bán sách</h2>
+      <h2>Professional Books</h2>
 
       {error && <div className="form-error">{error}</div>}
 
@@ -80,14 +81,21 @@ export function BooksPage() {
           <div className="reading-posts-list">
             {books.map((b) => (
               <div key={b.id} className="reading-post-card book-card">
-                <div className="post-header">
-                  <h3 className="post-title book-title">{b.title}</h3>
-                  <span className="book-price">{formatPrice(b.price)}</span>
-                </div>
-                <p className="book-description">{b.description}</p>
-                <BookContent content={b.content} />
-                <div className="book-contact">
-                  Liên hệ mua hàng: <strong>{b.contact}</strong>
+                <div className="book-card-body">
+                  {b.image_url && (
+                    <img src={b.image_url} alt={b.title} className="book-cover" />
+                  )}
+                  <div className="book-card-info">
+                    <div className="post-header">
+                      <h3 className="post-title book-title">{b.title}</h3>
+                      <span className="book-price">{formatPrice(b.price)}</span>
+                    </div>
+                    <p className="book-description">{b.description}</p>
+                    <BookContent content={b.content} />
+                    <div className="book-contact">
+                      Liên hệ mua hàng: <strong>{b.contact}</strong>
+                    </div>
+                  </div>
                 </div>
               </div>
             ))}

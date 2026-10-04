@@ -1336,8 +1336,55 @@ body {
   border-color: #2563eb;
 }
 
+.book-card-body {
+  display: flex;
+  gap: 1rem;
+}
+
+.book-cover {
+  width: 100px;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 6px;
+  border: 1px solid #e0e0e0;
+  flex-shrink: 0;
+}
+
+.book-card-info {
+  flex: 1;
+  min-width: 0;
+}
+
 .book-title {
   margin-bottom: 0;
+}
+
+.book-thumb {
+  width: 40px;
+  height: 56px;
+  object-fit: cover;
+  border-radius: 4px;
+  border: 1px solid #e0e0e0;
+}
+
+.book-image-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.book-image-preview {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.book-image-preview img {
+  width: 80px;
+  height: 112px;
+  object-fit: cover;
+  border-radius: 6px;
+  border: 1px solid #e0e0e0;
 }
 
 .book-price {

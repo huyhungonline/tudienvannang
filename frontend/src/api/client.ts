@@ -77,3 +77,28 @@ export function getSearchCount(): Promise<{ search_count: number }> {
 export function speak(text: string, language: string): Promise<{ audioData: string }> {
   return post('/audio/speak', { text, language });
 }
+
+// File upload (multipart) - bypasses the JSON request() helper
+export async function uploadBookImage(file: File): Promise<{ image_url: string }> {
+  const formData = new FormData();
+  formData.append('file', file);
+
+  const headers: Record<string, string> = {};
+  const token = getToken();
+  if (token) {
+    headers['Authorization'] = `Bearer ${token}`;
+  }
+
+  const response = await fetch(`${BASE_URL}/books/upload-image`, {
+    method: 'POST',
+    headers,
+    body: formData,
+  });
+
+  if (!response.ok) {
+    const error = await response.json().catch(() => ({ detail: 'Upload failed' }));
+    throw new ApiError(response.status, error.detail || 'Upload failed');
+  }
+
+  return response.json();
+}

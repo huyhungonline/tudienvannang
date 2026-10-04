@@ -1,7 +1,7 @@
 import { useState, useEffect, type FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { get, post, put, del } from '../api/client';
+import { get, post, put, del, uploadBookImage } from '../api/client';
 
 interface AdminUser {
   id: string;
@@ -597,6 +597,7 @@ interface Book {
   content: string;
   price: number;
   contact: string;
+  image_url: string | null;
   created_at: string;
 }
 
@@ -613,13 +614,15 @@ function BooksManagement() {
   const [content, setContent] = useState('');
   const [price, setPrice] = useState('');
   const [contact, setContact] = useState('');
+  const [imageUrl, setImageUrl] = useState<string | null>(null);
+  const [uploading, setUploading] = useState(false);
 
   const PAGE_SIZE = 10;
 
   useEffect(() => { fetchBooks(page); }, [page]);
 
   const resetForm = () => {
-    setTitle(''); setDescription(''); setContent(''); setPrice(''); setContact('');
+    setTitle(''); setDescription(''); setContent(''); setPrice(''); setContact(''); setImageUrl(null);
   };
 
   const fetchBooks = async (pageNum: number) => {
@@ -633,6 +636,22 @@ function BooksManagement() {
       setError('Failed to load books.');
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    setUploading(true);
+    setError(null);
+    try {
+      const { image_url } = await uploadBookImage(file);
+      setImageUrl(image_url);
+    } catch (err: any) {
+      setError(err?.message || 'Upload ảnh thất bại.');
+    } finally {
+      setUploading(false);
+      e.target.value = '';
     }
   };
 
@@ -650,6 +669,7 @@ function BooksManagement() {
         content: content.trim(),
         price: Number(price) || 0,
         contact: contact.trim(),
+        image_url: imageUrl,
       });
       resetForm();
       setShowForm(false);
@@ -668,6 +688,7 @@ function BooksManagement() {
         content: content.trim(),
         price: Number(price) || 0,
         contact: contact.trim(),
+        image_url: imageUrl,
       });
       setEditingId(null);
       resetForm();
@@ -684,13 +705,26 @@ function BooksManagement() {
   const startEdit = (b: Book) => {
     setEditingId(b.id);
     setTitle(b.title); setDescription(b.description); setContent(b.content);
-    setPrice(String(b.price)); setContact(b.contact);
+    setPrice(String(b.price)); setContact(b.contact); setImageUrl(b.image_url);
     setShowForm(false);
   };
 
   const totalPages = Math.ceil(total / PAGE_SIZE);
 
   if (loading && books.length === 0) return <p className="loading-text">Loading...</p>;
+
+  const imagePicker = (
+    <div className="book-image-field">
+      <input type="file" accept="image/*" onChange={handleImageChange} disabled={uploading} />
+      {uploading && <span className="loading-text">Đang tải ảnh lên...</span>}
+      {imageUrl && !uploading && (
+        <div className="book-image-preview">
+          <img src={imageUrl} alt="Preview" />
+          <button type="button" className="btn-back" onClick={() => setImageUrl(null)}>Xoá ảnh</button>
+        </div>
+      )}
+    </div>
+  );
 
   return (
     <div>
@@ -705,35 +739,38 @@ function BooksManagement() {
 
       {showForm && (
         <form className="admin-form" onSubmit={handleCreate}>
-          <input type="text" placeholder="Tiêu đề" value={title} onChange={e => setTitle(e.target.value)} required />
-          <input type="text" placeholder="Mô tả ngắn" value={description} onChange={e => setDescription(e.target.value)} required />
+          <input type="text" placeholder="Tên sách" value={title} onChange={e => setTitle(e.target.value)} required />
+          {imagePicker}
+          <input type="text" placeholder="Mô tả" value={description} onChange={e => setDescription(e.target.value)} required />
           <input type="number" min="0" placeholder="Giá bán (VNĐ)" value={price} onChange={e => setPrice(e.target.value)} required />
           <input type="text" placeholder="Liên hệ mua hàng (SĐT/email/zalo...)" value={contact} onChange={e => setContact(e.target.value)} required />
           <textarea placeholder="Nội dung / mô tả chi tiết..." value={content} onChange={e => setContent(e.target.value)} rows={6} required />
-          <button type="submit" className="btn-submit">Tạo sách</button>
+          <button type="submit" className="btn-submit" disabled={uploading}>Tạo sách</button>
         </form>
       )}
 
       {editingId && (
         <form className="admin-form" onSubmit={handleUpdate}>
           <h3>Sửa sách #{editingId}</h3>
-          <input type="text" placeholder="Tiêu đề" value={title} onChange={e => setTitle(e.target.value)} />
-          <input type="text" placeholder="Mô tả ngắn" value={description} onChange={e => setDescription(e.target.value)} />
+          <input type="text" placeholder="Tên sách" value={title} onChange={e => setTitle(e.target.value)} />
+          {imagePicker}
+          <input type="text" placeholder="Mô tả" value={description} onChange={e => setDescription(e.target.value)} />
           <input type="number" min="0" placeholder="Giá bán (VNĐ)" value={price} onChange={e => setPrice(e.target.value)} />
           <input type="text" placeholder="Liên hệ mua hàng" value={contact} onChange={e => setContact(e.target.value)} />
           <textarea placeholder="Nội dung / mô tả chi tiết..." value={content} onChange={e => setContent(e.target.value)} rows={6} />
           <div className="admin-form-actions">
-            <button type="submit" className="btn-submit">Save</button>
+            <button type="submit" className="btn-submit" disabled={uploading}>Save</button>
             <button type="button" className="btn-back" onClick={() => setEditingId(null)}>Cancel</button>
           </div>
         </form>
       )}
 
       <table className="admin-table">
-        <thead><tr><th>Tiêu đề</th><th>Giá</th><th>Liên hệ</th><th>Created</th><th>Actions</th></tr></thead>
+        <thead><tr><th>Ảnh</th><th>Tên sách</th><th>Giá</th><th>Liên hệ</th><th>Created</th><th>Actions</th></tr></thead>
         <tbody>
           {books.map(b => (
             <tr key={b.id}>
+              <td>{b.image_url ? <img src={b.image_url} alt={b.title} className="book-thumb" /> : '—'}</td>
               <td style={{ maxWidth: 200, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{b.title}</td>
               <td>{b.price.toLocaleString('vi-VN')} đ</td>
               <td>{b.contact}</td>
