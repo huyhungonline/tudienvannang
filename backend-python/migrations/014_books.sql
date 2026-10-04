@@ -13,4 +13,15 @@ CREATE TABLE IF NOT EXISTS books (
 
 ALTER TABLE books ADD COLUMN IF NOT EXISTS image_url VARCHAR(500);
 
+-- Fix price column for deployments where the table was already created with NUMERIC price
+DO $$
+BEGIN
+    IF EXISTS (
+        SELECT 1 FROM information_schema.columns
+        WHERE table_name = 'books' AND column_name = 'price' AND data_type <> 'character varying'
+    ) THEN
+        ALTER TABLE books ALTER COLUMN price TYPE VARCHAR(100) USING price::text;
+    END IF;
+END $$;
+
 CREATE INDEX IF NOT EXISTS idx_books_created_at ON books(created_at DESC);

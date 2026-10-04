@@ -705,7 +705,7 @@ function BooksManagement() {
   const startEdit = (b: Book) => {
     setEditingId(b.id);
     setTitle(b.title); setDescription(b.description); setContent(b.content);
-    setPrice(b.price); setContact(b.contact); setImageUrl(b.image_url);
+    setPrice(String(b.price ?? '')); setContact(b.contact); setImageUrl(b.image_url);
     setShowForm(false);
   };
 

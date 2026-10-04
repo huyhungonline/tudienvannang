@@ -1631,6 +1631,20 @@ body {
   text-align: left;
   border-bottom: 1px solid #eee;
   font-size: 0.9rem;
+  vertical-align: middle;
+}
+
+.admin-table .btn-delete {
+  border: 1px solid #dc2626;
+  color: #dc2626;
+  padding: 0.25rem 0.6rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+}
+
+.admin-table .btn-delete:hover {
+  background: #dc2626;
+  color: #fff;
 }
 
 .admin-table th {
