@@ -738,26 +738,62 @@ function BooksManagement() {
       {error && <p className="form-error">{error}</p>}
 
       {showForm && (
-        <form className="admin-form" onSubmit={handleCreate}>
-          <input type="text" placeholder="Tên sách" value={title} onChange={e => setTitle(e.target.value)} required />
-          {imagePicker}
-          <input type="text" placeholder="Mô tả" value={description} onChange={e => setDescription(e.target.value)} required />
-          <input type="number" min="0" placeholder="Giá bán (VNĐ)" value={price} onChange={e => setPrice(e.target.value)} required />
-          <input type="text" placeholder="Liên hệ mua hàng (SĐT/email/zalo...)" value={contact} onChange={e => setContact(e.target.value)} required />
-          <textarea placeholder="Nội dung / mô tả chi tiết..." value={content} onChange={e => setContent(e.target.value)} rows={6} required />
+        <form className="admin-form book-form" onSubmit={handleCreate}>
+          <label className="book-form-field">
+            Tên sách
+            <input type="text" value={title} onChange={e => setTitle(e.target.value)} required />
+          </label>
+          <label className="book-form-field">
+            Ảnh bìa
+            {imagePicker}
+          </label>
+          <label className="book-form-field">
+            Mô tả
+            <input type="text" value={description} onChange={e => setDescription(e.target.value)} required />
+          </label>
+          <label className="book-form-field">
+            Giá bán (VNĐ)
+            <input type="number" min="0" value={price} onChange={e => setPrice(e.target.value)} required />
+          </label>
+          <label className="book-form-field">
+            Liên hệ mua hàng
+            <input type="text" placeholder="SĐT/email/zalo..." value={contact} onChange={e => setContact(e.target.value)} required />
+          </label>
+          <label className="book-form-field">
+            Nội dung / mô tả chi tiết
+            <textarea value={content} onChange={e => setContent(e.target.value)} rows={6} required />
+          </label>
           <button type="submit" className="btn-submit" disabled={uploading}>Tạo sách</button>
         </form>
       )}
 
       {editingId && (
-        <form className="admin-form" onSubmit={handleUpdate}>
+        <form className="admin-form book-form" onSubmit={handleUpdate}>
           <h3>Sửa sách #{editingId}</h3>
-          <input type="text" placeholder="Tên sách" value={title} onChange={e => setTitle(e.target.value)} />
-          {imagePicker}
-          <input type="text" placeholder="Mô tả" value={description} onChange={e => setDescription(e.target.value)} />
-          <input type="number" min="0" placeholder="Giá bán (VNĐ)" value={price} onChange={e => setPrice(e.target.value)} />
-          <input type="text" placeholder="Liên hệ mua hàng" value={contact} onChange={e => setContact(e.target.value)} />
-          <textarea placeholder="Nội dung / mô tả chi tiết..." value={content} onChange={e => setContent(e.target.value)} rows={6} />
+          <label className="book-form-field">
+            Tên sách
+            <input type="text" value={title} onChange={e => setTitle(e.target.value)} />
+          </label>
+          <label className="book-form-field">
+            Ảnh bìa
+            {imagePicker}
+          </label>
+          <label className="book-form-field">
+            Mô tả
+            <input type="text" value={description} onChange={e => setDescription(e.target.value)} />
+          </label>
+          <label className="book-form-field">
+            Giá bán (VNĐ)
+            <input type="number" min="0" value={price} onChange={e => setPrice(e.target.value)} />
+          </label>
+          <label className="book-form-field">
+            Liên hệ mua hàng
+            <input type="text" value={contact} onChange={e => setContact(e.target.value)} />
+          </label>
+          <label className="book-form-field">
+            Nội dung / mô tả chi tiết
+            <textarea value={content} onChange={e => setContent(e.target.value)} rows={6} />
+          </label>
           <div className="admin-form-actions">
             <button type="submit" className="btn-submit" disabled={uploading}>Save</button>
             <button type="button" className="btn-back" onClick={() => setEditingId(null)}>Cancel</button>

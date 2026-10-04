@@ -1367,6 +1367,49 @@ body {
   border: 1px solid #e0e0e0;
 }
 
+.admin-form.book-form {
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.book-form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #555;
+}
+
+.book-form-field input,
+.book-form-field textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.6rem 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 0.95rem;
+  font-weight: normal;
+  color: #222;
+  font-family: inherit;
+}
+
+.book-form-field textarea {
+  resize: vertical;
+  line-height: 1.5;
+}
+
+.book-form-field input:focus,
+.book-form-field textarea:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1);
+}
+
+.book-form .btn-submit {
+  align-self: flex-start;
+}
+
 .book-image-field {
   display: flex;
   flex-direction: column;
