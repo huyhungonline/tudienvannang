@@ -1,11 +1,23 @@
 import json
+import uuid
 from typing import Optional
 
-from fastapi import APIRouter, HTTPException, Query
+from fastapi import APIRouter, Depends, HTTPException, Query
 
 import db
+from middleware.auth import get_current_user
 
 router = APIRouter(prefix="/api/certificates", tags=["certificates"])
+
+
+async def require_vip_or_admin(user_id: str = Depends(get_current_user)) -> str:
+    """Certificate vocabulary/exam content is restricted to VIP or admin accounts."""
+    row = await db.query_one(
+        "SELECT is_admin, is_vip FROM users WHERE id = $1", uuid.UUID(user_id)
+    )
+    if not row or not (row.get("is_admin") or row.get("is_vip")):
+        raise HTTPException(status_code=403, detail="VIP or admin account required")
+    return user_id
 
 # Fixed top-level menu shown under header "Professional Fields"
 CATEGORIES = [
@@ -47,7 +59,7 @@ async def get_certificate(code: str):
 
 
 @router.get("/{code}/vocabulary")
-async def get_vocabulary(code: str):
+async def get_vocabulary(code: str, _: str = Depends(require_vip_or_admin)):
     """Return vocabulary entries grouped by category."""
     cert = await db.query_one("SELECT id FROM certificates WHERE code = $1", code)
     if not cert:
@@ -82,7 +94,7 @@ async def get_vocabulary(code: str):
 
 
 @router.get("/{code}/exam")
-async def get_exam_questions(code: str):
+async def get_exam_questions(code: str, _: str = Depends(require_vip_or_admin)):
     """Return exam questions grouped by exam session, WITHOUT the hidden
     translation/answer/explanation/vocab fields — those are only revealed via
     the exam-question/{id}/answer endpoint when the user clicks 'Show answer'."""
@@ -111,7 +123,7 @@ async def get_exam_questions(code: str):
 
 
 @router.get("/exam-question/{question_id}/answer")
-async def get_exam_answer(question_id: int):
+async def get_exam_answer(question_id: int, _: str = Depends(require_vip_or_admin)):
     """Reveal the hidden answer/translation/explanation/vocab for one question."""
     row = await db.query_one(
         "SELECT translation_vi, answer_label, explanation_vi, vocab_json "

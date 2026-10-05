@@ -19,6 +19,7 @@ import { CertificateListPage } from './pages/CertificateListPage';
 import { CertificateDetailPage } from './pages/CertificateDetailPage';
 import { CertificateVocabularyPage } from './pages/CertificateVocabularyPage';
 import { CertificateExamPage } from './pages/CertificateExamPage';
+import { RequireVipOrAdmin } from './components/RequireVipOrAdmin';
 
 function App() {
   return (
@@ -43,9 +44,9 @@ function App() {
             <Route path="/classroom" element={<ClassroomPage />} />
             <Route path="/certificates" element={<CertificateFieldsMenuPage />} />
             <Route path="/certificates/:category" element={<CertificateListPage />} />
-            <Route path="/certificates/:category/:code" element={<CertificateDetailPage />} />
-            <Route path="/certificates/:category/:code/vocabulary" element={<CertificateVocabularyPage />} />
-            <Route path="/certificates/:category/:code/exam" element={<CertificateExamPage />} />
+            <Route path="/certificates/:category/:code" element={<RequireVipOrAdmin><CertificateDetailPage /></RequireVipOrAdmin>} />
+            <Route path="/certificates/:category/:code/vocabulary" element={<RequireVipOrAdmin><CertificateVocabularyPage /></RequireVipOrAdmin>} />
+            <Route path="/certificates/:category/:code/exam" element={<RequireVipOrAdmin><CertificateExamPage /></RequireVipOrAdmin>} />
           </Routes>
         </main>
       </div>
