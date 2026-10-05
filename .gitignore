@@ -3,6 +3,7 @@ node_modules/
 .kiro/
 audio/
 book_images/
+doccument/
 frontend/dist/
 shared/dist/
 __pycache__/

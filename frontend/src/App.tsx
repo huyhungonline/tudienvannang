@@ -14,6 +14,10 @@ import { VisaPointsPage } from './pages/VisaPointsPage';
 import { AdminPage } from './pages/AdminPage';
 import { NewsSubscribePage } from './pages/NewsSubscribePage';
 import ClassroomPage from './pages/ClassroomPage';
+import { CertificateListPage } from './pages/CertificateListPage';
+import { CertificateDetailPage } from './pages/CertificateDetailPage';
+import { CertificateVocabularyPage } from './pages/CertificateVocabularyPage';
+import { CertificateExamPage } from './pages/CertificateExamPage';
 
 function App() {
   return (
@@ -36,6 +40,10 @@ function App() {
             <Route path="/admin" element={<AdminPage />} />
             <Route path="/news-subscribe" element={<NewsSubscribePage />} />
             <Route path="/classroom" element={<ClassroomPage />} />
+            <Route path="/certificates/:category" element={<CertificateListPage />} />
+            <Route path="/certificates/:category/:code" element={<CertificateDetailPage />} />
+            <Route path="/certificates/:category/:code/vocabulary" element={<CertificateVocabularyPage />} />
+            <Route path="/certificates/:category/:code/exam" element={<CertificateExamPage />} />
           </Routes>
         </main>
       </div>

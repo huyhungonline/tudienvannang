@@ -57,6 +57,52 @@ body {
   color: #2563eb;
 }
 
+.fields-dropdown-wrapper {
+  position: relative;
+}
+
+.fields-nav-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  color: #555;
+  font-size: 0.9rem;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.fields-nav-btn:hover {
+  color: #2563eb;
+}
+
+.fields-dropdown {
+  position: absolute;
+  top: 24px;
+  left: 0;
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  min-width: 320px;
+  z-index: 50;
+  padding: 0.25rem 0;
+}
+
+.fields-dropdown-item {
+  display: block;
+  padding: 0.6rem 1rem;
+  font-size: 0.85rem;
+  color: #333;
+  text-decoration: none;
+  white-space: normal;
+  line-height: 1.4;
+}
+
+.fields-dropdown-item:hover {
+  background: #f5f7fb;
+  color: #2563eb;
+}
+
 .header-right {
   display: flex;
   align-items: center;
@@ -1472,6 +1518,225 @@ body {
   font-size: 0.88rem;
   color: #333;
   margin-top: 0.5rem;
+}
+
+/* Certificates / Professional Fields */
+.certificate-page {
+  max-width: 900px;
+}
+
+.certificate-subtitle {
+  color: #666;
+  margin-top: -0.5rem;
+  margin-bottom: 1rem;
+}
+
+.certificate-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.certificate-card {
+  display: block;
+  padding: 1rem 1.25rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background: #fafafa;
+  text-decoration: none;
+  color: inherit;
+  transition: box-shadow 0.2s, border-color 0.2s;
+}
+
+.certificate-card:hover {
+  border-color: #2563eb;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.certificate-card h3 {
+  margin: 0 0 0.25rem;
+  font-size: 1.05rem;
+  color: #222;
+}
+
+.certificate-card p {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #666;
+}
+
+.certificate-choice {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+
+.certificate-choice-card {
+  flex: 1;
+  min-width: 220px;
+  padding: 1.5rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background: #fafafa;
+  text-decoration: none;
+  color: inherit;
+  text-align: center;
+  transition: box-shadow 0.2s, border-color 0.2s;
+}
+
+.certificate-choice-card:hover {
+  border-color: #2563eb;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.certificate-choice-card h3 {
+  margin: 0 0 0.3rem;
+  font-size: 1.1rem;
+}
+
+.certificate-choice-card p {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #666;
+}
+
+.certificate-vocab-page,
+.certificate-exam-page {
+  max-width: 100%;
+}
+
+.vocab-category-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 1.25rem;
+}
+
+.vocab-category-tab {
+  padding: 0.35rem 0.8rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 20px;
+  background: #fff;
+  font-size: 0.8rem;
+  cursor: pointer;
+  color: #555;
+  transition: all 0.2s;
+}
+
+.vocab-category-tab:hover {
+  border-color: #2563eb;
+  color: #2563eb;
+}
+
+.vocab-category-tab.active {
+  background: #2563eb;
+  color: #fff;
+  border-color: #2563eb;
+}
+
+.vocab-table .vocab-example-cell {
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+.vocab-example-reading {
+  color: #888;
+  font-size: 0.8rem;
+}
+
+.vocab-example-vi {
+  color: #16a34a;
+}
+
+.exam-question-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.exam-question-card {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  background: #fafafa;
+}
+
+.exam-question-header {
+  display: flex;
+  gap: 0.75rem;
+  align-items: baseline;
+  margin-bottom: 0.6rem;
+}
+
+.exam-question-no {
+  font-weight: 700;
+  color: #2563eb;
+  font-size: 0.85rem;
+  flex-shrink: 0;
+}
+
+.exam-question-text {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.btn-show-answer {
+  padding: 0.4rem 1rem;
+  background: #2563eb;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.btn-show-answer:hover:not(:disabled) {
+  background: #1d4ed8;
+}
+
+.btn-show-answer:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.exam-answer-reveal {
+  border-top: 1px solid #e0e0e0;
+  padding-top: 0.75rem;
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.exam-translation {
+  color: #444;
+  margin: 0 0 0.4rem;
+}
+
+.exam-answer-badge {
+  font-weight: 700;
+  margin: 0 0 0.4rem;
+}
+
+.exam-answer-badge.correct {
+  color: #16a34a;
+}
+
+.exam-answer-badge.incorrect {
+  color: #dc2626;
+}
+
+.exam-explanation {
+  color: #555;
+  margin: 0 0 0.75rem;
+}
+
+.exam-vocab-table {
+  font-size: 0.82rem;
 }
 
 .btn-load-more {

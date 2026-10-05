@@ -34,6 +34,12 @@ export function AboutPage() {
             <li>Click the speaker icon to hear pronunciation</li>
             <li>Log in to save your word lists for later review</li>
           </ol>
+          <h2>⭐ VIP Benefits</h2>
+          <ul>
+            <li>Unlimited lookups/searches</li>
+            <li>Vocabulary and search history saved forever</li>
+            <li>10% discount when purchasing books</li>
+          </ul>
         </div>
       ) : (
         <div className="about-content">
@@ -59,6 +65,12 @@ export function AboutPage() {
             <li>スピーカーアイコンをクリックして発音を聴く</li>
             <li>ログインして単語リストを保存し、後で復習する</li>
           </ol>
+          <h2>⭐ VIP会員特典</h2>
+          <ul>
+            <li>無制限で検索可能</li>
+            <li>検索履歴・単語帳を永久保存</li>
+            <li>書籍購入時10%割引</li>
+          </ul>
         </div>
       )}
     </div>

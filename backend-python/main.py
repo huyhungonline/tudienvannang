@@ -8,7 +8,7 @@ from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from apscheduler.triggers.cron import CronTrigger
 
 import db
-from routes import words, audio, auth, history, reading_posts, admin, nhk_news, classroom, books
+from routes import words, audio, auth, history, reading_posts, admin, nhk_news, classroom, books, certificates
 from services.nhk_mailer_service import send_daily_news
 
 logger = logging.getLogger(__name__)
@@ -74,6 +74,7 @@ app.include_router(admin.router)
 app.include_router(nhk_news.router)
 app.include_router(classroom.router)
 app.include_router(books.router)
+app.include_router(certificates.router)
 
 
 @app.get("/api/health")
