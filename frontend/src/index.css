@@ -1635,6 +1635,7 @@ body {
   margin: 0;
   font-size: 1rem;
   line-height: 1.6;
+  white-space: pre-line;
 }
 
 .btn-show-answer {
@@ -1670,6 +1671,7 @@ body {
 .exam-translation {
   color: #444;
   margin: 0 0 0.4rem;
+  white-space: pre-line;
 }
 
 .exam-answer-badge {

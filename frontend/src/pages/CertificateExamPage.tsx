@@ -23,7 +23,7 @@ interface VocabItem {
 
 interface ExamAnswer {
   translationVi: string;
-  answerCorrect: boolean;
+  answerLabel: string;
   explanationVi: string;
   vocab: VocabItem[];
 }
@@ -115,9 +115,9 @@ export function CertificateExamPage() {
                   </button>
                 ) : (
                   <div className="exam-answer-reveal">
-                    <p className="exam-translation">Dịch đề: {answer.translationVi}</p>
-                    <p className={`exam-answer-badge ${answer.answerCorrect ? 'correct' : 'incorrect'}`}>
-                      Đáp án: {answer.answerCorrect ? '○ — Đúng' : '× — Sai'}
+                    {answer.translationVi && <p className="exam-translation">Dịch đề: {answer.translationVi}</p>}
+                    <p className={`exam-answer-badge ${answer.answerLabel === '×' ? 'incorrect' : 'correct'}`}>
+                      Đáp án: {answer.answerLabel}
                     </p>
                     <p className="exam-explanation">Giải thích: {answer.explanationVi}</p>
                     {answer.vocab.length > 0 && (

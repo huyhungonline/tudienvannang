@@ -13,6 +13,7 @@ CATEGORIES = [
     {"code": "dien", "labelJa": "電気系", "labelVi": "Điện, cơ điện tử, PLC, vận hành điện", "labelEn": "Electrical, Mechatronics, PLC, Electrical Operation"},
     {"code": "xaydung", "labelJa": "建築系", "labelVi": "Xây dựng, kiến trúc, giàn giáo", "labelEn": "Construction, Architecture, Scaffolding"},
     {"code": "thucpham", "labelJa": "食品系", "labelVi": "Thực phẩm, quản lý sản xuất", "labelEn": "Food, Production Management"},
+    {"code": "itpp", "labelJa": "ITパスポート", "labelVi": "IT Passport", "labelEn": "IT Passport"},
 ]
 
 
@@ -113,7 +114,7 @@ async def get_exam_questions(code: str):
 async def get_exam_answer(question_id: int):
     """Reveal the hidden answer/translation/explanation/vocab for one question."""
     row = await db.query_one(
-        "SELECT translation_vi, answer_correct, explanation_vi, vocab_json "
+        "SELECT translation_vi, answer_label, explanation_vi, vocab_json "
         "FROM certificate_exam_questions WHERE id = $1",
         question_id,
     )
@@ -122,7 +123,7 @@ async def get_exam_answer(question_id: int):
 
     return {
         "translationVi": row["translation_vi"],
-        "answerCorrect": row["answer_correct"],
+        "answerLabel": row["answer_label"],
         "explanationVi": row["explanation_vi"],
         "vocab": json.loads(row["vocab_json"]),
     }
