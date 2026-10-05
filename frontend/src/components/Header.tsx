@@ -23,7 +23,7 @@ export function Header() {
         <Link to="/" className="header-title">技術文書検索</Link>
         <nav className="header-nav">
           <Link to="/">Home</Link>
-          <Link to="/certificates">Professional Fields</Link>
+          <Link to="/certificates">Luyện thi chứng chỉ chuyên ngành</Link>
           <Link to="/books">Professional Books</Link>
           <Link to="/visa-points">Visa Points</Link>
           <Link to="/about">About</Link>

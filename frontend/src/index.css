@@ -1481,6 +1481,7 @@ body {
 
 .certificate-subtitle {
   color: #666;
+  font-size: 0.85rem;
   margin-top: -0.5rem;
   margin-bottom: 1rem;
 }
