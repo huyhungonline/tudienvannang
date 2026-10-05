@@ -14,6 +14,7 @@ import { VisaPointsPage } from './pages/VisaPointsPage';
 import { AdminPage } from './pages/AdminPage';
 import { NewsSubscribePage } from './pages/NewsSubscribePage';
 import ClassroomPage from './pages/ClassroomPage';
+import { CertificateFieldsMenuPage } from './pages/CertificateFieldsMenuPage';
 import { CertificateListPage } from './pages/CertificateListPage';
 import { CertificateDetailPage } from './pages/CertificateDetailPage';
 import { CertificateVocabularyPage } from './pages/CertificateVocabularyPage';
@@ -40,6 +41,7 @@ function App() {
             <Route path="/admin" element={<AdminPage />} />
             <Route path="/news-subscribe" element={<NewsSubscribePage />} />
             <Route path="/classroom" element={<ClassroomPage />} />
+            <Route path="/certificates" element={<CertificateFieldsMenuPage />} />
             <Route path="/certificates/:category" element={<CertificateListPage />} />
             <Route path="/certificates/:category/:code" element={<CertificateDetailPage />} />
             <Route path="/certificates/:category/:code/vocabulary" element={<CertificateVocabularyPage />} />

@@ -1,22 +1,16 @@
 import { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { CERTIFICATE_CATEGORIES } from '../constants/certificateCategories';
 
 export function Header() {
   const { user, isAuthenticated, logout } = useAuth();
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const [fieldsOpen, setFieldsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
-  const fieldsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
       if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
         setDropdownOpen(false);
-      }
-      if (fieldsRef.current && !fieldsRef.current.contains(e.target as Node)) {
-        setFieldsOpen(false);
       }
     }
     document.addEventListener('mousedown', handleClickOutside);
@@ -29,25 +23,7 @@ export function Header() {
         <Link to="/" className="header-title">技術文書検索</Link>
         <nav className="header-nav">
           <Link to="/">Home</Link>
-          <div className="fields-dropdown-wrapper" ref={fieldsRef}>
-            <button className="fields-nav-btn" onClick={() => setFieldsOpen(!fieldsOpen)}>
-              Professional Fields ▾
-            </button>
-            {fieldsOpen && (
-              <div className="fields-dropdown">
-                {CERTIFICATE_CATEGORIES.map((cat) => (
-                  <Link
-                    key={cat.code}
-                    to={`/certificates/${cat.code}`}
-                    className="fields-dropdown-item"
-                    onClick={() => setFieldsOpen(false)}
-                  >
-                    {cat.labelEn}
-                  </Link>
-                ))}
-              </div>
-            )}
-          </div>
+          <Link to="/certificates">Professional Fields</Link>
           <Link to="/books">Professional Books</Link>
           <Link to="/visa-points">Visa Points</Link>
           <Link to="/about">About</Link>

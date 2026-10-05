@@ -32,7 +32,7 @@ export function CertificateListPage() {
 
   return (
     <div className="reading-posts-page certificate-page">
-      <h2>{categoryInfo?.labelEn || 'Professional Field'}</h2>
+      <h2>{categoryInfo?.labelVi || 'Chuyên ngành'}</h2>
 
       {error && <div className="form-error">{error}</div>}
 
