@@ -37,11 +37,11 @@ export function Header() {
               <button className="avatar-btn" onClick={() => setDropdownOpen(!dropdownOpen)}>
                 {user?.email?.charAt(0).toUpperCase() || 'U'}
               </button>
-              {user?.isVip && <span className="vip-badge">VIP</span>}
+              {user?.isVip && <span className="vip-badge">Pro</span>}
             </div>
             {dropdownOpen && (
               <div className="avatar-dropdown">
-                <span className="dropdown-email">{user?.email}{user?.isVip && <span className="vip-badge-inline">VIP</span>}</span>
+                <span className="dropdown-email">{user?.email}{user?.isVip && <span className="vip-badge-inline">Pro</span>}</span>
                 <Link to="/admin" className="dropdown-item" onClick={() => setDropdownOpen(false)}>Admin</Link>
                 <Link to="/reset-password" className="dropdown-item" onClick={() => setDropdownOpen(false)}>Reset Password</Link>
                 <button className="dropdown-item dropdown-logout" onClick={() => { logout(); setDropdownOpen(false); }}>Logout</button>

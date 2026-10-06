@@ -179,13 +179,13 @@ function UserManagement() {
       )}
 
       <table className="admin-table">
-        <thead><tr><th>Email</th><th>Admin</th><th>VIP</th><th>Created</th><th>Actions</th></tr></thead>
+        <thead><tr><th>Email</th><th>Admin</th><th>Pro</th><th>Created</th><th>Actions</th></tr></thead>
         <tbody>
           {users.map((u) => (
             <tr key={u.id}>
               <td>{u.email}</td>
               <td>{u.isAdmin ? '✅' : '—'}</td>
-              <td>{u.isVip ? '⭐ VIP' : '—'}</td>
+              <td>{u.isVip ? '⭐ Pro' : '—'}</td>
               <td>{new Date(u.createdAt).toLocaleDateString()}</td>
               <td>
                 <button className="btn-edit" onClick={() => startEdit(u)}>Edit</button>
@@ -193,7 +193,7 @@ function UserManagement() {
                   className={u.isVip ? 'btn-vip btn-vip-active' : 'btn-vip'}
                   onClick={() => handleToggleVip(u)}
                 >
-                  {u.isVip ? 'Hủy VIP' : 'Nâng cấp VIP'}
+                  {u.isVip ? 'Hủy Pro' : 'Nâng cấp Pro'}
                 </button>
                 <button className="btn-delete" onClick={() => handleDelete(u.id)}>Delete</button>
               </td>
