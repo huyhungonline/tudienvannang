@@ -9,6 +9,7 @@ interface Certificate {
   category: string;
   name_ja: string;
   name_vi: string | null;
+  related_occupations: string | null;
 }
 
 export function CertificateDetailPage() {
@@ -47,6 +48,11 @@ export function CertificateDetailPage() {
     <div className="reading-posts-page certificate-page">
       <h2>{certificate.name_ja}</h2>
       {certificate.name_vi && <p className="certificate-subtitle">{certificate.name_vi}</p>}
+      {certificate.related_occupations && (
+        <p className="certificate-occupations">
+          <strong>Ngành nghề liên quan:</strong> {certificate.related_occupations}
+        </p>
+      )}
 
       <div className="certificate-choice">
         <Link to={`/certificates/${category}/${code}/vocabulary`} className="certificate-choice-card">

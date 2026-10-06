@@ -51,7 +51,8 @@ async def list_certificates(category: Optional[str] = Query(default=None)):
 @router.get("/{code}")
 async def get_certificate(code: str):
     row = await db.query_one(
-        "SELECT id, code, category, name_ja, name_vi FROM certificates WHERE code = $1", code
+        "SELECT id, code, category, name_ja, name_vi, related_occupations FROM certificates WHERE code = $1",
+        code,
     )
     if not row:
         raise HTTPException(status_code=404, detail="Certificate not found")
