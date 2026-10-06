@@ -1512,6 +1512,34 @@ body {
   margin-bottom: 1rem;
 }
 
+.certificate-page-desc {
+  color: #555;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.certificate-usage-guide {
+  background: #f5f7fb;
+  border: 1px solid #e0e6f0;
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+}
+
+.certificate-usage-guide ol {
+  margin: 0.5rem 0 0.75rem;
+  padding-left: 1.3rem;
+  line-height: 1.7;
+}
+
+.certificate-usage-note {
+  margin: 0;
+  font-size: 0.82rem;
+  color: #888;
+  font-style: italic;
+}
+
 .certificate-list {
   display: flex;
   flex-direction: column;
