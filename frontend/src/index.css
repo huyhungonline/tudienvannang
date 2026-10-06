@@ -2422,6 +2422,13 @@ body {
   margin-bottom: 0.3rem;
 }
 
+.about-note {
+  font-size: 0.85rem;
+  color: #888;
+  font-style: italic;
+  margin-top: -0.5rem;
+}
+
 /* News Subscribe Page */
 .subscribe-page {
   max-width: 500px;
