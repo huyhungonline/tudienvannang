@@ -95,6 +95,7 @@ export function HistoryPage() {
         <p className="empty-history">No saved texts yet.</p>
       ) : (
         <>
+          <p className="history-hint">Click vào đoạn văn đã lưu để dịch</p>
           <div className="history-list">
             {records.map((record) => (
               <div key={record.id} className="history-item">
