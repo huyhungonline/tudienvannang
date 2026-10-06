@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { get } from '../api/client';
 import { Spinner } from '../components/Spinner';
 
@@ -19,7 +19,7 @@ interface VocabCategory {
 }
 
 export function CertificateVocabularyPage() {
-  const { code } = useParams<{ code: string }>();
+  const { category, code } = useParams<{ category: string; code: string }>();
   const [categories, setCategories] = useState<VocabCategory[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -58,6 +58,7 @@ export function CertificateVocabularyPage() {
 
   return (
     <div className="reading-posts-page certificate-page certificate-vocab-page">
+      <Link to={`/certificates/${category}/${code}`} className="btn-back">← Quay lại</Link>
       <h2>Từ vựng chuyên ngành</h2>
 
       <div className="vocab-category-tabs">

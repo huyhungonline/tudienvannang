@@ -606,6 +606,12 @@ body {
   background: #f0f0f0;
 }
 
+.certificate-page .btn-back {
+  display: inline-block;
+  text-decoration: none;
+  margin-bottom: 1rem;
+}
+
 .history-detail {
   display: flex;
   flex-direction: column;

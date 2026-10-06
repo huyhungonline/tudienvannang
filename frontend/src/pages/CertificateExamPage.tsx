@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { get } from '../api/client';
 import { Spinner } from '../components/Spinner';
 
@@ -29,7 +29,7 @@ interface ExamAnswer {
 }
 
 export function CertificateExamPage() {
-  const { code } = useParams<{ code: string }>();
+  const { category, code } = useParams<{ category: string; code: string }>();
   const [exams, setExams] = useState<ExamSession[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -80,6 +80,7 @@ export function CertificateExamPage() {
 
   return (
     <div className="reading-posts-page certificate-page certificate-exam-page">
+      <Link to={`/certificates/${category}/${code}`} className="btn-back">← Quay lại</Link>
       <h2>Bài tập / Giải đề</h2>
 
       <div className="vocab-category-tabs">
