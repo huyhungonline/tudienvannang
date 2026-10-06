@@ -25,7 +25,7 @@ CATEGORIES = [
     {"code": "dien", "labelJa": "電気系", "labelVi": "Điện, cơ điện tử, PLC, vận hành điện", "labelEn": "Electrical, Mechatronics, PLC, Electrical Operation"},
     {"code": "xaydung", "labelJa": "建築系", "labelVi": "Xây dựng, kiến trúc, giàn giáo", "labelEn": "Construction, Architecture, Scaffolding"},
     {"code": "thucpham", "labelJa": "食品系", "labelVi": "Thực phẩm, quản lý sản xuất", "labelEn": "Food, Production Management"},
-    {"code": "itpp", "labelJa": "ITパスポート", "labelVi": "IT Passport", "labelEn": "IT Passport"},
+    {"code": "itpp", "labelJa": "IT・通信系", "labelVi": "IT và Viễn thông", "labelEn": "IT and Telecommunications"},
 ]
 
 

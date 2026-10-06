@@ -35,14 +35,14 @@ export function AboutPage() {
             <li>Bấm biểu tượng loa để nghe phát âm</li>
             <li>Đăng nhập để lưu danh sách từ vựng và xem lại sau</li>
           </ol>
-          <h2>📘 Luyện thi chứng chỉ chuyên ngành</h2>
+          <h2>📘 Thi chứng chỉ tại Nhật</h2>
           <p>
-            Tính năng giúp bạn luyện thi các chứng chỉ nghề bằng tiếng Nhật (cơ khí, điện, IT Passport...),
+            Tính năng giúp bạn luyện thi các chứng chỉ nghề bằng tiếng Nhật (cơ khí, điện, IT và viễn thông...),
             gồm từ vựng chuyên ngành theo chủ đề và bộ đề thi thử kèm đáp án, bản dịch và giải thích chi tiết.
           </p>
           <ol>
-            <li>Vào mục "Luyện thi chứng chỉ chuyên ngành" trên thanh menu</li>
-            <li>Chọn lĩnh vực (cơ khí, điện, xây dựng, thực phẩm, IT Passport...)</li>
+            <li>Vào mục "Thi chứng chỉ tại Nhật" trên thanh menu</li>
+            <li>Chọn lĩnh vực (cơ khí, điện, xây dựng, thực phẩm, IT và viễn thông...)</li>
             <li>Chọn chứng chỉ muốn luyện</li>
             <li>Chọn "Từ vựng chuyên ngành" để học từ theo chủ đề, hoặc "Bài tập / Giải đề" để luyện đề thi</li>
             <li>Ở phần đề thi, đọc câu hỏi tiếng Nhật rồi bấm "Show answer" để xem đáp án, bản dịch và giải thích</li>
@@ -84,12 +84,12 @@ export function AboutPage() {
           <h2>📘 Certificate Exam Practice</h2>
           <p>
             A feature that helps you prepare for professional certification exams in Japanese (mechanical,
-            electrical, IT Passport...), including topic-based vocabulary and practice exams with answers,
+            electrical, IT and Telecommunications...), including topic-based vocabulary and practice exams with answers,
             translations, and detailed explanations.
           </p>
           <ol>
-            <li>Open "Luyện thi chứng chỉ chuyên ngành" from the navigation menu</li>
-            <li>Choose a field (mechanical, electrical, construction, food, IT Passport...)</li>
+            <li>Open "Thi chứng chỉ tại Nhật" from the navigation menu</li>
+            <li>Choose a field (mechanical, electrical, construction, food, IT and Telecommunications...)</li>
             <li>Choose the certificate you want to practice</li>
             <li>Choose "Vocabulary" to study terms by topic, or "Exercises" to practice exam questions</li>
             <li>In the exercises, read the Japanese question then click "Show answer" to reveal the answer, translation, and explanation</li>
@@ -130,12 +130,12 @@ export function AboutPage() {
           </ol>
           <h2>📘 専門資格試験対策</h2>
           <p>
-            機械系、電気系、ITパスポートなど、日本語で行われる技能検定・資格試験の対策機能です。
+            機械系、電気系、IT・通信系など、日本語で行われる技能検定・資格試験の対策機能です。
             分野別の専門用語と、解答・和訳・詳しい解説付きの模擬問題が利用できます。
           </p>
           <ol>
-            <li>メニューの「Luyện thi chứng chỉ chuyên ngành（専門資格試験対策）」を開く</li>
-            <li>分野（機械系、電気系、建築系、食品系、ITパスポートなど）を選ぶ</li>
+            <li>メニューの「Thi chứng chỉ tại Nhật（専門資格試験対策）」を開く</li>
+            <li>分野（機械系、電気系、建築系、食品系、IT・通信系など）を選ぶ</li>
             <li>対策したい資格を選ぶ</li>
             <li>「専門用語（Từ vựng chuyên ngành）」でテーマ別単語を学ぶか、「問題（Bài tập / Giải đề）」で模擬問題を解く</li>
             <li>問題画面では日本語の設問を読み、「Show answer」を押すと解答・和訳・解説が表示される</li>
