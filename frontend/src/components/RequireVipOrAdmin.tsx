@@ -14,9 +14,20 @@ export function RequireVipOrAdmin({ children }: { children: ReactNode }) {
           <p>Bạn cần nâng cấp lên tài khoản Pro (hoặc Admin) để sử dụng tính năng luyện thi chứng chỉ chuyên ngành.</p>
           {!isAuthenticated ? (
             <p><Link to="/login">Đăng nhập</Link> hoặc <Link to="/register">Đăng ký</Link> để tiếp tục.</p>
-          ) : (
-            <p>Vui lòng liên hệ quản trị viên để nâng cấp tài khoản lên Pro.</p>
-          )}
+          ) : null}
+          <div className="upgrade-payment-instructions">
+            <p>Để nâng cấp tài khoản Pro, quý khách vui lòng thực hiện theo các bước sau:</p>
+            <ol>
+              <li>
+                Thanh toán chuyển khoản vào tài khoản sau:
+                <br />Ngân hàng: BIDV
+                <br />Số TK: 8865150623
+                <br />Chủ TK: NGUYEN HUY HUNG
+                <br />Nội dung chuyển khoản: nhập email bạn đã đăng ký tài khoản
+              </li>
+            </ol>
+            <p>Nếu sau hai tiếng tài khoản chưa được nâng cấp Pro, vui lòng liên hệ <strong>Táo giáo dục</strong>.</p>
+          </div>
         </div>
       </div>
     );
