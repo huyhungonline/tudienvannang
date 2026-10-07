@@ -1506,6 +1506,32 @@ body {
   margin: 0.4rem 0;
 }
 
+.upgrade-payment-instructions {
+  text-align: left;
+  margin-top: 1.25rem;
+  padding: 1.1rem 1.3rem;
+  background: #ffffff;
+  border: 1px solid #fbbf24;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(146, 64, 14, 0.08);
+}
+
+.upgrade-payment-instructions p {
+  color: #444;
+  margin: 0.4rem 0;
+}
+
+.upgrade-payment-instructions ol {
+  margin: 0.6rem 0;
+  padding-left: 1.3rem;
+}
+
+.upgrade-payment-instructions li {
+  margin: 0.3rem 0;
+  line-height: 1.7;
+  color: #333;
+}
+
 /* Certificates / Professional Fields */
 .certificate-page {
   max-width: 900px;
