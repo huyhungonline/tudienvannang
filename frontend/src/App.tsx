@@ -28,7 +28,8 @@ function App() {
         <Header />
         <main className="main-content">
           <Routes>
-            <Route path="/" element={<HomePage />} />
+            <Route path="/" element={<CertificateFieldsMenuPage />} />
+            <Route path="/tra-cuu" element={<HomePage />} />
             <Route path="/books" element={<BooksPage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
