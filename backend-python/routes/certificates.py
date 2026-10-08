@@ -60,7 +60,7 @@ async def get_certificate(code: str):
 
 
 @router.get("/{code}/vocabulary")
-async def get_vocabulary(code: str, _: str = Depends(require_vip_or_admin)):
+async def get_vocabulary(code: str):
     """Return vocabulary entries grouped by category."""
     cert = await db.query_one("SELECT id FROM certificates WHERE code = $1", code)
     if not cert:

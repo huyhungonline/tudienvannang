@@ -1506,6 +1506,32 @@ body {
   margin: 0.4rem 0;
 }
 
+.upgrade-payment-instructions {
+  text-align: left;
+  margin-top: 1.25rem;
+  padding: 1.1rem 1.3rem;
+  background: #ffffff;
+  border: 1px solid #fbbf24;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(146, 64, 14, 0.08);
+}
+
+.upgrade-payment-instructions p {
+  color: #444;
+  margin: 0.4rem 0;
+}
+
+.upgrade-payment-instructions ol {
+  margin: 0.6rem 0;
+  padding-left: 1.3rem;
+}
+
+.upgrade-payment-instructions li {
+  margin: 0.3rem 0;
+  line-height: 1.7;
+  color: #333;
+}
+
 /* Certificates / Professional Fields */
 .certificate-page {
   max-width: 900px;
@@ -2571,3 +2597,27 @@ body {
   color: #991b1b;
   font-size: 0.95rem;
 }
+
+.certificate-recommend-line { margin: 0.75rem 0; }
+.certificate-recommend-btn {
+  padding: 0.2rem 0.8rem; border: 1px solid #1976d2; border-radius: 4px;
+  background: #1976d2; color: #fff; cursor: pointer; font-size: 0.9rem;
+}
+.cert-modal-overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 1000;
+  display: flex; align-items: center; justify-content: center; padding: 1rem;
+}
+.cert-modal {
+  background: #fff; border-radius: 8px; width: 100%; max-width: 1100px; max-height: 90vh;
+  display: flex; flex-direction: column;
+}
+.cert-modal-header {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 0.75rem 1rem; border-bottom: 1px solid #ddd;
+}
+.cert-modal-header h3 { margin: 0; font-size: 1.05rem; }
+.cert-modal-close { border: none; background: none; font-size: 1.6rem; cursor: pointer; line-height: 1; }
+.cert-modal-body { overflow: auto; padding: 1rem; }
+.cert-list-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+.cert-list-table th, .cert-list-table td { border: 1px solid #ddd; padding: 0.35rem 0.5rem; text-align: left; vertical-align: top; }
+.cert-list-table th { background: #f3f4f6; position: sticky; top: -1rem; }

@@ -1,1 +1,11 @@
-*.sh text eol=lf
+* text=auto eol=lf
+
+*.pdf binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.mp3 binary
+*.woff binary
+*.woff2 binary

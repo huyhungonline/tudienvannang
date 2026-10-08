@@ -28,7 +28,8 @@ function App() {
         <Header />
         <main className="main-content">
           <Routes>
-            <Route path="/" element={<HomePage />} />
+            <Route path="/" element={<CertificateFieldsMenuPage />} />
+            <Route path="/tra-cuu" element={<HomePage />} />
             <Route path="/books" element={<BooksPage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
@@ -44,8 +45,8 @@ function App() {
             <Route path="/classroom" element={<ClassroomPage />} />
             <Route path="/certificates" element={<CertificateFieldsMenuPage />} />
             <Route path="/certificates/:category" element={<CertificateListPage />} />
-            <Route path="/certificates/:category/:code" element={<RequireVipOrAdmin><CertificateDetailPage /></RequireVipOrAdmin>} />
-            <Route path="/certificates/:category/:code/vocabulary" element={<RequireVipOrAdmin><CertificateVocabularyPage /></RequireVipOrAdmin>} />
+            <Route path="/certificates/:category/:code" element={<CertificateDetailPage />} />
+            <Route path="/certificates/:category/:code/vocabulary" element={<CertificateVocabularyPage />} />
             <Route path="/certificates/:category/:code/exam" element={<RequireVipOrAdmin><CertificateExamPage /></RequireVipOrAdmin>} />
           </Routes>
         </main>
