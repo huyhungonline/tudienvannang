@@ -691,6 +691,12 @@ body {
 }
 
 /* Language warning */
+.home-tagline {
+  margin: 0;
+  color: #555;
+  font-size: 0.95rem;
+}
+
 .lang-warning {
   padding: 0.5rem 0.75rem;
   background: #fef3cd;
