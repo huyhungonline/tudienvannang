@@ -81,7 +81,7 @@ export function CertificateExamPage() {
   return (
     <div className="reading-posts-page certificate-page certificate-exam-page">
       <Link to={`/certificates/${category}/${code}`} className="btn-back">← Quay lại</Link>
-      <h2>Bài tập / Giải đề</h2>
+      <h2>Giải đề các năm</h2>
 
       <div className="vocab-category-tabs">
         {exams.map((s, idx) => (

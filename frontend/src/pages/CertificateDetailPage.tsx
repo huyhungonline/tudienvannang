@@ -60,7 +60,7 @@ export function CertificateDetailPage() {
           <p>Specialized vocabulary</p>
         </Link>
         <Link to={`/certificates/${category}/${code}/exam`} className="certificate-choice-card">
-          <h3>📝 Bài tập / Giải đề</h3>
+          <h3>📝 Giải đề các năm</h3>
           <p>Practice exams</p>
         </Link>
       </div>

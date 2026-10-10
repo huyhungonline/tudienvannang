@@ -18,7 +18,7 @@ export function CertificateFieldsMenuPage() {
         <ol>
           <li>Chọn lĩnh vực bạn quan tâm bên dưới</li>
           <li>Chọn chứng chỉ muốn luyện trong danh sách</li>
-          <li>Chọn <strong>"Từ vựng chuyên ngành"</strong> để học từ theo chủ đề, hoặc <strong>"Bài tập / Giải đề"</strong> để luyện đề thi</li>
+          <li>Chọn <strong>"Từ vựng chuyên ngành"</strong> để học từ theo chủ đề, hoặc <strong>"Giải đề các năm"</strong> để luyện đề thi</li>
           <li>Ở phần đề thi, đọc câu hỏi tiếng Nhật rồi bấm <strong>"Show answer"</strong> để xem đáp án, bản dịch và giải thích</li>
         </ol>
         <p className="certificate-usage-note">Lưu ý: tính năng này dành riêng cho tài khoản Pro hoặc Admin.</p>
