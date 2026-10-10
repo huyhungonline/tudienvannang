@@ -20,6 +20,7 @@ export function RequireVipOrAdmin({ children }: { children: ReactNode }) {
             <ol>
               <li>
                 Thanh toán chuyển khoản vào tài khoản sau:
+                <br />Phí hội viên: <strong>450.000 đồng</strong>
                 <br />Ngân hàng: BIDV
                 <br />Số TK: 8865150623
                 <br />Chủ TK: NGUYEN HUY HUNG

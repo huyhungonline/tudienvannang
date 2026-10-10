@@ -691,6 +691,18 @@ body {
 }
 
 /* Language warning */
+.home-tagline {
+  margin: 0;
+  padding: 0.45rem 0.6rem;
+  background: transparent;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  color: #1e3a8a;
+  font-size: 0.6rem;
+  font-weight: 600;
+  box-shadow: 0 2px 6px rgba(37, 99, 235, 0.15);
+}
+
 .lang-warning {
   padding: 0.5rem 0.75rem;
   background: #fef3cd;

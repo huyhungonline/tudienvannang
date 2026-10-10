@@ -232,7 +232,8 @@ export function HomePage() {
           <SourceLanguageSelector onLanguageChange={handleSourceLanguageChange} value={sourceLanguage} />
           <LanguageSelector onLanguageChange={handleTargetLanguageChange} />
         </div>
-        {langWarning && <p className="lang-warning">{langWarning}</p>}
+        <p className="home-tagline">Công cụ tra cứu văn bản tiếng Nhật tốt nhất. Hãy nhập văn bản vào đây.</p>
+        {langWarning &&<p className="lang-warning">{langWarning}</p>}
         <InputPanel onSubmit={handleSubmit} externalText={externalText} sourceLanguage={sourceLanguage} onAutoDetectLanguage={handleSourceLanguageChange} />
         <SentenceTranslation
           translation={sentenceTranslation}
