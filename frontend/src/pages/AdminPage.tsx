@@ -19,7 +19,7 @@ interface Subscriber {
   created_at: string | null;
 }
 
-type AdminView = 'menu' | 'users' | 'mailer' | 'questions' | 'reading' | 'books';
+type AdminView = 'menu' | 'users' | 'mailer' | 'questions' | 'reading' | 'books' | 'class-registrations';
 
 export function AdminPage() {
   const { isAuthenticated } = useAuth();
@@ -43,6 +43,9 @@ export function AdminPage() {
           <button className="admin-menu-item" onClick={() => setView('mailer')}>
             ✉️ Gửi mail cho User
           </button>
+          <button className="admin-menu-item" onClick={() => setView('class-registrations')}>
+            Đăng kí lớp học
+          </button>
           <button className="admin-menu-item" onClick={() => setView('questions')}>
             📝 Classroom Questions
           </button>
@@ -62,6 +65,7 @@ export function AdminPage() {
       <button className="btn-back" onClick={() => setView('menu')}>← Quay lại</button>
       {view === 'users' && <UserManagement />}
       {view === 'mailer' && <MailerSection />}
+      {view === 'class-registrations' && <ClassRegistrationsManagement />}
       {view === 'questions' && <QuestionsManagement />}
       {view === 'reading' && <ReadingPostsManagement />}
       {view === 'books' && <BooksManagement />}
@@ -468,6 +472,54 @@ function MailerSection() {
       ))}
     </div>
   );
+}
+
+interface ClassRegistration {
+  id: string;
+  course: string;
+  full_name: string;
+  email: string;
+  phone: string;
+  book_address: string;
+  created_at: string;
+}
+
+function ClassRegistrationsManagement() {
+  const [registrations, setRegistrations] = useState<ClassRegistration[]>([]);
+  const [page, setPage] = useState(0);
+  const [total, setTotal] = useState(0);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
+  useEffect(() => {
+    let disposed = false;
+    setLoading(true);
+    setError('');
+    get<{ registrations: ClassRegistration[]; total: number }>(`/classes/registrations?limit=50&offset=${page * 50}`)
+      .then(data => { if (!disposed) { setRegistrations(data.registrations); setTotal(data.total); } })
+      .catch(() => { if (!disposed) setError('Không thể tải danh sách đăng kí.'); })
+      .finally(() => { if (!disposed) setLoading(false); });
+    return () => { disposed = true; };
+  }, [page]);
+  return <div>
+    <h2>Đăng kí lớp học ({total})</h2>
+    {error && <p className="form-error">{error}</p>}
+    {loading ? <p><Spinner /> Đang tải...</p> : registrations.length === 0 ? <p>Chưa có đăng kí nào.</p> : <>
+      <div style={{ overflowX: 'auto' }}><table className="admin-table">
+        <thead><tr><th>Lớp học</th><th>Họ tên</th><th>Email</th><th>Số điện thoại</th><th>Địa chỉ nhận sách</th><th>Ngày đăng kí</th></tr></thead>
+        <tbody>{registrations.map(item => <tr key={item.id}>
+          <td>{item.course === 'it-passport' ? 'IT Passport miễn phí' : '機械保全技能検定'}</td>
+          <td>{item.full_name}</td><td>{item.email}</td><td>{item.phone}</td>
+          <td style={{ whiteSpace: 'pre-wrap' }}>{item.book_address}</td>
+          <td>{new Date(item.created_at).toLocaleString()}</td>
+        </tr>)}</tbody>
+      </table></div>
+      <div className="pagination">
+        <button disabled={page === 0} onClick={() => setPage(value => value - 1)}>← Trước</button>
+        <span>{page + 1} / {Math.ceil(total / 50)}</span>
+        <button disabled={(page + 1) * 50 >= total} onClick={() => setPage(value => value + 1)}>Sau →</button>
+      </div>
+    </>}
+  </div>;
 }
 
 interface Question {

@@ -93,6 +93,30 @@ body {
   line-height: 1.6;
 }
 
+.class-registration-menu a {
+  display: block;
+  color: #2563eb;
+  text-decoration: none;
+}
+
+.class-registration-menu a:hover { text-decoration: underline; }
+
+.class-registration-form {
+  display: grid;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.class-registration-form input,
+.class-registration-form textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font: inherit;
+}
+
 .header-email {
   font-size: 0.85rem;
   color: #666;
