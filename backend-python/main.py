@@ -10,6 +10,7 @@ from apscheduler.triggers.cron import CronTrigger
 import db
 from routes import words, audio, auth, history, reading_posts, admin, nhk_news, classroom, books, certificates
 from services.nhk_mailer_service import send_daily_news
+from services.mail_queue_service import run_mail_queue
 
 logger = logging.getLogger(__name__)
 
@@ -32,6 +33,8 @@ async def daily_news_job():
 async def lifespan(app: FastAPI):
     # Startup: initialize DB pool
     await db.get_pool()
+    mail_stop = asyncio.Event()
+    mail_worker = asyncio.create_task(run_mail_queue(mail_stop))
 
     # Start APScheduler for daily NHK news job
     scheduler = AsyncIOScheduler()
@@ -49,6 +52,8 @@ async def lifespan(app: FastAPI):
 
     # Shutdown scheduler
     scheduler.shutdown(wait=False)
+    mail_stop.set()
+    await mail_worker
     logger.info("[NHK] APScheduler shut down")
     await db.close_pool()
 

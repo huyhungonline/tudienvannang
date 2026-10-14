@@ -1,4 +1,4 @@
-import { useState, useEffect, type FormEvent } from 'react';
+import { useState, useEffect, useRef, type FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { get, post, put, del, uploadBookImage } from '../api/client';
@@ -205,7 +205,19 @@ function UserManagement() {
   );
 }
 
+interface MailJob {
+  jobId: string;
+  subject: string;
+  total: number;
+  sent: number;
+  failed: number;
+  pending: number;
+  failures: { email: string; error: string }[];
+}
+
 function MailerSection() {
+  const [jobs, setJobs] = useState<MailJob[]>([]);
+  const requestAttempt = useRef<{ fingerprint: string; id: string } | null>(null);
   const [subscribers, setSubscribers] = useState<Subscriber[]>([]);
   const [selectedEmails, setSelectedEmails] = useState<Set<string>>(new Set());
   const [subject, setSubject] = useState('');
@@ -220,6 +232,31 @@ function MailerSection() {
   const SUB_PAGE_SIZE = 20;
 
   useEffect(() => { fetchSubscribers(0); }, []);
+
+  useEffect(() => {
+    let disposed = false;
+    let timer: ReturnType<typeof setTimeout>;
+    const refresh = async () => {
+      try {
+        const data = await get<{ jobs: MailJob[] }>('/nhk/mail-jobs');
+        if (!disposed) setJobs(data.jobs);
+      } catch {
+        if (!disposed) setError('Không thể tải tiến độ gửi mail. Đang thử lại...');
+      } finally {
+        if (!disposed) timer = setTimeout(refresh, 3000);
+      }
+    };
+    refresh();
+    return () => { disposed = true; clearTimeout(timer); };
+  }, []);
+
+  const retryJob = async (job: MailJob) => {
+    if (!confirm('Gửi lại các email thất bại? Nếu báo gửi bị gián đoạn, hãy kiểm tra hộp thư trước để tránh gửi trùng.')) return;
+    try {
+      const updated = await post<MailJob>(`/nhk/mail-jobs/${job.jobId}/retry`, {});
+      setJobs(prev => prev.map(item => item.jobId === updated.jobId ? updated : item));
+    } catch { setError('Không thể gửi lại. Vui lòng thử lại.'); }
+  };
 
   const fetchSubscribers = async (pageNum: number) => {
     setLoadingSubs(true);
@@ -252,11 +289,12 @@ function MailerSection() {
   };
 
   const selectAll = () => {
-    if (selectedEmails.size === subscribers.length) {
-      setSelectedEmails(new Set());
-    } else {
-      setSelectedEmails(new Set(subscribers.map(s => s.email)));
-    }
+    setSelectedEmails(prev => {
+      const next = new Set(prev);
+      const allSelected = subscribers.every(s => prev.has(s.email));
+      subscribers.forEach(s => allSelected ? next.delete(s.email) : next.add(s.email));
+      return next;
+    });
   };
 
   const handleSend = async (e: FormEvent) => {
@@ -270,12 +308,22 @@ function MailerSection() {
 
     setLoading(true);
     try {
-      const data = await post<{ sent: number; failed: number }>('/nhk/send-manual', {
+      const payload = {
         subject: subject.trim(),
         content: content.trim(),
-        subscriber_emails: Array.from(selectedEmails),
+        subscriber_emails: Array.from(selectedEmails).sort(),
+      };
+      const fingerprint = JSON.stringify(payload);
+      if (requestAttempt.current?.fingerprint !== fingerprint) {
+        requestAttempt.current = { fingerprint, id: crypto.randomUUID() };
+      }
+      const data = await post<{ jobId: string }>('/nhk/send-manual', {
+        ...payload, request_id: requestAttempt.current!.id,
       });
-      setResult(`Đã gửi thành công ${data.sent} email${data.failed > 0 ? `, thất bại ${data.failed}` : ''}`);
+      const job = await get<MailJob>(`/nhk/mail-jobs/${data.jobId}`);
+      setJobs(prev => [job, ...prev.filter(item => item.jobId !== job.jobId)]);
+      setResult('Đã đưa vào hàng đợi. Bạn có thể rời trang; mail vẫn tiếp tục được gửi.');
+      requestAttempt.current = null;
       setSubject('');
       setContent('');
       setSelectedEmails(new Set());
@@ -306,9 +354,9 @@ function MailerSection() {
 
         <div className="mailer-subscribers">
           <div className="mailer-subscribers-header">
-            <h3>Chọn người nhận ({selectedEmails.size}/{subscribers.length})</h3>
+            <h3>Chọn người nhận ({selectedEmails.size} đã chọn, {totalSubs} tổng cộng)</h3>
             <button type="button" className="btn-back" onClick={selectAll}>
-              {selectedEmails.size === subscribers.length ? 'Bỏ chọn tất cả' : 'Chọn tất cả'}
+              {subscribers.length > 0 && subscribers.every(s => selectedEmails.has(s.email)) ? 'Bỏ chọn trang này' : 'Chọn cả trang này'}
             </button>
           </div>
 
@@ -333,9 +381,9 @@ function MailerSection() {
               </div>
               {totalSubPages > 1 && (
                 <div className="pagination">
-                  <button disabled={subPage === 0} onClick={() => handleSubPage(subPage - 1)}>← Trước</button>
+                  <button type="button" disabled={subPage === 0} onClick={() => handleSubPage(subPage - 1)}>← Trước</button>
                   <span>{subPage + 1} / {totalSubPages}</span>
-                  <button disabled={subPage >= totalSubPages - 1} onClick={() => handleSubPage(subPage + 1)}>Sau →</button>
+                  <button type="button" disabled={subPage >= totalSubPages - 1} onClick={() => handleSubPage(subPage + 1)}>Sau →</button>
                 </div>
               )}
             </>
@@ -346,9 +394,24 @@ function MailerSection() {
         {result && <p className="subscribe-success">{result}</p>}
 
         <button type="submit" className="btn-submit" disabled={loading}>
-          {loading ? 'Đang gửi...' : `Gửi mail (${selectedEmails.size})`}
+          {loading ? 'Đang tạo đợt gửi...' : `Gửi mail (${selectedEmails.size})`}
         </button>
       </form>
+      <h3>Tiến độ các đợt gửi gần đây</h3>
+      <p>Mail được gửi lần lượt ở nền. “Đã gửi” nghĩa là máy chủ SMTP đã nhận email.</p>
+      {jobs.map(job => (
+        <div key={job.jobId} className="mailer-subscribers">
+          <strong>{job.subject}</strong>
+          <p>{job.pending > 0 ? 'Đang gửi' : 'Đã xử lý'} — Đã gửi: {job.sent}/{job.total} · Thất bại: {job.failed} · Đang chờ: {job.pending}</p>
+          <progress value={job.sent + job.failed} max={job.total} aria-label="Tiến độ gửi email" />
+          {job.failed > 0 && <>
+            <button type="button" className="btn-back" onClick={() => retryJob(job)}>Gửi lại email thất bại</button>
+            <details><summary>Xem email thất bại</summary>
+              <ul>{job.failures.map(item => <li key={item.email}>{item.email}: {item.error}</li>)}</ul>
+            </details>
+          </>}
+        </div>
+      ))}
     </div>
   );
 }

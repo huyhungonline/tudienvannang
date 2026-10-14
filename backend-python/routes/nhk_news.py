@@ -1,4 +1,7 @@
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Depends
+from pydantic import BaseModel, EmailStr, Field
+from uuid import UUID
+from routes.admin import require_admin
 import logging
 
 from nhk_models import SubscribeRequest, UnsubscribeRequest
@@ -94,17 +97,22 @@ async def get_subscribers(limit: int = 20, offset: int = 0):
         raise HTTPException(status_code=500, detail=str(e))
 
 
-@router.post("/send-manual")
-async def send_manual(body: dict):
+class ManualMailRequest(BaseModel):
+    request_id: UUID
+    subject: str = Field(min_length=1, max_length=200)
+    content: str = Field(min_length=1, max_length=100000)
+    subscriber_emails: list[EmailStr] = Field(min_length=1, max_length=5000)
+
+
+@router.post("/send-manual", status_code=202)
+async def send_manual(body: ManualMailRequest, _: str = Depends(require_admin)):
     """Send manual email to selected subscribers.
 
     Body: { subject: str, content: str, subscriber_emails: list[str] }
     """
-    from services.email_service import send_email
-
-    subject = body.get("subject", "").strip()
-    content = body.get("content", "").strip()
-    emails = body.get("subscriber_emails", [])
+    subject = body.subject.strip()
+    content = body.content.strip()
+    emails = sorted(set(str(email).strip().lower() for email in body.subscriber_emails))
 
     if not subject:
         raise HTTPException(status_code=400, detail="Subject is required")
@@ -113,13 +121,50 @@ async def send_manual(body: dict):
     if not emails:
         raise HTTPException(status_code=400, detail="At least one email is required")
 
-    sent = 0
-    failed = 0
-    for email in emails:
-        success = send_email(email, subject, content)
-        if success:
-            sent += 1
-        else:
-            failed += 1
+    pool = await db.get_pool()
+    async with pool.acquire() as conn:
+        async with conn.transaction():
+            inserted = await conn.fetchval(
+                'INSERT INTO mail_jobs (id,subject,content) VALUES ($1,$2,$3) ON CONFLICT DO NOTHING RETURNING id',
+                body.request_id, subject, content,
+            )
+            if inserted:
+                await conn.executemany('INSERT INTO mail_job_recipients (job_id,email) VALUES ($1,$2)',
+                                       [(body.request_id, email) for email in emails])
+            else:
+                existing = await conn.fetchrow('SELECT subject,content FROM mail_jobs WHERE id=$1', body.request_id)
+                recipients = await conn.fetch('SELECT email FROM mail_job_recipients WHERE job_id=$1 ORDER BY email', body.request_id)
+                if existing['subject'] != subject or existing['content'] != content or [r['email'] for r in recipients] != emails:
+                    raise HTTPException(status_code=409, detail='Request ID already used for different content')
+    return {"jobId": str(body.request_id)}
 
-    return {"success": True, "sent": sent, "failed": failed}
+
+@router.get('/mail-jobs')
+async def list_mail_jobs(_: str = Depends(require_admin)):
+    rows = await db.query('SELECT id FROM mail_jobs ORDER BY created_at DESC LIMIT 20')
+    return {'jobs': [await mail_job_status(r['id']) for r in rows]}
+
+
+async def mail_job_status(job_id: UUID):
+    job = await db.query_one('SELECT id,subject,created_at FROM mail_jobs WHERE id=$1', job_id)
+    if not job:
+        raise HTTPException(status_code=404, detail='Mail job not found')
+    counts = await db.query_one("""SELECT COUNT(*) AS total,
+        COUNT(*) FILTER (WHERE status='sent') AS sent,
+        COUNT(*) FILTER (WHERE status='failed') AS failed,
+        COUNT(*) FILTER (WHERE status IN ('pending','sending')) AS pending
+        FROM mail_job_recipients WHERE job_id=$1""", job_id)
+    failures = await db.query('SELECT email,error FROM mail_job_recipients WHERE job_id=$1 AND status=$2 ORDER BY email', job_id, 'failed')
+    return {'jobId': str(job_id), 'subject': job['subject'], **counts, 'failures': failures}
+
+
+@router.get('/mail-jobs/{job_id}')
+async def get_mail_job(job_id: UUID, _: str = Depends(require_admin)):
+    return await mail_job_status(job_id)
+
+
+@router.post('/mail-jobs/{job_id}/retry')
+async def retry_mail_job(job_id: UUID, _: str = Depends(require_admin)):
+    await mail_job_status(job_id)
+    await db.execute("UPDATE mail_job_recipients SET status='pending',error=NULL WHERE job_id=$1 AND status='failed'", job_id)
+    return await mail_job_status(job_id)
