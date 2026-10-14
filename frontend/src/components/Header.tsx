@@ -24,6 +24,7 @@ export function Header() {
         <nav className="header-nav">
           <Link to="/">Thi chứng chỉ tại Nhật</Link>
           <Link to="/tra-cuu">Tra cứu</Link>
+          <Link to="/dang-ki-lop-hoc">Đăng kí lớp học</Link>
           <Link to="/books">Professional Books</Link>
           <Link to="/visa-points">Visa Points</Link>
           <Link to="/about">About</Link>

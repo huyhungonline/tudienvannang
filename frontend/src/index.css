@@ -73,6 +73,26 @@ body {
   color: #2563eb;
 }
 
+.class-registration-page {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.class-registration-menu {
+  display: grid;
+  gap: 16px;
+  padding-left: 28px;
+}
+
+.class-registration-menu li {
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background: #fff;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
 .header-email {
   font-size: 0.85rem;
   color: #666;
