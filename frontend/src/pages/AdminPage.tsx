@@ -216,6 +216,9 @@ interface MailJob {
 }
 
 function MailerSection() {
+  const [registeredUsers, setRegisteredUsers] = useState<AdminUser[]>([]);
+  const [loadingUsers, setLoadingUsers] = useState(true);
+  const [userPage, setUserPage] = useState(0);
   const [jobs, setJobs] = useState<MailJob[]>([]);
   const requestAttempt = useRef<{ fingerprint: string; id: string } | null>(null);
   const [subscribers, setSubscribers] = useState<Subscriber[]>([]);
@@ -232,6 +235,29 @@ function MailerSection() {
   const SUB_PAGE_SIZE = 20;
 
   useEffect(() => { fetchSubscribers(0); }, []);
+
+  useEffect(() => {
+    let disposed = false;
+    get<AdminUser[]>('/admin/users')
+      .then(data => {
+        if (!disposed) setRegisteredUsers(data.map(user => ({ ...user, email: user.email.trim().toLowerCase() })));
+      })
+      .catch(() => { if (!disposed) setError('Không thể tải danh sách tài khoản đã đăng ký.'); })
+      .finally(() => { if (!disposed) setLoadingUsers(false); });
+    return () => { disposed = true; };
+  }, []);
+
+  const visibleUsers = registeredUsers.slice(userPage * SUB_PAGE_SIZE, (userPage + 1) * SUB_PAGE_SIZE);
+  const totalUserPages = Math.ceil(registeredUsers.length / SUB_PAGE_SIZE);
+  const allUsersSelected = registeredUsers.length > 0 && registeredUsers.every(user => selectedEmails.has(user.email));
+  const toggleAllUsers = () => {
+    setSelectedEmails(prev => {
+      const next = new Set(prev);
+      const allSelected = registeredUsers.every(user => prev.has(user.email));
+      registeredUsers.forEach(user => allSelected ? next.delete(user.email) : next.add(user.email));
+      return next;
+    });
+  };
 
   useEffect(() => {
     let disposed = false;
@@ -263,7 +289,7 @@ function MailerSection() {
     try {
       const offset = pageNum * SUB_PAGE_SIZE;
       const data = await get<{ subscribers: Subscriber[]; total: number }>(`/nhk/subscribers?limit=${SUB_PAGE_SIZE}&offset=${offset}`);
-      setSubscribers(data.subscribers);
+      setSubscribers(data.subscribers.map(subscriber => ({ ...subscriber, email: subscriber.email.trim().toLowerCase() })));
       setTotalSubs(data.total);
     } catch {
       setError('Không thể tải danh sách subscribers.');
@@ -352,9 +378,37 @@ function MailerSection() {
           rows={8}
         />
 
+        <p>Đã chọn {selectedEmails.size} email. Email trùng giữa hai danh sách chỉ được gửi một lần.</p>
         <div className="mailer-subscribers">
           <div className="mailer-subscribers-header">
-            <h3>Chọn người nhận ({selectedEmails.size} đã chọn, {totalSubs} tổng cộng)</h3>
+            <h3>Tài khoản đã đăng ký ({registeredUsers.length})</h3>
+            <button type="button" className="btn-back" onClick={toggleAllUsers} disabled={loadingUsers || registeredUsers.length === 0}>
+              {allUsersSelected ? 'Bỏ chọn tất cả tài khoản' : 'Chọn tất cả tài khoản'}
+            </button>
+          </div>
+          {loadingUsers ? <p className="loading-text"><Spinner /> Đang tải...</p> : registeredUsers.length === 0 ? (
+            <p className="empty-state">Chưa có tài khoản nào.</p>
+          ) : <>
+            <div className="subscriber-list">
+              {visibleUsers.map(user => (
+                <label key={user.id} className="subscriber-item">
+                  <input type="checkbox" checked={selectedEmails.has(user.email)} onChange={() => toggleEmail(user.email)} />
+                  <span className="subscriber-email">{user.email}</span>
+                  <span className="subscriber-lang">{user.isAdmin ? 'Admin' : user.isVip ? 'Pro' : 'User'}</span>
+                </label>
+              ))}
+            </div>
+            {totalUserPages > 1 && <div className="pagination">
+              <button type="button" disabled={userPage === 0} onClick={() => setUserPage(page => page - 1)}>← Trước</button>
+              <span>{userPage + 1} / {totalUserPages}</span>
+              <button type="button" disabled={userPage >= totalUserPages - 1} onClick={() => setUserPage(page => page + 1)}>Sau →</button>
+            </div>}
+          </>}
+        </div>
+
+        <div className="mailer-subscribers">
+          <div className="mailer-subscribers-header">
+            <h3>Người đăng ký nhận tin ({totalSubs})</h3>
             <button type="button" className="btn-back" onClick={selectAll}>
               {subscribers.length > 0 && subscribers.every(s => selectedEmails.has(s.email)) ? 'Bỏ chọn trang này' : 'Chọn cả trang này'}
             </button>
