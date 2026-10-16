@@ -82,10 +82,14 @@ function ClassRegistrationForm({ course }: { course: string }) {
           <label htmlFor="class-phone">Số điện thoại</label>
           <input id="class-phone" name="phone" type="tel" autoComplete="tel" required maxLength={30} value={phone} onChange={e => setPhone(e.target.value)} />
           {error && <p className="form-error" role="alert">{error}</p>}
+          {course === 'it-passport' && <div className="workbook-option">
+            <Link className="btn-submit" to="/dang-ki-in-sach-bai-tap">Đăng kí in sách bài tập</Link>
+            <p>Không bắt buộc.</p>
+          </div>}
           <button type="submit" className="btn-submit" disabled={loading}>{loading ? 'Đang đăng kí...' : 'Đăng kí lớp học'}</button>
         </form>
       ))}
-      {course === 'it-passport' && <div className="workbook-option">
+      {course === 'it-passport' && saved && <div className="workbook-option">
         <Link className="btn-submit" to="/dang-ki-in-sach-bai-tap">Đăng kí in sách bài tập</Link>
         <p>Không bắt buộc.</p>
       </div>}
