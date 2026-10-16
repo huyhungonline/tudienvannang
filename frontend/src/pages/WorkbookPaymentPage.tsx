@@ -30,7 +30,7 @@ export function WorkbookPaymentPage() {
   return <div className="class-registration-page">
     <Link className="btn-back" to="/dang-ki-lop-hoc/it-passport">← Đăng kí lớp IT Passport</Link>
     <h2>Đăng kí in sách bài tập — Thanh toán</h2>
-    <p>Không bắt buộc.</p>
+    {!saved && <p>Không bắt buộc.</p>}
     {saved ? <p role="status">Đã lưu đăng kí in sách của bạn. Vui lòng chuyển khoản theo thông tin bên dưới.</p> :
       <form className="class-registration-form" onSubmit={submit}>
         <label htmlFor="workbook-name">Họ tên</label>
