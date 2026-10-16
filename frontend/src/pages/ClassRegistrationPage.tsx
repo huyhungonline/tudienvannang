@@ -1,5 +1,5 @@
 import { useRef, useState, type FormEvent } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { ApiError, post } from '../api/client';
 
 export const CLASS_NAMES: Record<string, string> = {
@@ -31,6 +31,7 @@ export function ClassRegistrationFormPage() {
 }
 
 function ClassRegistrationForm({ course }: { course: string }) {
+  const navigate = useNavigate();
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
@@ -44,6 +45,7 @@ function ClassRegistrationForm({ course }: { course: string }) {
   const submit = async (event: FormEvent) => {
     event.preventDefault();
     if (loading) return;
+    const goToWorkbook = (event.nativeEvent as SubmitEvent).submitter?.getAttribute('value') === 'workbook';
     setError('');
     const payload = { course, full_name: fullName.trim(), email: email.trim(), phone: phone.trim(), schedule: course === 'it-passport' ? schedule : null };
     if (course === 'it-passport' && !CLASS_SCHEDULES[schedule]) { setError('Vui lòng chọn lớp học.'); return; }
@@ -58,6 +60,7 @@ function ClassRegistrationForm({ course }: { course: string }) {
     try {
       await post('/classes/registrations', { ...payload, request_id: attempt.current!.id });
       setSaved(true);
+      if (goToWorkbook) navigate('/dang-ki-in-sach-bai-tap', { state: { fullName: payload.full_name, email: payload.email } });
     } catch (error) {
       setError(error instanceof ApiError && error.status === 409 && error.message === 'Lớp đã đầy, vui lòng chọn khung giờ khác'
         ? error.message
@@ -87,7 +90,7 @@ function ClassRegistrationForm({ course }: { course: string }) {
           <input id="class-phone" name="phone" type="tel" autoComplete="tel" required maxLength={30} value={phone} onChange={e => setPhone(e.target.value)} />
           {error && <p className="form-error" role="alert">{error}</p>}
           {course === 'it-passport' && <div className="workbook-option">
-            <Link className="btn-submit" to="/dang-ki-in-sach-bai-tap">Đăng kí in sách bài tập</Link>
+            <button type="submit" name="action" value="workbook" className="btn-submit" disabled={loading}>Đăng kí in sách bài tập</button>
             <p>Không bắt buộc.</p>
           </div>}
           <button type="submit" className="btn-submit" disabled={loading}>{loading ? 'Đang đăng kí...' : 'Đăng kí lớp học'}</button>
