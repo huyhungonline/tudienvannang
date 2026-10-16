@@ -38,7 +38,8 @@ export function WorkbookPaymentPage() {
         <label htmlFor="workbook-email">Email bạn đã đăng ký</label>
         <input id="workbook-email" type="email" autoComplete="email" required maxLength={254} value={email} onChange={e => setEmail(e.target.value)} />
         <label htmlFor="workbook-address">Nhập địa chỉ nhận sách bài tập &amp; luyện đề (bản dịch tiếng Việt)</label>
-        <textarea id="workbook-address" autoComplete="street-address" required maxLength={1000} rows={4} value={address} onChange={e => setAddress(e.target.value)} />
+        <textarea id="workbook-address" aria-describedby="workbook-address-hint" autoComplete="street-address" required maxLength={1000} rows={4} value={address} onChange={e => setAddress(e.target.value)} />
+        <small id="workbook-address-hint">Địa chỉ ở Nhật.</small>
         {error && <p className="form-error" role="alert">{error}</p>}
         <button className="btn-submit" type="submit" disabled={loading}>{loading ? 'Đang lưu...' : 'Lưu đăng kí in sách'}</button>
       </form>}
