@@ -7,6 +7,11 @@ export const CLASS_NAMES: Record<string, string> = {
   'kikai-hozen': 'Đăng kí luyện thi 機械保全技能検定',
 };
 
+export const CLASS_SCHEDULES: Record<string, string> = {
+  'sat-tue-20-22': 'Thứ 7 và thứ 3 từ 20h–22h',
+  'sun-thu-20-22': 'Chủ nhật và thứ 5 từ 20h–22h',
+};
+
 export function ClassRegistrationPage() {
   return (
     <div className="class-registration-page">
@@ -29,7 +34,7 @@ function ClassRegistrationForm({ course }: { course: string }) {
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
-  const [address, setAddress] = useState('');
+  const [schedule, setSchedule] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [saved, setSaved] = useState(false);
@@ -40,8 +45,9 @@ function ClassRegistrationForm({ course }: { course: string }) {
     event.preventDefault();
     if (loading) return;
     setError('');
-    const payload = { course, full_name: fullName.trim(), email: email.trim(), phone: phone.trim(), book_address: address.trim() };
-    if (!payload.full_name || !payload.book_address) { setError('Vui lòng nhập đầy đủ thông tin.'); return; }
+    const payload = { course, full_name: fullName.trim(), email: email.trim(), phone: phone.trim(), schedule: course === 'it-passport' ? schedule : null };
+    if (course === 'it-passport' && !CLASS_SCHEDULES[schedule]) { setError('Vui lòng chọn lớp học.'); return; }
+    if (!payload.full_name) { setError('Vui lòng nhập đầy đủ thông tin.'); return; }
     const digits = payload.phone.replace(/\D/g, '').length;
     if (digits < 6 || digits > 15 || !/^[\d+().\s-]+$/.test(payload.phone)) {
       setError('Vui lòng nhập số điện thoại hợp lệ (6–15 chữ số).'); return;
@@ -60,20 +66,29 @@ function ClassRegistrationForm({ course }: { course: string }) {
     <div className="class-registration-page">
       <Link to="/dang-ki-lop-hoc" className="btn-back">← Danh sách lớp học</Link>
       <h2>{title || 'Không tìm thấy lớp học'}</h2>
-      {title && (saved ? <p className="subscribe-success" role="status">Đã nhận đăng kí của bạn. Thông tin đã được lưu để liên hệ và nhận sách.</p> : (
+      {title && (saved ? <p className="subscribe-success" role="status">Đã nhận đăng kí của bạn. Thông tin đã được lưu để liên hệ.</p> : (
         <form className="class-registration-form" onSubmit={submit}>
+          {course === 'it-passport' && <>
+            <label htmlFor="class-schedule">Chọn lớp</label>
+            <select id="class-schedule" name="schedule" required value={schedule} onChange={e => setSchedule(e.target.value)}>
+              <option value="">-- Chọn lớp --</option>
+              {Object.entries(CLASS_SCHEDULES).map(([code, label]) => <option key={code} value={code}>{label}</option>)}
+            </select>
+          </>}
           <label htmlFor="class-full-name">Họ tên</label>
           <input id="class-full-name" name="name" autoComplete="name" required maxLength={150} value={fullName} onChange={e => setFullName(e.target.value)} />
           <label htmlFor="class-email">Email</label>
           <input id="class-email" name="email" type="email" autoComplete="email" required value={email} onChange={e => setEmail(e.target.value)} />
           <label htmlFor="class-phone">Số điện thoại</label>
           <input id="class-phone" name="phone" type="tel" autoComplete="tel" required maxLength={30} value={phone} onChange={e => setPhone(e.target.value)} />
-          <label htmlFor="class-address">Địa chỉ nhận sách</label>
-          <textarea id="class-address" name="address" autoComplete="street-address" required maxLength={1000} rows={4} value={address} onChange={e => setAddress(e.target.value)} />
           {error && <p className="form-error" role="alert">{error}</p>}
           <button type="submit" className="btn-submit" disabled={loading}>{loading ? 'Đang đăng kí...' : 'Đăng kí lớp học'}</button>
         </form>
       ))}
+      {course === 'it-passport' && <div className="workbook-option">
+        <Link className="btn-submit" to="/dang-ki-in-sach-bai-tap">Đăng kí in sách bài tập</Link>
+        <p>Không bắt buộc.</p>
+      </div>}
     </div>
   );
 }

@@ -78,6 +78,10 @@ body {
   margin: 0 auto;
 }
 
+.workbook-option { margin-top: 28px; }
+.workbook-option a { display: inline-block; text-decoration: none; }
+.workbook-payment { margin-top: 28px; padding: 20px; border: 1px solid #ddd; border-radius: 10px; }
+
 .class-registration-menu {
   display: grid;
   gap: 16px;
@@ -108,6 +112,7 @@ body {
 }
 
 .class-registration-form input,
+.class-registration-form select,
 .class-registration-form textarea {
   width: 100%;
   box-sizing: border-box;

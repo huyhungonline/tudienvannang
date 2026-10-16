@@ -21,6 +21,7 @@ import { CertificateVocabularyPage } from './pages/CertificateVocabularyPage';
 import { CertificateExamPage } from './pages/CertificateExamPage';
 import { RequireVipOrAdmin } from './components/RequireVipOrAdmin';
 import { ClassRegistrationPage, ClassRegistrationFormPage } from './pages/ClassRegistrationPage';
+import { WorkbookPaymentPage } from './pages/WorkbookPaymentPage';
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
             <Route path="/" element={<CertificateFieldsMenuPage />} />
             <Route path="/tra-cuu" element={<HomePage />} />
             <Route path="/dang-ki-lop-hoc" element={<ClassRegistrationPage />} />
+            <Route path="/dang-ki-in-sach-bai-tap" element={<WorkbookPaymentPage />} />
             <Route path="/dang-ki-lop-hoc/:course" element={<ClassRegistrationFormPage />} />
             <Route path="/books" element={<BooksPage />} />
             <Route path="/login" element={<LoginPage />} />

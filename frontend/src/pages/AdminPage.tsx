@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { get, post, put, del, uploadBookImage } from '../api/client';
 import { Spinner } from '../components/Spinner';
+import { CLASS_SCHEDULES } from './ClassRegistrationPage';
 
 interface AdminUser {
   id: string;
@@ -477,6 +478,7 @@ function MailerSection() {
 interface ClassRegistration {
   id: string;
   course: string;
+  schedule: string | null;
   full_name: string;
   email: string;
   phone: string;
@@ -505,11 +507,11 @@ function ClassRegistrationsManagement() {
     {error && <p className="form-error">{error}</p>}
     {loading ? <p><Spinner /> Đang tải...</p> : registrations.length === 0 ? <p>Chưa có đăng kí nào.</p> : <>
       <div style={{ overflowX: 'auto' }}><table className="admin-table">
-        <thead><tr><th>Lớp học</th><th>Họ tên</th><th>Email</th><th>Số điện thoại</th><th>Địa chỉ nhận sách</th><th>Ngày đăng kí</th></tr></thead>
+        <thead><tr><th>Lớp học</th><th>Lịch học</th><th>Họ tên</th><th>Email</th><th>Số điện thoại</th><th>Ngày đăng kí</th></tr></thead>
         <tbody>{registrations.map(item => <tr key={item.id}>
           <td>{item.course === 'it-passport' ? 'IT Passport miễn phí' : '機械保全技能検定'}</td>
+          <td>{item.schedule ? CLASS_SCHEDULES[item.schedule] || item.schedule : '—'}</td>
           <td>{item.full_name}</td><td>{item.email}</td><td>{item.phone}</td>
-          <td style={{ whiteSpace: 'pre-wrap' }}>{item.book_address}</td>
           <td>{new Date(item.created_at).toLocaleString()}</td>
         </tr>)}</tbody>
       </table></div>
