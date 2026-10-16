@@ -1,5 +1,5 @@
 from typing import Literal
-from uuid import UUID
+from uuid import UUID, uuid4
 
 from fastapi import APIRouter, Depends, HTTPException, Query
 from pydantic import BaseModel, EmailStr, Field, field_validator, model_validator
@@ -8,6 +8,24 @@ import db
 from routes.admin import require_admin
 
 router = APIRouter(prefix='/api/classes', tags=['class-registrations'])
+
+CLASS_SCHEDULE_LABELS = {
+    'sat-tue-20-22': 'Thứ 7 và thứ 3 từ 20h–22h',
+    'sun-thu-20-22': 'Chủ nhật và thứ 5 từ 20h–22h',
+}
+
+
+def registration_confirmation(full_name: str, schedule: str) -> tuple[str, str]:
+    return ('Xác nhận đăng kí lớp IT Passport miễn phí – Táo Giáo Dục',
+            f'Chào {full_name},\n\n'
+            'Bạn đã đăng kí thành công lớp luyện thi IT Passport miễn phí.\n\n'
+            f'Lịch học đã chọn: {CLASS_SCHEDULE_LABELS[schedule]}.\n'
+            'Lớp học dự kiến bắt đầu từ đầu tháng 11/2026.\n'
+            'Hình thức học: Online qua Google Meet. Link tham gia sẽ được gửi đến email bạn đã đăng ký trước khi lớp bắt đầu.\n\n'
+            'Nếu muốn đăng kí in sách bài tập và luyện đề (bản dịch tiếng Việt), bạn truy cập:\n'
+            'https://taogiaoduc.com/dang-ki-in-sach-bai-tap\n'
+            'Đăng kí in tài liệu không bắt buộc. Thông tin thanh toán được hiển thị trên trang đăng kí.\n\n'
+            'Hẹn gặp bạn trong lớp học!\nTáo Giáo Dục')
 
 
 class WorkbookOrderRequest(BaseModel):
@@ -93,6 +111,11 @@ async def register_class(body: RegistrationRequest):
                         raise HTTPException(status_code=409, detail='Lớp đã đầy, vui lòng chọn khung giờ khác')
                 await conn.execute('''INSERT INTO class_registrations
                     (id,course,full_name,email,phone,book_address,schedule) VALUES ($1,$2,$3,$4,$5,$6,$7)''', *values)
+                if body.course == 'it-passport':
+                    subject, content = registration_confirmation(body.full_name, body.schedule)
+                    job_id = uuid4()
+                    await conn.execute('INSERT INTO mail_jobs (id,subject,content) VALUES ($1,$2,$3)', job_id, subject, content)
+                    await conn.execute('INSERT INTO mail_job_recipients (job_id,email) VALUES ($1,$2)', job_id, str(body.email))
     return {'registrationId': str(body.request_id), 'message': 'Registration saved'}
 
 
