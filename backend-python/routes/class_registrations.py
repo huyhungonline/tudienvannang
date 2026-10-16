@@ -77,13 +77,22 @@ class RegistrationRequest(BaseModel):
 @router.post('/registrations', status_code=201)
 async def register_class(body: RegistrationRequest):
     values = (body.request_id, body.course, body.full_name, str(body.email), body.phone, body.book_address, body.schedule)
-    row = await db.query_one('''INSERT INTO class_registrations
-        (id,course,full_name,email,phone,book_address,schedule) VALUES ($1,$2,$3,$4,$5,$6,$7)
-        ON CONFLICT (id) DO NOTHING RETURNING id''', *values)
-    if not row:
-        existing = await db.query_one('SELECT course,full_name,email,phone,book_address,schedule FROM class_registrations WHERE id=$1', body.request_id)
-        if tuple(existing[key] for key in ('course', 'full_name', 'email', 'phone', 'book_address', 'schedule')) != values[1:]:
-            raise HTTPException(status_code=409, detail='Request ID already used')
+    pool = await db.get_pool()
+    async with pool.acquire() as conn:
+        async with conn.transaction():
+            # Serialize registration writes so concurrent requests cannot take the last seat twice.
+            await conn.execute('LOCK TABLE class_registrations IN SHARE ROW EXCLUSIVE MODE')
+            existing = await conn.fetchrow('SELECT course,full_name,email,phone,book_address,schedule FROM class_registrations WHERE id=$1', body.request_id)
+            if existing:
+                if tuple(existing[key] for key in ('course', 'full_name', 'email', 'phone', 'book_address', 'schedule')) != values[1:]:
+                    raise HTTPException(status_code=409, detail='Request ID already used')
+            else:
+                if body.course == 'it-passport':
+                    count = await conn.fetchval('SELECT COUNT(*) FROM class_registrations WHERE course=$1 AND schedule=$2', body.course, body.schedule)
+                    if count >= 110:
+                        raise HTTPException(status_code=409, detail='Lớp đã đầy, vui lòng chọn khung giờ khác')
+                await conn.execute('''INSERT INTO class_registrations
+                    (id,course,full_name,email,phone,book_address,schedule) VALUES ($1,$2,$3,$4,$5,$6,$7)''', *values)
     return {'registrationId': str(body.request_id), 'message': 'Registration saved'}
 
 

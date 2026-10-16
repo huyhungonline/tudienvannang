@@ -22,7 +22,7 @@ async function request<T>(method: string, path: string, body?: unknown): Promise
 
   if (!response.ok) {
     const error = await response.json().catch(() => ({ error: 'Request failed' }));
-    throw new ApiError(response.status, error.error || 'Request failed');
+    throw new ApiError(response.status, error.error || (typeof error.detail === 'string' ? error.detail : 'Request failed'));
   }
 
   return response.json();

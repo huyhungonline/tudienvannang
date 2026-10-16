@@ -1,6 +1,6 @@
 import { useRef, useState, type FormEvent } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { post } from '../api/client';
+import { ApiError, post } from '../api/client';
 
 export const CLASS_NAMES: Record<string, string> = {
   'it-passport': 'Đăng kí luyện thi IT Passport miễn phí',
@@ -58,7 +58,11 @@ function ClassRegistrationForm({ course }: { course: string }) {
     try {
       await post('/classes/registrations', { ...payload, request_id: attempt.current!.id });
       setSaved(true);
-    } catch { setError('Chưa thể xác nhận đăng kí. Vui lòng thử lại; hệ thống sẽ tránh lưu trùng yêu cầu.'); }
+    } catch (error) {
+      setError(error instanceof ApiError && error.status === 409 && error.message === 'Lớp đã đầy, vui lòng chọn khung giờ khác'
+        ? error.message
+        : 'Chưa thể xác nhận đăng kí. Vui lòng thử lại; hệ thống sẽ tránh lưu trùng yêu cầu.');
+    }
     finally { setLoading(false); }
   };
 

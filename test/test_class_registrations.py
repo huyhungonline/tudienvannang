@@ -62,6 +62,25 @@ async def main():
             response = (await client.get('/api/classes/registrations')).json()
             assert response['total'] == 3
             assert any(row['schedule'] == 'sun-thu-20-22' for row in response['registrations'])
+            # Fill each slot to 109, then race five new registrations for its last seat.
+            await db.execute('TRUNCATE class_registrations')
+            for schedule in ('sat-tue-20-22', 'sun-thu-20-22'):
+                for _ in range(109):
+                    await db.execute('''INSERT INTO class_registrations
+                        (id,course,full_name,email,phone,book_address,schedule)
+                        VALUES ($1,'it-passport','Test','test@example.com','0901234567','',$2)''', uuid.uuid4(), schedule)
+                requests = [{**payload, 'request_id': str(uuid.uuid4()), 'schedule': schedule} for _ in range(5)]
+                results = await asyncio.gather(*(client.post('/api/classes/registrations', json=item) for item in requests))
+                assert [r.status_code for r in results].count(201) == 1
+                assert [r.status_code for r in results].count(409) == 4
+                for response in results:
+                    if response.status_code == 409:
+                        assert response.json()['detail'] == 'Lớp đã đầy, vui lòng chọn khung giờ khác'
+                winner = requests[next(i for i, response in enumerate(results) if response.status_code == 201)]
+                assert (await client.post('/api/classes/registrations', json=winner)).status_code == 201
+                count = await db.query_one('SELECT COUNT(*) AS total FROM class_registrations WHERE schedule=$1', schedule)
+                assert count['total'] == 110
+            assert (await client.post('/api/classes/registrations', json={**second, 'request_id': str(uuid.uuid4())})).status_code == 201
         print('PASS: both courses, validation, duplicate request, admin-only list, persisted fields and pagination')
     finally:
         await db.close_pool()
