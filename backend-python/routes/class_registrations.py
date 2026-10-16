@@ -16,11 +16,15 @@ CLASS_SCHEDULE_LABELS = {
 
 
 def registration_confirmation(full_name: str, schedule: str) -> tuple[str, str]:
+    first_lesson = {
+        'sun-thu-20-22': '01/11/2026',
+        'sat-tue-20-22': '03/11/2026',
+    }[schedule]
     return ('Xác nhận đăng kí lớp IT Passport miễn phí – Táo Giáo Dục',
             f'Chào {full_name},\n\n'
             'Bạn đã đăng kí thành công lớp luyện thi IT Passport miễn phí.\n\n'
             f'Lịch học đã chọn: {CLASS_SCHEDULE_LABELS[schedule]}.\n'
-            'Lớp học dự kiến bắt đầu từ đầu tháng 11/2026.\n'
+            f'Buổi học đầu tiên: ngày {first_lesson}, từ 20h–22h.\n'
             'Hình thức học: Online qua Google Meet. Link tham gia sẽ được gửi đến email bạn đã đăng ký trước khi lớp bắt đầu.\n\n'
             'Nếu muốn đăng kí in sách bài tập và luyện đề (bản dịch tiếng Việt), bạn truy cập:\n'
             'https://taogiaoduc.com/dang-ki-in-sach-bai-tap\n'

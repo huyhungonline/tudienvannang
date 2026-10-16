@@ -42,6 +42,7 @@ async def main():
             assert len(queued) == 1 and queued[0]['email'] == payload['email']
             assert 'Thứ 7 và thứ 3 từ 20h–22h' in queued[0]['content']
             assert 'Google Meet' in queued[0]['content']
+            assert '03/11/2026' in queued[0]['content']
             assert (await client.post('/api/classes/registrations', json={**payload, 'course': 'kikai-hozen', 'schedule': None})).status_code == 409
             assert (await client.post('/api/classes/registrations', json={**payload, 'schedule': 'sun-thu-20-22'})).status_code == 409
             for schedule in [None, '', 'unknown']:
@@ -69,6 +70,7 @@ async def main():
             assert response['total'] == 3
             assert any(row['schedule'] == 'sun-thu-20-22' for row in response['registrations'])
             assert any('Chủ nhật và thứ 5 từ 20h–22h' in job['content'] for job in await db.query('SELECT content FROM mail_jobs'))
+            assert any('01/11/2026' in job['content'] for job in await db.query('SELECT content FROM mail_jobs'))
             # Fill each slot to 109, then race five new registrations for its last seat.
             await db.execute('TRUNCATE class_registrations')
             for schedule in ('sat-tue-20-22', 'sun-thu-20-22'):
