@@ -34,6 +34,14 @@ async def register_workbook(body: WorkbookOrderRequest):
     return {'orderId': str(body.request_id), 'message': 'Workbook registration saved'}
 
 
+@router.get('/workbook-orders')
+async def list_workbook_orders(limit: int = Query(50, ge=1, le=100), offset: int = Query(0, ge=0), _: str = Depends(require_admin)):
+    rows = await db.query('''SELECT id,full_name,email,book_address,created_at
+        FROM workbook_orders ORDER BY created_at DESC,id LIMIT $1 OFFSET $2''', limit, offset)
+    total = await db.query_one('SELECT COUNT(*) AS total FROM workbook_orders')
+    return {'orders': rows, 'total': total['total']}
+
+
 class RegistrationRequest(BaseModel):
     request_id: UUID
     course: Literal['it-passport', 'kikai-hozen']

@@ -4,6 +4,7 @@ import { useAuth } from '../context/AuthContext';
 import { get, post, put, del, uploadBookImage } from '../api/client';
 import { Spinner } from '../components/Spinner';
 import { CLASS_SCHEDULES } from './ClassRegistrationPage';
+import { WorkbookOrdersManagement } from './WorkbookOrdersManagement';
 
 interface AdminUser {
   id: string;
@@ -20,7 +21,7 @@ interface Subscriber {
   created_at: string | null;
 }
 
-type AdminView = 'menu' | 'users' | 'mailer' | 'questions' | 'reading' | 'books' | 'class-registrations';
+type AdminView = 'menu' | 'users' | 'mailer' | 'questions' | 'reading' | 'books' | 'class-registrations' | 'workbook-orders';
 
 export function AdminPage() {
   const { isAuthenticated } = useAuth();
@@ -47,6 +48,9 @@ export function AdminPage() {
           <button className="admin-menu-item" onClick={() => setView('class-registrations')}>
             Đăng kí lớp học
           </button>
+          <button className="admin-menu-item" onClick={() => setView('workbook-orders')}>
+            Danh sách đăng kí mua sách
+          </button>
           <button className="admin-menu-item" onClick={() => setView('questions')}>
             📝 Classroom Questions
           </button>
@@ -67,6 +71,7 @@ export function AdminPage() {
       {view === 'users' && <UserManagement />}
       {view === 'mailer' && <MailerSection />}
       {view === 'class-registrations' && <ClassRegistrationsManagement />}
+      {view === 'workbook-orders' && <WorkbookOrdersManagement />}
       {view === 'questions' && <QuestionsManagement />}
       {view === 'reading' && <ReadingPostsManagement />}
       {view === 'books' && <BooksManagement />}
