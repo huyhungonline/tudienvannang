@@ -118,7 +118,7 @@ export function WorkbookOrdersManagement() {
               </div>
               {order.shipped_at && <small>{new Date(order.shipped_at).toLocaleString('vi-VN', { timeZone: 'Asia/Tokyo' })}</small>}
               <div><button type="button" disabled={savingId !== null || deletingId !== null} onClick={() => toggleShipping(order)}>
-                {savingId === order.id ? 'Đang lưu...' : order.shipped_at ? 'Bỏ đánh dấu đã gửi sách' : 'Đánh dấu đã gửi sách'}
+                {savingId === order.id ? 'Đang lưu...' : order.shipped_at ? 'Bỏ đánh dấu đã gửi sách' : 'Đã gửi'}
               </button></div>
             </td>
             <td><button type="button" disabled={savingId !== null || deletingId !== null} onClick={() => deleteOrder(order)}>

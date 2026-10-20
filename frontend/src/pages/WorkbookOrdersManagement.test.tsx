@@ -82,7 +82,7 @@ it('marks a shipment and allows undoing it', async () => {
   vi.mocked(put).mockResolvedValueOnce({ id: order.id, shipped_at: '2026-10-20T01:00:00Z' })
     .mockResolvedValueOnce({ id: order.id, shipped_at: null });
   render(<WorkbookOrdersManagement />);
-  await userEvent.click(await screen.findByRole('button', { name: 'Đánh dấu đã gửi sách' }));
+  await userEvent.click(await screen.findByRole('button', { name: 'Đã gửi' }));
   await screen.findByText('Đã gửi sách');
   expect(put).toHaveBeenLastCalledWith('/classes/workbook-orders/order-1/shipping', { shipped: true });
   await userEvent.click(screen.getByRole('button', { name: 'Bỏ đánh dấu đã gửi sách' }));
@@ -94,8 +94,8 @@ it('keeps shipment status when saving fails', async () => {
   vi.mocked(get).mockResolvedValue({ orders: [{ ...order, shipped_at: null }], total: 1 });
   vi.mocked(put).mockRejectedValue(new Error('Network unavailable'));
   render(<WorkbookOrdersManagement />);
-  await userEvent.click(await screen.findByRole('button', { name: 'Đánh dấu đã gửi sách' }));
+  await userEvent.click(await screen.findByRole('button', { name: 'Đã gửi' }));
   await screen.findByText('Không thể cập nhật trạng thái gửi sách. Vui lòng thử lại.');
   expect(screen.getByText('Chưa gửi sách')).toBeInTheDocument();
-  expect(screen.getByRole('button', { name: 'Đánh dấu đã gửi sách' })).toBeEnabled();
+  expect(screen.getByRole('button', { name: 'Đã gửi' })).toBeEnabled();
 });
