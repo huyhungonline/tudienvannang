@@ -1,0 +1,1 @@
+ALTER TABLE workbook_orders ADD COLUMN IF NOT EXISTS paid_at TIMESTAMPTZ;

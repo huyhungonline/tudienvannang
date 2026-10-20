@@ -2069,6 +2069,26 @@ body {
   vertical-align: middle;
 }
 
+.class-registrations-scroll {
+  max-width: 100%;
+  overflow-x: auto;
+  isolation: isolate;
+}
+
+.class-registrations-table .registration-actions {
+  position: sticky;
+  left: 0;
+  z-index: 1;
+  min-width: 100px;
+  white-space: nowrap;
+  background: #fff;
+  box-shadow: 2px 0 4px rgb(0 0 0 / 8%);
+}
+
+.class-registrations-table th.registration-actions {
+  background: #fafafa;
+}
+
 .admin-table .btn-delete {
   border: 1px solid #dc2626;
   color: #dc2626;

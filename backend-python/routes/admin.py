@@ -1,11 +1,12 @@
 import uuid
-from fastapi import APIRouter, HTTPException, Depends
+from fastapi import APIRouter, HTTPException, Depends, BackgroundTasks
 from pydantic import BaseModel
 from typing import Optional
 
 import db
 from middleware.auth import get_current_user
 from services.auth_service import validate_email, validate_password
+from services.email_service import send_pro_upgrade_email
 
 router = APIRouter(prefix="/api/admin")
 
@@ -76,7 +77,7 @@ async def create_user(body: CreateUserRequest, _: str = Depends(require_admin)):
 
 
 @router.put("/users/{user_id}")
-async def update_user(user_id: str, body: UpdateUserRequest, _: str = Depends(require_admin)):
+async def update_user(user_id: str, body: UpdateUserRequest, background_tasks: BackgroundTasks, _: str = Depends(require_admin)):
     uid = uuid.UUID(user_id)
     existing = await db.query_one("SELECT id FROM users WHERE id = $1", uid)
     if not existing:
@@ -100,7 +101,15 @@ async def update_user(user_id: str, body: UpdateUserRequest, _: str = Depends(re
     if body.isAdmin is not None:
         await db.execute("UPDATE users SET is_admin = $1 WHERE id = $2", body.isAdmin, uid)
 
-    if body.isVip is not None:
+    if body.isVip is True:
+        # Only one request can perform this transition, avoiding duplicate mail.
+        upgraded = await db.query_one(
+            "UPDATE users SET is_vip = TRUE WHERE id = $1 AND is_vip IS DISTINCT FROM TRUE RETURNING email",
+            uid,
+        )
+        if upgraded:
+            background_tasks.add_task(send_pro_upgrade_email, upgraded["email"])
+    elif body.isVip is not None:
         await db.execute("UPDATE users SET is_vip = $1 WHERE id = $2", body.isVip, uid)
 
     return {"message": "User updated"}

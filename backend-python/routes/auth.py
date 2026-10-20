@@ -1,8 +1,8 @@
-from fastapi import APIRouter, HTTPException, Depends
+from fastapi import APIRouter, HTTPException, Depends, BackgroundTasks
 from pydantic import BaseModel
 from models import AuthRequest
 from services import auth_service
-from services.email_service import send_password_reset_email, send_email
+from services.email_service import send_password_reset_email, send_email, send_welcome_email
 from middleware.auth import get_current_user
 import db
 import secrets
@@ -34,9 +34,10 @@ async def test_email_endpoint():
 
 
 @router.post("/register", status_code=201)
-async def register(body: AuthRequest):
+async def register(body: AuthRequest, background_tasks: BackgroundTasks):
     try:
         result = await auth_service.register(body.email, body.password, body.captchaToken)
+        background_tasks.add_task(send_welcome_email, result["user"]["email"])
         return result
     except PermissionError as e:
         raise HTTPException(status_code=403, detail=str(e))

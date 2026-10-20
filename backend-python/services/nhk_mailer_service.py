@@ -6,10 +6,10 @@ and sends HTML emails with word breakdown tables.
 """
 import asyncio
 import logging
-import os
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
+from email.utils import formataddr
 from functools import partial
 
 from deep_translator import GoogleTranslator
@@ -21,11 +21,7 @@ from services.tokenizer_service import tokenize
 logger = logging.getLogger(__name__)
 
 # SMTP configuration
-SMTP_HOST = os.getenv("SMTP_HOST", "pro205.emailserver.vn")
-SMTP_PORT = int(os.getenv("SMTP_PORT", "465"))
-SMTP_USER = os.getenv("SMTP_USER", "admin@jaenglish.com")
-SMTP_PASSWORD = os.getenv("SMTP_PASSWORD", "")
-FROM_EMAIL = os.getenv("FROM_EMAIL", "admin@jaenglish.com")
+from config import SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASSWORD, FROM_EMAIL, FROM_NAME
 
 # Limit tokens per article to avoid rate limiting
 MAX_TOKENS_PER_ARTICLE = 30
@@ -47,7 +43,7 @@ async def _translate_from_ja(word: str, target_lang: str) -> str:
 def _send_html_email(to: str, subject: str, html_body: str) -> bool:
     """Send an HTML email via SMTP SSL."""
     msg = MIMEMultipart("alternative")
-    msg["From"] = FROM_EMAIL
+    msg["From"] = formataddr((FROM_NAME, FROM_EMAIL))
     msg["To"] = to
     msg["Subject"] = subject
     # Add plain text fallback

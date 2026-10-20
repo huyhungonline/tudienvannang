@@ -46,7 +46,7 @@ export function WorkbookPaymentPage() {
     <section className="workbook-payment">
       <h3>Thông tin thanh toán</h3>
       <p>Thanh toán chuyển khoản vào tài khoản sau:</p>
-      <p>Phí photo tài liệu: <strong>350.000 đồng</strong></p>
+      <p>Phí photo tài liệu: <strong>360.000 đồng</strong></p>
       <p>Ngân hàng: <strong>BIDV</strong></p>
       <p>Số TK: <strong>8865150623</strong></p>
       <p>Chủ TK: <strong>NGUYEN HUY HUNG</strong></p>

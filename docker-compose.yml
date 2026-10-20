@@ -28,11 +28,12 @@ services:
       - RECAPTCHA_SECRET_KEY=${RECAPTCHA_SECRET_KEY}
       - AUDIO_FILES_PATH=/audio
       - BOOK_IMAGES_PATH=/book_images
-      - SMTP_HOST=${SMTP_HOST:-pro205.emailserver.vn}
+      - SMTP_HOST=${SMTP_HOST:-pro203.emailserver.vn}
       - SMTP_PORT=${SMTP_PORT:-465}
       - SMTP_USER=${SMTP_USER:-admin@jaenglish.com}
-      - SMTP_PASSWORD=${SMTP_PASSWORD:-Kmno4kclo3!123}
+      - SMTP_PASSWORD=${SMTP_PASSWORD}
       - FROM_EMAIL=${FROM_EMAIL:-admin@jaenglish.com}
+      - FROM_NAME=${FROM_NAME:-Táo Giáo Dục}
       - APP_URL=${APP_URL:-https://jaenglish.com}
     volumes:
       - ./audio:/audio

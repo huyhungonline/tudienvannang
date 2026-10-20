@@ -12,6 +12,7 @@ from routes import words, audio, auth, history, reading_posts, admin, nhk_news, 
 from services.nhk_mailer_service import send_daily_news
 from services.mail_queue_service import run_mail_queue
 from routes import class_registrations
+from routes import email_contacts
 
 logger = logging.getLogger(__name__)
 
@@ -82,6 +83,7 @@ app.include_router(classroom.router)
 app.include_router(books.router)
 app.include_router(certificates.router)
 app.include_router(class_registrations.router)
+app.include_router(email_contacts.router)
 
 
 @app.get("/api/health")

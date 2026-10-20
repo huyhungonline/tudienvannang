@@ -5,6 +5,7 @@ import { get, post, put, del, uploadBookImage } from '../api/client';
 import { Spinner } from '../components/Spinner';
 import { CLASS_SCHEDULES } from './ClassRegistrationPage';
 import { WorkbookOrdersManagement } from './WorkbookOrdersManagement';
+import { EmailContactsManagement } from './EmailContactsManagement';
 
 interface AdminUser {
   id: string;
@@ -21,7 +22,7 @@ interface Subscriber {
   created_at: string | null;
 }
 
-type AdminView = 'menu' | 'users' | 'mailer' | 'questions' | 'reading' | 'books' | 'class-registrations' | 'workbook-orders';
+type AdminView = 'menu' | 'users' | 'mailer' | 'questions' | 'reading' | 'books' | 'class-registrations' | 'workbook-orders' | 'email-contacts';
 
 export function AdminPage() {
   const { isAuthenticated } = useAuth();
@@ -44,6 +45,9 @@ export function AdminPage() {
           </button>
           <button className="admin-menu-item" onClick={() => setView('mailer')}>
             ✉️ Gửi mail cho User
+          </button>
+          <button className="admin-menu-item" onClick={() => setView('email-contacts')}>
+            Nhập mail user
           </button>
           <button className="admin-menu-item" onClick={() => setView('class-registrations')}>
             Đăng kí lớp học
@@ -70,6 +74,7 @@ export function AdminPage() {
       <button className="btn-back" onClick={() => setView('menu')}>← Quay lại</button>
       {view === 'users' && <UserManagement />}
       {view === 'mailer' && <MailerSection />}
+      {view === 'email-contacts' && <EmailContactsManagement />}
       {view === 'class-registrations' && <ClassRegistrationsManagement />}
       {view === 'workbook-orders' && <WorkbookOrdersManagement />}
       {view === 'questions' && <QuestionsManagement />}
@@ -491,29 +496,68 @@ interface ClassRegistration {
   created_at: string;
 }
 
-function ClassRegistrationsManagement() {
+export function ClassRegistrationsManagement() {
   const [registrations, setRegistrations] = useState<ClassRegistration[]>([]);
+  const [counts, setCounts] = useState<{ course: string; schedule: string | null; count: number }[]>([]);
   const [page, setPage] = useState(0);
   const [total, setTotal] = useState(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+  const [reload, setReload] = useState(0);
+  const [deletingId, setDeletingId] = useState<string | null>(null);
+  const [deleteError, setDeleteError] = useState('');
+
+  async function deleteRegistration(item: ClassRegistration) {
+    if (deletingId || loading) return;
+    if (!window.confirm(`Xóa đăng kí lớp học của ${item.full_name} (${item.email})? Thao tác này không thể hoàn tác.`)) return;
+    setDeletingId(item.id);
+    setDeleteError('');
+    try {
+      await del(`/classes/registrations/${item.id}`);
+      if (registrations.length === 1 && page > 0) setPage(value => value - 1);
+      else setReload(value => value + 1);
+    } catch {
+      setDeleteError('Không thể xóa đăng kí lớp học. Vui lòng thử lại.');
+    } finally {
+      setDeletingId(null);
+    }
+  }
   useEffect(() => {
     let disposed = false;
     setLoading(true);
     setError('');
-    get<{ registrations: ClassRegistration[]; total: number }>(`/classes/registrations?limit=50&offset=${page * 50}`)
-      .then(data => { if (!disposed) { setRegistrations(data.registrations); setTotal(data.total); } })
+    get<{ registrations: ClassRegistration[]; total: number; counts: typeof counts }>(`/classes/registrations?limit=50&offset=${page * 50}`)
+      .then(data => { if (!disposed) { setRegistrations(data.registrations); setTotal(data.total); setCounts(data.counts); } })
       .catch(() => { if (!disposed) setError('Không thể tải danh sách đăng kí.'); })
       .finally(() => { if (!disposed) setLoading(false); });
     return () => { disposed = true; };
-  }, [page]);
+  }, [page, reload]);
   return <div>
-    <h2>Đăng kí lớp học ({total})</h2>
+    <div className="admin-header">
+      <h2>Đăng kí lớp học ({total})</h2>
+      <button type="button" disabled={loading || deletingId !== null} onClick={() => { setPage(0); setReload(value => value + 1); }}>
+        {loading ? 'Đang tải...' : 'Tải lại'}
+      </button>
+    </div>
+    {deleteError && <p className="form-error" role="alert">{deleteError}</p>}
+    {!loading && !error && <section aria-label="Số lượng đăng kí theo lớp">
+      <h3>Số lượng đăng kí theo lớp</h3>
+      <p><strong>IT Passport: {counts.filter(item => item.course === 'it-passport').reduce((sum, item) => sum + item.count, 0)} người</strong></p>
+      <ul>
+        {Object.entries(CLASS_SCHEDULES).map(([code, label]) => <li key={code}>
+          {label}: <strong>{counts.find(item => item.course === 'it-passport' && item.schedule === code)?.count ?? 0} người</strong>
+        </li>)}
+      </ul>
+      <p><strong>機械保全技能検定: {counts.filter(item => item.course === 'kikai-hozen').reduce((sum, item) => sum + item.count, 0)} người</strong></p>
+    </section>}
     {error && <p className="form-error">{error}</p>}
     {loading ? <p><Spinner /> Đang tải...</p> : registrations.length === 0 ? <p>Chưa có đăng kí nào.</p> : <>
-      <div style={{ overflowX: 'auto' }}><table className="admin-table">
-        <thead><tr><th>Lớp học</th><th>Lịch học</th><th>Họ tên</th><th>Email</th><th>Số điện thoại</th><th>Ngày đăng kí</th></tr></thead>
+      <div className="class-registrations-scroll"><table className="admin-table class-registrations-table">
+        <thead><tr><th className="registration-actions">Thao tác</th><th>Lớp học</th><th>Lịch học</th><th>Họ tên</th><th>Email</th><th>Số điện thoại</th><th>Ngày đăng kí</th></tr></thead>
         <tbody>{registrations.map(item => <tr key={item.id}>
+          <td className="registration-actions"><button className="btn-delete" type="button" disabled={deletingId !== null} onClick={() => deleteRegistration(item)}>
+            {deletingId === item.id ? 'Đang xóa...' : 'Xóa'}
+          </button></td>
           <td>{item.course === 'it-passport' ? 'IT Passport miễn phí' : '機械保全技能検定'}</td>
           <td>{item.schedule ? CLASS_SCHEDULES[item.schedule] || item.schedule : '—'}</td>
           <td>{item.full_name}</td><td>{item.email}</td><td>{item.phone}</td>
@@ -521,9 +565,9 @@ function ClassRegistrationsManagement() {
         </tr>)}</tbody>
       </table></div>
       <div className="pagination">
-        <button disabled={page === 0} onClick={() => setPage(value => value - 1)}>← Trước</button>
+        <button disabled={page === 0 || deletingId !== null} onClick={() => setPage(value => value - 1)}>← Trước</button>
         <span>{page + 1} / {Math.ceil(total / 50)}</span>
-        <button disabled={(page + 1) * 50 >= total} onClick={() => setPage(value => value + 1)}>Sau →</button>
+        <button disabled={(page + 1) * 50 >= total || deletingId !== null} onClick={() => setPage(value => value + 1)}>Sau →</button>
       </div>
     </>}
   </div>;

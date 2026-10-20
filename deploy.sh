@@ -15,15 +15,20 @@ git commit -m "$COMMIT_MSG" || echo "Nothing to commit"
 git push origin main
 
 echo ""
-echo "=== [2/4] Sync .env lên VPS ==="
-scp .env ${VPS_USER}@${VPS_HOST}:${VPS_DIR}/.env
-echo "✅ .env synced"
+echo "=== [2/4] Kiểm tra .env trên VPS ==="
+ssh "${VPS_USER}@${VPS_HOST}" "test -f '${VPS_DIR}/.env'" || {
+    echo "Thiếu .env trên VPS. Hãy cấu hình file này trước khi deploy."
+    exit 1
+}
+echo "Giữ nguyên .env trên VPS; không chép đè cấu hình khi deploy."
 
 echo ""
 echo "=== [3/4] SSH vào VPS: pull + rebuild ==="
 ssh ${VPS_USER}@${VPS_HOST} << 'REMOTE'
+set -e
 cd /root/tudienvannang
 git pull origin main
+docker compose config --quiet
 
 echo ""
 echo "=== [4/4] Rebuild Docker ==="

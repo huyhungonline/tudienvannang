@@ -2,7 +2,7 @@ from typing import Literal
 from uuid import UUID, uuid4
 
 from fastapi import APIRouter, Depends, HTTPException, Query
-from pydantic import BaseModel, EmailStr, Field, field_validator, model_validator
+from pydantic import BaseModel, EmailStr, Field, StrictBool, field_validator, model_validator
 
 import db
 from routes.admin import require_admin
@@ -58,10 +58,32 @@ async def register_workbook(body: WorkbookOrderRequest):
 
 @router.get('/workbook-orders')
 async def list_workbook_orders(limit: int = Query(50, ge=1, le=100), offset: int = Query(0, ge=0), _: str = Depends(require_admin)):
-    rows = await db.query('''SELECT id,full_name,email,book_address,created_at
+    rows = await db.query('''SELECT id,full_name,email,book_address,created_at,paid_at
         FROM workbook_orders ORDER BY created_at DESC,id LIMIT $1 OFFSET $2''', limit, offset)
     total = await db.query_one('SELECT COUNT(*) AS total FROM workbook_orders')
     return {'orders': rows, 'total': total['total']}
+
+
+class WorkbookPaymentRequest(BaseModel):
+    paid: StrictBool
+
+
+@router.delete('/workbook-orders/{order_id}')
+async def delete_workbook_order(order_id: UUID, _: str = Depends(require_admin)):
+    row = await db.query_one('DELETE FROM workbook_orders WHERE id = $1 RETURNING id', order_id)
+    if not row:
+        raise HTTPException(status_code=404, detail='Workbook order not found')
+    return {'message': 'Workbook order deleted'}
+
+
+@router.put('/workbook-orders/{order_id}/payment')
+async def update_workbook_payment(order_id: UUID, body: WorkbookPaymentRequest, _: str = Depends(require_admin)):
+    row = await db.query_one('''UPDATE workbook_orders
+        SET paid_at = CASE WHEN $2 THEN COALESCE(paid_at, NOW()) ELSE NULL END
+        WHERE id = $1 RETURNING id, paid_at''', order_id, body.paid)
+    if not row:
+        raise HTTPException(status_code=404, detail='Workbook order not found')
+    return row
 
 
 class RegistrationRequest(BaseModel):
@@ -127,5 +149,14 @@ async def register_class(body: RegistrationRequest):
 async def list_registrations(limit: int = Query(50, ge=1, le=100), offset: int = Query(0, ge=0), _: str = Depends(require_admin)):
     rows = await db.query('''SELECT id,course,full_name,email,phone,book_address,schedule,created_at
         FROM class_registrations ORDER BY created_at DESC,id LIMIT $1 OFFSET $2''', limit, offset)
-    total = await db.query_one('SELECT COUNT(*) AS total FROM class_registrations')
-    return {'registrations': rows, 'total': total['total']}
+    counts = await db.query('''SELECT course, schedule, COUNT(*) AS count
+        FROM class_registrations GROUP BY course, schedule ORDER BY course, schedule''')
+    return {'registrations': rows, 'total': sum(item['count'] for item in counts), 'counts': counts}
+
+
+@router.delete('/registrations/{registration_id}')
+async def delete_class_registration(registration_id: UUID, _: str = Depends(require_admin)):
+    row = await db.query_one('DELETE FROM class_registrations WHERE id = $1 RETURNING id', registration_id)
+    if not row:
+        raise HTTPException(status_code=404, detail='Class registration not found')
+    return {'message': 'Class registration deleted'}
