@@ -19,7 +19,7 @@ async def main():
     await conn.execute(f'CREATE SCHEMA {schema}')
     db._pool = await asyncpg.create_pool(DATABASE_URL, server_settings={'search_path': schema})
     try:
-        for migration in ('033_workbook_orders.sql', '034_workbook_order_payment.sql', '034_workbook_order_payment.sql'):
+        for migration in ('033_workbook_orders.sql', '034_workbook_order_payment.sql', '035_workbook_order_shipping.sql', '035_workbook_order_shipping.sql'):
             await db.execute((root / 'backend-python/migrations' / migration).read_text())
         await db.execute('CREATE TABLE users (id UUID PRIMARY KEY, is_admin BOOLEAN NOT NULL)')
         admin_id, user_id, order_id = uuid.uuid4(), uuid.uuid4(), uuid.uuid4()
@@ -49,6 +49,22 @@ async def main():
             undone = await client.put(endpoint, headers=headers, json={'paid': False})
             assert undone.status_code == 200 and undone.json()['paid_at'] is None
             assert await conn.fetchval(f'SELECT paid_at FROM {schema}.workbook_orders WHERE id=$1', order_id) is None
+            shipping = f'/api/classes/workbook-orders/{order_id}/shipping'
+            assert (await client.put(shipping, json={'shipped': True})).status_code == 401
+            assert (await client.put(shipping, headers=user_headers, json={'shipped': True})).status_code == 403
+            shipped = await client.put(shipping, headers=headers, json={'shipped': True})
+            assert shipped.status_code == 200 and shipped.json()['shipped_at'], shipped.text
+            repeated = await client.put(shipping, headers=headers, json={'shipped': True})
+            assert repeated.json()['shipped_at'] == shipped.json()['shipped_at']
+            listed = await client.get('/api/classes/workbook-orders', headers=headers)
+            assert listed.json()['orders'][0]['shipped_at'] == shipped.json()['shipped_at']
+            assert listed.json()['orders'][0]['paid_at'] is None
+            for value in ('true', 1, None):
+                assert (await client.put(shipping, headers=headers, json={'shipped': value})).status_code == 422
+            assert (await client.put(f'/api/classes/workbook-orders/{uuid.uuid4()}/shipping', headers=headers, json={'shipped': True})).status_code == 404
+            undone = await client.put(shipping, headers=headers, json={'shipped': False})
+            assert undone.status_code == 200 and undone.json()['shipped_at'] is None
+            assert await conn.fetchval(f'SELECT shipped_at FROM {schema}.workbook_orders WHERE id=$1', order_id) is None
             delete_endpoint = f'/api/classes/workbook-orders/{order_id}'
             assert (await client.delete(delete_endpoint)).status_code == 401
             assert (await client.delete(delete_endpoint, headers=user_headers)).status_code == 403
@@ -57,7 +73,7 @@ async def main():
             assert await conn.fetchval(f'SELECT COUNT(*) FROM {schema}.workbook_orders') == 0
             assert (await client.delete(delete_endpoint, headers=headers)).status_code == 404
             assert (await client.delete('/api/classes/workbook-orders/invalid', headers=headers)).status_code == 422
-        print('PASS: payment behavior and admin-only persisted deletion, unauthorized protection, missing order and invalid ID handling.')
+        print('PASS: payment, shipment persistence/undo/idempotency, admin-only access and deletion, missing order and invalid input handling.')
     finally:
         await db.close_pool()
         await conn.execute(f'DROP SCHEMA {schema} CASCADE')

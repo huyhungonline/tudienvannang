@@ -58,7 +58,7 @@ async def register_workbook(body: WorkbookOrderRequest):
 
 @router.get('/workbook-orders')
 async def list_workbook_orders(limit: int = Query(50, ge=1, le=100), offset: int = Query(0, ge=0), _: str = Depends(require_admin)):
-    rows = await db.query('''SELECT id,full_name,email,book_address,created_at,paid_at
+    rows = await db.query('''SELECT id,full_name,email,book_address,created_at,paid_at,shipped_at
         FROM workbook_orders ORDER BY created_at DESC,id LIMIT $1 OFFSET $2''', limit, offset)
     total = await db.query_one('SELECT COUNT(*) AS total FROM workbook_orders')
     return {'orders': rows, 'total': total['total']}
@@ -81,6 +81,20 @@ async def update_workbook_payment(order_id: UUID, body: WorkbookPaymentRequest, 
     row = await db.query_one('''UPDATE workbook_orders
         SET paid_at = CASE WHEN $2 THEN COALESCE(paid_at, NOW()) ELSE NULL END
         WHERE id = $1 RETURNING id, paid_at''', order_id, body.paid)
+    if not row:
+        raise HTTPException(status_code=404, detail='Workbook order not found')
+    return row
+
+
+class WorkbookShippingRequest(BaseModel):
+    shipped: StrictBool
+
+
+@router.put('/workbook-orders/{order_id}/shipping')
+async def update_workbook_shipping(order_id: UUID, body: WorkbookShippingRequest, _: str = Depends(require_admin)):
+    row = await db.query_one('''UPDATE workbook_orders
+        SET shipped_at = CASE WHEN $2 THEN COALESCE(shipped_at, NOW()) ELSE NULL END
+        WHERE id = $1 RETURNING id, shipped_at''', order_id, body.shipped)
     if not row:
         raise HTTPException(status_code=404, detail='Workbook order not found')
     return row
