@@ -1,5 +1,10 @@
 node_modules/
 .env
+.env.*.bak
+.env.bak
+*accessKeys.csv
+*credentials.csv
+backups/
 .kiro/
 audio/
 book_images/
