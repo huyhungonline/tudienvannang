@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
+import { Link } from 'react-router-dom';
 import { get } from '../api/client';
 import { Spinner } from '../components/Spinner';
 
@@ -117,6 +118,15 @@ export function BooksPage() {
   return (
     <div className="books-page">
       <h2>Professional Books</h2>
+
+      <div className="mock-exam-cta">
+        <Link to="/certificates" className="btn-mock-exam-cta">
+          Thi thử ngay!
+        </Link>
+        <p className="mock-exam-cta-sub">
+          Luyện thi chứng chỉ nghề của Nhật: từ vựng chuyên ngành, giải đề các năm và thi thử có chấm điểm.
+        </p>
+      </div>
 
       {error && <div className="form-error">{error}</div>}
 
