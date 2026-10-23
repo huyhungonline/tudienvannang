@@ -61,3 +61,60 @@ def send_password_reset_email(to: str, new_password: str) -> bool:
     subject = f"Your new password - {FROM_NAME}"
     body = f"Hi,\n\nWe received a request to reset your password.\n\nYour new password is: {new_password}\n\nPlease login at {APP_URL}/login and change your password after.\n\nBest regards,\n{FROM_NAME}"
     return send_email(to, subject, body)
+
+
+def send_mock_exam_result_email(
+    to: str,
+    certificate_name: str,
+    total_questions: int,
+    correct_count: int,
+    score_percent: float,
+    duration_seconds: int | None,
+    wrong_questions: list[dict] | None = None,
+) -> bool:
+    """Send a mock exam score summary to the learner.
+
+    `wrong_questions` is a list of {questionNo, correctLabel, selectedLabel}
+    used to list which questions were missed, so the mail is useful on its own
+    without logging back in.
+    """
+    if duration_seconds is None:
+        duration_text = "—"
+    else:
+        minutes, seconds = divmod(max(0, duration_seconds), 60)
+        duration_text = f"{minutes} phút {seconds:02d} giây"
+
+    lines = [
+        "Xin chào,",
+        "",
+        f"Bạn đã hoàn thành bài thi thử chứng chỉ: {certificate_name}",
+        "",
+        "=== KẾT QUẢ ===",
+        f"Điểm: {score_percent}%",
+        f"Số câu đúng: {correct_count}/{total_questions}",
+        f"Thời gian làm bài: {duration_text}",
+    ]
+
+    if wrong_questions:
+        lines += [
+            "",
+            f"=== CÁC CÂU TRẢ LỜI SAI ({len(wrong_questions)} câu) ===",
+        ]
+        for w in wrong_questions:
+            chosen = w.get("selectedLabel") or "(không trả lời)"
+            lines.append(
+                f"  Câu {w.get('questionNo')}: bạn chọn {chosen} — đáp án đúng: {w.get('correctLabel')}"
+            )
+        lines.append("")
+        lines.append("Đăng nhập để xem bản dịch và giải thích chi tiết từng câu.")
+
+    lines += [
+        "",
+        f"Xem lại bài thi tại: {APP_URL}/certificates",
+        "",
+        f"Chúc bạn ôn tập hiệu quả!",
+        FROM_NAME,
+    ]
+
+    subject = f"Kết quả thi thử {certificate_name} — {score_percent}% ({correct_count}/{total_questions})"
+    return send_email(to, subject, "\n".join(lines))

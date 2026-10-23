@@ -11,11 +11,13 @@ Two question styles live in `certificate_exam_questions`:
 `answer_label` is stored with decorations in some rows ("○ — Đúng"), so every
 comparison goes through `normalise_label()`.
 """
+import asyncio
 import json
 import re
 import uuid
 
 import db
+from services import email_service
 
 # A cancelled question in the real exam: every answer counts as correct.
 ALL_CORRECT_MARKER = "※"
@@ -279,14 +281,80 @@ async def grade_attempt(
             attempt["id"], r["questionId"], r["selectedLabel"], r["isCorrect"],
         )
 
+    score_percent = round(correct_count * 100 / total, 1)
+
+    # Email the score. Runs in the background so a slow or failing SMTP server
+    # never delays or breaks the result the learner is waiting for.
+    asyncio.create_task(
+        _send_result_email(
+            user_id=user_id,
+            certificate_id=certificate_id,
+            total=total,
+            correct_count=correct_count,
+            score_percent=score_percent,
+            duration_seconds=duration_seconds,
+            results=results,
+        )
+    )
+
     return {
         "attemptId": attempt["id"],
         "totalQuestions": total,
         "correctCount": correct_count,
-        "scorePercent": round(correct_count * 100 / total, 1),
+        "scorePercent": score_percent,
         "durationSeconds": duration_seconds,
         "results": results,
     }
+
+
+async def _send_result_email(
+    user_id: str,
+    certificate_id: int,
+    total: int,
+    correct_count: int,
+    score_percent: float,
+    duration_seconds: int | None,
+    results: list[dict],
+) -> None:
+    """Look up the learner's address and mail the score. Never raises."""
+    try:
+        user = await db.query_one(
+            "SELECT email FROM users WHERE id = $1", uuid.UUID(user_id)
+        )
+        if not user or not user.get("email"):
+            return
+
+        cert = await db.query_one(
+            "SELECT name_ja, name_vi FROM certificates WHERE id = $1", certificate_id
+        )
+        if cert:
+            cert_name = cert["name_vi"] or cert["name_ja"]
+        else:
+            cert_name = "chứng chỉ"
+
+        wrong = [
+            {
+                "questionNo": r["questionNo"],
+                "correctLabel": r["correctLabel"],
+                "selectedLabel": r["selectedLabel"],
+            }
+            for r in results
+            if not r["isCorrect"]
+        ]
+
+        await asyncio.to_thread(
+            email_service.send_mock_exam_result_email,
+            user["email"],
+            cert_name,
+            total,
+            correct_count,
+            score_percent,
+            duration_seconds,
+            wrong,
+        )
+    except Exception as e:
+        # A failed notification must not affect the recorded attempt.
+        print(f"Mock exam result email failed for user {user_id}: {e}")
 
 
 async def list_user_attempts(user_id: str, certificate_id: int, limit: int = 10) -> list[dict]:
