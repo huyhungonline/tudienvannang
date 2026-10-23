@@ -28,6 +28,9 @@ export function CertificateFieldsMenuPage() {
         <button type="button" className="certificate-recommend-btn" onClick={() => setShowList(true)}>
           Tại đây
         </button>
+        <Link to="/books" className="certificate-recommend-btn certificate-book-btn">
+          Liên hệ mua sách
+        </Link>
       </p>
       <div className="certificate-list">
         {CERTIFICATE_CATEGORIES.map((cat) => (

@@ -2890,10 +2890,27 @@ body {
   font-size: 0.95rem;
 }
 
-.certificate-recommend-line { margin: 0.75rem 0; }
+.certificate-recommend-line {
+  margin: 0.75rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
 .certificate-recommend-btn {
   padding: 0.2rem 0.8rem; border: 1px solid #1976d2; border-radius: 4px;
   background: #1976d2; color: #fff; cursor: pointer; font-size: 0.9rem;
+}
+/* Rendered as a Link (anchor), so reset the underline it would inherit. */
+.certificate-book-btn {
+  text-decoration: none;
+  display: inline-block;
+  line-height: 1.5;
+}
+.certificate-book-btn:hover {
+  background: #1565c0;
+  border-color: #1565c0;
+  color: #fff;
 }
 .cert-modal-overlay {
   position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 1000;
