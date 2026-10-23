@@ -1,3 +1,4 @@
+from datetime import date
 from typing import Literal
 from uuid import UUID, uuid4
 
@@ -207,10 +208,18 @@ class ClassSessionCreate(BaseModel):
     course: Literal['it-passport', 'kikai-hozen'] = 'it-passport'
     code: str = Field(min_length=1, max_length=100)
     name: str = Field(min_length=1, max_length=200)
-    first_lesson_date: str | None = None
+    # Typed as `date` so asyncpg receives a real date object; it will not
+    # coerce a plain string even with an explicit ::date cast in the SQL.
+    first_lesson_date: date | None = None
     capacity: int = Field(default=110, ge=1, le=10000)
     is_active: StrictBool = True
     sort_order: int = Field(default=0)
+
+    @field_validator('first_lesson_date', mode='before')
+    @classmethod
+    def empty_date_to_none(cls, value):
+        # The admin form submits '' when the field is left blank.
+        return None if value in ('', None) else value
 
     @field_validator('code', 'name', mode='before')
     @classmethod
@@ -228,10 +237,15 @@ class ClassSessionCreate(BaseModel):
 
 class ClassSessionUpdate(BaseModel):
     name: str | None = Field(default=None, min_length=1, max_length=200)
-    first_lesson_date: str | None = None
+    first_lesson_date: date | None = None
     capacity: int | None = Field(default=None, ge=1, le=10000)
     is_active: StrictBool | None = None
     sort_order: int | None = None
+
+    @field_validator('first_lesson_date', mode='before')
+    @classmethod
+    def empty_date_to_none(cls, value):
+        return None if value in ('', None) else value
 
 
 @router.get('/admin/sessions')
@@ -252,7 +266,7 @@ async def create_class_session(body: ClassSessionCreate, _: str = Depends(requir
         raise HTTPException(status_code=409, detail='Mã lớp đã tồn tại')
     row = await db.query_one('''INSERT INTO class_sessions
         (course, code, name, first_lesson_date, capacity, is_active, sort_order)
-        VALUES ($1,$2,$3,$4::date,$5,$6,$7)
+        VALUES ($1,$2,$3,$4,$5,$6,$7)
         RETURNING id, course, code, name, first_lesson_date, capacity, is_active, sort_order''',
         body.course, body.code, body.name, body.first_lesson_date,
         body.capacity, body.is_active, body.sort_order)
@@ -268,8 +282,8 @@ async def update_class_session(session_id: int, body: ClassSessionUpdate, _: str
     if body.name is not None:
         await db.execute('UPDATE class_sessions SET name = $1 WHERE id = $2', body.name, session_id)
     if body.first_lesson_date is not None:
-        await db.execute('UPDATE class_sessions SET first_lesson_date = $1::date WHERE id = $2',
-                         body.first_lesson_date or None, session_id)
+        await db.execute('UPDATE class_sessions SET first_lesson_date = $1 WHERE id = $2',
+                         body.first_lesson_date, session_id)
     if body.capacity is not None:
         await db.execute('UPDATE class_sessions SET capacity = $1 WHERE id = $2', body.capacity, session_id)
     if body.is_active is not None:
