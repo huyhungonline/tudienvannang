@@ -126,47 +126,65 @@ async def get_certificate_by_code(code: str) -> dict | None:
     )
 
 
-async def list_exam_sessions(certificate_id: int) -> list[dict]:
-    """Available (year, round) pairs with question counts, for the start screen."""
-    rows = await db.query(
-        "SELECT exam_year, exam_round, count(*) AS question_count "
-        "FROM certificate_exam_questions WHERE certificate_id = $1 "
-        "GROUP BY exam_year, exam_round ORDER BY exam_year DESC, exam_round",
+# Used when a certificate has no row in certificate_exam_config yet.
+DEFAULT_QUESTION_COUNT = 30
+DEFAULT_DURATION_MINUTES = 60
+
+
+async def get_exam_config(certificate_id: int) -> dict:
+    """Real-exam format for a certificate: paper size and time limit.
+
+    Falls back to a sensible default so a newly added certificate still works
+    before its official format has been recorded.
+    """
+    row = await db.query_one(
+        "SELECT question_count, duration_minutes, required_answers, note "
+        "FROM certificate_exam_config WHERE certificate_id = $1",
         certificate_id,
     )
-    return [
-        {
-            "year": r["exam_year"],
-            "round": r["exam_round"],
-            "questionCount": r["question_count"],
-        }
-        for r in rows
-    ]
+    pool = await db.query_one(
+        "SELECT count(*) AS n FROM certificate_exam_questions WHERE certificate_id = $1",
+        certificate_id,
+    )
+    available = pool["n"] if pool else 0
+
+    if row:
+        configured = row["question_count"]
+        duration = row["duration_minutes"]
+        required = row["required_answers"]
+        note = row["note"]
+    else:
+        configured = DEFAULT_QUESTION_COUNT
+        duration = DEFAULT_DURATION_MINUTES
+        required = None
+        note = None
+
+    # Never ask for more questions than exist; without this the paper would
+    # silently be short and the score would be computed against the wrong total.
+    effective = min(configured, available)
+
+    return {
+        "configuredCount": configured,
+        "effectiveCount": effective,
+        "availableCount": available,
+        "durationMinutes": duration,
+        "requiredAnswers": required,
+        "note": note,
+        "isShortOfPool": effective < configured,
+    }
 
 
-async def build_paper(
-    certificate_id: int,
-    limit: int,
-    exam_year: str | None = None,
-    exam_round: str | None = None,
-) -> list[dict]:
-    """Pick questions for an attempt, without exposing any answer data."""
-    params: list = [certificate_id]
-    where = "certificate_id = $1"
+async def build_paper(certificate_id: int, limit: int) -> list[dict]:
+    """Pick `limit` distinct random questions, exposing no answer data.
 
-    if exam_year:
-        params.append(exam_year)
-        where += f" AND exam_year = ${len(params)}"
-        if exam_round:
-            params.append(exam_round)
-            where += f" AND exam_round = ${len(params)}"
-
-    params.append(limit)
+    Randomness comes from `ORDER BY random()` over the whole pool, and because
+    rows are selected by primary key no question can appear twice in one paper.
+    """
     rows = await db.query(
-        f"SELECT id, question_no, question_ja, answer_label, answer_correct "
-        f"FROM certificate_exam_questions WHERE {where} "
-        f"ORDER BY random() LIMIT ${len(params)}",
-        *params,
+        "SELECT id, question_no, question_ja, answer_label, answer_correct "
+        "FROM certificate_exam_questions WHERE certificate_id = $1 "
+        "ORDER BY random() LIMIT $2",
+        certificate_id, limit,
     )
 
     paper = []

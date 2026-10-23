@@ -156,42 +156,40 @@ class MockExamSubmission(BaseModel):
     durationSeconds: Optional[int] = None
 
 
-@router.get("/{code}/mock-exam/sessions")
-async def get_mock_exam_sessions(code: str, _: str = Depends(require_vip_or_admin)):
-    """Available exam sessions plus the total pool size, for the start screen."""
+@router.get("/{code}/mock-exam/info")
+async def get_mock_exam_info(code: str, _: str = Depends(require_vip_or_admin)):
+    """Real-exam format for the start screen: paper size and time limit."""
     cert = await mock_exam_service.get_certificate_by_code(code)
     if not cert:
         raise HTTPException(status_code=404, detail="Certificate not found")
 
-    sessions = await mock_exam_service.list_exam_sessions(cert["id"])
-    total = sum(s["questionCount"] for s in sessions)
+    config = await mock_exam_service.get_exam_config(cert["id"])
     return {
         "certificate": {"code": cert["code"], "nameJa": cert["name_ja"], "nameVi": cert["name_vi"]},
-        "sessions": sessions,
-        "totalQuestions": total,
+        "config": config,
     }
 
 
 @router.get("/{code}/mock-exam/start")
-async def start_mock_exam(
-    code: str,
-    limit: int = Query(default=20, ge=1, le=100),
-    exam_year: Optional[str] = Query(default=None),
-    exam_round: Optional[str] = Query(default=None),
-    _: str = Depends(require_vip_or_admin),
-):
-    """Build a randomised paper. Deliberately excludes all answer fields so the
-    correct answers cannot be read from the network response."""
+async def start_mock_exam(code: str, _: str = Depends(require_vip_or_admin)):
+    """Build a randomised paper sized to the real exam format.
+
+    Deliberately excludes all answer fields so the correct answers cannot be
+    read from the network response before the paper is submitted.
+    """
     cert = await mock_exam_service.get_certificate_by_code(code)
     if not cert:
         raise HTTPException(status_code=404, detail="Certificate not found")
 
-    questions = await mock_exam_service.build_paper(cert["id"], limit, exam_year, exam_round)
-    if not questions:
+    config = await mock_exam_service.get_exam_config(cert["id"])
+    if config["effectiveCount"] == 0:
         raise HTTPException(status_code=404, detail="No questions available")
+
+    questions = await mock_exam_service.build_paper(cert["id"], config["effectiveCount"])
 
     return {
         "certificate": {"code": cert["code"], "nameJa": cert["name_ja"], "nameVi": cert["name_vi"]},
+        "config": config,
         "questions": questions,
     }
 

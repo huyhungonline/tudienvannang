@@ -1,12 +1,16 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { get, post } from '../api/client';
 import { Spinner } from '../components/Spinner';
 
-interface ExamSessionInfo {
-  year: string;
-  round: string | null;
-  questionCount: number;
+interface ExamConfig {
+  configuredCount: number;
+  effectiveCount: number;
+  availableCount: number;
+  durationMinutes: number;
+  requiredAnswers: number | null;
+  note: string | null;
+  isShortOfPool: boolean;
 }
 
 interface MockQuestion {
@@ -56,13 +60,16 @@ interface AttemptHistory {
 
 type Phase = 'setup' | 'taking' | 'result';
 
-const QUESTION_COUNT_OPTIONS = [10, 20, 30, 50];
+function formatClock(seconds: number): string {
+  const safe = Math.max(0, seconds);
+  const m = Math.floor(safe / 60);
+  const s = safe % 60;
+  return `${m}:${String(s).padStart(2, '0')}`;
+}
 
 function formatDuration(seconds: number | null): string {
   if (seconds == null) return '—';
-  const m = Math.floor(seconds / 60);
-  const s = seconds % 60;
-  return `${m}:${String(s).padStart(2, '0')}`;
+  return formatClock(seconds);
 }
 
 export function CertificateMockExamPage() {
@@ -72,107 +79,115 @@ export function CertificateMockExamPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  // Setup
-  const [sessions, setSessions] = useState<ExamSessionInfo[]>([]);
-  const [totalPool, setTotalPool] = useState(0);
+  const [config, setConfig] = useState<ExamConfig | null>(null);
   const [certName, setCertName] = useState('');
-  const [selectedSession, setSelectedSession] = useState<string>('all');
-  const [questionCount, setQuestionCount] = useState(20);
   const [history, setHistory] = useState<AttemptHistory[]>([]);
 
-  // Taking
   const [questions, setQuestions] = useState<MockQuestion[]>([]);
   const [selections, setSelections] = useState<Record<number, string>>({});
-  const [startedAt, setStartedAt] = useState<number>(0);
-  const [elapsed, setElapsed] = useState(0);
+  const [startedAt, setStartedAt] = useState(0);
+  const [remaining, setRemaining] = useState(0);
   const [submitting, setSubmitting] = useState(false);
 
-  // Result
   const [result, setResult] = useState<GradeResult | null>(null);
   const [reviewFilter, setReviewFilter] = useState<'all' | 'wrong'>('wrong');
 
-  // Load available sessions and past attempts
-  useEffect(() => {
+  // Guards against the timer firing submit twice, or submitting after
+  // the learner has already pressed the button.
+  const submittedRef = useRef(false);
+
+  const loadInfo = useCallback(() => {
     if (!code) return;
     setLoading(true);
     setError(null);
     Promise.all([
-      get<{ certificate: { nameJa: string }; sessions: ExamSessionInfo[]; totalQuestions: number }>(
-        `/certificates/${code}/mock-exam/sessions`
+      get<{ certificate: { nameJa: string }; config: ExamConfig }>(
+        `/certificates/${code}/mock-exam/info`
       ),
       get<{ attempts: AttemptHistory[] }>(`/certificates/${code}/mock-exam/history`).catch(
         () => ({ attempts: [] as AttemptHistory[] })
       ),
     ])
       .then(([info, hist]) => {
-        setSessions(info.sessions);
-        setTotalPool(info.totalQuestions);
+        setConfig(info.config);
         setCertName(info.certificate.nameJa);
         setHistory(hist.attempts);
       })
-      .catch(() => setError('Không tải được dữ liệu đề thi.'))
+      .catch(() => setError('Không tải được thông tin đề thi.'))
       .finally(() => setLoading(false));
   }, [code]);
 
-  // Timer while taking the exam
+  useEffect(loadInfo, [loadInfo]);
+
+  const handleSubmit = useCallback(
+    async (auto = false) => {
+      if (!code || submittedRef.current) return;
+      submittedRef.current = true;
+      setSubmitting(true);
+      setError(null);
+      try {
+        const data = await post<GradeResult>(`/certificates/${code}/mock-exam/submit`, {
+          answers: questions.map((q) => ({
+            questionId: q.id,
+            selectedLabel: selections[q.id] ?? null,
+          })),
+          durationSeconds: Math.floor((Date.now() - startedAt) / 1000),
+        });
+        setResult(data);
+        setPhase('result');
+        setReviewFilter(data.correctCount === data.totalQuestions ? 'all' : 'wrong');
+        if (auto) {
+          setError('Đã hết thời gian — bài thi được nộp tự động.');
+        }
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } catch {
+        setError('Không gửi được bài thi. Vui lòng thử lại.');
+        submittedRef.current = false;
+      } finally {
+        setSubmitting(false);
+      }
+    },
+    [code, questions, selections, startedAt]
+  );
+
+  // Countdown; auto-submits when it reaches zero.
   useEffect(() => {
-    if (phase !== 'taking') return;
-    const t = setInterval(() => {
-      setElapsed(Math.floor((Date.now() - startedAt) / 1000));
-    }, 1000);
+    if (phase !== 'taking' || !config) return;
+    const limit = config.durationMinutes * 60;
+    const tick = () => {
+      const left = limit - Math.floor((Date.now() - startedAt) / 1000);
+      setRemaining(left);
+      if (left <= 0) {
+        handleSubmit(true);
+      }
+    };
+    tick();
+    const t = setInterval(tick, 1000);
     return () => clearInterval(t);
-  }, [phase, startedAt]);
+  }, [phase, config, startedAt, handleSubmit]);
 
   const handleStart = useCallback(async () => {
     if (!code) return;
     setError(null);
     setLoading(true);
     try {
-      const params = new URLSearchParams({ limit: String(questionCount) });
-      if (selectedSession !== 'all') {
-        const s = sessions.find((x) => `${x.year}|${x.round ?? ''}` === selectedSession);
-        if (s) {
-          params.set('exam_year', s.year);
-          if (s.round) params.set('exam_round', s.round);
-        }
-      }
-      const data = await get<{ questions: MockQuestion[] }>(
-        `/certificates/${code}/mock-exam/start?${params}`
+      const data = await get<{ config: ExamConfig; questions: MockQuestion[] }>(
+        `/certificates/${code}/mock-exam/start`
       );
+      setConfig(data.config);
       setQuestions(data.questions);
       setSelections({});
+      submittedRef.current = false;
       setStartedAt(Date.now());
-      setElapsed(0);
+      setRemaining(data.config.durationMinutes * 60);
       setPhase('taking');
+      window.scrollTo({ top: 0 });
     } catch {
       setError('Không bắt đầu được bài thi.');
     } finally {
       setLoading(false);
     }
-  }, [code, questionCount, selectedSession, sessions]);
-
-  const handleSubmit = useCallback(async () => {
-    if (!code) return;
-    setSubmitting(true);
-    setError(null);
-    try {
-      const data = await post<GradeResult>(`/certificates/${code}/mock-exam/submit`, {
-        answers: questions.map((q) => ({
-          questionId: q.id,
-          selectedLabel: selections[q.id] ?? null,
-        })),
-        durationSeconds: Math.floor((Date.now() - startedAt) / 1000),
-      });
-      setResult(data);
-      setPhase('result');
-      setReviewFilter(data.correctCount === data.totalQuestions ? 'all' : 'wrong');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    } catch {
-      setError('Không gửi được bài thi. Vui lòng thử lại.');
-    } finally {
-      setSubmitting(false);
-    }
-  }, [code, questions, selections, startedAt]);
+  }, [code]);
 
   const answeredCount = Object.keys(selections).length;
 
@@ -186,7 +201,6 @@ export function CertificateMockExamPage() {
 
   // ---------- SETUP ----------
   if (phase === 'setup') {
-    const maxCount = Math.min(totalPool, 100);
     return (
       <div className="reading-posts-page certificate-page mock-exam-page">
         <Link to={`/certificates/${category}/${code}`} className="btn-back">← Quay lại</Link>
@@ -195,49 +209,50 @@ export function CertificateMockExamPage() {
 
         {error && <div className="form-error">{error}</div>}
 
-        <div className="mock-setup-box">
-          <div className="mock-setup-field">
-            <label htmlFor="mock-session">Phạm vi đề</label>
-            <select
-              id="mock-session"
-              value={selectedSession}
-              onChange={(e) => setSelectedSession(e.target.value)}
-            >
-              <option value="all">Trộn tất cả các năm ({totalPool} câu)</option>
-              {sessions.map((s) => (
-                <option key={`${s.year}|${s.round ?? ''}`} value={`${s.year}|${s.round ?? ''}`}>
-                  {s.year}{s.round ? ` — ${s.round}` : ''} ({s.questionCount} câu)
-                </option>
-              ))}
-            </select>
-          </div>
-
-          <div className="mock-setup-field">
-            <label>Số câu hỏi</label>
-            <div className="mock-count-options">
-              {QUESTION_COUNT_OPTIONS.filter((n) => n <= maxCount || n === QUESTION_COUNT_OPTIONS[0]).map((n) => (
-                <button
-                  key={n}
-                  type="button"
-                  className={`mock-count-btn ${questionCount === n ? 'active' : ''}`}
-                  onClick={() => setQuestionCount(n)}
-                >
-                  {n} câu
-                </button>
-              ))}
+        {config && (
+          <div className="mock-setup-box">
+            <div className="mock-format">
+              <div className="mock-format-item">
+                <span className="mock-format-value">{config.effectiveCount}</span>
+                <span className="mock-format-label">câu hỏi</span>
+              </div>
+              <div className="mock-format-item">
+                <span className="mock-format-value">{config.durationMinutes}</span>
+                <span className="mock-format-label">phút</span>
+              </div>
             </div>
-          </div>
 
-          <button className="btn-submit mock-start-btn" onClick={handleStart} disabled={totalPool === 0}>
-            Bắt đầu thi thử
-          </button>
-          {totalPool === 0 && <p className="empty-state">Chứng chỉ này chưa có câu hỏi.</p>}
-        </div>
+            {config.requiredAnswers && (
+              <p className="mock-format-note">
+                Đề thi thật có {config.configuredCount} câu, thí sinh chỉ cần trả lời{' '}
+                {config.requiredAnswers} câu.
+              </p>
+            )}
+
+            {config.isShortOfPool && (
+              <p className="mock-format-warning">
+                Đề thi thật có {config.configuredCount} câu, nhưng kho hiện chỉ có{' '}
+                {config.availableCount} câu nên bài thi thử sẽ gồm {config.effectiveCount} câu.
+              </p>
+            )}
+
+            <button
+              className="btn-submit mock-start-btn"
+              onClick={handleStart}
+              disabled={config.effectiveCount === 0}
+            >
+              Bắt đầu thi thử
+            </button>
+            {config.effectiveCount === 0 && (
+              <p className="empty-state">Chứng chỉ này chưa có câu hỏi.</p>
+            )}
+          </div>
+        )}
 
         <div className="mock-note">
-          Đề được trộn ngẫu nhiên. Câu đúng/sai chọn 〇 hoặc ×; câu nhiều đáp án chọn theo
-          nhãn (ア/イ/ウ/エ hoặc 1/2/3/4) ghi trong đề. Sau khi nộp bài bạn sẽ thấy đáp án,
-          bản dịch và giải thích từng câu.
+          Câu hỏi được lấy ngẫu nhiên từ kho đề, không trùng lặp trong cùng một bài.
+          Câu đúng/sai chọn 〇 hoặc ×; câu nhiều đáp án chọn theo nhãn (ア/イ/ウ/エ hoặc
+          1/2/3/4) ghi trong đề. Hết thời gian bài thi sẽ tự động được nộp.
         </div>
 
         {history.length > 0 && (
@@ -266,11 +281,12 @@ export function CertificateMockExamPage() {
 
   // ---------- TAKING ----------
   if (phase === 'taking') {
+    const lowTime = remaining <= 300;
     return (
       <div className="reading-posts-page certificate-page mock-exam-page">
         <div className="mock-exam-bar">
           <span className="mock-progress">Đã trả lời {answeredCount}/{questions.length}</span>
-          <span className="mock-timer">⏱ {formatDuration(elapsed)}</span>
+          <span className={`mock-timer ${lowTime ? 'low' : ''}`}>⏱ {formatClock(remaining)}</span>
         </div>
 
         {error && <div className="form-error">{error}</div>}
@@ -289,9 +305,7 @@ export function CertificateMockExamPage() {
                     key={c}
                     type="button"
                     className={`mock-choice-btn ${selections[q.id] === c ? 'selected' : ''}`}
-                    onClick={() =>
-                      setSelections((prev) => ({ ...prev, [q.id]: c }))
-                    }
+                    onClick={() => setSelections((prev) => ({ ...prev, [q.id]: c }))}
                   >
                     {c}
                   </button>
@@ -322,7 +336,7 @@ export function CertificateMockExamPage() {
               Còn {questions.length - answeredCount} câu chưa trả lời (sẽ tính là sai).
             </p>
           )}
-          <button className="btn-submit" onClick={handleSubmit} disabled={submitting}>
+          <button className="btn-submit" onClick={() => handleSubmit(false)} disabled={submitting}>
             {submitting ? <><Spinner size={14} /> Đang chấm...</> : 'Nộp bài'}
           </button>
         </div>
@@ -342,18 +356,30 @@ export function CertificateMockExamPage() {
       <Link to={`/certificates/${category}/${code}`} className="btn-back">← Quay lại</Link>
       <h2>Kết quả thi thử</h2>
 
+      {error && <div className="form-error">{error}</div>}
+
       {result && (
         <>
           <div className="mock-score-card">
             <div className="mock-score-main">{result.scorePercent}%</div>
             <div className="mock-score-detail">
               Đúng {result.correctCount}/{result.totalQuestions} câu
-              <br />Thời gian: {formatDuration(result.durationSeconds)}
+              <br />Thời gian làm bài: {formatDuration(result.durationSeconds)}
             </div>
           </div>
 
           <div className="mock-result-actions">
-            <button className="btn-submit" onClick={() => setPhase('setup')}>Thi lại</button>
+            <button
+              className="btn-submit"
+              onClick={() => {
+                setResult(null);
+                setError(null);
+                setPhase('setup');
+                loadInfo();
+              }}
+            >
+              Thi lại
+            </button>
             <div className="mock-review-tabs">
               <button
                 className={`vocab-category-tab ${reviewFilter === 'wrong' ? 'active' : ''}`}
