@@ -3,9 +3,11 @@ import uuid
 from typing import Optional
 
 from fastapi import APIRouter, Depends, HTTPException, Query
+from pydantic import BaseModel
 
 import db
 from middleware.auth import get_current_user
+from services import mock_exam_service
 
 router = APIRouter(prefix="/api/certificates", tags=["certificates"])
 
@@ -140,3 +142,88 @@ async def get_exam_answer(question_id: int, _: str = Depends(require_vip_or_admi
         "explanationVi": row["explanation_vi"],
         "vocab": json.loads(row["vocab_json"]),
     }
+
+
+# === Mock exam (thi thử) ===
+
+class MockExamAnswer(BaseModel):
+    questionId: int
+    selectedLabel: Optional[str] = None
+
+
+class MockExamSubmission(BaseModel):
+    answers: list[MockExamAnswer]
+    durationSeconds: Optional[int] = None
+
+
+@router.get("/{code}/mock-exam/sessions")
+async def get_mock_exam_sessions(code: str, _: str = Depends(require_vip_or_admin)):
+    """Available exam sessions plus the total pool size, for the start screen."""
+    cert = await mock_exam_service.get_certificate_by_code(code)
+    if not cert:
+        raise HTTPException(status_code=404, detail="Certificate not found")
+
+    sessions = await mock_exam_service.list_exam_sessions(cert["id"])
+    total = sum(s["questionCount"] for s in sessions)
+    return {
+        "certificate": {"code": cert["code"], "nameJa": cert["name_ja"], "nameVi": cert["name_vi"]},
+        "sessions": sessions,
+        "totalQuestions": total,
+    }
+
+
+@router.get("/{code}/mock-exam/start")
+async def start_mock_exam(
+    code: str,
+    limit: int = Query(default=20, ge=1, le=100),
+    exam_year: Optional[str] = Query(default=None),
+    exam_round: Optional[str] = Query(default=None),
+    _: str = Depends(require_vip_or_admin),
+):
+    """Build a randomised paper. Deliberately excludes all answer fields so the
+    correct answers cannot be read from the network response."""
+    cert = await mock_exam_service.get_certificate_by_code(code)
+    if not cert:
+        raise HTTPException(status_code=404, detail="Certificate not found")
+
+    questions = await mock_exam_service.build_paper(cert["id"], limit, exam_year, exam_round)
+    if not questions:
+        raise HTTPException(status_code=404, detail="No questions available")
+
+    return {
+        "certificate": {"code": cert["code"], "nameJa": cert["name_ja"], "nameVi": cert["name_vi"]},
+        "questions": questions,
+    }
+
+
+@router.post("/{code}/mock-exam/submit")
+async def submit_mock_exam(
+    code: str,
+    body: MockExamSubmission,
+    user_id: str = Depends(require_vip_or_admin),
+):
+    """Grade a finished paper, store the attempt, and return a full review."""
+    cert = await mock_exam_service.get_certificate_by_code(code)
+    if not cert:
+        raise HTTPException(status_code=404, detail="Certificate not found")
+
+    try:
+        return await mock_exam_service.grade_attempt(
+            user_id,
+            cert["id"],
+            [a.model_dump() for a in body.answers],
+            body.durationSeconds,
+        )
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e))
+
+
+@router.get("/{code}/mock-exam/history")
+async def get_mock_exam_history(code: str, user_id: str = Depends(require_vip_or_admin)):
+    """Recent attempts for the signed-in user on this certificate."""
+    cert = await mock_exam_service.get_certificate_by_code(code)
+    if not cert:
+        raise HTTPException(status_code=404, detail="Certificate not found")
+
+    attempts = await mock_exam_service.list_user_attempts(user_id, cert["id"])
+    return {"attempts": attempts}

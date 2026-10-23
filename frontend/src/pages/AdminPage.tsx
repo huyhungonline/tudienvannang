@@ -85,7 +85,6 @@ export function AdminPage() {
 }
 
 function UserManagement() {
-  const navigate = useNavigate();
   const [users, setUsers] = useState<AdminUser[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -106,11 +105,8 @@ function UserManagement() {
     try {
       const data = await get<AdminUser[]>('/admin/users');
       setUsers(data);
-    } catch (err: any) {
-      if (err?.status === 401 || err?.status === 403) {
-        navigate('/login');
-        return;
-      }
+    } catch {
+      // 401/403 is handled centrally in the API client (redirects to /login).
       setError('Failed to load users.');
     } finally {
       setLoading(false);
@@ -593,8 +589,9 @@ function QuestionsManagement() {
     try {
       const data = await get<Question[]>('/admin/questions');
       setQuestions(data);
-    } catch (err: any) {
-      setError(err?.status === 403 ? 'Admin access required.' : 'Failed to load questions.');
+    } catch {
+      // 401/403 is handled centrally in the API client (redirects to /login).
+      setError('Failed to load questions.');
     } finally {
       setLoading(false);
     }

@@ -63,6 +63,10 @@ export function CertificateDetailPage() {
           <h3>📝 Giải đề các năm</h3>
           <p>Practice exams</p>
         </Link>
+        <Link to={`/certificates/${category}/${code}/mock-exam`} className="certificate-choice-card">
+          <h3>⏱ Thi thử</h3>
+          <p>Mock exam</p>
+        </Link>
       </div>
     </div>
   );

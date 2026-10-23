@@ -1,4 +1,4 @@
-import { useState, useRef, type FormEvent } from 'react';
+import { useState, useRef, useEffect, type FormEvent } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import ReCAPTCHA from 'react-google-recaptcha';
 import { useAuth } from '../context/AuthContext';
@@ -22,6 +22,15 @@ export function LoginPage() {
   const [captchaToken, setCaptchaToken] = useState('');
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+  const [sessionExpired, setSessionExpired] = useState(false);
+
+  // Show a notice when the API client redirected us here after a 401.
+  useEffect(() => {
+    if (sessionStorage.getItem('sessionExpired')) {
+      setSessionExpired(true);
+      sessionStorage.removeItem('sessionExpired');
+    }
+  }, []);
 
   const handleCaptchaChange = (token: string | null) => {
     setCaptchaToken(token || '');
@@ -72,6 +81,11 @@ export function LoginPage() {
     <div className="login-page">
       <h2>Login</h2>
       <form className="auth-form" onSubmit={handleSubmit}>
+        {sessionExpired && !error && (
+          <div className="form-notice">
+            Phiên đăng nhập đã hết hạn. Vui lòng đăng nhập lại.
+          </div>
+        )}
         {error && <div className="form-error">{error}</div>}
 
         <div className="form-field">

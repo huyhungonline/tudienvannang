@@ -19,6 +19,7 @@ import { CertificateListPage } from './pages/CertificateListPage';
 import { CertificateDetailPage } from './pages/CertificateDetailPage';
 import { CertificateVocabularyPage } from './pages/CertificateVocabularyPage';
 import { CertificateExamPage } from './pages/CertificateExamPage';
+import { CertificateMockExamPage } from './pages/CertificateMockExamPage';
 import { RequireVipOrAdmin } from './components/RequireVipOrAdmin';
 import { ClassRegistrationPage, ClassRegistrationFormPage } from './pages/ClassRegistrationPage';
 import { WorkbookPaymentPage } from './pages/WorkbookPaymentPage';
@@ -53,6 +54,7 @@ function App() {
             <Route path="/certificates/:category/:code" element={<CertificateDetailPage />} />
             <Route path="/certificates/:category/:code/vocabulary" element={<CertificateVocabularyPage />} />
             <Route path="/certificates/:category/:code/exam" element={<RequireVipOrAdmin><CertificateExamPage /></RequireVipOrAdmin>} />
+            <Route path="/certificates/:category/:code/mock-exam" element={<RequireVipOrAdmin><CertificateMockExamPage /></RequireVipOrAdmin>} />
           </Routes>
         </main>
       </div>

@@ -20,6 +20,23 @@ ssh "${VPS_USER}@${VPS_HOST}" "test -f '${VPS_DIR}/.env'" || {
     echo "Thiếu .env trên VPS. Hãy cấu hình file này trước khi deploy."
     exit 1
 }
+
+# Cảnh báo nếu .env trên VPS thiếu biến so với .env.example.
+# Không tự sửa: cấu hình production do người vận hành quản lý.
+if [ -f .env.example ]; then
+    EXPECTED_KEYS=$(grep -oP '^[A-Za-z_][A-Za-z0-9_]*(?==)' .env.example | sort -u)
+    REMOTE_KEYS=$(ssh "${VPS_USER}@${VPS_HOST}" "grep -oP '^[A-Za-z_][A-Za-z0-9_]*(?==)' '${VPS_DIR}/.env' | sort -u")
+    MISSING=$(comm -23 <(echo "$EXPECTED_KEYS") <(echo "$REMOTE_KEYS"))
+    if [ -n "$MISSING" ]; then
+        echo "CẢNH BÁO: .env trên VPS thiếu các biến sau (có trong .env.example):"
+        echo "$MISSING" | sed 's/^/  - /'
+        echo "Container sẽ dùng giá trị mặc định cho các biến này."
+        read -r -p "Tiếp tục deploy? [y/N] " ans
+        [ "$ans" = "y" ] || { echo "Đã hủy."; exit 1; }
+    else
+        echo "Đủ biến so với .env.example."
+    fi
+fi
 echo "Giữ nguyên .env trên VPS; không chép đè cấu hình khi deploy."
 
 echo ""

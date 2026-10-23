@@ -4,6 +4,46 @@ function getToken(): string | null {
   return localStorage.getItem('token');
 }
 
+/**
+ * Paths where a 401/403 is a normal business answer (wrong password, failed
+ * captcha) rather than an expired session. These must not trigger a redirect,
+ * otherwise a user mistyping their password would be bounced away.
+ */
+const AUTH_EXEMPT_PATHS = [
+  '/auth/login',
+  '/auth/register',
+  '/auth/change-password',
+  '/auth/forgot-password',
+  '/auth/reset-password',
+];
+
+function isAuthExempt(path: string): boolean {
+  return AUTH_EXEMPT_PATHS.some((p) => path.startsWith(p));
+}
+
+/**
+ * Clear the stored session and send the user to the login page.
+ * Uses a full navigation so any stale in-memory state is discarded, and
+ * guards against firing repeatedly when several requests fail at once.
+ */
+let redirectingToLogin = false;
+
+function handleSessionExpired(): void {
+  if (redirectingToLogin) return;
+  redirectingToLogin = true;
+
+  localStorage.removeItem('token');
+  localStorage.removeItem('user');
+  // Let the login page explain why the user ended up there.
+  sessionStorage.setItem('sessionExpired', '1');
+
+  if (!window.location.pathname.startsWith('/login')) {
+    window.location.href = '/login';
+  } else {
+    redirectingToLogin = false;
+  }
+}
+
 async function request<T>(method: string, path: string, body?: unknown): Promise<T> {
   const headers: Record<string, string> = {
     'Content-Type': 'application/json',
@@ -22,7 +62,13 @@ async function request<T>(method: string, path: string, body?: unknown): Promise
 
   if (!response.ok) {
     const error = await response.json().catch(() => ({ error: 'Request failed' }));
-    throw new ApiError(response.status, error.error || (typeof error.detail === 'string' ? error.detail : 'Request failed'));
+    const message = error.error || (typeof error.detail === 'string' ? error.detail : 'Request failed');
+
+    if ((response.status === 401 || response.status === 403) && !isAuthExempt(path)) {
+      handleSessionExpired();
+    }
+
+    throw new ApiError(response.status, message);
   }
 
   return response.json();
@@ -97,6 +143,11 @@ export async function uploadBookImage(file: File): Promise<{ image_url: string }
 
   if (!response.ok) {
     const error = await response.json().catch(() => ({ detail: 'Upload failed' }));
+
+    if (response.status === 401 || response.status === 403) {
+      handleSessionExpired();
+    }
+
     throw new ApiError(response.status, error.detail || 'Upload failed');
   }
 
