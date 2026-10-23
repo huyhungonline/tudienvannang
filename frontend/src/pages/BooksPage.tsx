@@ -121,10 +121,12 @@ export function BooksPage() {
 
       <div className="mock-exam-cta">
         <Link to="/certificates" className="btn-mock-exam-cta">
-          Thi thử ngay!
+          Bấm vào để thi thử ngay
         </Link>
         <p className="mock-exam-cta-sub">
-          Luyện thi chứng chỉ nghề của Nhật: từ vựng chuyên ngành, giải đề các năm và thi thử có chấm điểm.
+          Bài thi thử có nội dung và phương thức thi giống đề thi thật. Giúp học viên tự đánh giá
+          năng lực và chuẩn bị tốt tâm lý khi đi thi. Giảm chi phí thi nhiều lần! Điểm bài thi và
+          kết quả sẽ được thông báo qua mail.
         </p>
       </div>
 
