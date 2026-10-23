@@ -1451,14 +1451,17 @@ body {
 }
 
 /* Prominent entry point to the certificate practice section */
+/* Matches .book-item so the call to action sits visually with the book cards. */
 .mock-exam-cta {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 0.6rem;
   text-align: center;
-  background: linear-gradient(135deg, #1976d2, #2563eb);
-  border-radius: 10px;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
   padding: 1.75rem 1.25rem;
   margin: 1.25rem 0 1.75rem;
 }
@@ -1466,26 +1469,26 @@ body {
 .btn-mock-exam-cta {
   display: inline-block;
   padding: 0.85rem 2.5rem;
-  background: #fff;
-  color: #1565c0;
+  background: #2563eb;
+  color: #fff;
   font-size: 1.25rem;
   font-weight: 800;
   border-radius: 8px;
   text-decoration: none;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-  transition: transform 0.15s, box-shadow 0.15s;
+  transition: background 0.15s, transform 0.15s, box-shadow 0.15s;
 }
 
 .btn-mock-exam-cta:hover {
+  background: #1d4ed8;
+  color: #fff;
   transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.22);
-  color: #0d47a1;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
 }
 
 .mock-exam-cta-sub {
   margin: 0;
   font-size: 0.9rem;
-  color: #e3f2fd;
+  color: #4b5563;
   line-height: 1.5;
   max-width: 540px;
 }
