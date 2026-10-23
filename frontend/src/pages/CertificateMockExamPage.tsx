@@ -250,9 +250,7 @@ export function CertificateMockExamPage() {
         )}
 
         <div className="mock-note">
-          Câu hỏi được lấy ngẫu nhiên từ kho đề, không trùng lặp trong cùng một bài.
-          Câu đúng/sai chọn 〇 hoặc ×; câu nhiều đáp án chọn theo nhãn (ア/イ/ウ/エ hoặc
-          1/2/3/4) ghi trong đề. Hết thời gian bài thi sẽ tự động được nộp.
+          Hết thời gian bài thi sẽ tự động được nộp.
         </div>
 
         {history.length > 0 && (
