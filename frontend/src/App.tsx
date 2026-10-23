@@ -54,7 +54,7 @@ function App() {
             <Route path="/certificates/:category/:code" element={<CertificateDetailPage />} />
             <Route path="/certificates/:category/:code/vocabulary" element={<CertificateVocabularyPage />} />
             <Route path="/certificates/:category/:code/exam" element={<RequireVipOrAdmin><CertificateExamPage /></RequireVipOrAdmin>} />
-            <Route path="/certificates/:category/:code/mock-exam" element={<RequireVipOrAdmin><CertificateMockExamPage /></RequireVipOrAdmin>} />
+            <Route path="/certificates/:category/:code/mock-exam" element={<RequireVipOrAdmin featureName="thi thử chứng chỉ"><CertificateMockExamPage /></RequireVipOrAdmin>} />
           </Routes>
         </main>
       </div>
