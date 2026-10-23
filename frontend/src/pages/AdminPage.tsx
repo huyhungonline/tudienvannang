@@ -5,6 +5,7 @@ import { get, post, put, del, uploadBookImage } from '../api/client';
 import { Spinner } from '../components/Spinner';
 import { CLASS_SCHEDULES } from './ClassRegistrationPage';
 import { WorkbookOrdersManagement } from './WorkbookOrdersManagement';
+import { ClassSessionsManagement } from './ClassSessionsManagement';
 import { EmailContactsManagement } from './EmailContactsManagement';
 
 interface AdminUser {
@@ -22,7 +23,7 @@ interface Subscriber {
   created_at: string | null;
 }
 
-type AdminView = 'menu' | 'users' | 'mailer' | 'questions' | 'reading' | 'books' | 'class-registrations' | 'workbook-orders' | 'email-contacts';
+type AdminView = 'menu' | 'users' | 'mailer' | 'questions' | 'reading' | 'books' | 'class-registrations' | 'class-sessions' | 'workbook-orders' | 'email-contacts';
 
 export function AdminPage() {
   const { isAuthenticated } = useAuth();
@@ -52,6 +53,9 @@ export function AdminPage() {
           <button className="admin-menu-item" onClick={() => setView('class-registrations')}>
             Đăng kí lớp học
           </button>
+          <button className="admin-menu-item" onClick={() => setView('class-sessions')}>
+            🏫 Quản lý lớp học
+          </button>
           <button className="admin-menu-item" onClick={() => setView('workbook-orders')}>
             Danh sách đăng kí mua sách
           </button>
@@ -76,6 +80,7 @@ export function AdminPage() {
       {view === 'mailer' && <MailerSection />}
       {view === 'email-contacts' && <EmailContactsManagement />}
       {view === 'class-registrations' && <ClassRegistrationsManagement />}
+      {view === 'class-sessions' && <ClassSessionsManagement />}
       {view === 'workbook-orders' && <WorkbookOrdersManagement />}
       {view === 'questions' && <QuestionsManagement />}
       {view === 'reading' && <ReadingPostsManagement />}
@@ -540,8 +545,9 @@ export function ClassRegistrationsManagement() {
       <h3>Số lượng đăng kí theo lớp</h3>
       <p><strong>IT Passport: {counts.filter(item => item.course === 'it-passport').reduce((sum, item) => sum + item.count, 0)} người</strong></p>
       <ul>
-        {Object.entries(CLASS_SCHEDULES).map(([code, label]) => <li key={code}>
-          {label}: <strong>{counts.find(item => item.course === 'it-passport' && item.schedule === code)?.count ?? 0} người</strong>
+        {/* Driven by the API so newly added classes appear without a code change. */}
+        {counts.filter(item => item.course === 'it-passport' && item.schedule).map(item => <li key={item.schedule}>
+          {CLASS_SCHEDULES[item.schedule!] || item.schedule}: <strong>{item.count} người</strong>
         </li>)}
       </ul>
       <p><strong>機械保全技能検定: {counts.filter(item => item.course === 'kikai-hozen').reduce((sum, item) => sum + item.count, 0)} người</strong></p>

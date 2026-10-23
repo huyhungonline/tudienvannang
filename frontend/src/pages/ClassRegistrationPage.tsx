@@ -1,16 +1,30 @@
-import { useRef, useState, type FormEvent } from 'react';
+import { useEffect, useRef, useState, type FormEvent } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import { ApiError, post } from '../api/client';
+import { ApiError, get, post } from '../api/client';
 
 export const CLASS_NAMES: Record<string, string> = {
   'it-passport': 'Đăng kí luyện thi IT Passport miễn phí',
   'kikai-hozen': 'Đăng kí luyện thi 機械保全技能検定',
 };
 
+/**
+ * Labels for the two original November classes. Classes are now managed in the
+ * database, so this only serves as a fallback when displaying historical
+ * registrations whose class row has since been renamed or removed.
+ */
 export const CLASS_SCHEDULES: Record<string, string> = {
   'sat-tue-20-22': 'Thứ 7 và thứ 3 từ 20h–22h',
   'sun-thu-20-22': 'Chủ nhật và thứ 5 từ 20h–22h',
 };
+
+export interface ClassSession {
+  code: string;
+  name: string;
+  firstLessonDate: string | null;
+  capacity: number;
+  taken: number;
+  isFull: boolean;
+}
 
 export function ClassRegistrationPage() {
   return (
@@ -39,8 +53,20 @@ function ClassRegistrationForm({ course }: { course: string }) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [saved, setSaved] = useState(false);
+  const [sessions, setSessions] = useState<ClassSession[]>([]);
+  const [sessionsLoading, setSessionsLoading] = useState(course === 'it-passport');
   const attempt = useRef<{ fingerprint: string; id: string } | null>(null);
   const title = CLASS_NAMES[course];
+
+  // Only IT Passport offers selectable classes.
+  useEffect(() => {
+    if (course !== 'it-passport') return;
+    setSessionsLoading(true);
+    get<{ sessions: ClassSession[] }>(`/classes/sessions?course=${course}`)
+      .then((data) => setSessions(data.sessions))
+      .catch(() => setError('Không tải được danh sách lớp học.'))
+      .finally(() => setSessionsLoading(false));
+  }, [course]);
 
   const submit = async (event: FormEvent) => {
     event.preventDefault();
@@ -48,7 +74,7 @@ function ClassRegistrationForm({ course }: { course: string }) {
     const goToWorkbook = (event.nativeEvent as SubmitEvent).submitter?.getAttribute('value') === 'workbook';
     setError('');
     const payload = { course, full_name: fullName.trim(), email: email.trim(), phone: phone.trim(), schedule: course === 'it-passport' ? schedule : null };
-    if (course === 'it-passport' && !CLASS_SCHEDULES[schedule]) { setError('Vui lòng chọn lớp học.'); return; }
+    if (course === 'it-passport' && !sessions.some((s) => s.code === schedule)) { setError('Vui lòng chọn lớp học.'); return; }
     if (!payload.full_name) { setError('Vui lòng nhập đầy đủ thông tin.'); return; }
     const digits = payload.phone.replace(/\D/g, '').length;
     if (digits < 6 || digits > 15 || !/^[\d+().\s-]+$/.test(payload.phone)) {
@@ -77,9 +103,19 @@ function ClassRegistrationForm({ course }: { course: string }) {
         <form className="class-registration-form" onSubmit={submit}>
           {course === 'it-passport' && <>
             <label htmlFor="class-schedule">Chọn lớp</label>
-            <select id="class-schedule" name="schedule" required value={schedule} onChange={e => setSchedule(e.target.value)}>
-              <option value="">-- Chọn lớp --</option>
-              {Object.entries(CLASS_SCHEDULES).map(([code, label]) => <option key={code} value={code}>{label}</option>)}
+            <select id="class-schedule" name="schedule" required value={schedule}
+                    disabled={sessionsLoading || sessions.length === 0}
+                    onChange={e => setSchedule(e.target.value)}>
+              <option value="">
+                {sessionsLoading ? 'Đang tải danh sách lớp...'
+                  : sessions.length === 0 ? '-- Hiện chưa có lớp nào mở đăng kí --'
+                  : '-- Chọn lớp --'}
+              </option>
+              {sessions.map((s) => (
+                <option key={s.code} value={s.code} disabled={s.isFull}>
+                  {s.name}{s.isFull ? ' (đã đầy)' : ''}
+                </option>
+              ))}
             </select>
           </>}
           <label htmlFor="class-full-name">Họ tên</label>
