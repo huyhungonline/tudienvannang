@@ -1451,52 +1451,133 @@ body {
 }
 
 /* Prominent entry point to the certificate practice section */
-/* Matches .book-item so the call to action sits visually with the book cards. */
+/* Call to action above the book list. Shares the card border radius with
+   .book-item, with a tinted panel so it reads as a promotion, not a product. */
 .mock-exam-cta {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.6rem;
   text-align: center;
-  background: #fff;
-  border: 1px solid #e5e7eb;
-  border-radius: 8px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
-  padding: 1.75rem 1.25rem;
+  background:
+    radial-gradient(circle at 15% 0%, rgba(37, 99, 235, 0.09), transparent 55%),
+    radial-gradient(circle at 85% 100%, rgba(13, 148, 136, 0.09), transparent 55%),
+    #fff;
+  border: 1px solid #dbe4f0;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(17, 24, 39, 0.06);
+  padding: 2rem 1.5rem 1.75rem;
   margin: 1.25rem 0 1.75rem;
+  overflow: hidden;
+}
+
+/* Accent strip along the top edge. */
+.mock-exam-cta::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #2563eb, #0d9488);
+}
+
+.mock-exam-cta-badge {
+  display: inline-block;
+  padding: 0.25rem 0.85rem;
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  border-radius: 999px;
+  color: #1d4ed8;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  margin-bottom: 0.85rem;
+}
+
+.mock-exam-cta-title {
+  margin: 0 0 1.1rem;
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #0f172a;
+  line-height: 1.35;
+  max-width: 520px;
+}
+
+.mock-exam-cta-points {
+  list-style: none;
+  margin: 0 0 1.5rem;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.6rem 1.5rem;
+  text-align: left;
+  max-width: 620px;
+  width: 100%;
+}
+
+.mock-exam-cta-points li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: #374151;
+  line-height: 1.5;
+}
+
+.mock-exam-cta-icon {
+  flex-shrink: 0;
+  font-size: 1rem;
+  line-height: 1.4;
 }
 
 .btn-mock-exam-cta {
-  display: inline-block;
-  padding: 0.85rem 2.5rem;
-  background: #2563eb;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.9rem 2.75rem;
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
   color: #fff;
-  font-size: 1.25rem;
+  font-size: 1.15rem;
   font-weight: 800;
-  border-radius: 8px;
+  border-radius: 999px;
   text-decoration: none;
-  transition: background 0.15s, transform 0.15s, box-shadow 0.15s;
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35);
+  transition: transform 0.15s, box-shadow 0.15s, filter 0.15s;
 }
 
 .btn-mock-exam-cta:hover {
-  background: #1d4ed8;
   color: #fff;
+  filter: brightness(1.07);
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+  box-shadow: 0 8px 22px rgba(37, 99, 235, 0.42);
 }
 
-.mock-exam-cta-sub {
-  margin: 0;
-  font-size: 0.9rem;
-  color: #4b5563;
-  line-height: 1.6;
-  max-width: 680px;
+.btn-mock-exam-arrow {
+  transition: transform 0.15s;
+}
+
+.btn-mock-exam-cta:hover .btn-mock-exam-arrow {
+  transform: translateX(4px);
 }
 
 @media (max-width: 600px) {
+  .mock-exam-cta {
+    padding: 1.6rem 1.1rem 1.4rem;
+  }
+  .mock-exam-cta-title {
+    font-size: 1.15rem;
+  }
+  /* Two columns of bullets become unreadable on a phone. */
+  .mock-exam-cta-points {
+    grid-template-columns: 1fr;
+  }
   .btn-mock-exam-cta {
-    padding: 0.75rem 1.75rem;
-    font-size: 1.1rem;
+    width: 100%;
+    justify-content: center;
+    padding: 0.85rem 1.5rem;
+    font-size: 1.05rem;
   }
 }
 

@@ -120,14 +120,32 @@ export function BooksPage() {
       <h2>Professional Books</h2>
 
       <div className="mock-exam-cta">
+        <span className="mock-exam-cta-badge">Thi thử miễn phí</span>
+        <h3 className="mock-exam-cta-title">Luyện thi chứng chỉ Nhật — giống đề thi thật</h3>
+
+        <ul className="mock-exam-cta-points">
+          <li>
+            <span className="mock-exam-cta-icon" aria-hidden="true">📝</span>
+            <span>Nội dung và phương thức thi giống đề thi thật</span>
+          </li>
+          <li>
+            <span className="mock-exam-cta-icon" aria-hidden="true">🎯</span>
+            <span>Tự đánh giá năng lực, chuẩn bị tốt tâm lý khi đi thi</span>
+          </li>
+          <li>
+            <span className="mock-exam-cta-icon" aria-hidden="true">💰</span>
+            <span>Giảm chi phí thi lại nhiều lần</span>
+          </li>
+          <li>
+            <span className="mock-exam-cta-icon" aria-hidden="true">📧</span>
+            <span>Điểm và kết quả chi tiết gửi qua email</span>
+          </li>
+        </ul>
+
         <Link to="/certificates" className="btn-mock-exam-cta">
-          Bấm vào để thi thử ngay
+          Thi thử ngay
+          <span className="btn-mock-exam-arrow" aria-hidden="true">→</span>
         </Link>
-        <p className="mock-exam-cta-sub">
-          Bài thi thử có nội dung và phương thức thi giống đề thi thật. Giúp học viên tự đánh giá
-          năng lực và chuẩn bị tốt tâm lý khi đi thi. Giảm chi phí thi nhiều lần! Điểm bài thi và
-          kết quả sẽ được thông báo qua mail.
-        </p>
       </div>
 
       {error && <div className="form-error">{error}</div>}
