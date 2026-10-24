@@ -138,3 +138,18 @@ describe('API client auth handling', () => {
     expect(localStorage.getItem('token')).toBe('valid-token');
   });
 });
+
+it('rejects oversized cover images before sending a request', async () => {
+  const fetchMock = vi.fn();
+  vi.stubGlobal('fetch', fetchMock);
+  const { uploadBookImage } = await import('./client');
+  const file = new File([new Uint8Array(5 * 1024 * 1024 + 1)], 'cover.png', { type: 'image/png' });
+  await expect(uploadBookImage(file)).rejects.toThrow('tối đa 5 MB');
+  expect(fetchMock).not.toHaveBeenCalled();
+});
+
+it('explains proxy upload limits even when the response is HTML', async () => {
+  vi.stubGlobal('fetch', vi.fn(async () => ({ ok: false, status: 413, json: async () => { throw new Error('HTML response'); } })));
+  const { uploadBookImage } = await import('./client');
+  await expect(uploadBookImage(new File(['image'], 'cover.png'))).rejects.toThrow('tối đa 5 MB');
+});

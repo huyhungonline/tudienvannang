@@ -126,6 +126,9 @@ export function speak(text: string, language: string): Promise<{ audioData: stri
 
 // File upload (multipart) - bypasses the JSON request() helper
 export async function uploadBookImage(file: File): Promise<{ image_url: string }> {
+  if (file.size > 5 * 1024 * 1024) {
+    throw new ApiError(400, 'Ảnh bìa quá lớn. Vui lòng chọn ảnh tối đa 5 MB.');
+  }
   const formData = new FormData();
   formData.append('file', file);
 
@@ -148,7 +151,9 @@ export async function uploadBookImage(file: File): Promise<{ image_url: string }
       handleSessionExpired();
     }
 
-    throw new ApiError(response.status, error.detail || 'Upload failed');
+    throw new ApiError(response.status, response.status === 413
+      ? 'Ảnh bìa quá lớn. Vui lòng chọn ảnh tối đa 5 MB.'
+      : error.detail || 'Upload ảnh thất bại. Vui lòng thử lại.');
   }
 
   return response.json();

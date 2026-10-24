@@ -45,6 +45,7 @@ ssh ${VPS_USER}@${VPS_HOST} << 'REMOTE'
 set -e
 cd /root/tudienvannang
 git pull origin main
+bash configure-book-upload.sh
 docker compose config --quiet
 
 echo ""
