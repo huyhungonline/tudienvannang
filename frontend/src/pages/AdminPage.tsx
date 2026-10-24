@@ -48,16 +48,16 @@ export function AdminPage() {
             ✉️ Gửi mail cho User
           </button>
           <button className="admin-menu-item" onClick={() => setView('email-contacts')}>
-            Nhập mail user
+            📧 Nhập mail user
           </button>
           <button className="admin-menu-item" onClick={() => setView('class-registrations')}>
-            Đăng kí lớp học
+            📋 Danh sách đăng kí lớp học
           </button>
           <button className="admin-menu-item" onClick={() => setView('class-sessions')}>
             🏫 Quản lý lớp học
           </button>
           <button className="admin-menu-item" onClick={() => setView('workbook-orders')}>
-            Danh sách đăng kí mua sách
+            📦 Danh sách đăng kí mua sách
           </button>
           <button className="admin-menu-item" onClick={() => setView('questions')}>
             📝 Classroom Questions
