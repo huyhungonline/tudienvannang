@@ -129,7 +129,10 @@ function ClassRegistrationForm({ course }: { course: string }) {
             <button type="submit" name="action" value="workbook" className="btn-submit" disabled={loading}>Đăng kí in sách bài tập</button>
             <p>Không bắt buộc.</p>
           </div>}
-          <button type="submit" className="btn-submit" disabled={loading}>{loading ? 'Đang đăng kí...' : 'Đăng kí lớp học'}</button>
+          <div className="class-registration-actions">
+            <button type="submit" className="btn-submit" disabled={loading}>{loading ? 'Đang đăng kí...' : 'Đăng kí lớp học'}</button>
+            {course === 'it-passport' && <a className="btn-submit" href="/downloads/IT_Passport_Khoa_Hoc_Mien_Phi_46_Slide.pdf" download="IT_Passport_Khoa_Hoc_Mien_Phi_46_Slide.pdf">📥 Download bài giảng</a>}
+          </div>
         </form>
       ))}
       {course === 'it-passport' && saved && <div className="workbook-option">

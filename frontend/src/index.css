@@ -105,6 +105,17 @@ body {
 
 .class-registration-menu a:hover { text-decoration: underline; }
 
+.class-registration-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+
+.class-registration-actions a {
+  text-decoration: none;
+}
+
 .class-registration-form {
   display: grid;
   gap: 12px;
