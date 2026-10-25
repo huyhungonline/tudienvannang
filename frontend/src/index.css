@@ -105,6 +105,11 @@ body {
 
 .class-registration-menu a:hover { text-decoration: underline; }
 
+.class-registration-menu a.btn-submit {
+  color: #fff;
+  text-decoration: none;
+}
+
 .class-registration-actions {
   display: flex;
   flex-wrap: wrap;

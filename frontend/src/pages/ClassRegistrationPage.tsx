@@ -32,7 +32,12 @@ export function ClassRegistrationPage() {
       <h2>Đăng kí lớp học</h2>
       <ol className="class-registration-menu">
         {Object.entries(CLASS_NAMES).map(([code, title]) => (
-          <li key={code}><Link to={`/dang-ki-lop-hoc/${code}`}>{title}</Link></li>
+          <li key={code}>
+            <div className="class-registration-actions">
+              <Link to={`/dang-ki-lop-hoc/${code}`}>{title}</Link>
+              {code === 'it-passport' && <a className="btn-submit" href="/downloads/IT_Passport_Khoa_Hoc_Mien_Phi_46_Slide.pdf" download="IT_Passport_Khoa_Hoc_Mien_Phi_46_Slide.pdf">📥 Download bài giảng</a>}
+            </div>
+          </li>
         ))}
       </ol>
     </div>
@@ -129,10 +134,7 @@ function ClassRegistrationForm({ course }: { course: string }) {
             <button type="submit" name="action" value="workbook" className="btn-submit" disabled={loading}>Đăng kí in sách bài tập</button>
             <p>Không bắt buộc.</p>
           </div>}
-          <div className="class-registration-actions">
-            <button type="submit" className="btn-submit" disabled={loading}>{loading ? 'Đang đăng kí...' : 'Đăng kí lớp học'}</button>
-            {course === 'it-passport' && <a className="btn-submit" href="/downloads/IT_Passport_Khoa_Hoc_Mien_Phi_46_Slide.pdf" download="IT_Passport_Khoa_Hoc_Mien_Phi_46_Slide.pdf">📥 Download bài giảng</a>}
-          </div>
+          <button type="submit" className="btn-submit" disabled={loading}>{loading ? 'Đang đăng kí...' : 'Đăng kí lớp học'}</button>
         </form>
       ))}
       {course === 'it-passport' && saved && <div className="workbook-option">
