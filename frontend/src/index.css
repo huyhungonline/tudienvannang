@@ -3385,3 +3385,6 @@ body {
     gap: 0.5rem;
   }
 }
+
+.book-purchase-contact { padding: 1rem; text-align: center; }
+.book-purchase-contact a { color: #2563eb; text-decoration: underline; overflow-wrap: anywhere; }

@@ -34,63 +34,26 @@ function BookContent({ content }: { content: string }) {
   );
 }
 
-function ContactModal({ book, onClose }: { book: Book; onClose: () => void }) {
-  // Close on Escape for keyboard accessibility
-  useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onClose();
-    };
-    document.addEventListener('keydown', onKey);
-    return () => document.removeEventListener('keydown', onKey);
-  }, [onClose]);
-
-  return (
-    <div className="book-modal-overlay" onClick={onClose}>
-      <div
-        className="book-modal"
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="book-modal-title"
-        onClick={(e) => e.stopPropagation()}
-      >
-        <button className="book-modal-close" onClick={onClose} aria-label="Đóng">
-          ×
-        </button>
-
-        <h3 id="book-modal-title" className="book-modal-title">
-          Hãy liên hệ ngay với Táo Giáo Dục để mua sách
-        </h3>
-
-        <p className="book-modal-book">{book.title}</p>
-
-        <div className="book-modal-info">
-          <div className="book-modal-row">
-            <span className="book-modal-label">Liên hệ</span>
-            <span className="book-modal-value">{book.contact}</span>
-          </div>
-          {book.price && (
-            <div className="book-modal-row">
-              <span className="book-modal-label">Giá</span>
-              <span className="book-modal-value book-modal-price">{book.price}</span>
-            </div>
-          )}
-        </div>
-
-        <button className="btn-submit book-modal-ok" onClick={onClose}>
-          Đã hiểu
-        </button>
-      </div>
-    </div>
-  );
+function getTikTokUrl(contact: string): string | undefined {
+  const match = contact.trim().match(/(?:https?:\/\/)?(?:[a-z0-9-]+\.)*tiktok\.com\/[^\s<>"']*/i);
+  if (!match) return undefined;
+  try {
+    const url = new URL(/^https?:\/\//i.test(match[0]) ? match[0] : `https://${match[0]}`);
+    if (url.hostname === 'tiktok.com' || url.hostname.endsWith('.tiktok.com')) {
+      return url.href;
+    }
+  } catch {
+    return undefined;
+  }
+  return undefined;
 }
-
 export function BooksPage() {
   const [books, setBooks] = useState<Book[]>([]);
   const [total, setTotal] = useState(0);
   const [page, setPage] = useState(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [selectedBook, setSelectedBook] = useState<Book | null>(null);
+
 
   const PAGE_SIZE = 10;
 
@@ -172,12 +135,16 @@ export function BooksPage() {
                   {b.content && <BookContent content={b.content} />}
                 </div>
 
-                <button
-                  className="btn-buy-book"
-                  onClick={() => setSelectedBook(b)}
-                >
-                  Liên hệ mua sách
-                </button>
+                <div className="book-purchase-contact">
+                  Liên hệ mua hàng:{' '}
+                  {getTikTokUrl(b.contact) ? (
+                    <a href={getTikTokUrl(b.contact)} target="_blank" rel="noopener noreferrer">
+                      {getTikTokUrl(b.contact)}
+                    </a>
+                  ) : (
+                    <strong>TikTok (chưa có link)</strong>
+                  )}
+                </div>
               </div>
             ))}
           </div>
@@ -190,10 +157,6 @@ export function BooksPage() {
             </div>
           )}
         </>
-      )}
-
-      {selectedBook && (
-        <ContactModal book={selectedBook} onClose={() => setSelectedBook(null)} />
       )}
     </div>
   );

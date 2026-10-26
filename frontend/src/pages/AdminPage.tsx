@@ -995,8 +995,8 @@ function BooksManagement() {
             <input type="text" placeholder="VD: 150,000 VNĐ" value={price} onChange={e => setPrice(e.target.value)} required />
           </label>
           <label className="book-form-field">
-            Liên hệ mua hàng
-            <input type="text" placeholder="SĐT/email/zalo..." value={contact} onChange={e => setContact(e.target.value)} required />
+            Link TikTok mua hàng
+            <input type="text" placeholder="https://www.tiktok.com/@taikhoan" value={contact} onChange={e => setContact(e.target.value)} required />
           </label>
           <label className="book-form-field">
             Nội dung / mô tả chi tiết
@@ -1026,8 +1026,8 @@ function BooksManagement() {
             <input type="text" placeholder="VD: 150,000 VNĐ" value={price} onChange={e => setPrice(e.target.value)} />
           </label>
           <label className="book-form-field">
-            Liên hệ mua hàng
-            <input type="text" value={contact} onChange={e => setContact(e.target.value)} />
+            Link TikTok mua hàng
+            <input type="text" placeholder="https://www.tiktok.com/@taikhoan" value={contact} onChange={e => setContact(e.target.value)} />
           </label>
           <label className="book-form-field">
             Nội dung / mô tả chi tiết
