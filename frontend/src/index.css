@@ -3442,3 +3442,72 @@ body {
   color: #4b5563;
   white-space: nowrap;
 }
+
+/* Toggleable status badges. Text labels instead of emoji so the state is
+   unambiguous and renders identically across platforms. */
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.25rem 0.65rem;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  font-size: 0.78rem;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+}
+
+.status-pill:disabled {
+  cursor: default;
+  opacity: 0.6;
+}
+
+.status-pill-mark {
+  font-size: 0.85rem;
+  line-height: 1;
+}
+
+.status-pill.is-pending {
+  background: #f3f4f6;
+  border-color: #e5e7eb;
+  color: #6b7280;
+}
+
+.status-pill.is-pending:hover:not(:disabled) {
+  background: #e5e7eb;
+  color: #374151;
+}
+
+.status-pill.is-done.paid {
+  background: #dcfce7;
+  border-color: #86efac;
+  color: #15803d;
+}
+
+.status-pill.is-done.shipped {
+  background: #dbeafe;
+  border-color: #93c5fd;
+  color: #1d4ed8;
+}
+
+.status-pill.is-done:hover:not(:disabled) {
+  filter: brightness(0.96);
+}
+
+/* Inline spinner while the status change is in flight. */
+.status-pill-spin {
+  width: 11px;
+  height: 11px;
+  margin: 0 1.1rem;
+  border: 2px solid #d1d5db;
+  border-top-color: #6b7280;
+  border-radius: 50%;
+  animation: status-pill-rotate 0.6s linear infinite;
+}
+
+@keyframes status-pill-rotate {
+  to { transform: rotate(360deg); }
+}

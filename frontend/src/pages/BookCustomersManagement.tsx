@@ -225,18 +225,40 @@ export function BookCustomersManagement() {
                 <tr key={row.id}>
                   <td>
                     <button type="button" disabled={busyId === row.id}
+                            className={`status-pill ${row.paid_at ? 'is-done paid' : 'is-pending'}`}
                             onClick={() => toggle(row, 'payment')}
-                            style={{ cursor: 'pointer', border: 'none', background: 'none', fontSize: 15 }}
-                            title={row.paid_at ? 'Đã thanh toán' : 'Chưa thanh toán'}>
-                      {busyId === row.id ? '…' : row.paid_at ? '✅' : '⬜'}
+                            title={row.paid_at
+                              ? `Đã thanh toán ${new Date(row.paid_at).toLocaleDateString('vi-VN')} — bấm để bỏ`
+                              : 'Chưa thanh toán — bấm để đánh dấu đã thu tiền'}>
+                      {busyId === row.id ? (
+                        <span className="status-pill-spin" />
+                      ) : (
+                        <>
+                          <span className="status-pill-mark" aria-hidden="true">
+                            {row.paid_at ? '✓' : '○'}
+                          </span>
+                          {row.paid_at ? 'Đã thu' : 'Chưa thu'}
+                        </>
+                      )}
                     </button>
                   </td>
                   <td>
                     <button type="button" disabled={busyId === row.id}
+                            className={`status-pill ${row.shipped_at ? 'is-done shipped' : 'is-pending'}`}
                             onClick={() => toggle(row, 'shipping')}
-                            style={{ cursor: 'pointer', border: 'none', background: 'none', fontSize: 15 }}
-                            title={row.shipped_at ? 'Đã gửi sách' : 'Chưa gửi'}>
-                      {busyId === row.id ? '…' : row.shipped_at ? '📦' : '⬜'}
+                            title={row.shipped_at
+                              ? `Đã gửi ${new Date(row.shipped_at).toLocaleDateString('vi-VN')} — bấm để bỏ`
+                              : 'Chưa gửi — bấm để đánh dấu đã gửi sách'}>
+                      {busyId === row.id ? (
+                        <span className="status-pill-spin" />
+                      ) : (
+                        <>
+                          <span className="status-pill-mark" aria-hidden="true">
+                            {row.shipped_at ? '✓' : '○'}
+                          </span>
+                          {row.shipped_at ? 'Đã gửi' : 'Chưa gửi'}
+                        </>
+                      )}
                     </button>
                   </td>
                   <td>{row.full_name}</td>
