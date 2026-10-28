@@ -17,9 +17,10 @@ Design decisions worth knowing:
 """
 import hashlib
 import logging
+import secrets
 from typing import Any
 
-from fastapi import APIRouter, Header, HTTPException, Request
+from fastapi import APIRouter, Header, HTTPException
 from pydantic import BaseModel
 
 from config import MCP_TOKEN
@@ -180,12 +181,8 @@ async def _call_tool(name: str, args: dict, fingerprint: str) -> dict:
     raise ValueError(f"Unknown tool: {name}")
 
 
-@router.post("")
-async def handle_mcp(body: JsonRpcRequest, request: Request,
-                     authorization: str | None = Header(default=None)):
-    """Single JSON-RPC entry point for the MCP protocol."""
-    token = _require_token(authorization)
-    fingerprint = _token_fingerprint(token)
+async def _dispatch(body: JsonRpcRequest, fingerprint: str) -> dict:
+    """Route one JSON-RPC call. Shared by both authentication styles."""
     params = body.params or {}
 
     try:
@@ -217,6 +214,35 @@ async def handle_mcp(body: JsonRpcRequest, request: Request,
                 "error": {"code": -32603, "message": "Internal error"}}
 
     return {"jsonrpc": "2.0", "id": body.id, "result": result}
+
+
+@router.post("")
+async def handle_mcp(body: JsonRpcRequest,
+                     authorization: str | None = Header(default=None)):
+    """Entry point for clients that can send an Authorization header
+    (Claude Desktop, Kiro, Codex)."""
+    token = _require_token(authorization)
+    return await _dispatch(body, _token_fingerprint(token))
+
+
+@router.post("/t/{url_token}")
+async def handle_mcp_url_token(url_token: str, body: JsonRpcRequest):
+    """Entry point for ChatGPT web, which cannot send a static bearer token.
+
+    The secret lives in the URL path instead of a header, so the connector can
+    be configured as "No authentication" while the endpoint stays protected:
+    without the exact token in the path there is no route to the tools.
+
+    The trade-off versus a header is that the secret may appear in proxy or
+    browser history, so treat the whole URL as the credential and rotate it
+    (MCP_TOKEN in .env) if it is ever shared by accident.
+    """
+    if not MCP_TOKEN:
+        raise HTTPException(status_code=503, detail="MCP endpoint is not configured")
+    # Constant-time comparison to avoid leaking the token through timing.
+    if not secrets.compare_digest(url_token, MCP_TOKEN):
+        raise HTTPException(status_code=404, detail="Not found")
+    return await _dispatch(body, _token_fingerprint(url_token))
 
 
 @router.get("/health")
