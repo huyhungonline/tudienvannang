@@ -35,6 +35,8 @@ services:
       - FROM_EMAIL=${FROM_EMAIL:-admin@jaenglish.com}
       - FROM_NAME=${FROM_NAME:-Táo Giáo Dục}
       - APP_URL=${APP_URL:-https://jaenglish.com}
+      # Token for the ChatGPT MCP connector. Empty disables the endpoint.
+      - MCP_TOKEN=${MCP_TOKEN:-}
     volumes:
       - ./audio:/audio
       - ./book_images:/book_images
