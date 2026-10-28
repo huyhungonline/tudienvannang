@@ -31,7 +31,7 @@ export function ClassRegistrationPage() {
     <div className="class-registration-page">
       <h2>Đăng kí lớp học</h2>
       <ol className="class-registration-menu">
-        {Object.entries(CLASS_NAMES).map(([code, title]) => (
+        {Object.entries(CLASS_NAMES).filter(([code]) => code !== 'kikai-hozen').map(([code, title]) => (
           <li key={code}>
             <div className="class-registration-actions">
               <Link to={`/dang-ki-lop-hoc/${code}`}>{title}</Link>
