@@ -39,6 +39,13 @@ export function ClassRegistrationPage() {
             </div>
           </li>
         ))}
+        {/* Standalone entry point: lets someone order the workbook without
+            first signing up for a class. */}
+        <li>
+          <div className="class-registration-actions">
+            <Link to="/dang-ki-in-sach-bai-tap">Đăng kí in sách bài tập IT Passport</Link>
+          </div>
+        </li>
       </ol>
     </div>
   );
