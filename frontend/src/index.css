@@ -3388,3 +3388,57 @@ body {
 
 .book-purchase-contact { padding: 1rem; text-align: center; }
 .book-purchase-contact a { color: #2563eb; text-decoration: underline; overflow-wrap: anywhere; }
+
+/* === Book customer management === */
+.customer-stats {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin: 1rem 0 1.25rem;
+}
+
+.customer-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+  min-width: 110px;
+  padding: 0.75rem 1rem;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.customer-stat:hover {
+  border-color: #2563eb;
+}
+
+.customer-stat.active {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.15);
+}
+
+.customer-stat-value {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #2563eb;
+  line-height: 1.1;
+}
+
+.customer-stat-label {
+  font-size: 0.78rem;
+  color: #6b7280;
+  text-align: center;
+}
+
+.customer-source {
+  display: inline-block;
+  padding: 0.15rem 0.5rem;
+  background: #f3f4f6;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  color: #4b5563;
+  white-space: nowrap;
+}

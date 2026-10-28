@@ -13,6 +13,8 @@ from services.nhk_mailer_service import send_daily_news
 from services.mail_queue_service import run_mail_queue
 from routes import class_registrations
 from routes import email_contacts
+from routes import book_customers
+from routes import mcp
 
 logger = logging.getLogger(__name__)
 
@@ -84,6 +86,8 @@ app.include_router(books.router)
 app.include_router(certificates.router)
 app.include_router(class_registrations.router)
 app.include_router(email_contacts.router)
+app.include_router(book_customers.router)
+app.include_router(mcp.router)
 
 
 @app.get("/api/health")

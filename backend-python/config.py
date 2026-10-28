@@ -18,3 +18,8 @@ SMTP_PASSWORD = os.getenv("SMTP_PASSWORD", "")
 FROM_EMAIL = os.getenv("FROM_EMAIL", "admin@jaenglish.com")
 FROM_NAME = os.getenv("FROM_NAME", "Táo Giáo Dục")
 APP_URL = os.getenv("APP_URL", "https://jaenglish.com").rstrip("/")
+
+# Token for the MCP endpoint used by ChatGPT. Deliberately separate from
+# JWT_SECRET so it can be rotated or revoked without affecting user logins.
+# Empty means the MCP endpoint refuses every request.
+MCP_TOKEN = os.getenv("MCP_TOKEN", "")

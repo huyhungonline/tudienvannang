@@ -6,6 +6,7 @@ import { Spinner } from '../components/Spinner';
 import { CLASS_SCHEDULES } from './ClassRegistrationPage';
 import { WorkbookOrdersManagement } from './WorkbookOrdersManagement';
 import { ClassSessionsManagement } from './ClassSessionsManagement';
+import { BookCustomersManagement } from './BookCustomersManagement';
 import { EmailContactsManagement } from './EmailContactsManagement';
 
 interface AdminUser {
@@ -23,7 +24,7 @@ interface Subscriber {
   created_at: string | null;
 }
 
-type AdminView = 'menu' | 'users' | 'mailer' | 'questions' | 'reading' | 'books' | 'class-registrations' | 'class-sessions' | 'workbook-orders' | 'email-contacts';
+type AdminView = 'menu' | 'users' | 'mailer' | 'questions' | 'reading' | 'books' | 'class-registrations' | 'class-sessions' | 'workbook-orders' | 'book-customers' | 'email-contacts';
 
 export function AdminPage() {
   const { isAuthenticated } = useAuth();
@@ -59,6 +60,9 @@ export function AdminPage() {
           <button className="admin-menu-item" onClick={() => setView('workbook-orders')}>
             📦 Danh sách đăng kí mua sách
           </button>
+          <button className="admin-menu-item" onClick={() => setView('book-customers')}>
+            🧾 Khách hàng mua sách
+          </button>
           <button className="admin-menu-item" onClick={() => setView('questions')}>
             📝 Classroom Questions
           </button>
@@ -82,6 +86,7 @@ export function AdminPage() {
       {view === 'class-registrations' && <ClassRegistrationsManagement />}
       {view === 'class-sessions' && <ClassSessionsManagement />}
       {view === 'workbook-orders' && <WorkbookOrdersManagement />}
+      {view === 'book-customers' && <BookCustomersManagement />}
       {view === 'questions' && <QuestionsManagement />}
       {view === 'reading' && <ReadingPostsManagement />}
       {view === 'books' && <BooksManagement />}
