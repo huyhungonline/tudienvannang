@@ -17,7 +17,7 @@ async def main():
     try:
         cert=await mock.get_certificate_by_code('itpp')
         assert cert
-        rows=await content.exam_questions(cert['id'])
+        rows=await db.query('SELECT * FROM certificate_exam_questions WHERE certificate_id=$1 AND source_key IS NOT NULL',cert['id'])
         expected={q['id']:q for file in (ROOT/'tool/structured').glob('*_qs.json')
                   for q in json.loads(file.read_text(encoding='utf-8'))['questions']}
         assert len(rows)==len(expected)==1700
@@ -34,11 +34,14 @@ async def main():
              WHERE e.certificate_id=$1) AS passages''',cert['id'])
         assert counts=={'exams':17,'passages':8}
         config=await mock.get_exam_config(cert['id'])
-        assert config['availableCount']==1700 and config['effectiveCount']==100
+        eligible=await content.exam_questions(cert['id'])
+        assert 100 <= len(eligible) < 1700
+        assert all(not content.decoded(r['assets_json'],[]) and not content.decoded(r['passage_assets'],[]) for r in eligible)
+        assert config['availableCount']==len(eligible) and config['effectiveCount']==100
         exists=await db.query_one("SELECT to_regclass('mock_exam_attempts') IS NOT NULL AS present")
         before=await db.query_one('SELECT count(*) AS count FROM mock_exam_attempts') if exists['present'] else None
         result=await mock.grade_attempt('verification',cert['id'],[
-            {'questionId':r['id'],'selectedLabel':expected[r['source_key']]['correct_option_id']} for r in rows[:3]
+            {'questionId':r['id'],'selectedLabel':expected[r['source_key']]['correct_option_id']} for r in eligible[:3]
         ],10,persist=False)
         assert result['attemptId'] is None and result['correctCount']==3
         after=await db.query_one('SELECT count(*) AS count FROM mock_exam_attempts') if exists['present'] else None
@@ -53,7 +56,7 @@ async def main():
             assert response.status==200 and response.read(5)==b'%PDF-'
         report_file=ROOT/'tool/structured/database_import_report.json'
         report=json.loads(report_file.read_text(encoding='utf-8'))
-        report.update(verified=True,verified_questions=len(rows),verified_options=4*len(rows),
+        report.update(verified=True,verified_questions=len(rows),verified_options=4*len(rows),available_text_questions=len(eligible),
                       stateless_grading_verified=True,live_backend_verified=True,live_pdf_verified=True)
         report_file.write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding='utf-8')
         print(json.dumps(report,ensure_ascii=False))

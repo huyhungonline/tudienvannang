@@ -45,6 +45,7 @@ class PostgreSQLIntegrationTests(unittest.IsolatedAsyncioTestCase):
         await self.connection.execute(baseline)
         await self.connection.execute((ROOT/'backend-python/migrations/018_exam_answer_label.sql').read_text(encoding='utf-8'))
         await self.connection.execute("INSERT INTO certificates(code,category,name_ja) VALUES ('itpp','itpp','IT'),('other','test','Other')")
+        await self.connection.execute((ROOT/'backend-python/migrations/037_certificate_exam_config.sql').read_text(encoding='utf-8'))
 
     async def asyncTearDown(self):
         await self.transaction.rollback()
@@ -86,7 +87,14 @@ class PostgreSQLIntegrationTests(unittest.IsolatedAsyncioTestCase):
                 exams=(await api.get('/api/certificates/itpp/exams')).json()['exams']
                 self.assertEqual(len(exams),17)
                 topics=(await api.get('/api/certificates/itpp/topics')).json()['topics']
-                self.assertEqual(sum(t['count'] for t in topics),1700)
+                eligible=await content.exam_questions(cert)
+                self.assertTrue(100 <= len(eligible) < 1700)
+                self.assertNotIn('2016h28h-022',{q['source_key'] for q in eligible})
+                self.assertEqual(sum(t['count'] for t in topics),len(eligible))
+                self.assertEqual(sum(e['question_count'] for e in exams),len(eligible))
+                self.assertTrue(all(not content.decoded(q['assets_json'],[]) and not content.decoded(q['passage_assets'],[]) for q in eligible))
+                config=await mock.get_exam_config(cert)
+                self.assertEqual(config['availableCount'],len(eligible))
                 filtered=await api.get('/api/certificates/itpp/exam',params={'exam':'2016h28a','knowledge_group':topics[0]['topic']})
                 self.assertEqual(filtered.status_code,200)
                 rows=[q for e in filtered.json()['exams'] for q in e['questions']]
@@ -98,7 +106,8 @@ class PostgreSQLIntegrationTests(unittest.IsolatedAsyncioTestCase):
                 self.assertEqual(len(paper),100)
                 self.assertTrue(all(len(q['choices'])==4 for q in paper))
                 self.assertNotIn('correctOptionId',json.dumps(paper))
-                qid=ids[0]['id']
+                self.assertTrue(all(not q['assets'] and not (q['passage'] or {}).get('assets') for q in paper))
+                qid=eligible[0]['id']
                 label=await self.connection.fetchval('SELECT answer_label FROM certificate_exam_questions WHERE id=$1',qid)
                 answer=await api.get(f'/api/certificates/exam-question/{qid}/answer')
                 option_id=answer.json()['correctOptionId']

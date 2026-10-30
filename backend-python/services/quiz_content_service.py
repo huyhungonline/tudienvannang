@@ -9,7 +9,15 @@ import db
 # duplicate questions from the old IT Passport seed.
 BANK_SCOPE = """(q.source_key IS NOT NULL OR NOT EXISTS (
     SELECT 1 FROM certificate_exam_questions imported
-    WHERE imported.certificate_id=q.certificate_id AND imported.source_key IS NOT NULL))"""
+    WHERE imported.certificate_id=q.certificate_id AND imported.source_key IS NOT NULL))
+    AND (q.source_key IS NULL OR (
+        COALESCE(q.assets_json, '[]'::jsonb) = '[]'::jsonb
+        AND NOT EXISTS (SELECT 1 FROM certificate_passages visual_passage
+            WHERE visual_passage.id=q.passage_id
+            AND COALESCE(visual_passage.assets_json, '[]'::jsonb) <> '[]'::jsonb)
+    ))"""
+# Temporarily serve text-only imported questions. PDF-dependent questions stay
+# stored so they can be restored after their figures/tables have been rendered.
 CONTENT_COLUMNS = """q.*, p.source_key AS passage_key, p.text_ja AS passage_ja,
     p.text_vi AS passage_vi, p.assets_json AS passage_assets"""
 PASSAGE_JOIN = "LEFT JOIN certificate_passages p ON p.id=q.passage_id"

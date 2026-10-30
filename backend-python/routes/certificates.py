@@ -172,9 +172,9 @@ async def list_structured_exams(code: str, _: str = Depends(require_vip_or_admin
     cert=await mock_exam_service.get_certificate_by_code(code)
     if not cert:
         raise HTTPException(status_code=404,detail='Certificate not found')
-    return {'exams':await db.query('''SELECT e.source_key AS code,e.exam_year AS year,
+    return {'exams':await db.query(f'''SELECT e.source_key AS code,e.exam_year AS year,
         e.exam_round AS round,count(q.id) AS question_count FROM certificate_exams e
-        JOIN certificate_exam_questions q ON q.exam_id=e.id WHERE e.certificate_id=$1
+        JOIN certificate_exam_questions q ON q.exam_id=e.id WHERE e.certificate_id=$1 AND {content.BANK_SCOPE}
         GROUP BY e.id ORDER BY e.source_key''',cert['id'])}
 
 
