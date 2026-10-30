@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import { get, post } from '../api/client';
 import { Spinner } from '../components/Spinner';
 import { ExamPdfLinks, type ExamPdfReferences } from '../components/ExamPdfLinks';
+import { CbtSession, type CbtQuestion } from '../components/CbtSession';
 
 interface ExamConfig {
   configuredCount: number;
@@ -14,14 +15,7 @@ interface ExamConfig {
   isShortOfPool: boolean;
 }
 
-interface MockQuestion extends ExamPdfReferences {
-  id: number;
-  displayNo: number;
-  questionNo: number;
-  questionJa: string;
-  isTrueFalse: boolean;
-  choices: string[];
-}
+type MockQuestion = CbtQuestion;
 
 interface VocabItem {
   term: string;
@@ -176,6 +170,7 @@ export function CertificateMockExamPage() {
       const data = await get<{ config: ExamConfig; questions: MockQuestion[] }>(
         `/certificates/${code}/mock-exam/start`
       );
+      if (!data.questions.length) throw new Error("No questions");
       setConfig(data.config);
       setQuestions(data.questions);
       setSelections({});
@@ -191,8 +186,6 @@ export function CertificateMockExamPage() {
     }
   }, [code]);
 
-  const answeredCount = Object.keys(selections).length;
-
   if (loading && phase === 'setup') {
     return (
       <div className="reading-posts-page certificate-page">
@@ -204,9 +197,10 @@ export function CertificateMockExamPage() {
   // ---------- SETUP ----------
   if (phase === 'setup') {
     return (
-      <div className="reading-posts-page certificate-page mock-exam-page">
+      <div className="reading-posts-page certificate-page mock-exam-page cbt-intro">
         <Link to={`/certificates/${category}/${code}`} className="btn-back">← Quay lại</Link>
-        <h2>Thi thử</h2>
+        <span className="cbt-eyebrow">{code === 'itpp' ? 'IT PASSPORT · LUYỆN THI CBT' : 'LUYỆN THI CHỨNG CHỈ · CBT'}</span>
+        <h2>Mô phỏng phòng thi</h2>
         {certName && <p className="certificate-subtitle">{certName}</p>}
 
         {error && <div className="form-error">{error}</div>}
@@ -252,7 +246,7 @@ export function CertificateMockExamPage() {
         )}
 
         <div className="mock-note">
-          Hết thời gian bài thi sẽ tự động được nộp.
+          Mỗi lần một câu. Bạn có thể chuyển câu, đánh dấu xem lại và đổi đáp án trước khi nộp. Hết giờ, bài sẽ tự động được chấm.
         </div>
 
         {history.length > 0 && (
@@ -279,70 +273,16 @@ export function CertificateMockExamPage() {
     );
   }
 
-  // ---------- TAKING ----------
+  // One question at a time, with answers held only in this session.
   if (phase === 'taking') {
-    const lowTime = remaining <= 300;
-    return (
-      <div className="reading-posts-page certificate-page mock-exam-page">
-        <div className="mock-exam-bar">
-          <span className="mock-progress">Đã trả lời {answeredCount}/{questions.length}</span>
-          <span className={`mock-timer ${lowTime ? 'low' : ''}`}>⏱ {formatClock(remaining)}</span>
-        </div>
-
-        {error && <div className="form-error">{error}</div>}
-
-        <div className="exam-question-list">
-          {questions.map((q) => (
-            <div key={q.id} className="exam-question-card mock-question-card">
-              <div className="exam-question-header">
-                <span className="exam-question-no">Câu {q.displayNo}</span>
-                <p className="exam-question-text">{q.questionJa}</p>
-              </div>
-              <ExamPdfLinks assets={q.assets} passage={q.passage} />
-
-              <div className={`mock-choices ${q.isTrueFalse ? 'truefalse' : ''}`}>
-                {q.choices.map((c) => (
-                  <button
-                    key={c}
-                    type="button"
-                    className={`mock-choice-btn ${selections[q.id] === c ? 'selected' : ''}`}
-                    onClick={() => setSelections((prev) => ({ ...prev, [q.id]: c }))}
-                  >
-                    {c}
-                  </button>
-                ))}
-                {selections[q.id] && (
-                  <button
-                    type="button"
-                    className="mock-clear-btn"
-                    onClick={() =>
-                      setSelections((prev) => {
-                        const next = { ...prev };
-                        delete next[q.id];
-                        return next;
-                      })
-                    }
-                  >
-                    Bỏ chọn
-                  </button>
-                )}
-              </div>
-            </div>
-          ))}
-        </div>
-
-        <div className="mock-submit-bar">
-          {answeredCount < questions.length && (
-            <p className="mock-warning">
-              Còn {questions.length - answeredCount} câu chưa trả lời (sẽ tính là sai).
-            </p>
-          )}
-          <button className="btn-submit" onClick={() => handleSubmit(false)} disabled={submitting}>
-            {submitting ? <><Spinner size={14} /> Đang chấm...</> : 'Nộp bài'}
-          </button>
-        </div>
-      </div>
-    );
+    return <CbtSession title={certName} questions={questions} selections={selections}
+      remaining={remaining} submitting={submitting} error={error}
+      onSelect={(id, label) => setSelections(previous => {
+        const next = { ...previous };
+        if (label === null) delete next[id]; else next[id] = label;
+        return next;
+      })}
+      onSubmit={() => handleSubmit(false)} />;
   }
 
   // ---------- RESULT ----------

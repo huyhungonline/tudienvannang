@@ -10,3 +10,4 @@ structured_backup/
 azure_ocr_sample.txt
 pdf_check_report.json
 structured/*report.json
+.browser-test/
