@@ -117,7 +117,9 @@ async def update_workbook_shipping(order_id: UUID, body: WorkbookShippingRequest
 
 class RegistrationRequest(BaseModel):
     request_id: UUID
-    course: Literal['it-passport', 'kikai-hozen']
+    # 'kikai-hozen' is retained so historical records stay valid, but it is no
+    # longer offered in the UI; 'qc-kentei-3' replaces it.
+    course: Literal['it-passport', 'kikai-hozen', 'qc-kentei-3']
     full_name: str = Field(min_length=1, max_length=150)
     email: EmailStr
     phone: str = Field(min_length=6, max_length=30)
@@ -205,7 +207,7 @@ async def delete_class_registration(registration_id: UUID, _: str = Depends(requ
 # === Admin: class session management ===
 
 class ClassSessionCreate(BaseModel):
-    course: Literal['it-passport', 'kikai-hozen'] = 'it-passport'
+    course: Literal['it-passport', 'kikai-hozen', 'qc-kentei-3'] = 'it-passport'
     code: str = Field(min_length=1, max_length=100)
     name: str = Field(min_length=1, max_length=200)
     # Typed as `date` so asyncpg receives a real date object; it will not

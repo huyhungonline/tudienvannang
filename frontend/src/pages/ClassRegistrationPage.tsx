@@ -2,9 +2,15 @@ import { useEffect, useRef, useState, type FormEvent } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { ApiError, get, post } from '../api/client';
 
+/**
+ * Courses offered on the sign-up page.
+ *
+ * 'kikai-hozen' is intentionally absent: it is no longer offered, but the code
+ * is still accepted by the API so existing registrations remain readable.
+ */
 export const CLASS_NAMES: Record<string, string> = {
   'it-passport': 'Đăng kí luyện thi IT Passport miễn phí',
-  'kikai-hozen': 'Đăng kí luyện thi 機械保全技能検定',
+  'qc-kentei-3': 'Đăng kí luyện thi chứng chỉ QC検定 3級',
 };
 
 /**
@@ -31,7 +37,7 @@ export function ClassRegistrationPage() {
     <div className="class-registration-page">
       <h2>Đăng kí lớp học</h2>
       <ol className="class-registration-menu">
-        {Object.entries(CLASS_NAMES).filter(([code]) => code !== 'kikai-hozen').map(([code, title]) => (
+        {Object.entries(CLASS_NAMES).map(([code, title]) => (
           <li key={code}>
             <div className="class-registration-actions">
               <Link to={`/dang-ki-lop-hoc/${code}`}>{title}</Link>

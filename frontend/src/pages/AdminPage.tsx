@@ -5,7 +5,7 @@ import { get, post, put, del, uploadBookImage } from '../api/client';
 import { Spinner } from '../components/Spinner';
 import { CLASS_SCHEDULES } from './ClassRegistrationPage';
 import { WorkbookOrdersManagement } from './WorkbookOrdersManagement';
-import { ClassSessionsManagement } from './ClassSessionsManagement';
+import { ClassSessionsManagement, COURSE_LABELS } from './ClassSessionsManagement';
 import { BookCustomersManagement } from './BookCustomersManagement';
 import { EmailContactsManagement } from './EmailContactsManagement';
 
@@ -555,7 +555,10 @@ export function ClassRegistrationsManagement() {
           {CLASS_SCHEDULES[item.schedule!] || item.schedule}: <strong>{item.count} người</strong>
         </li>)}
       </ul>
-      <p><strong>機械保全技能検定: {counts.filter(item => item.course === 'kikai-hozen').reduce((sum, item) => sum + item.count, 0)} người</strong></p>
+      {/* Other courses, listed from the API so a new course needs no code change. */}
+      {[...new Set(counts.filter(item => item.course !== 'it-passport').map(item => item.course))].map(course => <p key={course}>
+        <strong>{COURSE_LABELS[course] || course}: {counts.filter(item => item.course === course).reduce((sum, item) => sum + item.count, 0)} người</strong>
+      </p>)}
     </section>}
     {error && <p className="form-error">{error}</p>}
     {loading ? <p><Spinner /> Đang tải...</p> : registrations.length === 0 ? <p>Chưa có đăng kí nào.</p> : <>
@@ -565,7 +568,7 @@ export function ClassRegistrationsManagement() {
           <td className="registration-actions"><button className="btn-delete" type="button" disabled={deletingId !== null} onClick={() => deleteRegistration(item)}>
             {deletingId === item.id ? 'Đang xóa...' : 'Xóa'}
           </button></td>
-          <td>{item.course === 'it-passport' ? 'IT Passport miễn phí' : '機械保全技能検定'}</td>
+          <td>{COURSE_LABELS[item.course] || item.course}</td>
           <td>{item.schedule ? CLASS_SCHEDULES[item.schedule] || item.schedule : '—'}</td>
           <td>{item.full_name}</td><td>{item.email}</td><td>{item.phone}</td>
           <td>{new Date(item.created_at).toLocaleString()}</td>

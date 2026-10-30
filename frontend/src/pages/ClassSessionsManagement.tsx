@@ -14,8 +14,10 @@ interface ClassSessionRow {
   registrations: number;
 }
 
-const COURSE_LABELS: Record<string, string> = {
+export const COURSE_LABELS: Record<string, string> = {
   'it-passport': 'IT Passport miễn phí',
+  'qc-kentei-3': 'QC検定 3級',
+  // Retired, but kept so historical rows still display a readable name.
   'kikai-hozen': '機械保全技能検定',
 };
 
