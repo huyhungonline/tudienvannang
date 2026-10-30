@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback, useRef } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { get, post } from '../api/client';
 import { Spinner } from '../components/Spinner';
+import { ExamPdfLinks, type ExamPdfReferences } from '../components/ExamPdfLinks';
 
 interface ExamConfig {
   configuredCount: number;
@@ -13,7 +14,7 @@ interface ExamConfig {
   isShortOfPool: boolean;
 }
 
-interface MockQuestion {
+interface MockQuestion extends ExamPdfReferences {
   id: number;
   displayNo: number;
   questionNo: number;
@@ -28,7 +29,7 @@ interface VocabItem {
   meaning: string;
 }
 
-interface QuestionResult {
+interface QuestionResult extends ExamPdfReferences {
   questionId: number;
   questionNo: number;
   questionJa: string;
@@ -38,10 +39,11 @@ interface QuestionResult {
   translationVi: string;
   explanationVi: string;
   vocab: VocabItem[];
+  options?: { id: string; label: string; vi: string }[];
 }
 
 interface GradeResult {
-  attemptId: number;
+  attemptId: number | null;
   totalQuestions: number;
   correctCount: number;
   scorePercent: number;
@@ -104,7 +106,7 @@ export function CertificateMockExamPage() {
       get<{ certificate: { nameJa: string }; config: ExamConfig }>(
         `/certificates/${code}/mock-exam/info`
       ),
-      get<{ attempts: AttemptHistory[] }>(`/certificates/${code}/mock-exam/history`).catch(
+      (code === 'itpp' ? Promise.resolve({ attempts: [] as AttemptHistory[] }) : get<{ attempts: AttemptHistory[] }>(`/certificates/${code}/mock-exam/history`)).catch(
         () => ({ attempts: [] as AttemptHistory[] })
       ),
     ])
@@ -296,6 +298,7 @@ export function CertificateMockExamPage() {
                 <span className="exam-question-no">Câu {q.displayNo}</span>
                 <p className="exam-question-text">{q.questionJa}</p>
               </div>
+              <ExamPdfLinks assets={q.assets} passage={q.passage} />
 
               <div className={`mock-choices ${q.isTrueFalse ? 'truefalse' : ''}`}>
                 {q.choices.map((c) => (
@@ -409,6 +412,7 @@ export function CertificateMockExamPage() {
                     </span>
                     <p className="exam-question-text">{r.questionJa}</p>
                   </div>
+                  <ExamPdfLinks assets={r.assets} passage={r.passage} />
 
                   <div className="mock-answer-row">
                     <span className="mock-answer-chip">
@@ -421,6 +425,8 @@ export function CertificateMockExamPage() {
 
                   <div className="exam-answer-reveal">
                     {r.translationVi && <p className="exam-translation">Dịch đề: {r.translationVi}</p>}
+                    {r.options && <ul>{r.options.map((o) => <li key={o.id}>{o.label} {o.vi}</li>)}</ul>}
+                    {r.passage?.text?.vi && <p className="exam-translation">{r.passage.text.vi}</p>}
                     {r.explanationVi && <p className="exam-explanation">Giải thích: {r.explanationVi}</p>}
                     {r.vocab.length > 0 && (
                       <table className="result-table exam-vocab-table">

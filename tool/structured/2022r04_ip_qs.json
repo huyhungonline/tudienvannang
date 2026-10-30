@@ -1,0 +1,5156 @@
+{
+  "exam": "2022r04",
+  "source_pdf": "2022r04_ip_qs.pdf",
+  "answer_pdf": "2022r04_ip_ans.pdf",
+  "model": "gpt-5.4",
+  "extraction_note": "Japanese text is OCR output. Refer to source PDF for figures and OCR ambiguities.",
+  "schema_version": 2,
+  "passages": [],
+  "questions": [
+    {
+      "id": "2022r04-001",
+      "exam": "2022r04",
+      "question_no": 1,
+      "knowledge_group": "企業と法務",
+      "question": {
+        "ja": "著作権及び特許権に関する記述a～cのうち、適切なものだけを全て挙げたものはどれか。\na 偶然二つの同じようなものが生み出された場合、発明に伴う特許権は両方に認められるが、著作権は一方の著作者にだけ認められる。\nb ソフトウェアの場合、特許権も著作権もソースプログラムリストに対して認められる。\nc 特許権の取得には出願と登録が必要だが、著作権は出願や登録の必要はない。",
+        "vi": "Trong các mô tả a~c liên quan đến quyền tác giả và quyền sáng chế, phương án nào liệt kê đầy đủ tất cả các mô tả đúng?\na Khi ngẫu nhiên tạo ra hai sản phẩm giống nhau, quyền sáng chế đi kèm với phát minh được công nhận cho cả hai bên, nhưng quyền tác giả chỉ được công nhận cho một tác giả.\nb Trong trường hợp phần mềm, cả quyền sáng chế và quyền tác giả đều được công nhận đối với danh sách chương trình nguồn (source program list).\nc Để có được quyền sáng chế thì cần nộp đơn và đăng ký, còn quyền tác giả thì không cần nộp đơn hay đăng ký."
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "a, b",
+          "vi": "a, b"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "b",
+          "vi": "b"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "b, c",
+          "vi": "b, c"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "c",
+          "vi": "c"
+        }
+      ],
+      "correct_option_id": "D",
+      "explanation_vi": "Đúng là D vì quyền sáng chế chỉ phát sinh khi nộp đơn và được đăng ký, còn quyền tác giả phát sinh tự động khi tác phẩm được sáng tạo. a sai vì sáng chế không tự động được công nhận cho cả hai bên nếu có cùng phát minh độc lập; quyền sáng chế gắn với nguyên tắc nộp đơn trước. b sai vì quyền tác giả bảo hộ biểu hiện của chương trình, còn quyền sáng chế không đơn thuần bảo hộ source code list như vậy.",
+      "assets": [
+        {
+          "type": "pdf_page",
+          "path": "../IT-PP/2022r04_ip_qs.pdf",
+          "pages": [
+            2
+          ]
+        }
+      ],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2022r04_ip_qs.pdf",
+        "pages": [
+          2
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2022r04-002",
+      "exam": "2022r04",
+      "question_no": 2,
+      "knowledge_group": "経営戦略",
+      "question": {
+        "ja": "年齢, 性別, 家族構成などによって顧客を分類し, それぞれのグループの購買行動を分析することによって, 集中すべき顧客層を絞り込むマーケティング戦略として, 最も適切なものはどれか。",
+        "vi": "Chiến lược marketing nào là phù hợp nhất khi phân loại khách hàng theo độ tuổi, giới tính, cấu trúc gia đình..., rồi phân tích hành vi mua sắm của từng nhóm để thu hẹp và xác định tầng khách hàng cần tập trung?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "サービスマーケティング",
+          "vi": "Service marketing"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "セグメントマーケティング",
+          "vi": "Segment marketing"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "ソーシャルマーケティング",
+          "vi": "Social marketing"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "マスマーケティング",
+          "vi": "Mass marketing"
+        }
+      ],
+      "correct_option_id": "B",
+      "explanation_vi": "Đây là segment marketing vì doanh nghiệp chia thị trường thành các phân khúc theo đặc điểm như tuổi, giới tính, gia đình rồi chọn nhóm mục tiêu phù hợp. Service marketing tập trung vào marketing dịch vụ, social marketing hướng đến mục tiêu xã hội, còn mass marketing nhắm đại trà không phân chia chi tiết theo nhóm khách hàng.",
+      "assets": [
+        {
+          "type": "pdf_page",
+          "path": "../IT-PP/2022r04_ip_qs.pdf",
+          "pages": [
+            2
+          ]
+        }
+      ],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2022r04_ip_qs.pdf",
+        "pages": [
+          2
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2022r04-003",
+      "exam": "2022r04",
+      "question_no": 3,
+      "knowledge_group": "コンピュータシステム",
+      "question": {
+        "ja": "ゲーム機,家電製品などに搭載されている,ハードウェアの基本的な制御を行うた めのソフトウェアはどれか。",
+        "vi": "Phần mềm nào được tích hợp trong máy chơi game, đồ gia dụng điện tử..., dùng để thực hiện điều khiển cơ bản của phần cứng?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "グループウェア",
+          "vi": "Groupware"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "シェアウェア",
+          "vi": "Shareware"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "ファームウェア",
+          "vi": "Firmware"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "ミドルウェア\nー 2ー·",
+          "vi": "Middleware"
+        }
+      ],
+      "correct_option_id": "C",
+      "explanation_vi": "Đáp án đúng là firmware vì đây là phần mềm được nhúng trong thiết bị để điều khiển phần cứng ở mức cơ bản. Groupware là phần mềm hỗ trợ làm việc nhóm, shareware là hình thức phân phối phần mềm dùng thử, còn middleware là lớp phần mềm trung gian giữa OS và ứng dụng.",
+      "assets": [],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2022r04_ip_qs.pdf",
+        "pages": [
+          2
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2022r04-004",
+      "exam": "2022r04",
+      "question_no": 4,
+      "knowledge_group": "経営戦略",
+      "question": {
+        "ja": "IT の活用によって、個人の学習履歴を蓄積,解析し,学習者一人一人の学習進行 度や理解度に応じて最適なコンテンツを提供することによって、学習の効率と効果を 高める仕組みとして、最も適切なものはどれか。",
+        "vi": "Cơ chế nào là phù hợp nhất để nâng cao hiệu quả và chất lượng học tập bằng cách ứng dụng IT để tích lũy, phân tích lịch sử học tập cá nhân, rồi cung cấp nội dung tối ưu theo tiến độ và mức độ hiểu bài của từng người học?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "アダプティブラーニング",
+          "vi": "Adaptive learning"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "タレントマネジメント",
+          "vi": "Talent management"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "ディープラーニング",
+          "vi": "Deep learning"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "ナレッジマネジメント",
+          "vi": "Knowledge management"
+        }
+      ],
+      "correct_option_id": "A",
+      "explanation_vi": "Adaptive learning là cơ chế điều chỉnh nội dung học phù hợp với từng người dựa trên dữ liệu học tập và mức độ hiểu bài. Talent management là quản lý nhân sự và năng lực, deep learning là kỹ thuật học sâu trong AI, còn knowledge management là quản lý tri thức trong tổ chức nên không đúng trọng tâm của bài toán học tập cá nhân hóa.",
+      "assets": [],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2022r04_ip_qs.pdf",
+        "pages": [
+          3
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2022r04-005",
+      "exam": "2022r04",
+      "question_no": 5,
+      "knowledge_group": "企業と法務",
+      "question": {
+        "ja": "NDA に関する記述として、最も適切なものはどれか。",
+        "vi": "Mô tả nào là phù hợp nhất về NDA?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "企業などにおいて、情報システムへの脅威の監視や分析を行う専門組織",
+          "vi": "Tổ chức chuyên môn trong doanh nghiệp... thực hiện giám sát và phân tích các mối đe dọa đối với hệ thống thông tin"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "契約当事者がもつ営業秘密などを特定し、相手の秘密情報を管理する意思を合意 する契約",
+          "vi": "Hợp đồng trong đó các bên ký kết xác định bí mật kinh doanh mà mình nắm giữ và thỏa thuận ý chí quản lý thông tin bí mật của đối phương"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "提供するサービス内容に関して、サービスの提供者と利用者が合意した,客観的 な品質基準の取決め",
+          "vi": "Thỏa thuận về các tiêu chuẩn chất lượng khách quan do bên cung cấp dịch vụ và bên sử dụng dịch vụ đồng ý liên quan đến nội dung dịch vụ được cung cấp"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "プロジェクトにおいて実施する作業を細分化し,階層構造で整理したもの",
+          "vi": "Việc chia nhỏ các công việc thực hiện trong dự án và sắp xếp chúng theo cấu trúc phân cấp"
+        }
+      ],
+      "correct_option_id": "B",
+      "explanation_vi": "NDA là Non-Disclosure Agreement, tức hợp đồng bảo mật, nên mô tả ở phương án イ là đúng. A nói về tổ chức giám sát an ninh như SOC, C là SLA về mức dịch vụ, còn D là WBS dùng trong quản lý dự án.",
+      "assets": [],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2022r04_ip_qs.pdf",
+        "pages": [
+          3
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2022r04-006",
+      "exam": "2022r04",
+      "question_no": 6,
+      "knowledge_group": "企業と法務",
+      "question": {
+        "ja": "自社開発した技術の特許化に関する記述a～cのうち，直接的に得られることが期待できる効果として，適切なものだけを全て挙げたものはどれか。\na 当該技術に関連した他社とのアライアンスの際に，有利な条件を設定できる。\nb 当該技術の開発費用の一部をライセンスによって回収できる。\nc 当該技術を用いた商品や事業に対して，他社の参入を阻止できる。",
+        "vi": "Trong các mô tả a～c liên quan đến việc đăng ký sáng chế cho công nghệ do công ty tự phát triển, phương án nào liệt kê đầy đủ những hiệu quả có thể kỳ vọng thu được một cách trực tiếp và phù hợp?\na Khi liên minh với công ty khác có liên quan đến công nghệ đó, có thể thiết lập các điều kiện có lợi hơn.\nb Có thể thu hồi một phần chi phí phát triển công nghệ đó thông qua việc cấp phép.\nc Có thể ngăn cản công ty khác tham gia vào sản phẩm hoặc hoạt động kinh doanh sử dụng công nghệ đó."
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "a",
+          "vi": "a"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "a, b",
+          "vi": "a, b"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "a, b, c",
+          "vi": "a, b, c"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "b, c",
+          "vi": "b, c"
+        }
+      ],
+      "correct_option_id": "C",
+      "explanation_vi": "Việc sáng chế hóa công nghệ có thể trực tiếp tạo lợi thế khi đàm phán liên minh, giúp thu hồi chi phí thông qua license, và trao quyền độc quyền để ngăn đối thủ tham gia, nên a, b, c đều đúng. Vì vậy đáp án là C. Các phương án còn lại sai vì đều bỏ sót ít nhất một hiệu quả trực tiếp của bằng sáng chế.",
+      "assets": [
+        {
+          "type": "pdf_page",
+          "path": "../IT-PP/2022r04_ip_qs.pdf",
+          "pages": [
+            3
+          ]
+        }
+      ],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2022r04_ip_qs.pdf",
+        "pages": [
+          3
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2022r04-007",
+      "exam": "2022r04",
+      "question_no": 7,
+      "knowledge_group": "システム戦略",
+      "question": {
+        "ja": "業務と情報システムを最適にすることを目的に、例えばビジネス、データ、アプリケーション及び技術の四つの階層において、まず現状を把握し、目標とする理想像を設定する。次に現状と理想との乖離を明確にし、目標とする理想像に向けた改善活動を移行計画として定義する。このような最適化の手法として、最も適切なものはどれか。",
+        "vi": "Với mục đích tối ưu hóa nghiệp vụ và hệ thống thông tin, ví dụ ở bốn lớp gồm business, data, application và technology, trước hết sẽ nắm bắt hiện trạng và thiết lập hình ảnh lý tưởng mục tiêu. Tiếp theo, làm rõ khoảng cách giữa hiện trạng và hình ảnh lý tưởng, rồi định nghĩa các hoạt động cải tiến hướng tới hình ảnh lý tưởng đó thành kế hoạch chuyển đổi. Phương pháp tối ưu hóa nào dưới đây là phù hợp nhất?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "BI (Business Intelligence)",
+          "vi": "BI (Business Intelligence)"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "EA (Enterprise Architecture)",
+          "vi": "EA (Enterprise Architecture)"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "MOT (Management of Technology)",
+          "vi": "MOT (Management of Technology)"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "SOA (Service Oriented Architecture)",
+          "vi": "SOA (Service Oriented Architecture)"
+        }
+      ],
+      "correct_option_id": "B",
+      "explanation_vi": "Mô tả này đúng với EA, vì EA phân tích doanh nghiệp theo nhiều tầng như business, data, application, technology, rồi xác định khoảng cách giữa hiện trạng và trạng thái mục tiêu để lập kế hoạch chuyển đổi. BI là phục vụ phân tích thông tin kinh doanh, MOT là quản trị công nghệ, còn SOA là kiến trúc hướng dịch vụ nên không phù hợp nhất.",
+      "assets": [
+        {
+          "type": "pdf_page",
+          "path": "../IT-PP/2022r04_ip_qs.pdf",
+          "pages": [
+            4
+          ]
+        }
+      ],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2022r04_ip_qs.pdf",
+        "pages": [
+          4
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2022r04-008",
+      "exam": "2022r04",
+      "question_no": 8,
+      "knowledge_group": "システム戦略",
+      "question": {
+        "ja": "ある業務システムの再構築に関して、複数のベンダにその新システムの実現イメー ジの提出を求める RFI を予定している。その際、同時にベンダからの提出を求める情 報として、適切なものはどれか。",
+        "vi": "Liên quan đến việc xây dựng lại một hệ thống nghiệp vụ, công ty dự định thực hiện RFI để yêu cầu nhiều vendor nộp hình ảnh/ý tưởng hiện thực hóa hệ thống mới đó. Khi đó, thông tin nào là phù hợp để đồng thời yêu cầu phía vendor cung cấp?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "現行システムの概要",
+          "vi": "Tổng quan về hệ thống hiện tại"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "システム再構築の狙い",
+          "vi": "Mục tiêu của việc tái cấu trúc hệ thống"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "新システムに求める要件",
+          "vi": "Các yêu cầu đối với hệ thống mới"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "適用可能な技術とその動向",
+          "vi": "Các công nghệ có thể áp dụng và xu hướng của chúng"
+        }
+      ],
+      "correct_option_id": "D",
+      "explanation_vi": "RFI là bước thu thập thông tin từ vendor, nên phù hợp để yêu cầu họ cung cấp thông tin về các công nghệ có thể áp dụng và xu hướng liên quan. Còn tổng quan hệ thống hiện tại, mục tiêu tái cấu trúc, và yêu cầu của hệ thống mới là những thông tin phía đặt hàng thường phải cung cấp cho vendor. Vì vậy đáp án đúng là エ.",
+      "assets": [],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2022r04_ip_qs.pdf",
+        "pages": [
+          4
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2022r04-009",
+      "exam": "2022r04",
+      "question_no": 9,
+      "knowledge_group": "企業と法務",
+      "question": {
+        "ja": "不適切な行為a~cのうち、不正アクセス禁止法において規制されている行為だけを全て挙げたものはどれか。\na 他人の電子メールの利用者IDとパスワードを，正当な理由なく本人に無断で第三者に提供する。\nb 他人の電子メールの利用者IDとパスワードを本人に無断で使用して，ネットワーク経由でメールサーバ上のその人の電子メールを閲覧する。\nc メールサーバにアクセスできないよう，電子メールの利用者IDとパスワードを無効にするマルウェアを作成する。",
+        "vi": "Trong các hành vi không thích hợp a~c dưới đây, phương án nào liệt kê đầy đủ chỉ những hành vi bị điều chỉnh theo Luật Cấm truy cập trái phép (不正アクセス禁止法)?\na Cung cấp cho bên thứ ba ID người dùng và mật khẩu email của người khác mà không có lý do chính đáng và không được本人 cho phép.\nb Sử dụng trái phép ID người dùng và mật khẩu email của người khác mà không được本人 cho phép, rồi xem email của người đó trên mail server thông qua mạng.\nc Tạo malware làm vô hiệu hóa ID người dùng và mật khẩu email để không thể truy cập mail server."
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "a, b",
+          "vi": "a, b"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "a, b, c",
+          "vi": "a, b, c"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "b",
+          "vi": "b"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "b, c",
+          "vi": "b, c"
+        }
+      ],
+      "correct_option_id": "A",
+      "explanation_vi": "Luật Cấm truy cập trái phép điều chỉnh việc cung cấp trái phép thông tin xác thực của người khác và việc sử dụng trái phép chúng để truy cập qua mạng, nên a và b đúng. Hành vi c là tạo malware, thuộc phạm vi khác như tội danh liên quan đến mã độc, không phải nội dung trực tiếp của luật này. Vì vậy đáp án là A.",
+      "assets": [
+        {
+          "type": "pdf_page",
+          "path": "../IT-PP/2022r04_ip_qs.pdf",
+          "pages": [
+            5
+          ]
+        }
+      ],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2022r04_ip_qs.pdf",
+        "pages": [
+          5
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2022r04-010",
+      "exam": "2022r04",
+      "question_no": 10,
+      "knowledge_group": "企業と法務",
+      "question": {
+        "ja": "特許戦略を策定する上で重要な“特許ポートフォリオ”について述べたものはどれ か。",
+        "vi": "Mô tả nào dưới đây nói về “patent portfolio”, một khái niệm quan trọng khi xây dựng chiến lược sáng chế?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "企業が保有や出願している特許を、事業への貢献や特許間のシナジー,今後適用 が想定される分野などを分析するためにまとめたもの",
+          "vi": "Là việc tổng hợp các bằng sáng chế mà doanh nghiệp đang sở hữu hoặc đang nộp đơn, nhằm phân tích mức độ đóng góp cho hoạt động kinh doanh, synergy giữa các sáng chế, và các lĩnh vực dự kiến sẽ được áp dụng trong tương lai."
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "技術イノベーションが発生した当初は特許出願が多くなる傾向だが,市場に支配 的な製品の出現によって工程イノベーションにシフトし,特許出願が減少すること",
+          "vi": "Ban đầu khi đổi mới công nghệ phát sinh thì số đơn xin sáng chế có xu hướng tăng, nhưng khi xuất hiện sản phẩm chi phối thị trường thì sẽ chuyển sang đổi mới quy trình và số đơn xin sáng chế giảm."
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "自社製品のシェアと市場の成長率を軸にしたマトリックスに、市場における自社 や競争相手の位置付けを示したもの",
+          "vi": "Là việc thể hiện vị trí của công ty mình và đối thủ cạnh tranh trên thị trường bằng ma trận với hai trục là thị phần sản phẩm của công ty và tốc độ tăng trưởng của thị trường."
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "複数の特許権者同士が,それぞれの保有する特許の実施権を相互に許諾すること",
+          "vi": "Là việc nhiều chủ sở hữu bằng sáng chế cấp phép thực hiện quyền sáng chế mà mỗi bên đang sở hữu cho nhau."
+        }
+      ],
+      "correct_option_id": "A",
+      "explanation_vi": "Patent portfolio là tập hợp và phân tích các bằng sáng chế theo góc độ giá trị kinh doanh, sự bổ trợ lẫn nhau và khả năng ứng dụng, nên mô tả ở ア là đúng. イ nói về xu hướng đổi mới theo vòng đời công nghệ, ウ là ma trận BCG, còn エ là cấp phép chéo (cross licensing). Vì vậy đáp án đúng là ア.",
+      "assets": [],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2022r04_ip_qs.pdf",
+        "pages": [
+          5
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2022r04-011",
+      "exam": "2022r04",
+      "question_no": 11,
+      "knowledge_group": "企業と法務",
+      "question": {
+        "ja": "与信限度額が3,000万円に設定されている取引先の5月31日業務終了時までの全取引が表のとおりであるとき、その時点での取引先の与信の余力は何万円か。ここで,受注分も与信に含めるものとし、満期日前の手形回収は回収とはみなさないものとする。\n\n| 取引 | 日付 | 取引内訳 | 取引金額 | 備考 |\n|---|---|---|---|---|\n| 取引1 | 4/2、5/31 | 売上計上、現金回収 | 400万円、400万円 |  |\n| 取引2 | 4/10、5/10 | 売上計上、手形回収 | 300万円、300万円 | 満期日:6/10 |\n| 取引3 | 5/15 | 売上計上 | 600万円 |  |\n| 取引4 | 5/20 | 受注 | 200万円 |  |",
+        "vi": "Khi toàn bộ giao dịch với đối tác có hạn mức tín dụng được thiết lập là 3.000 man yên tính đến thời điểm kết thúc nghiệp vụ ngày 31/5 như trong bảng, thì phần dư địa tín dụng còn lại của đối tác tại thời điểm đó là bao nhiêu man yên? Ở đây, phần đơn đặt hàng cũng được tính vào tín dụng, và việc thu hồi hối phiếu trước ngày đáo hạn không được xem là đã thu hồi.\n\n| Giao dịch | Ngày | Nội dung giao dịch | Số tiền giao dịch | Ghi chú |\n|---|---|---|---|---|\n| Giao dịch 1 | 4/2, 5/31 | Ghi nhận doanh thu, thu tiền mặt | 400 man yên, 400 man yên |  |\n| Giao dịch 2 | 4/10, 5/10 | Ghi nhận doanh thu, thu hồi hối phiếu | 300 man yên, 300 man yên | Ngày đáo hạn: 6/10 |\n| Giao dịch 3 | 5/15 | Ghi nhận doanh thu | 600 man yên |  |\n| Giao dịch 4 | 5/20 | Nhận đơn hàng | 200 man yên |  |"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "1,100",
+          "vi": "1.100"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "1,900",
+          "vi": "1.900"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "2,200",
+          "vi": "2.200"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "2,400",
+          "vi": "2.400"
+        }
+      ],
+      "correct_option_id": "B",
+      "explanation_vi": "Dư nợ tín dụng đang sử dụng tại 31/5 gồm: giao dịch 2 là 300 man yên vì hối phiếu chưa đến hạn nên chưa được tính là thu hồi, giao dịch 3 là 600 man yên, và giao dịch 4 (đơn hàng) là 200 man yên. Tổng là 1.100 man yên, nên dư địa còn lại là 3.000 - 1.100 = 1.900 man yên. Phương án khác sai vì либо không tính đơn hàng, либо coi hối phiếu thu trước hạn là đã thu hồi, hoặc tính sai số dư.",
+      "assets": [
+        {
+          "type": "pdf_page",
+          "path": "../IT-PP/2022r04_ip_qs.pdf",
+          "pages": [
+            6
+          ]
+        }
+      ],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2022r04_ip_qs.pdf",
+        "pages": [
+          6
+        ],
+        "answer_source": "answer_key"
+      },
+      "review_notes": [
+        "Giải thích tiếng Việt gốc có lẫn từ Nga 'либо'; giữ nguyên nghĩa, không chỉnh nội dung."
+      ]
+    },
+    {
+      "id": "2022r04-012",
+      "exam": "2022r04",
+      "question_no": 12,
+      "knowledge_group": "経営戦略",
+      "question": {
+        "ja": "クラウドファンディングは、資金提供の形態や対価の受領の仕方の違いによって、 貸付型,寄付型,購入型,投資型などの種類に分けられる。A 社は新規事業の資金調 達を行うために,クラウドファンディングを通じて資金提供者と匿名組合契約を締結 し,利益の一部を配当金として資金提供者に支払うことにした。A 社が利用したクラ ウドファンディングの種類として、最も適切なものはどれか。",
+        "vi": "Crowdfunding được chia thành các loại như cho vay, quyên góp, mua hàng, đầu tư... tùy theo hình thức cung cấp vốn và cách nhận đối giá. Để huy động vốn cho một dự án kinh doanh mới, công ty A đã ký hợp đồng tổ hợp ẩn danh (tokumei kumiai) với người cung cấp vốn thông qua crowdfunding và quyết định chi trả một phần lợi nhuận cho người cung cấp vốn dưới dạng cổ tức/phân phối lợi nhuận. Loại crowdfunding mà công ty A đã sử dụng là loại nào phù hợp nhất?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "貸付型クラウドファンディング",
+          "vi": "Crowdfunding dạng cho vay"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "寄付型クラウドファンディング",
+          "vi": "Crowdfunding dạng quyên góp"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "購入型クラウドファンディング",
+          "vi": "Crowdfunding dạng mua hàng"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "投資型クラウドファンディング",
+          "vi": "Crowdfunding dạng đầu tư"
+        }
+      ],
+      "correct_option_id": "D",
+      "explanation_vi": "Vì người cung cấp vốn nhận một phần lợi nhuận dưới dạng phân phối lợi nhuận theo hợp đồng đầu tư, đây là crowdfunding dạng đầu tư. Dạng cho vay thì nhận lãi vay, không phải chia lợi nhuận kinh doanh. Dạng quyên góp không có đối giá tài chính, còn dạng mua hàng thì thường nhận sản phẩm hay dịch vụ.",
+      "assets": [],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2022r04_ip_qs.pdf",
+        "pages": [
+          6
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2022r04-013",
+      "exam": "2022r04",
+      "question_no": 13,
+      "knowledge_group": "企業と法務",
+      "question": {
+        "ja": "情報公開法に基づいて公開請求することができる文書として、適切なものはどれか。",
+        "vi": "Theo Luật Công khai Thông tin, loại văn bản nào có thể được yêu cầu công khai một cách phù hợp?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "国会などの立法機関が作成,保有する立法文書",
+          "vi": "Văn bản lập pháp do cơ quan lập pháp như Quốc hội tạo lập và lưu giữ"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "最高裁判所などの司法機関が作成,保有する司法文書",
+          "vi": "Văn bản tư pháp do cơ quan tư pháp như Tòa án Tối cao tạo lập và lưu giữ"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "証券取引所に上場している企業が作成,保有する社内文書",
+          "vi": "Văn bản nội bộ do doanh nghiệp niêm yết trên sở giao dịch chứng khoán tạo lập và lưu giữ"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "総務省などの行政機関が作成,保有する行政文書",
+          "vi": "Văn bản hành chính do cơ quan hành chính như Bộ Nội vụ và Truyền thông tạo lập và lưu giữ"
+        }
+      ],
+      "correct_option_id": "D",
+      "explanation_vi": "Theo 情報公開法, đối tượng yêu cầu công khai là các văn bản hành chính do cơ quan hành chính nắm giữ. Cơ quan lập pháp và tư pháp không thuộc phạm vi trực tiếp của luật này theo cách nêu trong câu hỏi. Văn bản nội bộ của doanh nghiệp niêm yết cũng không phải là văn bản hành chính thuộc diện yêu cầu công khai theo luật này.",
+      "assets": [],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2022r04_ip_qs.pdf",
+        "pages": [
+          7
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2022r04-014",
+      "exam": "2022r04",
+      "question_no": 14,
+      "knowledge_group": "企業と法務",
+      "question": {
+        "ja": "市販のソフトウェアパッケージなどにおけるライセンス契約の一つであるシュリン クラップ契約に関する記述として、最も適切なものはどれか。",
+        "vi": "Mô tả nào sau đây là phù hợp nhất về hợp đồng shrink-wrap, một loại hợp đồng license trong các phần mềm đóng gói bán trên thị trường?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "ソフトウェアパッケージの包装を開封してしまうと、使用許諾条件を理解してい なかったとしても,契約は成立する。",
+          "vi": "Nếu đã mở bao bì của gói phần mềm thì dù chưa hiểu điều kiện cấp phép sử dụng, hợp đồng vẫn được xác lập."
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "ソフトウェアパッケージの包装を開封しても、一定期間内であれば、契約を無効 にできる。",
+          "vi": "Dù đã mở bao bì của gói phần mềm, nếu còn trong một thời hạn nhất định thì có thể làm cho hợp đồng vô hiệu."
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "ソフトウェアパッケージの包装を開封しても、購入から一定期間ソフトウェアの 利用を開始しなければ、契約は無効になる。",
+          "vi": "Dù đã mở bao bì của gói phần mềm, nếu không bắt đầu sử dụng phần mềm trong một thời hạn nhất định kể từ khi mua thì hợp đồng sẽ vô hiệu."
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "ソフトウェアパッケージの包装を開封しなくても、購入から一定期間が経過する と、契約は成立する。",
+          "vi": "Dù không mở bao bì của gói phần mềm, nếu đã trôi qua một thời hạn nhất định kể từ khi mua thì hợp đồng sẽ được xác lập."
+        }
+      ],
+      "correct_option_id": "A",
+      "explanation_vi": "Shrink-wrap contract là dạng thỏa thuận mà việc mở bao bì được xem là biểu thị sự đồng ý với điều kiện license, nên hợp đồng được成立 khi mở gói. Các phương án イ, ウ, エ đều thêm các điều kiện về thời hạn không phải bản chất của shrink-wrap. Vì vậy ア là mô tả đúng nhất.",
+      "assets": [],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2022r04_ip_qs.pdf",
+        "pages": [
+          7
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2022r04-015",
+      "exam": "2022r04",
+      "question_no": 15,
+      "knowledge_group": "開発技術",
+      "question": {
+        "ja": "業務プロセスを,例示する UML のアクティビティ図を使ってモデリングしたとき, 表現できるものはどれか。\n業務群A\n業務群B\nX\n業務a\n業務c\n[NO]\nY\n業務b\n[YES]",
+        "vi": "Khi mô hình hóa quy trình nghiệp vụ bằng sơ đồ hoạt động (activity diagram) của UML như ví dụ minh họa, có thể biểu diễn được nội dung nào sau đây?\nNhóm nghiệp vụ A\nNhóm nghiệp vụ B\nX\nNghiệp vụ a\nNghiệp vụ c\n[NO]\nY\nNghiệp vụ b\n[YES]"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "業務で必要となるコスト",
+          "vi": "Chi phí cần thiết cho nghiệp vụ"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "業務で必要となる時間",
+          "vi": "Thời gian cần thiết cho nghiệp vụ"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "業務で必要となる成果物の品質指標",
+          "vi": "Chỉ số chất lượng của sản phẩm đầu ra cần cho nghiệp vụ"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "業務で必要となる人の役割",
+          "vi": "Vai trò của con người cần cho nghiệp vụ"
+        }
+      ],
+      "correct_option_id": "D",
+      "explanation_vi": "UML activity diagram có thể dùng swimlane để biểu diễn ai hoặc vai trò nào chịu trách nhiệm cho từng hoạt động trong quy trình. Chi phí, thời gian hay chỉ số chất lượng không phải là thông tin được biểu diễn trực tiếp, chuẩn hóa trong activity diagram cơ bản. Do đó đáp án đúng là vai trò của con người cần cho nghiệp vụ.",
+      "assets": [
+        {
+          "type": "pdf_page",
+          "path": "../IT-PP/2022r04_ip_qs.pdf",
+          "pages": [
+            8
+          ]
+        }
+      ],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2022r04_ip_qs.pdf",
+        "pages": [
+          8
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2022r04-016",
+      "exam": "2022r04",
+      "question_no": 16,
+      "knowledge_group": "企業と法務",
+      "question": {
+        "ja": "マイナンバーに関する説明のうち、適切なものはどれか。",
+        "vi": "Trong các mô tả liên quan đến My Number, mô tả nào là phù hợp?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "海外居住者を含め,日本国籍を有する者だけに付与される。",
+          "vi": "Chỉ những người có quốc tịch Nhật Bản, bao gồm cả người cư trú ở nước ngoài, mới được cấp."
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "企業が従業員番号として利用しても構わない。",
+          "vi": "Doanh nghiệp sử dụng làm mã số nhân viên cũng không vấn đề gì."
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "申請をすれば、希望するマイナンバーを取得できる。",
+          "vi": "Nếu làm đơn đăng ký thì có thể nhận được My Number theo mong muốn."
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "付与されたマイナンバーを,自由に変更することはできない。",
+          "vi": "My Number đã được cấp thì không thể tự do thay đổi."
+        }
+      ],
+      "correct_option_id": "D",
+      "explanation_vi": "Đáp án エ đúng vì My Number là số định danh cá nhân do nhà nước cấp và về nguyên tắc không thể tùy ý thay đổi. ア sai vì không chỉ công dân Nhật mà người cư trú có đăng ký cư trú tại Nhật cũng được cấp. イ sai vì việc sử dụng My Number bị giới hạn theo mục đích pháp luật quy định, không được tùy tiện dùng làm mã nhân viên. ウ sai vì không thể đăng ký để chọn số My Number theo ý muốn.",
+      "assets": [],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2022r04_ip_qs.pdf",
+        "pages": [
+          8
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2022r04-017",
+      "exam": "2022r04",
+      "question_no": 17,
+      "knowledge_group": "経営戦略",
+      "question": {
+        "ja": "BYOD の事例として、適切なものはどれか。",
+        "vi": "Trường hợp nào là ví dụ phù hợp của BYOD?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "会社から貸与されたスマートフォンを業務中に私的に使用する。",
+          "vi": "Sử dụng điện thoại thông minh do công ty cấp vào mục đích cá nhân trong giờ làm việc."
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "会社から貸与されたスマートフォンを業務で使用する。",
+          "vi": "Sử dụng điện thoại thông minh do công ty cấp cho công việc."
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "会社が利用を許可した私物のスマートフォンを業務で使用する。",
+          "vi": "Sử dụng điện thoại thông minh là tài sản cá nhân, đã được công ty cho phép sử dụng, cho công việc."
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "私物のスマートフォンを業務中に私的に使用する。",
+          "vi": "Sử dụng điện thoại thông minh cá nhân vào mục đích cá nhân trong giờ làm việc."
+        }
+      ],
+      "correct_option_id": "C",
+      "explanation_vi": "BYOD là viết tắt của Bring Your Own Device, nghĩa là sử dụng thiết bị cá nhân cho công việc với sự cho phép của tổ chức. Vì vậy ウ là đúng. ア và エ là dùng cho mục đích cá nhân nên không phải BYOD, còn イ là thiết bị do công ty cấp nên cũng không phải 'own device'.",
+      "assets": [],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2022r04_ip_qs.pdf",
+        "pages": [
+          9
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2022r04-018",
+      "exam": "2022r04",
+      "question_no": 18,
+      "knowledge_group": "経営戦略",
+      "question": {
+        "ja": "インダストリー4.0から顕著になった取組に関する記述として、最も適切なものは どれか。",
+        "vi": "Mô tả nào là phù hợp nhất về các nỗ lực trở nên nổi bật từ Industry 4.0?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "顧客ごとに異なる個別仕様の製品の,多様な IT によるコスト低減と短納期での 提供",
+          "vi": "Cung cấp các sản phẩm có thông số riêng khác nhau theo từng khách hàng, với việc giảm chi phí nhờ đa dạng CNTT và giao hàng trong thời gian ngắn"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "蒸気機関という動力を獲得したことによる,軽工業における,手作業による製品 の生産から,工場制機械工業による生産への移行",
+          "vi": "Nhờ đạt được nguồn động lực là động cơ hơi nước, chuyển từ sản xuất thủ công sản phẩm trong công nghiệp nhẹ sang sản xuất bằng công nghiệp cơ khí theo chế độ nhà máy"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "製造工程のコンピュータ制御に基づく自動化による,大量生産品の更なる低コス トでの製造",
+          "vi": "Sản xuất các sản phẩm sản xuất hàng loạt với chi phí thấp hơn nữa nhờ tự động hóa dựa trên điều khiển bằng máy tính của quy trình sản xuất"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "動力の電力や石油への移行とともに、統計的手法を使った科学的生産管理による, 同一規格の製品のベルトコンベア方式での大量生産",
+          "vi": "Cùng với việc chuyển đổi nguồn động lực sang điện và dầu mỏ, sản xuất hàng loạt sản phẩm cùng tiêu chuẩn theo phương thức băng chuyền bằng quản lý sản xuất khoa học dùng phương pháp thống kê"
+        }
+      ],
+      "correct_option_id": "A",
+      "explanation_vi": "Industry 4.0 nổi bật ở việc kết hợp IoT, AI, dữ liệu và tự động hóa để hiện thực hóa mass customization, tức sản xuất linh hoạt theo từng khách hàng với chi phí và thời gian giao hàng được tối ưu. Vì thế ア là phù hợp nhất. イ mô tả Cách mạng công nghiệp lần 1, エ là lần 2, còn ウ gần với lần 3 là tự động hóa bằng máy tính.",
+      "assets": [],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2022r04_ip_qs.pdf",
+        "pages": [
+          9
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2022r04-019",
+      "exam": "2022r04",
+      "question_no": 19,
+      "knowledge_group": "経営戦略",
+      "question": {
+        "ja": "製造販売業 A 社は、バランススコアカードの考え方を用いて戦略テーマを設定した。 業務プロセス(内部ビジネスプロセス)の視点に基づく戦略テーマとして、最も適切 なものはどれか。",
+        "vi": "Công ty A trong lĩnh vực sản xuất và bán hàng đã thiết lập chủ đề chiến lược theo tư duy của Balanced Scorecard. Đâu là chủ đề chiến lược phù hợp nhất dựa trên góc nhìn quy trình nghiệp vụ (quy trình kinh doanh nội bộ)?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "売上高の拡大",
+          "vi": "Mở rộng doanh thu"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "顧客ロイヤルティの拡大",
+          "vi": "Mở rộng lòng trung thành của khách hàng"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "従業員の技術力強化",
+          "vi": "Tăng cường năng lực kỹ thuật của nhân viên"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "部品の共有化比率の向上",
+          "vi": "Nâng cao tỷ lệ dùng chung linh kiện"
+        }
+      ],
+      "correct_option_id": "D",
+      "explanation_vi": "Trong Balanced Scorecard, góc nhìn quy trình nội bộ tập trung vào cải tiến quy trình, hiệu quả vận hành và cách thức tạo giá trị bên trong doanh nghiệp. エ liên quan trực tiếp đến chuẩn hóa và tối ưu quy trình sản xuất nên là đúng. ア thuộc góc nhìn tài chính, イ thuộc góc nhìn khách hàng, còn ウ thuộc góc nhìn học hỏi và phát triển.",
+      "assets": [],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2022r04_ip_qs.pdf",
+        "pages": [
+          9
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2022r04-020",
+      "exam": "2022r04",
+      "question_no": 20,
+      "knowledge_group": "技術要素",
+      "question": {
+        "ja": "あるデータを表現するために,1個の JAN コードか 1個の QR コードのどちらかの 利用を検討する。表現できる最大のデータ量の大きい方を採用する場合、検討結果と して、適切なものはどれか。",
+        "vi": "Để biểu diễn một dữ liệu nào đó, đang xem xét sử dụng hoặc 1 mã JAN hoặc 1 mã QR. Nếu chọn loại có lượng dữ liệu tối đa có thể biểu diễn lớn hơn, thì kết quả xem xét nào là phù hợp?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "JAN コードを採用する。",
+          "vi": "Chọn mã JAN."
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "QR コードを採用する。",
+          "vi": "Chọn mã QR."
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "表現する内容によって最大のデータ量は変化するので決められない。",
+          "vi": "Vì lượng dữ liệu tối đa thay đổi tùy theo nội dung biểu diễn nên không thể quyết định."
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "表現できる最大のデータ量は同じなので決められない。",
+          "vi": "Vì lượng dữ liệu tối đa có thể biểu diễn là như nhau nên không thể quyết định."
+        }
+      ],
+      "correct_option_id": "B",
+      "explanation_vi": "QR code có khả năng lưu trữ dữ liệu lớn hơn rất nhiều so với JAN code, vì QR là mã hai chiều còn JAN chủ yếu là mã vạch một chiều cho số định danh hàng hóa. Do đó イ là đúng. ア sai vì JAN có dung lượng nhỏ hơn, còn ウ và エ sai vì trong so sánh tổng quát này QR rõ ràng biểu diễn được nhiều dữ liệu hơn.",
+      "assets": [
+        {
+          "type": "pdf_page",
+          "path": "../IT-PP/2022r04_ip_qs.pdf",
+          "pages": [
+            10
+          ]
+        }
+      ],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2022r04_ip_qs.pdf",
+        "pages": [
+          10
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2022r04-021",
+      "exam": "2022r04",
+      "question_no": 21,
+      "knowledge_group": "技術要素",
+      "question": {
+        "ja": "政府が定める“人間中心のAI社会原則”では、三つの価値を理念として尊重し，その実現を追求する社会を構築していくべきとしている。実現を追求していくべき社会の姿だけを全て挙げたものはどれか。\na 持続性ある社会\nb 多様な背景を持つ人々が多様な幸せを追求できる社会\nc 人間があらゆる労働から解放される社会\nd 人間の尊厳が尊重される社会",
+        "vi": "Theo “Nguyên tắc xã hội AI lấy con người làm trung tâm” do chính phủ quy định, cần xây dựng một xã hội tôn trọng ba giá trị như là triết lý và theo đuổi việc hiện thực hóa chúng. Phương án nào liệt kê đầy đủ những hình thái xã hội cần được theo đuổi?\na Xã hội có tính bền vững\nb Xã hội nơi những người có xuất thân, hoàn cảnh đa dạng có thể theo đuổi nhiều dạng hạnh phúc khác nhau\nc Xã hội nơi con người được giải phóng khỏi mọi lao động\nd Xã hội nơi nhân phẩm của con người được tôn trọng"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "a, b, c",
+          "vi": "a, b, c"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "a, b, d",
+          "vi": "a, b, d"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "a, c, d",
+          "vi": "a, c, d"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "b, c, d",
+          "vi": "b, c, d"
+        }
+      ],
+      "correct_option_id": "B",
+      "explanation_vi": "Ba hình thái xã hội được nêu trong nguyên tắc này là xã hội bền vững, xã hội tôn trọng nhân phẩm con người, và xã hội nơi nhiều người với bối cảnh đa dạng có thể theo đuổi hạnh phúc đa dạng, nên tổ hợp đúng là a, b, d. Mục c sai vì nguyên tắc không hướng tới việc con người thoát khỏi mọi lao động, mà là AI hỗ trợ con người sống tốt hơn và phát huy năng lực.",
+      "assets": [
+        {
+          "type": "pdf_page",
+          "path": "../IT-PP/2022r04_ip_qs.pdf",
+          "pages": [
+            10
+          ]
+        }
+      ],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2022r04_ip_qs.pdf",
+        "pages": [
+          10
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2022r04-022",
+      "exam": "2022r04",
+      "question_no": 22,
+      "knowledge_group": "経営戦略",
+      "question": {
+        "ja": "SCM システムを構築する目的はどれか。",
+        "vi": "Mục đích của việc xây dựng hệ thống SCM là gì?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "企業のもっている現在の強み,弱みを評価し,その弱みを補完するために、どの 企業と提携すればよいかを決定する。",
+          "vi": "Đánh giá các điểm mạnh, điểm yếu hiện tại của doanh nghiệp, rồi quyết định nên liên kết với doanh nghiệp nào để bù đắp điểm yếu đó."
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "商品の生産から消費に関係する部門や企業の間で、商品の生産,在庫,販売など の情報を相互に共有して管理することによって、商品の流通在庫の削減や顧客満足 の向上を図る。",
+          "vi": "Bằng cách chia sẻ và quản lý lẫn nhau các thông tin như sản xuất, tồn kho, bán hàng giữa các bộ phận và doanh nghiệp liên quan từ khâu sản xuất đến tiêu dùng của hàng hóa, nhằm giảm tồn kho lưu thông và nâng cao mức độ hài lòng của khách hàng."
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "顧客に提供する価値が調達,開発,製造、販売,サービスといった一連の企業活 動のどこで生み出されているのかを明確化する。",
+          "vi": "Làm rõ giá trị cung cấp cho khách hàng được tạo ra ở đâu trong chuỗi hoạt động doanh nghiệp như mua sắm, phát triển, sản xuất, bán hàng, dịch vụ."
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "多種類の製品を生産及び販売している企業が,利益を最大化するために、最も効 率的·効果的となる製品の製造·販売の組合せを決定する。",
+          "vi": "Đối với doanh nghiệp sản xuất và bán nhiều loại sản phẩm, quyết định tổ hợp sản xuất và bán hàng hiệu quả, hữu hiệu nhất để tối đa hóa lợi nhuận."
+        }
+      ],
+      "correct_option_id": "B",
+      "explanation_vi": "SCM (Supply Chain Management) nhằm tối ưu toàn bộ chuỗi cung ứng bằng cách chia sẻ thông tin sản xuất, tồn kho, bán hàng giữa các bên liên quan để giảm tồn kho và cải thiện dịch vụ khách hàng. ア nói về liên minh chiến lược, ウ là phân tích chuỗi giá trị, còn エ là tối ưu danh mục sản phẩm để tối đa hóa lợi nhuận nên không phải mục đích chính của SCM.",
+      "assets": [
+        {
+          "type": "pdf_page",
+          "path": "../IT-PP/2022r04_ip_qs.pdf",
+          "pages": [
+            11
+          ]
+        }
+      ],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2022r04_ip_qs.pdf",
+        "pages": [
+          11
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2022r04-023",
+      "exam": "2022r04",
+      "question_no": 23,
+      "knowledge_group": "企業と法務",
+      "question": {
+        "ja": "オプトアウトに関する記述として、最も適切なものはどれか。",
+        "vi": "Mô tả nào sau đây là phù hợp nhất về opt-out?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "SNS の事業者が,お知らせメールの配信を希望した利用者だけに、新機能を紹介 するメールを配信した。",
+          "vi": "Nhà cung cấp dịch vụ SNS chỉ gửi email giới thiệu chức năng mới cho những người dùng đã mong muốn nhận email thông báo."
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "住宅地図の利用者が,地図上の自宅の位置に自分の氏名が掲載されているのを見 つけたので、住宅地図の作製業者に連絡して、掲載を中止させた。",
+          "vi": "Người sử dụng bản đồ khu dân cư phát hiện họ tên của mình được đăng tại vị trí nhà riêng trên bản đồ, nên đã liên hệ với đơn vị làm bản đồ để yêu cầu ngừng đăng."
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "通信販売の利用者が, Web サイトで商品を購入するための操作を進めていたが, 決済の手続が面倒だったので、画面を閉じて購入を中止した。",
+          "vi": "Người dùng mua hàng qua mạng đang thao tác để mua sản phẩm trên website, nhưng vì thủ tục thanh toán phiền phức nên đã đóng màn hình và hủy việc mua."
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "ドラッグストアの事業者が、販売予測のために顧客データを分析する際に、氏名 や住所などの情報をランダムな値に置き換え、顧客を特定できないようにした。",
+          "vi": "Doanh nghiệp kinh doanh drugstore khi phân tích dữ liệu khách hàng để dự báo bán hàng đã thay thế thông tin như họ tên, địa chỉ bằng các giá trị ngẫu nhiên để không thể xác định được khách hàng."
+        }
+      ],
+      "correct_option_id": "B",
+      "explanation_vi": "Opt-out là cơ chế mặc định có thể được áp dụng trước, nhưng cá nhân có quyền yêu cầu dừng sử dụng hoặc công bố thông tin của mình; mô tả ở イ đúng với ý này. ア là opt-in vì chỉ gửi cho người đã đồng ý trước, ウ chỉ là hủy thao tác mua hàng, còn エ là xử lý ẩn danh hoặc giả danh dữ liệu chứ không phải opt-out.",
+      "assets": [
+        {
+          "type": "pdf_page",
+          "path": "../IT-PP/2022r04_ip_qs.pdf",
+          "pages": [
+            11
+          ]
+        }
+      ],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2022r04_ip_qs.pdf",
+        "pages": [
+          11
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2022r04-024",
+      "exam": "2022r04",
+      "question_no": 24,
+      "knowledge_group": "技術要素",
+      "question": {
+        "ja": "教師あり学習の事例に関する記述として、最も適切なものはどれか。",
+        "vi": "Mô tả nào sau đây là ví dụ phù hợp nhất về học có giám sát (supervised learning)?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "衣料品を販売するサイトで、利用者が気に入った服の画像を送信すると、画像の 特徴から利用者の好みを自動的に把握し、好みに合った商品を提案する。",
+          "vi": "Trên một website bán quần áo, khi người dùng gửi hình ảnh bộ đồ mình thích, hệ thống tự động nắm bắt sở thích của người dùng từ đặc trưng hình ảnh và đề xuất sản phẩm phù hợp."
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "気温,天候,積雪,風などの条件を与えて、あらかじめ準備しておいたルールベ ースのプログラムによって、ゲレンデの状態がスキーに適しているか判断する。",
+          "vi": "Cho các điều kiện như nhiệt độ, thời tiết, lượng tuyết, gió..., rồi dùng chương trình rule-based đã chuẩn bị sẵn để 판단 xem tình trạng sân trượt có phù hợp để trượt tuyết hay không."
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "麺類の山からアームを使って一人分を取り,容器に盛り付ける動作の訓練を繰り 返したロボットが,弁当の盛り付けを上手に行う。",
+          "vi": "Một robot đã lặp đi lặp lại việc huấn luyện động tác dùng cánh tay lấy một phần mì từ đống mì và bày vào hộp, sau đó có thể thực hiện tốt việc xếp thức ăn vào hộp cơm."
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "録音された乳児の泣き声と、泣いている原因から成るデータを収集して入力する ことによって、乳児が泣いている原因を泣き声から推測する。",
+          "vi": "Bằng cách thu thập và đưa vào dữ liệu gồm tiếng khóc đã được ghi âm của trẻ sơ sinh cùng với nguyên nhân khiến trẻ khóc, rồi suy đoán nguyên nhân trẻ đang khóc từ tiếng khóc đó."
+        }
+      ],
+      "correct_option_id": "D",
+      "explanation_vi": "Học có giám sát dùng dữ liệu đã gắn nhãn đầu vào–đầu ra, và エ đúng vì dữ liệu gồm tiếng khóc cùng nguyên nhân tương ứng để mô hình học cách phân loại hay suy đoán nguyên nhân. ア không nêu rõ dữ liệu nhãn học trước, イ là xử lý theo luật định sẵn chứ không phải machine learning, còn ウ gần với huấn luyện thao tác/điều khiển robot hơn là ví dụ điển hình của supervised learning.",
+      "assets": [
+        {
+          "type": "pdf_page",
+          "path": "../IT-PP/2022r04_ip_qs.pdf",
+          "pages": [
+            12
+          ]
+        }
+      ],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2022r04_ip_qs.pdf",
+        "pages": [
+          12
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2022r04-025",
+      "exam": "2022r04",
+      "question_no": 25,
+      "knowledge_group": "開発技術",
+      "question": {
+        "ja": "a~d のうち、業務プロセスの改善に当たり,業務プロセスを表記するために用い られる図表だけを全て挙げたものはどれか。\na DFD\nb アクティビティ図\nc パレート図\nd レーダチャート",
+        "vi": "Trong các mục a đến d, phương án nào chỉ liệt kê toàn bộ những sơ đồ/biểu đồ được dùng để biểu diễn quy trình nghiệp vụ khi cải tiến quy trình nghiệp vụ?\na DFD\nb Biểu đồ hoạt động (Activity Diagram)\nc Biểu đồ Pareto\nd Biểu đồ radar"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "a, b",
+          "vi": "a, b"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "a, c",
+          "vi": "a, c"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "b, d",
+          "vi": "b, d"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "c, d",
+          "vi": "c, d"
+        }
+      ],
+      "correct_option_id": "A",
+      "explanation_vi": "DFD và Activity Diagram đều là công cụ dùng để mô tả luồng xử lý và quy trình nghiệp vụ. Pareto chart là biểu đồ phân tích mức độ đóng góp của nguyên nhân/vấn đề, còn radar chart dùng để so sánh nhiều chỉ số nên không phải sơ đồ biểu diễn quy trình nghiệp vụ.",
+      "assets": [
+        {
+          "type": "pdf_page",
+          "path": "../IT-PP/2022r04_ip_qs.pdf",
+          "pages": [
+            12
+          ]
+        }
+      ],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2022r04_ip_qs.pdf",
+        "pages": [
+          12
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2022r04-026",
+      "exam": "2022r04",
+      "question_no": 26,
+      "knowledge_group": "経営戦略",
+      "question": {
+        "ja": "自社が保有していない技術やノウハウを、他社から短期間で補完するための手段と して、適切なものはどれか。",
+        "vi": "Đâu là biện pháp phù hợp để bổ sung trong thời gian ngắn các công nghệ hoặc know-how mà công ty mình không sở hữu, từ doanh nghiệp khác?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "BPR",
+          "vi": "BPR"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "アライアンス",
+          "vi": "Alliance"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "インキュベーション",
+          "vi": "Incubation"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "ベンチマーキング",
+          "vi": "Benchmarking"
+        }
+      ],
+      "correct_option_id": "B",
+      "explanation_vi": "Alliance là hình thức liên kết/hợp tác với doanh nghiệp khác để nhanh chóng bổ sung công nghệ, năng lực hay know-how còn thiếu. BPR là tái cấu trúc quy trình nghiệp vụ, incubation là hoạt động ươm tạo doanh nghiệp hoặc ý tưởng mới, còn benchmarking là so sánh với các thực tiễn tốt nhất để cải tiến, không phải cách trực tiếp để bổ sung kỹ thuật từ công ty khác.",
+      "assets": [],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2022r04_ip_qs.pdf",
+        "pages": [
+          12
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2022r04-027",
+      "exam": "2022r04",
+      "question_no": 27,
+      "knowledge_group": "企業と法務",
+      "question": {
+        "ja": "個人情報保護法で定められた,特に取扱いに配慮が必要となる“要配慮個人情報” に該当するものはどれか。",
+        "vi": "Theo Luật Bảo vệ Thông tin Cá nhân, đâu là thông tin thuộc loại “thông tin cá nhân cần đặc biệt lưu ý khi xử lý” (要配慮個人情報)?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "学歴",
+          "vi": "Học vấn"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "国籍",
+          "vi": "Quốc tịch"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "資産額",
+          "vi": "Giá trị tài sản"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "信条",
+          "vi": "Tín điều / niềm tin / tư tưởng tín ngưỡng"
+        }
+      ],
+      "correct_option_id": "D",
+      "explanation_vi": "“信条” thuộc nhóm thông tin nhạy cảm cần đặc biệt lưu ý khi xử lý theo luật bảo vệ thông tin cá nhân. Học vấn, quốc tịch và giá trị tài sản tuy là thông tin cá nhân nhưng không mặc nhiên thuộc nhóm 要配慮個人情報 trong lựa chọn này.",
+      "assets": [],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2022r04_ip_qs.pdf",
+        "pages": [
+          13
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2022r04-028",
+      "exam": "2022r04",
+      "question_no": 28,
+      "knowledge_group": "経営戦略",
+      "question": {
+        "ja": "A 社のある期の資産,負債及び純資産が次のとおりであるとき、経営の安全性指標 の一つで、短期の支払能力を示す流動比率は何%か。\n単位 百万円\n資産の部\n負債の部\n流動資産 3,000\n流動負債 1,500\n固定資産 4,500\n固定負債 4,000\n純資産の部\n株主資本 2,000",
+        "vi": "Với tài sản, nợ phải trả và vốn thuần của công ty A trong một kỳ như sau, tỷ lệ thanh toán hiện hành (流動比率) biểu thị khả năng thanh toán ngắn hạn, là bao nhiêu %?\nĐơn vị: triệu yên\nPhần tài sản\nPhần nợ phải trả\nTài sản lưu động 3.000\nNợ ngắn hạn 1.500\nTài sản cố định 4.500\nNợ dài hạn 4.000\nPhần vốn thuần\nVốn cổ đông 2.000"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "50",
+          "vi": "50"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "100",
+          "vi": "100"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "150",
+          "vi": "150"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "200",
+          "vi": "200"
+        }
+      ],
+      "correct_option_id": "D",
+      "explanation_vi": "流動比率 = 流動資産 / 流動負債 × 100 = 3.000 / 1.500 × 100 = 200%. Vì vậy đáp án đúng là エ. Các phương án còn lại không đúng với công thức tính tỷ lệ thanh toán hiện hành.",
+      "assets": [],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2022r04_ip_qs.pdf",
+        "pages": [
+          13
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2022r04-029",
+      "exam": "2022r04",
+      "question_no": 29,
+      "knowledge_group": "企業と法務",
+      "question": {
+        "ja": "マネーロンダリングの対策に関する記述として、最も適切なものはどれか。",
+        "vi": "Mô tả nào sau đây là phù hợp nhất về biện pháp đối phó với rửa tiền (money laundering)?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "金融取引に当たり,口座開設時の取引目的や本人確認を徹底し、資金の出所が疑 わしい取引かどうかを監視する。",
+          "vi": "Khi thực hiện giao dịch tài chính, phải triệt để xác minh danh tính và mục đích giao dịch khi mở tài khoản, đồng thời giám sát xem đó có phải giao dịch đáng ngờ về nguồn gốc tiền hay không."
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "紙幣の印刷に当たり,コピー機では再現困難な文字や線,傾けることによって絵 が浮かび上がるホログラムなどの技術を用いて、複製を困難にする。",
+          "vi": "Khi in tiền giấy, sử dụng các kỹ thuật như chữ và đường nét khó tái tạo bằng máy photocopy, hoặc hologram làm hình ảnh hiện lên khi nghiêng, để gây khó khăn cho việc sao chép."
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "税金の徴収に当たり,外国にある子会社の利益を本国の親会社に配当されたもの とみなして,本国で課税する。",
+          "vi": "Khi thu thuế, coi lợi nhuận của công ty con ở nước ngoài như đã được chia cổ tức cho công ty mẹ trong nước, rồi đánh thuế tại nước đó."
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "投資に当たり,安全性や収益性などの特徴が異なる複数の金融商品を組み合わせ ることによって、一つの事象によって損失が大きくなるリスクを抑える。",
+          "vi": "Khi đầu tư, kết hợp nhiều sản phẩm tài chính có đặc tính khác nhau như độ an toàn và khả năng sinh lợi, để giảm rủi ro tổn thất lớn do một sự kiện đơn lẻ."
+        }
+      ],
+      "correct_option_id": "A",
+      "explanation_vi": "Biện pháp chống rửa tiền điển hình là KYC: xác minh danh tính, xác nhận mục đích giao dịch và giám sát các giao dịch đáng ngờ. イ nói về chống làm tiền giả, ウ là quy định thuế, còn エ là phân tán đầu tư để quản trị rủi ro, không phải biện pháp trực tiếp chống money laundering.",
+      "assets": [],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2022r04_ip_qs.pdf",
+        "pages": [
+          14
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2022r04-030",
+      "exam": "2022r04",
+      "question_no": 30,
+      "knowledge_group": "企業と法務",
+      "question": {
+        "ja": "営業利益を求める計算式はどれか。",
+        "vi": "Công thức tính lợi nhuận hoạt động kinh doanh (営業利益) là gì?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "(売上高)-(売上原価)",
+          "vi": "(Doanh thu) - (Giá vốn hàng bán)"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "(売上総利益)- (販売費及び一般管理費)",
+          "vi": "(Lợi nhuận gộp) - (Chi phí bán hàng và chi phí quản lý doanh nghiệp)"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "(経常利益)+(特別利益)-(特別損失)",
+          "vi": "(Lợi nhuận thông thường) + (Lợi nhuận đặc biệt) - (Lỗ đặc biệt)"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "(税引前当期純利益)ー (法人税,住民税及び事業税)",
+          "vi": "(Lợi nhuận ròng trước thuế kỳ hiện tại) - (Thuế pháp nhân, thuế cư trú và thuế kinh doanh)"
+        }
+      ],
+      "correct_option_id": "B",
+      "explanation_vi": "営業利益 được tính bằng 売上総利益 trừ đi 販売費及び一般管理費. ア là công thức của lợi nhuận gộp, ウ liên quan đến lợi nhuận trước thuế, còn エ cho ra lợi nhuận sau thuế chứ không phải lợi nhuận hoạt động kinh doanh.",
+      "assets": [],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2022r04_ip_qs.pdf",
+        "pages": [
+          14
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2022r04-031",
+      "exam": "2022r04",
+      "question_no": 31,
+      "knowledge_group": "サービスマネジメント",
+      "question": {
+        "ja": "コールセンタの顧客サービスレベルを改善するために、顧客から寄せられたコール センタ対応に関する苦情を分類集計する。苦情の多い順に,件数を棒グラフ,累積百 分率を折れ線グラフで表し、対応の優先度を判断するのに適した図はどれか。",
+        "vi": "Để cải thiện mức độ dịch vụ khách hàng của call center, người ta phân loại và tổng hợp các khiếu nại của khách hàng liên quan đến cách ứng xử của call center. Biểu đồ nào là phù hợp nhất để biểu diễn theo thứ tự số lượng khiếu nại từ nhiều đến ít, với số vụ bằng biểu đồ cột và tỷ lệ phần trăm tích lũy bằng biểu đồ đường, nhằm đánh giá mức độ ưu tiên xử lý?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "PERT 図",
+          "vi": "Biểu đồ PERT"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "管理図",
+          "vi": "Biểu đồ kiểm soát"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "特性要因図",
+          "vi": "Biểu đồ nhân quả"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "パレート図",
+          "vi": "Biểu đồ Pareto"
+        }
+      ],
+      "correct_option_id": "D",
+      "explanation_vi": "Biểu đồ Pareto dùng cột để thể hiện số lượng theo thứ tự giảm dần và đường gấp khúc để thể hiện tỷ lệ tích lũy, rất phù hợp để xác định hạng mục cần ưu tiên xử lý. PERT dùng cho lập kế hoạch tiến độ, biểu đồ kiểm soát dùng để theo dõi trạng thái ổn định của quá trình, còn biểu đồ nhân quả dùng để phân tích nguyên nhân vấn đề.",
+      "assets": [
+        {
+          "type": "pdf_page",
+          "path": "../IT-PP/2022r04_ip_qs.pdf",
+          "pages": [
+            14
+          ]
+        }
+      ],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2022r04_ip_qs.pdf",
+        "pages": [
+          14
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2022r04-032",
+      "exam": "2022r04",
+      "question_no": 32,
+      "knowledge_group": "経営戦略",
+      "question": {
+        "ja": "コンカレントエンジニアリングを適用した後の業務の流れを表した図として、最も適したものはどれか。ここで、図の中の矢印は業務の流れを示し、その上に各作業名を記述する。",
+        "vi": "Sơ đồ nào là phù hợp nhất để biểu diễn luồng công việc sau khi áp dụng Concurrent Engineering? Ở đây, các mũi tên trong hình biểu thị luồng công việc, và tên từng công việc được ghi phía trên chúng."
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "仕様／製作図／工程図／製作",
+          "vi": "Thông số kỹ thuật / Bản vẽ chế tạo / Bản vẽ công đoạn / Chế tạo"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "仕様／製作図／工程図／製作",
+          "vi": "Thông số kỹ thuật / Bản vẽ chế tạo / Bản vẽ công đoạn / Chế tạo"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "仕様／製作図／工程図／製作",
+          "vi": "Thông số kỹ thuật / Bản vẽ chế tạo / Bản vẽ công đoạn / Chế tạo"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "仕様／製作図／工程図／製作",
+          "vi": "Thông số kỹ thuật / Bản vẽ chế tạo / Bản vẽ công đoạn / Chế tạo"
+        }
+      ],
+      "correct_option_id": "D",
+      "explanation_vi": "Concurrent Engineering là cách tiến hành song song các công việc có thể thực hiện đồng thời để rút ngắn thời gian phát triển. Vì vậy đáp án đúng là sơ đồ D, thể hiện các bước như thiết kế, lập công đoạn và chế tạo được chồng lấn hoặc triển khai song song hợp lý. Các phương án còn lại thiên về thực hiện tuần tự nên không phản ánh đúng đặc trưng của Concurrent Engineering.",
+      "assets": [
+        {
+          "type": "pdf_page",
+          "path": "../IT-PP/2022r04_ip_qs.pdf",
+          "pages": [
+            15
+          ]
+        }
+      ],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2022r04_ip_qs.pdf",
+        "pages": [
+          15
+        ],
+        "answer_source": "answer_key"
+      },
+      "review_notes": [
+        "Dữ liệu nguồn chỉ có văn bản OCR, không có hình sơ đồ của 4 phương án nên không thể khôi phục chính xác nội dung khác biệt giữa các lựa chọn. Cần đối chiếu PDF gốc để bổ sung hình/luồng mũi tên của từng phương án A/B/C/D."
+      ]
+    },
+    {
+      "id": "2022r04-033",
+      "exam": "2022r04",
+      "question_no": 33,
+      "knowledge_group": "技術要素",
+      "question": {
+        "ja": "IT 機器やソフトウェア,情報などについて、利用者の身体の特性や能力の違いな どにかかわらず、様々な人が同様に操作,入手,利用できる状態又は度合いを表す用 語として、最も適切なものはどれか。",
+        "vi": "Đối với thiết bị IT, phần mềm, thông tin..., thuật ngữ nào là phù hợp nhất để chỉ trạng thái hoặc mức độ mà nhiều người khác nhau đều có thể thao tác, tiếp cận và sử dụng như nhau, bất kể sự khác biệt về đặc điểm cơ thể hay năng lực của người sử dụng?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "アクセシビリティ",
+          "vi": "Accessibility"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "スケーラビリティ",
+          "vi": "Scalability"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "ダイバーシティ",
+          "vi": "Diversity"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "トレーサビリティ",
+          "vi": "Traceability"
+        }
+      ],
+      "correct_option_id": "A",
+      "explanation_vi": "Accessibility là khái niệm chỉ mức độ dễ tiếp cận và sử dụng của hệ thống đối với nhiều đối tượng người dùng, kể cả người có khác biệt về thể chất hay khả năng. Scalability là khả năng mở rộng, Diversity là tính đa dạng, còn Traceability là khả năng truy vết, nên không phù hợp với mô tả đề bài.",
+      "assets": [
+        {
+          "type": "pdf_page",
+          "path": "../IT-PP/2022r04_ip_qs.pdf",
+          "pages": [
+            15
+          ]
+        }
+      ],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2022r04_ip_qs.pdf",
+        "pages": [
+          15
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2022r04-034",
+      "exam": "2022r04",
+      "question_no": 34,
+      "knowledge_group": "技術要素",
+      "question": {
+        "ja": "あるオンラインサービスでは、新たに作成したデザインと従来のデザインのWebサイトを実験的に並行稼働し，どちらのWebサイトの利用者がより有料サービスの申込みに至りやすいかを比較，検証した。このとき用いた手法として，最も適切なものはどれか。",
+        "vi": "Trong một dịch vụ trực tuyến, website với thiết kế mới và website với thiết kế cũ được cho chạy song song một cách thử nghiệm, rồi so sánh và kiểm chứng xem người dùng của website nào dễ đi đến việc đăng ký dịch vụ trả phí hơn. Phương pháp được sử dụng trong trường hợp này là gì?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "A/Bテスト",
+          "vi": "A/B test"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "ABC分析",
+          "vi": "Phân tích ABC"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "クラスタ分析",
+          "vi": "Phân tích cụm (cluster analysis)"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "リグレッションテスト",
+          "vi": "Regression test"
+        }
+      ],
+      "correct_option_id": "A",
+      "explanation_vi": "A là A/B test, phương pháp so sánh hai phiên bản khác nhau để đo xem phiên bản nào cho kết quả tốt hơn theo một chỉ số mục tiêu như tỷ lệ đăng ký. Cluster analysis là kỹ thuật phân nhóm dữ liệu, ABC analysis là phân tích theo mức độ quan trọng, còn regression test dùng để kiểm tra phần mềm sau sửa đổi.",
+      "assets": [
+        {
+          "type": "pdf_page",
+          "path": "../IT-PP/2022r04_ip_qs.pdf",
+          "pages": [
+            15
+          ]
+        }
+      ],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2022r04_ip_qs.pdf",
+        "pages": [
+          15
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2022r04-035",
+      "exam": "2022r04",
+      "question_no": 35,
+      "knowledge_group": "経営戦略",
+      "question": {
+        "ja": "あるコールセンタでは, AI を活用した業務改革の検討を進めて、導入するシステ ムを絞り込んだ。しかし,想定している効果が得られるかなど不明点が多いので、試 行して実現性の検証を行うことにした。このような検証を何というか。",
+        "vi": "Tại một call center, người ta đang xúc tiến xem xét cải cách nghiệp vụ bằng cách tận dụng AI và đã thu hẹp được các hệ thống sẽ triển khai. Tuy nhiên, vì còn nhiều điểm chưa rõ như liệu có đạt được hiệu quả như mong đợi hay không, nên họ quyết định thử nghiệm để kiểm chứng tính khả thi. Việc kiểm chứng như vậy được gọi là gì?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "IoT",
+          "vi": "IoT"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "PoC",
+          "vi": "PoC"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "SoE",
+          "vi": "SoE"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "SoR",
+          "vi": "SoR"
+        }
+      ],
+      "correct_option_id": "B",
+      "explanation_vi": "PoC (Proof of Concept) là việc thử nghiệm, kiểm chứng xem ý tưởng hay giải pháp có thực sự khả thi và tạo ra hiệu quả mong đợi hay không trước khi triển khai chính thức. IoT là Internet of Things, SoE là System of Engagement, và SoR là System of Record, nên đều không chỉ hoạt động kiểm chứng tính khả thi này.",
+      "assets": [],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2022r04_ip_qs.pdf",
+        "pages": [
+          16,
+          17
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2022r04-036",
+      "exam": "2022r04",
+      "question_no": 36,
+      "knowledge_group": "プロジェクトマネジメント",
+      "question": {
+        "ja": "プロジェクトで作成する WBS に関する記述のうち、適切なものはどれか。",
+        "vi": "Trong các mô tả về WBS được tạo trong dự án, mô tả nào là phù hợp?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "WBS ではプロジェクトで実施すべき作業内容と成果物を定義するので、作業工数 を見積もるときの根拠として使用できる。",
+          "vi": "Vì trong WBS xác định nội dung công việc và sản phẩm bàn giao cần thực hiện trong dự án, nên có thể dùng làm căn cứ khi ước lượng công sức làm việc."
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "WBS には、プロジェクトのスコープ外の作業も検討して含める。",
+          "vi": "Trong WBS, cũng xem xét và đưa vào cả các công việc nằm ngoài phạm vi (scope) của dự án."
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "全てのプロジェクトにおいて,WBS は成果物と作業内容を同じ階層まで詳細化す る。",
+          "vi": "Trong mọi dự án, WBS đều được phân rã chi tiết sản phẩm bàn giao và nội dung công việc đến cùng một cấp độ."
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "プロジェクトの担当者がスコープ内の類似作業を実施する場合, WBS にはそれ らの作業を記載しなくてよい。",
+          "vi": "Khi người phụ trách dự án thực hiện các công việc tương tự nằm trong phạm vi, không cần ghi các công việc đó vào WBS."
+        }
+      ],
+      "correct_option_id": "A",
+      "explanation_vi": "WBS dùng để phân rã phạm vi dự án thành các công việc và deliverable cụ thể, nên là cơ sở quan trọng để ước lượng công sức. イ sai vì WBS không bao gồm công việc ngoài scope. ウ sai vì mức độ chi tiết không nhất thiết phải giống nhau ở mọi dự án. エ sai vì các công việc trong phạm vi dự án cần được thể hiện trong WBS.",
+      "assets": [],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2022r04_ip_qs.pdf",
+        "pages": [
+          17
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2022r04-037",
+      "exam": "2022r04",
+      "question_no": 37,
+      "knowledge_group": "技術要素",
+      "question": {
+        "ja": "システムによる内部統制を目的として、幾つかの機能を実装した。次の処理は、ど の機能の実現例として適切か。\nログイン画面を表示して利用者 ID とパスワードを入力する。利用者 ID とパスワード の組合せがあらかじめ登録されている内容と一致する場合は業務メニュー画面に遷移 する。一致しない場合は遷移せずにエラーメッセージを表示する。",
+        "vi": "Nhằm mục đích kiểm soát nội bộ bằng hệ thống, một số chức năng đã được triển khai. Xử lý sau đây là ví dụ phù hợp để hiện thực chức năng nào?\nHiển thị màn hình đăng nhập và nhập ID người dùng cùng mật khẩu. Nếu tổ hợp ID người dùng và mật khẩu khớp với nội dung đã được đăng ký trước, thì chuyển sang màn hình menu nghiệp vụ. Nếu không khớp thì không chuyển màn hình mà hiển thị thông báo lỗi."
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "システム障害の検知",
+          "vi": "Phát hiện sự cố hệ thống"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "システムによるアクセス制御",
+          "vi": "Kiểm soát truy cập bằng hệ thống"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "利用者に対するアクセス権の付与",
+          "vi": "Cấp quyền truy cập cho người dùng"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "利用者のパスワード設定の妥当性の確認",
+          "vi": "Kiểm tra tính hợp lệ của việc thiết lập mật khẩu của người dùng"
+        }
+      ],
+      "correct_option_id": "B",
+      "explanation_vi": "Mô tả này thể hiện việc xác thực người dùng và chỉ cho phép truy cập khi thông tin đăng nhập đúng, tức là kiểm soát truy cập. ア sai vì không liên quan đến phát hiện lỗi hay sự cố hệ thống. ウ sai vì không phải cấp quyền mới mà là kiểm tra để cho phép vào hệ thống. エ sai vì không kiểm tra độ mạnh hay quy tắc đặt mật khẩu.",
+      "assets": [
+        {
+          "type": "pdf_page",
+          "path": "../IT-PP/2022r04_ip_qs.pdf",
+          "pages": [
+            17
+          ]
+        }
+      ],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2022r04_ip_qs.pdf",
+        "pages": [
+          17
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2022r04-038",
+      "exam": "2022r04",
+      "question_no": 38,
+      "knowledge_group": "開発技術",
+      "question": {
+        "ja": "XP (エクストリームプログラミング)の説明として、最も適切なものはどれか。",
+        "vi": "Mô tả nào là phù hợp nhất về XP (Extreme Programming)?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "テストプログラムを先に作成し,そのテストに合格するようにコードを記述する 開発手法のことである。",
+          "vi": "Là phương pháp phát triển trong đó tạo chương trình kiểm thử trước, rồi viết mã sao cho vượt qua được kiểm thử đó."
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "ーつのプログラムを2人のプログラマが,1台のコンピュータに向かって共同で 開発する方法のことである。",
+          "vi": "Là phương pháp hai lập trình viên cùng phát triển một chương trình trên một máy tính."
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "プログラムの振る舞いを変えずに,プログラムの内部構造を改善することである。",
+          "vi": "Là việc cải thiện cấu trúc bên trong của chương trình mà không làm thay đổi hành vi của chương trình."
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "要求の変化に対応した高品質のソフトウェアを短いサイクルでリリースする,ア ジャイル開発のアプローチの一つである。",
+          "vi": "Là một cách tiếp cận của phát triển Agile, phát hành phần mềm chất lượng cao trong các chu kỳ ngắn để đáp ứng sự thay đổi của yêu cầu."
+        }
+      ],
+      "correct_option_id": "D",
+      "explanation_vi": "XP là một phương pháp trong Agile, nhấn mạnh phản hồi nhanh, phát hành ngắn chu kỳ và thích ứng với thay đổi yêu cầu. ア là mô tả của TDD, イ là pair programming, còn ウ là refactoring; các nội dung này có thể được dùng trong XP nhưng không phải định nghĩa tổng quát nhất của XP.",
+      "assets": [
+        {
+          "type": "pdf_page",
+          "path": "../IT-PP/2022r04_ip_qs.pdf",
+          "pages": [
+            18
+          ]
+        }
+      ],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2022r04_ip_qs.pdf",
+        "pages": [
+          18
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2022r04-039",
+      "exam": "2022r04",
+      "question_no": 39,
+      "knowledge_group": "サービスマネジメント",
+      "question": {
+        "ja": "提供する IT サービスの価値を高めるためには、サービスの提供価格,どのような ことができるかというサービスの機能,及び可用性などを維持するサービスの保証の 三つのバランスを考慮する必要がある。インスタントメッセンジャのサービスに関す る記述のうち、サービスの保証に当たるものはどれか。",
+        "vi": "Để nâng cao giá trị của dịch vụ IT cung cấp, cần cân nhắc sự cân bằng giữa ba yếu tố: giá cung cấp dịch vụ, chức năng dịch vụ thể hiện dịch vụ có thể làm được gì, và bảo đảm dịch vụ để duy trì các yếu tố như tính sẵn sàng. Trong các mô tả về dịch vụ instant messenger, mô tả nào thuộc về bảo đảm dịch vụ?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "24時間365日利用可能である。",
+          "vi": "Có thể sử dụng 24 giờ mỗi ngày, 365 ngày mỗi năm."
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "ゲームなどの他のソフトウェアと連携可能である。",
+          "vi": "Có thể liên kết với phần mềm khác như game."
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "無料で利用可能である。",
+          "vi": "Có thể sử dụng miễn phí."
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "文字の代わりに自分で作成したアイコンも利用可能である。",
+          "vi": "Có thể sử dụng cả các biểu tượng do tự mình tạo ra thay cho chữ."
+        }
+      ],
+      "correct_option_id": "A",
+      "explanation_vi": "Bảo đảm dịch vụ liên quan đến availability, capacity, continuity và mức độ tin cậy của dịch vụ; “24/365 sử dụng được” chính là tính sẵn sàng. イ và エ là chức năng của dịch vụ, còn ウ là giá cả của dịch vụ.",
+      "assets": [],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2022r04_ip_qs.pdf",
+        "pages": [
+          18
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2022r04-040",
+      "exam": "2022r04",
+      "question_no": 40,
+      "knowledge_group": "システム戦略",
+      "question": {
+        "ja": "IT ガバナンスに関する記述として、最も適切なものはどれか。",
+        "vi": "Mô tả nào là phù hợp nhất về IT governance?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "IT サービスマネジメントに関して、広く利用されているベストプラクティスを 集めたもの",
+          "vi": "Là tập hợp các best practices được sử dụng rộng rãi liên quan đến IT service management."
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "システム及びソフトウェア開発とその取引の適正化に向けて、それらのベースと なる作業項目の一つ一つを定義して標準化したもの",
+          "vi": "Là việc định nghĩa và chuẩn hóa từng hạng mục công việc nền tảng nhằm hướng tới việc hợp lý hóa phát triển hệ thống, phần mềm và giao dịch liên quan."
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "経営陣が組織の価値を高めるために実践する行動であり、情報システム戦略の策 定及び実現に必要な組織能力のこと",
+          "vi": "Là các hành động được ban lãnh đạo thực hiện để nâng cao giá trị của tổ chức, và là năng lực tổ chức cần thiết cho việc hoạch định và hiện thực hóa chiến lược hệ thống thông tin."
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "プロジェクトの要求事項を満足させるために、知識, スキル,ツール,技法をプ ロジェクト活動に適用すること",
+          "vi": "Là việc áp dụng kiến thức, kỹ năng, công cụ và kỹ pháp vào các hoạt động dự án để đáp ứng các yêu cầu của dự án."
+        }
+      ],
+      "correct_option_id": "C",
+      "explanation_vi": "IT governance là khuôn khổ quản trị mà ban lãnh đạo sử dụng để bảo đảm CNTT hỗ trợ mục tiêu kinh doanh và nâng cao giá trị tổ chức. ア mô tả ITIL, イ nói về chuẩn hóa quy trình/phần việc phát triển, còn エ là định nghĩa của project management.",
+      "assets": [],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2022r04_ip_qs.pdf",
+        "pages": [
+          19
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2022r04-041",
+      "exam": "2022r04",
+      "question_no": 41,
+      "knowledge_group": "技術要素",
+      "question": {
+        "ja": "テレワークを推進しているある会社では、サテライトオフィスを構築している。サ テライトオフィスで使用するネットワーク機器や PC を対象に、落雷による過電流を 防止するための対策を検討した。有効な対策として、最も適切なものはどれか。",
+        "vi": "Một công ty đang thúc đẩy telework đã xây dựng satellite office. Công ty xem xét biện pháp đối phó nhằm ngăn ngừa quá dòng do sét đánh đối với các thiết bị mạng và PC sử dụng tại satellite office. Biện pháp nào là phù hợp nhất và có hiệu quả?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "グリーン IT に対応した機器の設置",
+          "vi": "Lắp đặt thiết bị hỗ trợ Green IT"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "サージ防護に対応した機器の設置",
+          "vi": "Lắp đặt thiết bị hỗ trợ chống surge"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "無線 LAN ルータの設置",
+          "vi": "Lắp đặt router LAN không dây"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "無停電電源装置の設置",
+          "vi": "Lắp đặt bộ nguồn điện không gián đoạn (UPS)"
+        }
+      ],
+      "correct_option_id": "B",
+      "explanation_vi": "Quá dòng do sét đánh là hiện tượng surge, nên biện pháp phù hợp nhất là dùng thiết bị có chức năng chống surge. Green IT không liên quan đến chống quá áp, router không dây không giải quyết vấn đề sét, còn UPS chủ yếu dùng để duy trì cấp điện khi mất điện chứ không phải biện pháp chính để chống surge do sét.",
+      "assets": [],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2022r04_ip_qs.pdf",
+        "pages": [
+          19
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2022r04-042",
+      "exam": "2022r04",
+      "question_no": 42,
+      "knowledge_group": "開発技術",
+      "question": {
+        "ja": "システムの開発側と運用側がお互いに連携し合い,運用や本番移行を自動化する仕 組みなどを積極的に取り入れ,新機能をリリースしてサービスの改善を行う取組を表 す用語として、最も適切なものはどれか。",
+        "vi": "Thuật ngữ nào phù hợp nhất để chỉ cách tiếp cận mà phía phát triển hệ thống và phía vận hành phối hợp chặt chẽ với nhau, tích cực đưa vào các cơ chế như tự động hóa vận hành và triển khai lên môi trường production, đồng thời phát hành chức năng mới để cải thiện dịch vụ?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "DevOps",
+          "vi": "DevOps"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "RAD",
+          "vi": "RAD"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "オブジェクト指向開発",
+          "vi": "Phát triển hướng đối tượng"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "テスト駆動開発",
+          "vi": "Phát triển hướng kiểm thử (Test Driven Development)"
+        }
+      ],
+      "correct_option_id": "A",
+      "explanation_vi": "DevOps là cách tiếp cận tăng cường hợp tác giữa development và operations, kết hợp tự động hóa để phát hành nhanh và cải thiện dịch vụ liên tục. RAD là phát triển nhanh ứng dụng, object-oriented development là phương pháp thiết kế/phát triển, còn TDD là kỹ thuật viết kiểm thử trước khi lập trình.",
+      "assets": [
+        {
+          "type": "pdf_page",
+          "path": "../IT-PP/2022r04_ip_qs.pdf",
+          "pages": [
+            19
+          ]
+        }
+      ],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2022r04_ip_qs.pdf",
+        "pages": [
+          19
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2022r04-043",
+      "exam": "2022r04",
+      "question_no": 43,
+      "knowledge_group": "プロジェクトマネジメント",
+      "question": {
+        "ja": "図のアローダイアグラムにおいて、作業Bが2日遅れて完了した。そこで、予定どおりの期間で全ての作業を完了させるために、作業Dに要員を追加することにした。作業Dに当初20名が割り当てられているとき、作業Dに追加する要員は最少で何名必要か。ここで、要員の作業効率は一律である。",
+        "vi": "Trong sơ đồ mũi tên ở hình, công việc B đã hoàn thành muộn 2 ngày. Do đó, để hoàn thành toàn bộ công việc đúng thời hạn như kế hoạch, người ta quyết định bổ sung nhân sự cho công việc D. Khi công việc D ban đầu được phân bổ 20 người, thì cần bổ sung tối thiểu bao nhiêu người cho công việc D? Giả sử hiệu suất làm việc của các nhân sự là đồng đều."
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "2",
+          "vi": "2"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "3",
+          "vi": "3"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "4",
+          "vi": "4"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "5",
+          "vi": "5"
+        }
+      ],
+      "correct_option_id": "D",
+      "explanation_vi": "Đáp án đúng là D. Vì B bị chậm 2 ngày nên cần rút ngắn thời gian của D từ 10 ngày xuống còn 8 ngày để giữ nguyên tổng tiến độ; khối lượng công việc của D là 20 × 10 = 200 công-ngày. Để hoàn thành trong 8 ngày cần 200/8 = 25 người, nên phải bổ sung 5 người; các phương án A, B, C đều không đủ để rút ngắn xuống 8 ngày.",
+      "assets": [
+        {
+          "type": "pdf_page",
+          "path": "../IT-PP/2022r04_ip_qs.pdf",
+          "pages": [
+            20
+          ]
+        }
+      ],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2022r04_ip_qs.pdf",
+        "pages": [
+          20
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2022r04-044",
+      "exam": "2022r04",
+      "question_no": 44,
+      "knowledge_group": "サービスマネジメント",
+      "question": {
+        "ja": "IT サービスマネジメントにおけるインシデント管理の目的として、適切なものは どれか。",
+        "vi": "Mục đích nào dưới đây là phù hợp với quản lý incident trong IT service management?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "インシデントの原因を分析し,根本的な原因を解決することによって、インシデ ントの再発を防止する。",
+          "vi": "Phân tích nguyên nhân của incident và giải quyết nguyên nhân gốc rễ để ngăn ngừa tái phát incident."
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "サービスに対する全ての変更を一元的に管理することによって、変更に伴う障害 発生などのリスクを低減する。",
+          "vi": "Quản lý tập trung mọi thay đổi đối với dịch vụ để giảm rủi ro như phát sinh sự cố do thay đổi."
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "サービスを構成する全ての機器やソフトウェアに関する情報を最新,正確に維持 管理する。",
+          "vi": "Duy trì và quản lý thông tin mới nhất, chính xác về toàn bộ thiết bị và phần mềm cấu thành dịch vụ."
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "インシデントによって中断しているサービスを可能な限り迅速に回復する。",
+          "vi": "Khôi phục dịch vụ đang bị gián đoạn bởi incident một cách nhanh nhất có thể."
+        }
+      ],
+      "correct_option_id": "D",
+      "explanation_vi": "Mục tiêu của incident management là khôi phục dịch vụ bình thường nhanh nhất có thể khi sự cố xảy ra. Phương án A là problem management, B là change management, còn C là configuration management. Vì vậy chỉ phương án D là đúng.",
+      "assets": [],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2022r04_ip_qs.pdf",
+        "pages": [
+          20
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2022r04-045",
+      "exam": "2022r04",
+      "question_no": 45,
+      "knowledge_group": "開発技術",
+      "question": {
+        "ja": "ブラックボックステストに関する記述として、適切なものはどれか。",
+        "vi": "Mô tả nào sau đây là đúng về black-box test?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "プログラムの全ての分岐についてテストする。",
+          "vi": "Kiểm thử mọi nhánh của chương trình."
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "プログラムの全ての命令についてテストする。",
+          "vi": "Kiểm thử mọi lệnh của chương trình."
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "プログラムの内部構造に基づいてテストする。",
+          "vi": "Kiểm thử dựa trên cấu trúc bên trong của chương trình."
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "プログラムの入力と出力に着目してテストする。",
+          "vi": "Kiểm thử chú trọng vào đầu vào và đầu ra của chương trình."
+        }
+      ],
+      "correct_option_id": "D",
+      "explanation_vi": "Black-box test là phương pháp kiểm thử dựa trên đặc tả chức năng, tập trung vào dữ liệu đầu vào và kết quả đầu ra mà không cần xét cấu trúc bên trong. Các phương án A, B, C đều là cách nhìn của white-box test vì dựa vào lệnh, nhánh hoặc cấu trúc nội bộ chương trình.",
+      "assets": [
+        {
+          "type": "pdf_page",
+          "path": "../IT-PP/2022r04_ip_qs.pdf",
+          "pages": [
+            21
+          ]
+        }
+      ],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2022r04_ip_qs.pdf",
+        "pages": [
+          21
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2022r04-046",
+      "exam": "2022r04",
+      "question_no": 46,
+      "knowledge_group": "サービスマネジメント",
+      "question": {
+        "ja": "a~d のうち、ファシリティマネジメントに関する実施事項として、適切なものだけを全て挙げたものはどれか。\na コンピュータを設置した建物への入退館の管理\nb 社内の PC へのマルウェア対策ソフトの導入と更新管理\nc 情報システムを構成するソフトウェアのライセンス管理\nd 停電時のデータ消失防止のための無停電電源装置の設置",
+        "vi": "Trong các mục a~d dưới đây, phương án nào liệt kê đầy đủ và chỉ những hạng mục phù hợp là các hoạt động liên quan đến facility management?\na Quản lý việc ra vào tòa nhà nơi đặt máy tính\nb Triển khai và quản lý cập nhật phần mềm chống malware cho PC trong công ty\nc Quản lý license của phần mềm cấu thành hệ thống thông tin\nd Lắp đặt bộ nguồn điện không gián đoạn (UPS) để ngăn mất dữ liệu khi mất điện"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "a, c",
+          "vi": "a, c"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "a, d",
+          "vi": "a, d"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "b, d",
+          "vi": "b, d"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "c, d",
+          "vi": "c, d"
+        }
+      ],
+      "correct_option_id": "B",
+      "explanation_vi": "Facility management liên quan đến quản lý cơ sở vật chất, môi trường đặt thiết bị và tiện ích hạ tầng, nên a và d là phù hợp. b là quản lý an toàn phần mềm trên PC, còn c là quản lý license phần mềm, không thuộc facility management. Vì vậy đáp án đúng là B.",
+      "assets": [],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2022r04_ip_qs.pdf",
+        "pages": [
+          21
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2022r04-047",
+      "exam": "2022r04",
+      "question_no": 47,
+      "knowledge_group": "開発技術",
+      "question": {
+        "ja": "ソフトウェア保守に関する記述のうち、適切なものはどれか。",
+        "vi": "Trong các mô tả sau về bảo trì phần mềm, mô tả nào là phù hợp?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "本番環境で運用中のシステムに対して,ソフトウェアの潜在不良を発見し,障害 が発生する前に修正を行うことはソフトウェア保守には含まれない。",
+          "vi": "Đối với hệ thống đang vận hành trong môi trường production, việc phát hiện lỗi tiềm ẩn của phần mềm và sửa trước khi sự cố xảy ra không được tính là bảo trì phần mềm."
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "本番環境で運用中のシステムに対して、ソフトウェアの不具合を修正することが ソフトウェア保守であり、仕様変更に伴う修正はソフトウェア保守には含まれない。",
+          "vi": "Đối với hệ thống đang vận hành trong môi trường production, việc sửa lỗi phần mềm là bảo trì phần mềm, còn sửa đổi đi kèm thay đổi đặc tả thì không thuộc bảo trì phần mềm."
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "本番環境で運用中のシステムに対して、法律改正に伴うソフトウェア修正もソフ トウェア保守に含まれる。",
+          "vi": "Đối với hệ thống đang vận hành trong môi trường production, việc sửa đổi phần mềm do thay đổi pháp luật cũng được bao gồm trong bảo trì phần mềm."
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "本番環境で運用中のシステムに対する修正だけでなく、納入前のシステム開発期 間中に実施した不具合の修正もソフトウェア保守に含まれる。",
+          "vi": "Không chỉ sửa đổi đối với hệ thống đang vận hành trong môi trường production, mà cả việc sửa lỗi thực hiện trong thời gian phát triển hệ thống trước khi bàn giao cũng được bao gồm trong bảo trì phần mềm."
+        }
+      ],
+      "correct_option_id": "C",
+      "explanation_vi": "Bảo trì phần mềm bao gồm cả bảo trì thích ứng, tức là sửa đổi để đáp ứng thay đổi của môi trường bên ngoài như luật pháp, nên ウ đúng. ア sai vì sửa lỗi tiềm ẩn trước khi phát sinh sự cố là bảo trì phòng ngừa; イ sai vì thay đổi đặc tả sau khi đưa vào vận hành vẫn có thể thuộc bảo trì; エ sai vì sửa lỗi trong giai đoạn phát triển trước bàn giao không được xem là bảo trì mà là hoạt động phát triển/kiểm thử.",
+      "assets": [],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2022r04_ip_qs.pdf",
+        "pages": [
+          21
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2022r04-048",
+      "exam": "2022r04",
+      "question_no": 48,
+      "knowledge_group": "プロジェクトマネジメント",
+      "question": {
+        "ja": "システム開発プロジェクトの品質マネジメントにおいて、品質上の問題と原因との 関連付けを行って根本原因を追究する方法の説明として、適切なものはどれか。",
+        "vi": "Trong quản lý chất lượng của dự án phát triển hệ thống, mô tả nào sau đây là phù hợp về phương pháp liên kết vấn đề chất lượng với nguyên nhân để truy tìm nguyên nhân gốc?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "管理限界を設定し,上限と下限を逸脱する事象から根本原因を推定する。",
+          "vi": "Thiết lập giới hạn kiểm soát, rồi suy định nguyên nhân gốc từ các hiện tượng vượt quá giới hạn trên và dưới."
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "原因の候補リストから原因に該当しないものを削除し,残った項目から根本原因 を絞り込む。",
+          "vi": "Từ danh sách các nguyên nhân ứng viên, loại bỏ các mục không phải nguyên nhân, rồi thu hẹp nguyên nhân gốc từ các mục còn lại."
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "候補となる原因を魚の骨の形で整理し,根本原因を検討する。",
+          "vi": "Sắp xếp các nguyên nhân ứng viên theo hình xương cá để xem xét nguyên nhân gốc."
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "複数の原因を分類し,件数が多かった原因の順に対処すべき根本原因の優先度を 決めていく。",
+          "vi": "Phân loại nhiều nguyên nhân, rồi quyết định mức độ ưu tiên của nguyên nhân gốc cần xử lý theo thứ tự nguyên nhân có số lượng nhiều."
+        }
+      ],
+      "correct_option_id": "C",
+      "explanation_vi": "Mô tả ở ウ chính là biểu đồ xương cá (Ishikawa), dùng để hệ thống hóa các nguyên nhân theo nhánh và phân tích nguyên nhân gốc. ア là biểu đồ kiểm soát, エ là Pareto, còn イ không phải mô tả chuẩn của một công cụ quản lý chất lượng điển hình. Vì vậy đáp án đúng là ウ.",
+      "assets": [],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2022r04_ip_qs.pdf",
+        "pages": [
+          22
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2022r04-049",
+      "exam": "2022r04",
+      "question_no": 49,
+      "knowledge_group": "サービスマネジメント",
+      "question": {
+        "ja": "IT サービスの利用者からの問合せに自動応答で対応するために,チャットボット を導入することにした。このようにチャットボットによる自動化が有効な管理プロセ スとして、最も適切なものはどれか。",
+        "vi": "Để tự động trả lời các câu hỏi từ người dùng dịch vụ IT, người ta quyết định đưa vào sử dụng chatbot. Trong trường hợp này, quy trình quản lý nào là phù hợp nhất để việc tự động hóa bằng chatbot phát huy hiệu quả?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "インシデント管理",
+          "vi": "Quản lý incident"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "構成管理",
+          "vi": "Quản lý cấu hình"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "変更管理",
+          "vi": "Quản lý thay đổi"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "問題管理",
+          "vi": "Quản lý vấn đề"
+        }
+      ],
+      "correct_option_id": "A",
+      "explanation_vi": "Chatbot đặc biệt hiệu quả trong việc tiếp nhận và phản hồi nhanh các yêu cầu hỏi đáp, khai báo sự cố và hỗ trợ ban đầu cho người dùng, nên phù hợp nhất với incident management. 構成管理 quản lý CI, 変更管理 xử lý thay đổi, còn 問題管理 tập trung vào nguyên nhân gốc của sự cố lặp lại. Do đó đáp án đúng là ア.",
+      "assets": [],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2022r04_ip_qs.pdf",
+        "pages": [
+          22
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2022r04-050",
+      "exam": "2022r04",
+      "question_no": 50,
+      "knowledge_group": "開発技術",
+      "question": {
+        "ja": "120kステップのソフトウェアを開発した。開発の各工程における生産性の実績が表のとおりであるとき、開発全体の工数は何人月か。ここで、生産性は1人月当たりのkステップとする。\n\n単位：kステップ/人月\n工程 / 生産性\n設計 / 6.0\n製造 / 4.0",
+        "vi": "Đã phát triển một phần mềm 120k step. Khi năng suất thực tế ở từng công đoạn phát triển như trong bảng dưới đây, tổng công sức của toàn bộ quá trình phát triển là bao nhiêu người-tháng? Ở đây, năng suất được tính bằng k step trên 1 người-tháng.\n\nĐơn vị: k step/người-tháng\nCông đoạn / Năng suất\nThiết kế / 6.0\nChế tạo / 4.0"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "10",
+          "vi": "10"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "12",
+          "vi": "12"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "24",
+          "vi": "24"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "50",
+          "vi": "50"
+        }
+      ],
+      "correct_option_id": "D",
+      "explanation_vi": "Công sức của từng công đoạn được tính bằng khối lượng / năng suất. Thiết kế: 120/6 = 20 người-tháng, chế tạo: 120/4 = 30 người-tháng, tổng cộng là 50 người-tháng. Vì vậy chọn D.",
+      "assets": [
+        {
+          "type": "pdf_page",
+          "path": "../IT-PP/2022r04_ip_qs.pdf",
+          "pages": [
+            22
+          ]
+        }
+      ],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2022r04_ip_qs.pdf",
+        "pages": [
+          22
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2022r04-051",
+      "exam": "2022r04",
+      "question_no": 51,
+      "knowledge_group": "サービスマネジメント",
+      "question": {
+        "ja": "IT サービスマネジメントにおける SLA に関する次の記述において,a, b に当ては まる語句の組合せとして、適切なものはどれか。\nSLA は,\na と\nb との間で交わされる合意文書である。\na\nが期待するサービスの目標値を定量化して合意した上で SLA に明記し, b は これを測定·評価した上でサービスの品質を改善していく。\na\nb",
+        "vi": "Trong quản lý dịch vụ IT, ở mô tả sau đây liên quan đến SLA, tổ hợp từ ngữ điền vào a, b nào là phù hợp?\nSLA là tài liệu thỏa thuận được ký kết giữa a và b.\nSau khi định lượng và thống nhất các giá trị mục tiêu của dịch vụ mà a kỳ vọng, nội dung đó được ghi rõ trong SLA, và b sẽ đo lường, đánh giá chúng rồi cải thiện chất lượng dịch vụ.\n\na\nb"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "経営者\nシステム監査人",
+          "vi": "Nhà quản lý / kiểm toán viên hệ thống"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "顧客\nサービスの供給者",
+          "vi": "Khách hàng / nhà cung cấp dịch vụ"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "システム開発の発注者\nシステム開発の受託者",
+          "vi": "Bên đặt hàng phát triển hệ thống / bên nhận phát triển hệ thống"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "データの分析者\nデータの提供者",
+          "vi": "Người phân tích dữ liệu / người cung cấp dữ liệu"
+        }
+      ],
+      "correct_option_id": "B",
+      "explanation_vi": "SLA là thỏa thuận mức dịch vụ giữa khách hàng và nhà cung cấp dịch vụ, trong đó các chỉ tiêu dịch vụ được định lượng rõ ràng. Nhà cung cấp sẽ đo lường, đánh giá việc đáp ứng các chỉ tiêu đó để cải thiện chất lượng dịch vụ. Các phương án khác không đúng vì nói về quan hệ kiểm toán, hợp đồng phát triển hệ thống, hay dữ liệu, không phải bản chất của SLA trong IT service management.",
+      "assets": [],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2022r04_ip_qs.pdf",
+        "pages": [
+          23
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2022r04-052",
+      "exam": "2022r04",
+      "question_no": 52,
+      "knowledge_group": "プロジェクトマネジメント",
+      "question": {
+        "ja": "A社がB社にシステム開発を発注し, システム開発プロジェクトを開始した。プロジェクトの関係者1～4のうち、プロジェクトのステークホルダとなるものだけを全て挙げたものはどれか。\n1 A社の経営者\n2 A社の利用部門\n3 B社のプロジェクトマネージャ\n4 B社を技術支援する協力会社",
+        "vi": "Công ty A đặt hàng công ty B phát triển hệ thống và dự án phát triển hệ thống đã được khởi động. Trong các bên liên quan 1~4 dưới đây, phương án nào liệt kê đầy đủ những người/tổ chức là stakeholder của dự án?\n1. Ban lãnh đạo công ty A\n2. Bộ phận sử dụng của công ty A\n3. Project manager của công ty B\n4. Công ty hợp tác hỗ trợ kỹ thuật cho công ty B"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "1, 2, 4",
+          "vi": "1, 2, 4"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "1, 2, 3, 4",
+          "vi": "1, 2, 3, 4"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "2, 3, 4",
+          "vi": "2, 3, 4"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "2, 4",
+          "vi": "2, 4"
+        }
+      ],
+      "correct_option_id": "B",
+      "explanation_vi": "Stakeholder là mọi cá nhân hoặc tổ chức có ảnh hưởng đến dự án hoặc chịu ảnh hưởng từ dự án. Cả ban lãnh đạo bên đặt hàng, bộ phận sử dụng, project manager của bên phát triển và công ty hợp tác hỗ trợ kỹ thuật đều liên quan trực tiếp đến dự án. Vì vậy chọn phương án B gồm cả 1, 2, 3, 4; các phương án còn lại bị thiếu stakeholder.",
+      "assets": [
+        {
+          "type": "pdf_page",
+          "path": "../IT-PP/2022r04_ip_qs.pdf",
+          "pages": [
+            23
+          ]
+        }
+      ],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2022r04_ip_qs.pdf",
+        "pages": [
+          23
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2022r04-053",
+      "exam": "2022r04",
+      "question_no": 53,
+      "knowledge_group": "企業と法務",
+      "question": {
+        "ja": "a ~d のうち、システム監査人が,合理的な評価·結論を得るために予備調査や本 調査のときに利用する調査手段に関する記述として、適切なものだけを全て挙げたも のはどれか。\na EA (Enterprise Architecture) の活用\nb コンピュータを利用した監査技法の活用\nc 資料や文書の閲覧\nd ヒアリング",
+        "vi": "Trong các mục a ~ d, mục nào là các phương tiện/biện pháp khảo sát phù hợp mà kiểm toán viên hệ thống sử dụng trong giai đoạn khảo sát sơ bộ và khảo sát chính thức để đưa ra đánh giá và kết luận hợp lý?\na. Sử dụng EA (Enterprise Architecture)\nb. Sử dụng kỹ thuật kiểm toán có dùng máy tính\nc. Xem xét tài liệu và văn bản\nd. Phỏng vấn / hearing"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "a, b, c",
+          "vi": "a, b, c"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "a, b, d",
+          "vi": "a, b, d"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "a, c, d",
+          "vi": "a, c, d"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "b, c, d",
+          "vi": "b, c, d"
+        }
+      ],
+      "correct_option_id": "D",
+      "explanation_vi": "Các biện pháp điều tra điển hình của kiểm toán hệ thống gồm sử dụng kỹ thuật kiểm toán bằng máy tính, xem xét tài liệu/văn bản và phỏng vấn. EA là một khung kiến trúc doanh nghiệp, không phải bản thân một phương tiện khảo sát kiểm toán. Vì vậy chỉ b, c, d là đúng.",
+      "assets": [],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2022r04_ip_qs.pdf",
+        "pages": [
+          24
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2022r04-054",
+      "exam": "2022r04",
+      "question_no": 54,
+      "knowledge_group": "サービスマネジメント",
+      "question": {
+        "ja": "顧客からの電話による問合せに対応しているサービスデスクが、次のようなオペレータ支援システムを導入した。このシステム導入で期待できる効果 a～c のうち、適切なものだけを全て挙げたものはどれか。\n\n顧客とオペレータの会話をシステムが認識し、瞬時に知識データベースと照合し、次に確認すべき事項や最適な回答の候補をオペレータのディスプレイに表示する。\n\na　経験の浅いオペレータでも最適な回答候補を基に顧客対応することができるので、オペレータによる対応のばらつきを抑えることができる。\nb　顧客の用件を自動的に把握して回答するので、電話による問合せに24時間対応することができる。\nc　対応に必要な情報をオペレータが探す必要がなくなるので、個々の顧客対応時間を短縮することができる。",
+        "vi": "Một service desk đang hỗ trợ các cuộc gọi hỏi đáp từ khách hàng đã triển khai hệ thống hỗ trợ operator như sau. Trong các hiệu quả a～c có thể kỳ vọng từ việc triển khai hệ thống này, phương án nào chỉ gồm các hiệu quả phù hợp?\n\nHệ thống nhận diện cuộc hội thoại giữa khách hàng và operator, ngay lập tức đối chiếu với cơ sở dữ liệu tri thức, rồi hiển thị trên màn hình của operator những hạng mục cần xác nhận tiếp theo và các ứng viên câu trả lời tối ưu.\n\na. Ngay cả operator ít kinh nghiệm cũng có thể dựa trên các câu trả lời tối ưu được gợi ý để hỗ trợ khách hàng, nên có thể giảm sự khác biệt trong cách xử lý giữa các operator.\nb. Vì hệ thống tự động nắm bắt yêu cầu của khách hàng và trả lời, nên có thể hỗ trợ 24 giờ đối với các cuộc gọi điện thoại.\nc. Vì operator không còn cần tự tìm thông tin cần thiết để xử lý, nên có thể rút ngắn thời gian xử lý cho từng khách hàng."
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "a, b",
+          "vi": "a, b"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "a, b, c",
+          "vi": "a, b, c"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "a, c",
+          "vi": "a, c"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "b, c",
+          "vi": "b, c"
+        }
+      ],
+      "correct_option_id": "C",
+      "explanation_vi": "Hệ thống này là công cụ hỗ trợ operator, nên giúp giảm chênh lệch chất lượng xử lý giữa người nhiều kinh nghiệm và ít kinh nghiệm, đồng thời rút ngắn thời gian tra cứu thông tin. Tuy nhiên nó không tự động trả lời hoàn toàn để đảm bảo phục vụ 24/7 qua điện thoại, vì vẫn có operator tham gia. Do đó đúng là a và c, tương ứng với C.",
+      "assets": [
+        {
+          "type": "pdf_page",
+          "path": "../IT-PP/2022r04_ip_qs.pdf",
+          "pages": [
+            24,
+            25
+          ]
+        }
+      ],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2022r04_ip_qs.pdf",
+        "pages": [
+          24,
+          25
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2022r04-055",
+      "exam": "2022r04",
+      "question_no": 55,
+      "knowledge_group": "技術要素",
+      "question": {
+        "ja": "情報セキュリティにおける PCI DSS の説明として、適切なものはどれか。",
+        "vi": "Mô tả nào sau đây là đúng về PCI DSS trong lĩnh vực an toàn thông tin?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "クレジットカード情報を取り扱う事業者に求められるセキュリティ基準",
+          "vi": "Tiêu chuẩn bảo mật được yêu cầu đối với các doanh nghiệp xử lý thông tin thẻ tín dụng"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "コンピュータなどに内蔵されるセキュリティ関連の処理を行う半導体チップ",
+          "vi": "Chip bán dẫn được tích hợp trong máy tính v.v... để thực hiện các xử lý liên quan đến bảo mật"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "コンピュータやネットワークのセキュリティ事故に対応する組織",
+          "vi": "Tổ chức ứng phó với các sự cố an ninh của máy tính và mạng"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "サーバやネットワークの通信を監視し,不正なアクセスを検知して攻撃を防ぐシ ステム",
+          "vi": "Hệ thống giám sát lưu lượng của server và mạng, phát hiện truy cập trái phép và ngăn chặn tấn công"
+        }
+      ],
+      "correct_option_id": "A",
+      "explanation_vi": "PCI DSS là tiêu chuẩn bảo mật dành cho tổ chức, doanh nghiệp xử lý dữ liệu thẻ thanh toán, đặc biệt là thông tin thẻ tín dụng. Phương án B mô tả chip bảo mật như TPM, phương án C là tổ chức như CSIRT, còn phương án D là hệ thống phát hiện/ngăn chặn xâm nhập như IDS/IPS. Vì vậy đáp án đúng là A.",
+      "assets": [],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2022r04_ip_qs.pdf",
+        "pages": [
+          25
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2022r04-056",
+      "exam": "2022r04",
+      "question_no": 56,
+      "knowledge_group": "技術要素",
+      "question": {
+        "ja": "ランサムウェアによる損害を受けてしまった場合を想定して、その損害を軽減する ための対策例として、適切なものはどれか。",
+        "vi": "Với giả định rằng đã bị thiệt hại do ransomware, biện pháp nào dưới đây là ví dụ phù hợp để giảm nhẹ thiệt hại đó?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "PC 内の重要なファイルは,PC から取外し可能な外部記憶装置に定期的にバック アップしておく。",
+          "vi": "Sao lưu định kỳ các tệp quan trọng trong PC vào thiết bị lưu trữ ngoài có thể tháo rời khỏi PC."
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "Web サービスごとに,使用する ID やパスワードを異なるものにしておく。",
+          "vi": "Đặt ID và mật khẩu sử dụng khác nhau cho từng dịch vụ Web."
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "マルウェア対策ソフトを用いて PC 内の全ファイルの検査をしておく。",
+          "vi": "Dùng phần mềm chống malware để quét tất cả các tệp trong PC."
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "無線 LAN を使用するときには,WPA2を用いて通信内容を暗号化しておく。",
+          "vi": "Khi sử dụng mạng LAN không dây, dùng WPA2 để mã hóa nội dung liên lạc."
+        }
+      ],
+      "correct_option_id": "A",
+      "explanation_vi": "Đáp án đúng là ア vì việc sao lưu định kỳ ra thiết bị ngoài có thể giúp khôi phục dữ liệu khi file bị ransomware mã hóa. イ giúp giảm rủi ro lộ tài khoản, ウ là biện pháp phòng ngừa phát hiện malware chứ không trực tiếp giảm thiệt hại sau khi bị mã hóa, còn エ liên quan đến bảo mật Wi‑Fi, không phải đối sách chính để giảm hậu quả ransomware.",
+      "assets": [],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2022r04_ip_qs.pdf",
+        "pages": [
+          25
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2022r04-057",
+      "exam": "2022r04",
+      "question_no": 57,
+      "knowledge_group": "基礎理論",
+      "question": {
+        "ja": "推論に関する次の記述中の a,b に入れる字句の適切な組合せはどれか。\na は、個々の事例を基にして、事例に共通する規則を得る方法であり、得られた規則は b。",
+        "vi": "Trong mô tả sau về suy luận, tổ hợp từ ngữ thích hợp điền vào a, b là gì?\na là phương pháp rút ra quy tắc chung từ các trường hợp cá biệt, và quy tắc thu được thì b."
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "a: 演繹推論\nb: 成立しないことがある",
+          "vi": "a: Suy luận diễn dịch\nb: Có trường hợp không đúng"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "a: 演繹推論\nb: 常に成立する",
+          "vi": "a: Suy luận diễn dịch\nb: Luôn đúng"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "a: 帰納推論\nb: 成立しないことがある",
+          "vi": "a: Suy luận quy nạp\nb: Có trường hợp không đúng"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "a: 帰納推論\nb: 常に成立する",
+          "vi": "a: Suy luận quy nạp\nb: Luôn đúng"
+        }
+      ],
+      "correct_option_id": "C",
+      "explanation_vi": "Đáp án đúng là C vì từ các trường hợp riêng lẻ để rút ra quy tắc chung là suy luận quy nạp (帰納推論). Kết luận của quy nạp không đảm bảo luôn đúng, nên “có trường hợp không đúng”. Hai phương án dùng 演繹推論 sai bản chất, còn D sai vì quy nạp không thể bảo đảm tính đúng đắn tuyệt đối.",
+      "assets": [],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2022r04_ip_qs.pdf",
+        "pages": [
+          26
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2022r04-058",
+      "exam": "2022r04",
+      "question_no": 58,
+      "knowledge_group": "技術要素",
+      "question": {
+        "ja": "ISMS の計画, 運用, パフォーマンス評価及び改善において、パフォーマンス評価で実施するものはどれか。",
+        "vi": "Trong các hoạt động hoạch định, vận hành, đánh giá hiệu suất và cải tiến của ISMS, nội dung nào được thực hiện ở giai đoạn đánh giá hiệu suất?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "運用の計画及び管理",
+          "vi": "Lập kế hoạch và quản lý vận hành"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "内部監査",
+          "vi": "Đánh giá nội bộ"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "不適合の是正処置",
+          "vi": "Thực hiện hành động khắc phục đối với sự không phù hợp"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "リスクの決定",
+          "vi": "Xác định rủi ro"
+        }
+      ],
+      "correct_option_id": "B",
+      "explanation_vi": "Đáp án đúng là B vì trong ISMS, giai đoạn đánh giá hiệu suất bao gồm nội bộ audit, theo dõi, đo lường và xem xét. A và D thuộc giai đoạn lập kế hoạch hoặc vận hành, còn C là hoạt động thuộc giai đoạn cải tiến.",
+      "assets": [
+        {
+          "type": "pdf_page",
+          "path": "../IT-PP/2022r04_ip_qs.pdf",
+          "pages": [
+            26
+          ]
+        }
+      ],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2022r04_ip_qs.pdf",
+        "pages": [
+          26
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2022r04-059",
+      "exam": "2022r04",
+      "question_no": 59,
+      "knowledge_group": "基礎理論",
+      "question": {
+        "ja": "次のデータの平均値と中央値の組合せはどれか。\n〔データ〕 10, 20, 20, 20, 40, 50, 100, 440, 2000\n平均値\n中央値",
+        "vi": "Tổ hợp giá trị trung bình và trung vị của dữ liệu sau là gì?\n[Dữ liệu] 10, 20, 20, 20, 40, 50, 100, 440, 2000\n\nTrung bình\tTrung vị"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "20\n40",
+          "vi": "20\t40"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "40\n20",
+          "vi": "40\t20"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "300\n20",
+          "vi": "300\t20"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "300\n40",
+          "vi": "300\t40"
+        }
+      ],
+      "correct_option_id": "D",
+      "explanation_vi": "Đáp án đúng là エ. Tổng dữ liệu là 2700, chia cho 9 được trung bình là 300; dãy đã sắp tăng dần và có 9 phần tử nên trung vị là phần tử thứ 5, tức 40. Các phương án khác không khớp với phép tính này.",
+      "assets": [],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2022r04_ip_qs.pdf",
+        "pages": [
+          27
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2022r04-060",
+      "exam": "2022r04",
+      "question_no": 60,
+      "knowledge_group": "技術要素",
+      "question": {
+        "ja": "公開鍵暗号方式で使用する鍵に関する次の記述中の a, b に入れる字句の適切な組 合せはどれか。\nそれぞれ公開鍵と秘密鍵をもつ A 社と B 社で情報を送受信するとき、他者に通信を 傍受されても内容を知られないように、情報を暗号化して送信することにした。 A 社から B 社に情報を送信する場合,A 社は a を使って暗号化した情報を B 社に送信する。B 社は A 社から受信した情報を\nb で復号して情報を取り出 す。\na\nb",
+        "vi": "Trong mô tả sau về khóa dùng trong phương thức mã hóa khóa công khai, tổ hợp từ ngữ thích hợp điền vào a, b là gì?\nKhi công ty A và công ty B, mỗi bên đều có khóa công khai và khóa bí mật, gửi nhận thông tin với nhau, để dù bị bên khác nghe lén đường truyền cũng không biết được nội dung, họ quyết định mã hóa thông tin trước khi gửi. Khi A gửi thông tin cho B, A sẽ dùng a để mã hóa thông tin rồi gửi cho B. B sẽ dùng b để giải mã thông tin nhận từ A và lấy ra nội dung.\n\na\tb"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "A 社の公開鍵\nA 社の公開鍵",
+          "vi": "Khóa công khai của A\tKhóa công khai của A"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "A 社の公開鍵\nB 社の秘密鍵",
+          "vi": "Khóa công khai của A\tKhóa bí mật của B"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "B 社の公開鍵\nA 社の公開鍵",
+          "vi": "Khóa công khai của B\tKhóa công khai của A"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "B 社の公開鍵\nB 社の秘密鍵",
+          "vi": "Khóa công khai của B\tKhóa bí mật của B"
+        }
+      ],
+      "correct_option_id": "D",
+      "explanation_vi": "Đáp án đúng là エ vì để chỉ B đọc được nội dung, A phải mã hóa bằng khóa công khai của B, và chỉ khóa bí mật của B mới giải mã được. ア và ウ dùng khóa giải mã không đúng cặp, còn イ mã hóa bằng khóa công khai của A nên không đảm bảo mục tiêu gửi bí mật cho B.",
+      "assets": [],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2022r04_ip_qs.pdf",
+        "pages": [
+          27
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2022r04-061",
+      "exam": "2022r04",
+      "question_no": 61,
+      "knowledge_group": "技術要素",
+      "question": {
+        "ja": "大学のキャンパス案内の Web ページ内に他の Web サービスが提供する地図情報を組み込んで表示するなど、公開されている Web ページや Web サービスを組み合わせて一つの新しいコンテンツを作成する手法を何と呼ぶか。",
+        "vi": "Trong trang Web hướng dẫn khuôn viên trường đại học, chẳng hạn như nhúng và hiển thị thông tin bản đồ do dịch vụ Web khác cung cấp, việc kết hợp các trang Web hoặc dịch vụ Web được công khai để tạo ra một nội dung mới được gọi là gì?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "シングルサインオン",
+          "vi": "Single Sign-On"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "デジタルフォレンジックス",
+          "vi": "Digital Forensics"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "トークン",
+          "vi": "Token"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "マッシュアップ",
+          "vi": "Mashup"
+        }
+      ],
+      "correct_option_id": "D",
+      "explanation_vi": "Mashup là kỹ thuật kết hợp dữ liệu hay chức năng từ nhiều Web page/Web service công khai để tạo ra nội dung mới. Single Sign-On là cơ chế đăng nhập một lần dùng cho nhiều hệ thống, Token là dữ liệu/chứng thực dùng trong bảo mật, còn Digital Forensics là điều tra số nên không phù hợp.",
+      "assets": [
+        {
+          "type": "pdf_page",
+          "path": "../IT-PP/2022r04_ip_qs.pdf",
+          "pages": [
+            28
+          ]
+        }
+      ],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2022r04_ip_qs.pdf",
+        "pages": [
+          28
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2022r04-062",
+      "exam": "2022r04",
+      "question_no": 62,
+      "knowledge_group": "技術要素",
+      "question": {
+        "ja": "アドホックネットワークの説明として、適切なものはどれか。",
+        "vi": "Mô tả nào sau đây là đúng về mạng ad hoc?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "アクセスポイントを経由せず,端末同士が相互に通信を行う無線ネットワーク",
+          "vi": "Mạng không dây trong đó các thiết bị đầu cuối liên lạc trực tiếp với nhau mà không thông qua access point"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "インターネット上に、セキュリティが保たれたプライベートな環境を実現するネ ットワーク",
+          "vi": "Mạng thực hiện một môi trường riêng tư được bảo mật trên Internet"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "サーバと,そのサーバを利用する複数台の PC をつなぐ有線ネットワーク",
+          "vi": "Mạng có dây kết nối máy chủ và nhiều PC sử dụng máy chủ đó"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "本店と支店など、遠く離れた拠点間を結ぶ広域ネットワーク",
+          "vi": "Mạng diện rộng kết nối các địa điểm ở xa nhau như trụ sở chính và chi nhánh"
+        }
+      ],
+      "correct_option_id": "A",
+      "explanation_vi": "Ad hoc network là mạng không dây mà các thiết bị giao tiếp trực tiếp với nhau, không cần access point. イ mô tả VPN, ウ là mạng client-server có dây, còn エ là WAN nên đều không đúng.",
+      "assets": [],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2022r04_ip_qs.pdf",
+        "pages": [
+          28
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2022r04-063",
+      "exam": "2022r04",
+      "question_no": 63,
+      "knowledge_group": "技術要素",
+      "question": {
+        "ja": "スマートフォンやタブレットなどの携帯端末に用いられている, OSS (Open Source Software) である OS はどれか。",
+        "vi": "Trong các lựa chọn sau, hệ điều hành nào là OSS (Open Source Software) được sử dụng trên các thiết bị di động như smartphone và tablet?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "Android",
+          "vi": "Android"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "iOS",
+          "vi": "iOS"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "Safari",
+          "vi": "Safari"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "Windows",
+          "vi": "Windows"
+        }
+      ],
+      "correct_option_id": "A",
+      "explanation_vi": "Android là hệ điều hành di động có nền tảng mã nguồn mở nên phù hợp với mô tả OSS. iOS là hệ điều hành độc quyền của Apple, Safari là trình duyệt chứ không phải OS, còn Windows trong ngữ cảnh này không phải OS di động OSS.",
+      "assets": [],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2022r04_ip_qs.pdf",
+        "pages": [
+          28
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2022r04-064",
+      "exam": "2022r04",
+      "question_no": 64,
+      "knowledge_group": "技術要素",
+      "question": {
+        "ja": "a~d のうち, ファイアウォールの設置によって実現できる事項として、適切なものだけを全て挙げたものはどれか。\na 外部に公開する Web サーバやメールサーバを設置するための DMZ の構築\nb 外部のネットワークから組織内部のネットワークへの不正アクセスの防止\nc サーバルームの入り口に設置することによるアクセスを承認された人だけの入室\nd 不特定多数のクライアントからの大量の要求を複数のサーバに動的に振り分けることによるサーバ負荷の分散",
+        "vi": "Trong các mục a~d, phương án nào liệt kê đầy đủ và chỉ gồm những mục có thể được thực hiện bằng việc thiết lập firewall?\na Xây dựng DMZ để đặt các Web server và mail server công khai ra bên ngoài\nb Ngăn chặn truy cập trái phép từ mạng bên ngoài vào mạng nội bộ của tổ chức\nc Đặt ở lối vào phòng server để chỉ những người được cấp quyền mới được vào phòng\nd Phân phối động lượng lớn yêu cầu từ số lượng lớn client đến nhiều server để phân tán tải server"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "a, b",
+          "vi": "a, b"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "a, b, d",
+          "vi": "a, b, d"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "b, c",
+          "vi": "b, c"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "c, d",
+          "vi": "c, d"
+        }
+      ],
+      "correct_option_id": "A",
+      "explanation_vi": "Firewall có thể dùng để xây dựng DMZ và kiểm soát lưu lượng nhằm ngăn truy cập trái phép từ bên ngoài, nên a và b đúng. c là kiểm soát ra vào vật lý, không phải chức năng của firewall; d là chức năng của load balancer, không phải firewall.",
+      "assets": [
+        {
+          "type": "pdf_page",
+          "path": "../IT-PP/2022r04_ip_qs.pdf",
+          "pages": [
+            29
+          ]
+        }
+      ],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2022r04_ip_qs.pdf",
+        "pages": [
+          29
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2022r04-065",
+      "exam": "2022r04",
+      "question_no": 65,
+      "knowledge_group": "開発技術",
+      "question": {
+        "ja": "条件1~5によって、関係データベースで管理する“従業員”表と“部門”表を作 成した。“従業員”表の主キーとして、最も適切なものはどれか。\n〔条件〕\n1 各従業員は重複のない従業員番号を一つもつ。\n2 同姓同名の従業員がいてもよい。\n3 各部門は重複のない部門コードを一つもつ。\n4 一つの部門には複数名の従業員が所属する。\n5 1人の従業員が所属する部門は一つだけである。\n従業員\n従業員番号\n従業員名\n部門コード\n生年月日\n住所\n部門\n部門コード\n部門名\n所在地",
+        "vi": "Theo các điều kiện 1~5, đã tạo bảng “Nhân viên” và bảng “Bộ phận” để quản lý bằng cơ sở dữ liệu quan hệ. Khóa chính phù hợp nhất của bảng “Nhân viên” là gì?\n〔Điều kiện〕\n1 Mỗi nhân viên có một mã số nhân viên duy nhất, không trùng lặp.\n2 Có thể tồn tại nhiều nhân viên trùng họ và tên.\n3 Mỗi bộ phận có một mã bộ phận duy nhất, không trùng lặp.\n4 Một bộ phận có nhiều nhân viên trực thuộc.\n5 Một nhân viên chỉ thuộc về đúng một bộ phận.\nNhân viên\nMã số nhân viên\nTên nhân viên\nMã bộ phận\nNgày sinh\nĐịa chỉ\nBộ phận\nMã bộ phận\nTên bộ phận\nĐịa điểm"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "“従業員番号”",
+          "vi": "“Mã số nhân viên”"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "“従業員番号”と“部門コード”",
+          "vi": "“Mã số nhân viên” và “Mã bộ phận”"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "“従業員名”",
+          "vi": "“Tên nhân viên”"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "“部門コード”",
+          "vi": "“Mã bộ phận”"
+        }
+      ],
+      "correct_option_id": "A",
+      "explanation_vi": "Khóa chính phải xác định duy nhất từng bản ghi trong bảng Nhân viên, và theo điều kiện 1 thì “Mã số nhân viên” là duy nhất cho mỗi người nên là lựa chọn phù hợp nhất. “Tên nhân viên” có thể trùng, “Mã bộ phận” thì một bộ phận có nhiều nhân viên, còn ghép thêm “Mã bộ phận” vào “Mã số nhân viên” là dư thừa vì chỉ riêng “Mã số nhân viên” đã đủ duy nhất.",
+      "assets": [
+        {
+          "type": "pdf_page",
+          "path": "../IT-PP/2022r04_ip_qs.pdf",
+          "pages": [
+            29
+          ]
+        }
+      ],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2022r04_ip_qs.pdf",
+        "pages": [
+          29
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2022r04-066",
+      "exam": "2022r04",
+      "question_no": 66,
+      "knowledge_group": "技術要素",
+      "question": {
+        "ja": "IoT 機器やスマートフォンなどに内蔵されているバッテリの容量の表記において, “100mAh”の意味として、適切なものはどれか。",
+        "vi": "Trong cách ghi dung lượng pin được tích hợp trong các thiết bị IoT hay smartphone, ý nghĩa phù hợp của “100mAh” là gì?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "100mA の電流を1時間放電できる。",
+          "vi": "Có thể phóng điện với dòng điện 100 mA trong 1 giờ."
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "100分間の充電で、電流を1時間放電できる。",
+          "vi": "Sạc trong 100 phút thì có thể phóng điện dòng điện trong 1 giờ."
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "1A の電流を100分間放電できる。",
+          "vi": "Có thể phóng điện với dòng điện 1 A trong 100 phút."
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "1時間の充電で、電流を100分間放電できる。",
+          "vi": "Sạc trong 1 giờ thì có thể phóng điện dòng điện trong 100 phút."
+        }
+      ],
+      "correct_option_id": "A",
+      "explanation_vi": "mAh là đơn vị biểu thị dung lượng điện, nghĩa là tích của dòng điện và thời gian. 100mAh có nghĩa là về lý thuyết pin có thể cung cấp 100 mA trong 1 giờ. Các phương án イ và エ nói về thời gian sạc nên không đúng ý nghĩa của đơn vị này, còn ウ tương đương khoảng 1667mAh nên sai.",
+      "assets": [
+        {
+          "type": "pdf_page",
+          "path": "../IT-PP/2022r04_ip_qs.pdf",
+          "pages": [
+            30
+          ]
+        }
+      ],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2022r04_ip_qs.pdf",
+        "pages": [
+          30
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2022r04-067",
+      "exam": "2022r04",
+      "question_no": 67,
+      "knowledge_group": "技術要素",
+      "question": {
+        "ja": "ディープラーニングに関する記述として、最も適切なものはどれか。",
+        "vi": "Mô tả nào sau đây là phù hợp nhất về deep learning?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "インターネット上に提示された教材を使って、距離や時間の制約を受けることな く, 習熟度に応じて学習をする方法である。",
+          "vi": "Là phương pháp học tập sử dụng tài liệu được cung cấp trên Internet, có thể học theo mức độ thành thạo mà không bị ràng buộc bởi khoảng cách hay thời gian."
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "コンピュータが大量のデータを分析し、ニューラルネットワークを用いて自ら規 則性を見つけ出し,推論や判断を行う。",
+          "vi": "Máy tính phân tích lượng lớn dữ liệu, tự tìm ra tính quy luật bằng cách sử dụng neural network, rồi thực hiện suy luận và phán đoán."
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "体系的に分類された特定分野の専門的な知識から、適切な回答を提供する。",
+          "vi": "Cung cấp câu trả lời phù hợp từ tri thức chuyên môn của một lĩnh vực cụ thể đã được phân loại có hệ thống."
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "一人一人の習熟度,理解に応じて、問題の難易度や必要とする知識,スキルを推 定する。",
+          "vi": "Dựa theo mức độ thành thạo và mức độ hiểu của từng người để ước lượng độ khó của bài toán cũng như kiến thức, kỹ năng cần thiết."
+        }
+      ],
+      "correct_option_id": "B",
+      "explanation_vi": "Deep learning là kỹ thuật trong AI dùng neural network nhiều lớp để học từ lượng lớn dữ liệu và tự phát hiện đặc trưng, quy luật. ア là mô tả e-learning, ウ gần với hệ chuyên gia, còn エ là mô tả cơ chế thích ứng theo người học chứ không phải deep learning.",
+      "assets": [],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2022r04_ip_qs.pdf",
+        "pages": [
+          30
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2022r04-068",
+      "exam": "2022r04",
+      "question_no": 68,
+      "knowledge_group": "技術要素",
+      "question": {
+        "ja": "無線 LAN ルータにおいて、外部から持ち込まれた端末用に設けられた,“ゲストポ ート”や “ゲスト SSID\" などと呼ばれる機能によって実現できることの説明として, 適切なものはどれか。",
+        "vi": "Trên router mạng LAN không dây, chức năng được gọi là “guest port” hoặc “guest SSID” dành cho các thiết bị mang từ bên ngoài vào có thể thực hiện điều gì?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "端末から内部ネットワークには接続をさせず,インターネットにだけ接続する。",
+          "vi": "Không cho thiết bị kết nối vào mạng nội bộ, chỉ cho kết nối Internet."
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "端末がマルウェアに感染していないかどうかを検査し、安全が確認された端末だ けを接続する。",
+          "vi": "Kiểm tra xem thiết bị có bị nhiễm malware hay không, và chỉ cho phép các thiết bị đã được xác nhận an toàn kết nối."
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "端末と無線 LAN ルータのボタン操作だけで、端末から無線 LAN ルータへの接続設 定ができる。",
+          "vi": "Chỉ bằng thao tác nhấn nút trên thiết bị và router Wi-Fi, có thể thiết lập kết nối từ thiết bị tới router."
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "端末の SSID の設定欄を空欄にしておけば,SSID が分からなくても無線 LAN ルー タに接続できる。",
+          "vi": "Nếu để trống ô cài đặt SSID trên thiết bị thì dù không biết SSID vẫn có thể kết nối vào router Wi-Fi."
+        }
+      ],
+      "correct_option_id": "A",
+      "explanation_vi": "Guest port/guest SSID dùng để tách khách khỏi mạng nội bộ, chỉ cấp quyền truy cập Internet nhằm giảm rủi ro bảo mật. イ là chức năng kiểm tra an toàn đầu cuối, không phải bản chất của guest network. ウ là mô tả WPS, còn エ là nhận định sai về cách kết nối SSID.",
+      "assets": [],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2022r04_ip_qs.pdf",
+        "pages": [
+          31
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2022r04-069",
+      "exam": "2022r04",
+      "question_no": 69,
+      "knowledge_group": "技術要素",
+      "question": {
+        "ja": "サイバーキルチェーンの説明として、適切なものはどれか。",
+        "vi": "Mô tả nào sau đây là đúng về cyber kill chain?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "情報システムへの攻撃段階を,偵察,攻撃,目的の実行などの複数のフェーズに 分けてモデル化したもの",
+          "vi": "Là mô hình chia các giai đoạn tấn công vào hệ thống thông tin thành nhiều phase như trinh sát, tấn công, thực hiện mục tiêu, v.v."
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "ハブやスイッチなどの複数のネットワーク機器を数珠つなぎに接続していく接続 方式",
+          "vi": "Là phương thức kết nối nhiều thiết bị mạng như hub hay switch theo kiểu nối chuỗi."
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "ブロックと呼ばれる幾つかの取引記録をまとめた単位を、一つ前のブロックの内 容を示すハッシュ値を設定して、鎖のようにつなぐ分散管理台帳技術",
+          "vi": "Là công nghệ sổ cái phân tán nối các đơn vị gồm nhiều bản ghi giao dịch gọi là block như một chuỗi, bằng cách thiết lập giá trị hash thể hiện nội dung của block trước đó."
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "本文中に他者への転送を促す文言が記述された迷惑な電子メールが,不特定多数 を対象に、 ネットワーク上で次々と転送されること",
+          "vi": "Là hiện tượng email phiền toái có câu thúc giục chuyển tiếp cho người khác trong nội dung, được chuyển tiếp liên tiếp trên mạng tới số đông không xác định."
+        }
+      ],
+      "correct_option_id": "A",
+      "explanation_vi": "Cyber kill chain là mô hình hóa chuỗi các bước trong một cuộc tấn công mạng, từ trinh sát đến xâm nhập và đạt mục tiêu. イ chỉ là một kiểu kết nối mạng, ウ là mô tả blockchain, còn エ là thư dây chuyền/chain mail chứ không phải cyber kill chain.",
+      "assets": [],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2022r04_ip_qs.pdf",
+        "pages": [
+          31
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2022r04-070",
+      "exam": "2022r04",
+      "question_no": 70,
+      "knowledge_group": "技術要素",
+      "question": {
+        "ja": "電子メールにデジタル署名を付与することによって得られる効果だけを全て挙げた ものはどれか。\na 可用性が向上する。\nb 完全性が向上する。\nc 機密性が向上する。",
+        "vi": "Phương án nào liệt kê đầy đủ và chỉ những hiệu quả có thể đạt được khi gắn chữ ký số vào email?\na Tính sẵn sàng (availability) được nâng cao.\nb Tính toàn vẹn (integrity) được nâng cao.\nc Tính bảo mật bí mật (confidentiality) được nâng cao."
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "a, b",
+          "vi": "a, b"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "a, c",
+          "vi": "a, c"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "b",
+          "vi": "b"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "b, c",
+          "vi": "b, c"
+        }
+      ],
+      "correct_option_id": "C",
+      "explanation_vi": "Chữ ký số giúp xác minh người gửi và phát hiện nội dung bị sửa đổi, nên nâng cao tính toàn vẹn. Nó không làm tăng tính sẵn sàng, và cũng không tự tạo ra tính bí mật vì muốn bảo mật nội dung cần mã hóa. Do đó chỉ có b là đúng.",
+      "assets": [],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2022r04_ip_qs.pdf",
+        "pages": [
+          32
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2022r04-071",
+      "exam": "2022r04",
+      "question_no": 71,
+      "knowledge_group": "技術要素",
+      "question": {
+        "ja": "文書作成ソフトがもつ機能である禁則処理が行われた例はどれか。",
+        "vi": "Ví dụ nào là trường hợp đã thực hiện xử lý cấm đầu/cuối dòng (禁則処理) là một chức năng của phần mềm soạn thảo văn bản?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "改行後の先頭文字が,指定した文字数分だけ右へ移動した。",
+          "vi": "Ký tự đầu tiên sau khi xuống dòng được dịch sang phải theo số lượng ký tự đã chỉ định."
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "行頭に置こうとした句読点や閉じ括弧が,前の行の行末に移動した。",
+          "vi": "Dấu câu hoặc dấu ngoặc đóng định đặt ở đầu dòng đã được chuyển về cuối dòng trước đó."
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "行頭の英字が,小文字から大文字に変換された。",
+          "vi": "Chữ cái tiếng Anh ở đầu dòng được chuyển từ chữ thường sang chữ hoa."
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "文字列の文字が,指定した幅の中に等間隔に配置された。",
+          "vi": "Các ký tự trong chuỗi được bố trí cách đều nhau trong độ rộng đã chỉ định."
+        }
+      ],
+      "correct_option_id": "B",
+      "explanation_vi": "禁則処理 là xử lý dàn trang để tránh đặt một số ký tự như dấu câu hoặc ngoặc đóng ở đầu dòng, nên phương án イ là đúng. ア là thụt đầu dòng, ウ là chuyển đổi chữ hoa/chữ thường, còn エ là căn đều hoặc giãn cách ký tự. Chúng không phải là禁則処理.",
+      "assets": [],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2022r04_ip_qs.pdf",
+        "pages": [
+          32
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2022r04-072",
+      "exam": "2022r04",
+      "question_no": 72,
+      "knowledge_group": "技術要素",
+      "question": {
+        "ja": "情報セキュリティにおける機密性, 完全性及び可用性と, 1～3のインシデントによって損なわれたものとの組合せとして, 適切なものはどれか。\n1 DDoS攻撃によって, Webサイトがダウンした。\n2 キーボードの打ち間違いによって, 不正確なデータが入力された。\n3 PCがマルウェアに感染したことによって, 個人情報が漏えいした。",
+        "vi": "Trong an toàn thông tin, tổ hợp nào phù hợp giữa tính bảo mật, tính toàn vẹn và tính sẵn sàng với nội dung bị tổn hại bởi các sự cố 1~3 dưới đây?\n1. Website bị sập do tấn công DDoS.\n2. Do gõ nhầm bàn phím nên dữ liệu không chính xác đã được nhập vào.\n3. Do PC bị nhiễm malware nên thông tin cá nhân đã bị rò rỉ."
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "1 可用性 / 2 完全性 / 3 機密性",
+          "vi": "1 Tính sẵn sàng / 2 Tính toàn vẹn / 3 Tính bảo mật"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "1 可用性 / 2 機密性 / 3 完全性",
+          "vi": "1 Tính sẵn sàng / 2 Tính bảo mật / 3 Tính toàn vẹn"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "1 完全性 / 2 可用性 / 3 機密性",
+          "vi": "1 Tính toàn vẹn / 2 Tính sẵn sàng / 3 Tính bảo mật"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "1 完全性 / 2 機密性 / 3 可用性",
+          "vi": "1 Tính toàn vẹn / 2 Tính bảo mật / 3 Tính sẵn sàng"
+        }
+      ],
+      "correct_option_id": "A",
+      "explanation_vi": "DDoS làm dịch vụ không dùng được nên ảnh hưởng đến tính sẵn sàng; nhập sai dữ liệu làm sai lệch nội dung nên ảnh hưởng đến tính toàn vẹn; rò rỉ thông tin cá nhân là mất tính bảo mật. Vì vậy tổ hợp đúng là A. Các phương án còn lại ghép sai ít nhất một trong ba sự cố với thuộc tính bảo mật tương ứng.",
+      "assets": [],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2022r04_ip_qs.pdf",
+        "pages": [
+          33
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2022r04-073",
+      "exam": "2022r04",
+      "question_no": 73,
+      "knowledge_group": "技術要素",
+      "question": {
+        "ja": "膨大な数の IoT デバイスをインターネットに接続するために大量の IP アドレスが 必要となり, IP アドレスの長さが128ビットで構成されているインターネットプロト コルを使用することにした。このプロトコルはどれか。",
+        "vi": "Để kết nối một số lượng rất lớn thiết bị IoT vào Internet, cần một lượng lớn địa chỉ IP, nên quyết định sử dụng giao thức Internet có địa chỉ IP dài 128 bit. Giao thức đó là gì?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "IPv4",
+          "vi": "IPv4"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "IPv5",
+          "vi": "IPv5"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "IPv6",
+          "vi": "IPv6"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "IPv8",
+          "vi": "IPv8"
+        }
+      ],
+      "correct_option_id": "C",
+      "explanation_vi": "IPv6 sử dụng địa chỉ dài 128 bit, phù hợp để cung cấp số lượng địa chỉ rất lớn cho IoT. IPv4 chỉ có 32 bit nên không đủ về lâu dài. IPv5 và IPv8 không phải các giao thức IP tiêu chuẩn được dùng phổ biến trên Internet như mô tả.",
+      "assets": [],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2022r04_ip_qs.pdf",
+        "pages": [
+          33
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2022r04-074",
+      "exam": "2022r04",
+      "question_no": 74,
+      "knowledge_group": "技術要素",
+      "question": {
+        "ja": "サーバ室など、セキュリティで保護された区画への入退室管理において、一人の認 証で他者も一緒に入室する共連れの防止対策として、利用されるものはどれか。",
+        "vi": "Trong quản lý ra vào các khu vực được bảo vệ an ninh như phòng máy chủ, biện pháp nào được sử dụng để ngăn chặn việc nhiều người cùng vào theo một lần xác thực của một người (tailgating/passback)?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "アンチパスバック",
+          "vi": "Anti-passback"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "コールバック",
+          "vi": "Callback"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "シングルサインオン",
+          "vi": "Single Sign-On"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "バックドア",
+          "vi": "Backdoor"
+        }
+      ],
+      "correct_option_id": "A",
+      "explanation_vi": "Anti-passback là cơ chế ngăn việc dùng một lần xác thực để nhiều người cùng vào hoặc vào/ra không đúng trình tự, nên phù hợp để chống共連れ. Callback là cơ chế xác minh kết nối, Single Sign-On là đăng nhập một lần cho nhiều hệ thống, còn Backdoor là cửa hậu và không phải biện pháp phòng chống. Vì vậy đáp án đúng là ア.",
+      "assets": [],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2022r04_ip_qs.pdf",
+        "pages": [
+          33
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2022r04-075",
+      "exam": "2022r04",
+      "question_no": 75,
+      "knowledge_group": "技術要素",
+      "question": {
+        "ja": "バイオメトリクス認証に関する記述として、適切なものはどれか。",
+        "vi": "Mô tả nào sau đây về xác thực biometrics là phù hợp?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "指紋や静脈を使用した認証は,ショルダーハックなどののぞき見行為によって容 易に認証情報が漏えいする。",
+          "vi": "Xác thực sử dụng dấu vân tay hay tĩnh mạch rất dễ bị lộ thông tin xác thực do hành vi nhìn trộm như shoulder hacking."
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "装置が大型なので、携帯電話やスマートフォンには搭載できない。",
+          "vi": "Vì thiết bị cồng kềnh nên không thể tích hợp vào điện thoại di động hay smartphone."
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "筆跡やキーストロークなどの本人の行動的特徴を利用したものも含まれる。",
+          "vi": "Cũng bao gồm những phương pháp sử dụng đặc trưng hành vi của chính người đó như chữ viết tay hoặc keystroke."
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "他人を本人と誤って認証してしまうリスクがない。",
+          "vi": "Không có rủi ro nhận nhầm người khác là chính chủ."
+        }
+      ],
+      "correct_option_id": "C",
+      "explanation_vi": "Biometrics không chỉ dùng đặc trưng cơ thể như vân tay, khuôn mặt mà còn có thể dùng đặc trưng hành vi như chữ viết tay, giọng nói hoặc keystroke, nên ウ đúng. ア sai vì shoulder hacking chủ yếu áp dụng với mật khẩu nhìn thấy được; イ sai vì smartphone hiện nay tích hợp biometrics rất phổ biến; エ sai vì luôn tồn tại xác suất nhận sai như false acceptance. ",
+      "assets": [],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2022r04_ip_qs.pdf",
+        "pages": [
+          34
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2022r04-076",
+      "exam": "2022r04",
+      "question_no": 76,
+      "knowledge_group": "技術要素",
+      "question": {
+        "ja": "情報セキュリティのリスクマネジメントにおけるリスク対応を,リスク回避,リス ク共有,リスク低減及びリスク保有の四つに分類するとき、情報漏えい発生時の損害 に備えてサイバー保険に入ることはどれに分類されるか。",
+        "vi": "Khi phân loại biện pháp ứng phó rủi ro trong quản lý rủi ro an toàn thông tin thành bốn loại: né tránh rủi ro, chia sẻ rủi ro, giảm thiểu rủi ro và chấp nhận rủi ro, thì việc tham gia bảo hiểm cyber để chuẩn bị cho thiệt hại khi xảy ra rò rỉ thông tin được xếp vào loại nào?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "リスク回避",
+          "vi": "Né tránh rủi ro"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "リスク共有",
+          "vi": "Chia sẻ rủi ro"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "リスク低減",
+          "vi": "Giảm thiểu rủi ro"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "リスク保有",
+          "vi": "Chấp nhận rủi ro"
+        }
+      ],
+      "correct_option_id": "B",
+      "explanation_vi": "Mua bảo hiểm cyber là chuyển giao hoặc chia sẻ tổn thất tài chính khi rủi ro xảy ra cho bên bảo hiểm, nên thuộc リスク共有. リスク回避 là tránh hẳn hoạt động gây rủi ro, リスク低減 là áp dụng biện pháp làm giảm xác suất hay tác động, còn リスク保有 là tự chấp nhận tổn thất mà không chuyển giao.",
+      "assets": [],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2022r04_ip_qs.pdf",
+        "pages": [
+          34
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2022r04-077",
+      "exam": "2022r04",
+      "question_no": 77,
+      "knowledge_group": "技術要素",
+      "question": {
+        "ja": "トランザクション処理の ACID 特性に関する記述として、適切なものはどれか。",
+        "vi": "Phát biểu nào sau đây là phù hợp về đặc tính ACID của xử lý transaction?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "索引を用意することによって、データの検索時の検索速度を高めることができる。",
+          "vi": "Có thể tăng tốc độ tìm kiếm dữ liệu khi tra cứu bằng cách chuẩn bị chỉ mục (index)."
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "データの更新時に、一連の処理が全て実行されるか、全く実行されないように制 御することによって、原子性を保証することができる。",
+          "vi": "Khi cập nhật dữ liệu, có thể bảo đảm tính nguyên tử bằng cách kiểm soát để một chuỗi xử lý либо được thực hiện toàn bộ, hoặc hoàn toàn không được thực hiện."
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "データベースの複製を複数のサーバに分散配置することによって、可用性を高め ることができる。",
+          "vi": "Có thể nâng cao tính sẵn sàng bằng cách phân tán bố trí các bản sao của cơ sở dữ liệu trên nhiều máy chủ."
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "テーブルを正規化することによって、データに矛盾や重複が生じるのを防ぐこと ができる。",
+          "vi": "Có thể ngăn ngừa mâu thuẫn và trùng lặp dữ liệu bằng cách chuẩn hóa (normalization) bảng."
+        }
+      ],
+      "correct_option_id": "B",
+      "explanation_vi": "Atomicity trong ACID nghĩa là transaction phải được thực hiện toàn bộ hoặc không thực hiện gì cả, nên phương án イ đúng. ア nói về index, ウ nói về khả năng sẵn sàng nhờ replication, và エ nói về normalization; các nội dung này liên quan đến cơ sở dữ liệu nhưng không phải mô tả trực tiếp về đặc tính ACID.",
+      "assets": [],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2022r04_ip_qs.pdf",
+        "pages": [
+          34
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2022r04-078",
+      "exam": "2022r04",
+      "question_no": 78,
+      "knowledge_group": "開発技術",
+      "question": {
+        "ja": "関数 checkDigit は,10進9桁の整数の各桁の数字が上位の桁から順に格納された整数型の配列 originalDigit を引数として,次の手順で計算したチェックデジットを戻り値とする。プログラム中の a に入れる字句として,適切なものはどれか。ここで,配列の要素番号は 1 から始まる。\n〔手順〕\n(1) 配列 originalDigit の要素番号 1～9 の要素の値を合計する。\n(2) 合計した値が 9 より大きい場合は,合計した値を 10 進の整数で表現したときの各桁の数字を合計する。この操作を,合計した値が 9 以下になるまで繰り返す。\n(3) (2)で得られた値をチェックデジットとする。\n〔プログラム〕\n○整数型: checkDigit(整数型の配列: originalDigit)\n整数型: i, j, k\nj ← 0\nfor (i を 1 から originalDigit の要素数 まで 1 ずつ増やす)\n    j ← j + originalDigit[i]\nendfor\nwhile (j が 9 より大きい)\n    k ← j ÷ 10 の商  /* 10進9桁の数の場合, j が2桁を超えることはない */\n    a\nendwhile\nreturn j",
+        "vi": "Hàm checkDigit nhận đối số là mảng số nguyên originalDigit, trong đó các chữ số của một số nguyên thập phân 9 chữ số được lưu theo thứ tự từ chữ số hàng cao nhất, và trả về check digit được tính theo thủ tục sau. Từ/ngữ thích hợp để điền vào a trong chương trình là gì? Ở đây, chỉ số phần tử của mảng bắt đầu từ 1.\n〔Thủ tục〕\n(1) Cộng các giá trị của các phần tử từ vị trí 1 đến 9 của mảng originalDigit.\n(2) Nếu tổng lớn hơn 9 thì cộng các chữ số của tổng đó khi biểu diễn dưới dạng số nguyên thập phân. Lặp lại thao tác này cho đến khi tổng không lớn hơn 9.\n(3) Giá trị thu được ở (2) được dùng làm check digit.\n〔Chương trình〕\n○Kiểu số nguyên: checkDigit(mảng kiểu số nguyên: originalDigit)\nKiểu số nguyên: i, j, k\nj ← 0\nfor (tăng i từ 1 đến số phần tử của originalDigit, mỗi lần 1)\n    j ← j + originalDigit[i]\nendfor\nwhile (j lớn hơn 9)\n    k ← thương của j ÷ 10  /* Trong trường hợp số thập phân 9 chữ số, j sẽ không vượt quá 2 chữ số */\n    a\nendwhile\nreturn j"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "j ← j − 10 × k",
+          "vi": "j ← j − 10 × k"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "j ← k + (j − 10 × k)",
+          "vi": "j ← k + (j − 10 × k)"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "j ← k + (j − 10) × k",
+          "vi": "j ← k + (j − 10) × k"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "j ← k + j",
+          "vi": "j ← k + j"
+        }
+      ],
+      "correct_option_id": "B",
+      "explanation_vi": "k là chữ số hàng chục của j, còn phần đơn vị là j - 10×k, nên tổng các chữ số phải là k + (j - 10×k). Vì vậy phương án B đúng. A chỉ lấy chữ số hàng đơn vị, C tính sai công thức, còn D cộng thêm cả j nên không phải tổng các chữ số.",
+      "assets": [
+        {
+          "type": "pdf_page",
+          "path": "../IT-PP/2022r04_ip_qs.pdf",
+          "pages": [
+            35
+          ]
+        }
+      ],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2022r04_ip_qs.pdf",
+        "pages": [
+          35
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2022r04-079",
+      "exam": "2022r04",
+      "question_no": 79,
+      "knowledge_group": "基礎理論",
+      "question": {
+        "ja": "流れ図で示す処理を終了したとき,x の値はどれか。\n開始\n× を98とする\ny を42とする\n繰返し x = y (注)\n≦\nx : y\n>\nx ー y の計算結果を 新たな×とする\ny ー × の計算結果を 新たなyとする\n←\n繰返し\n終了\n(注) ループ端の条件は、終了条件を示す。",
+        "vi": "Khi kết thúc xử lý được biểu diễn bằng lưu đồ, giá trị của x là bao nhiêu?\nBắt đầu\nĐặt x = 98\nĐặt y = 42\nLặp lại cho đến khi x = y (chú thích)\nNếu x ≦ y\nx : y\nNếu x > y\nLấy kết quả x − y làm x mới\nLấy kết quả y − x làm y mới\n←\nLặp lại\nKết thúc\n(Chú thích) Điều kiện ở cuối vòng lặp là điều kiện kết thúc."
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "0",
+          "vi": "0"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "14",
+          "vi": "14"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "28",
+          "vi": "28"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "56",
+          "vi": "56"
+        }
+      ],
+      "correct_option_id": "B",
+      "explanation_vi": "Lưu đồ này là phép trừ lặp để tìm ước chung lớn nhất: từ (98, 42) ta có (56, 42), rồi (14, 42), rồi (14, 28), rồi (14, 14), nên kết thúc với x = 14. Do đó イ đúng. Các giá trị 0, 28, 56 chỉ xuất hiện hoặc có thể suy ra ở các bước trung gian chứ không phải kết quả cuối cùng.",
+      "assets": [
+        {
+          "type": "pdf_page",
+          "path": "../IT-PP/2022r04_ip_qs.pdf",
+          "pages": [
+            36
+          ]
+        }
+      ],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2022r04_ip_qs.pdf",
+        "pages": [
+          36
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2022r04-080",
+      "exam": "2022r04",
+      "question_no": 80,
+      "knowledge_group": "技術要素",
+      "question": {
+        "ja": "自動車などの移動体に搭載されたセンサや表示機器を通信システムや情報システム と連動させて、運転者へ様々な情報をリアルタイムに提供することを可能にするもの はどれか。",
+        "vi": "Thuật ngữ nào chỉ công nghệ cho phép liên kết các cảm biến và thiết bị hiển thị được gắn trên các phương tiện di động như ô tô với hệ thống truyền thông và hệ thống thông tin, từ đó cung cấp cho người lái nhiều loại thông tin theo thời gian thực?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "アクチュエータ",
+          "vi": "Actuator"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "キャリアアグリゲーション",
+          "vi": "Carrier Aggregation"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "スマートメータ",
+          "vi": "Smart meter"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "テレマティクス",
+          "vi": "Telematics"
+        }
+      ],
+      "correct_option_id": "D",
+      "explanation_vi": "Telematics là công nghệ kết hợp viễn thông và tin học trên phương tiện, dùng để thu thập, truyền và cung cấp thông tin thời gian thực cho người lái. ア là cơ cấu chấp hành, イ là kỹ thuật ghép băng tần trong mạng di động, còn ウ là công tơ điện thông minh; các phương án này không đúng với mô tả của đề.",
+      "assets": [
+        {
+          "type": "pdf_page",
+          "path": "../IT-PP/2022r04_ip_qs.pdf",
+          "pages": [
+            36
+          ]
+        }
+      ],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2022r04_ip_qs.pdf",
+        "pages": [
+          36
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2022r04-081",
+      "exam": "2022r04",
+      "question_no": 81,
+      "knowledge_group": "コンピュータシステム",
+      "question": {
+        "ja": "CPU の性能に関する記述のうち、適切なものはどれか。",
+        "vi": "Trong các mô tả liên quan đến hiệu năng của CPU, mô tả nào là phù hợp?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "32ビット CPU と64ビット CPU では,64ビット CPU の方が一度に処理するデータ長 を大きくできる。",
+          "vi": "Với CPU 32-bit và CPU 64-bit, CPU 64-bit có thể làm tăng độ dài dữ liệu được xử lý trong một lần."
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "CPU 内のキャッシュメモリの容量は、少ないほど CPU の処理速度が向上する。",
+          "vi": "Dung lượng cache memory trong CPU càng ít thì tốc độ xử lý của CPU càng được cải thiện."
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "同じ構造の CPU において,クロック周波数を下げると処理速度が向上する。",
+          "vi": "Đối với CPU có cùng cấu trúc, khi giảm tần số clock thì tốc độ xử lý sẽ được cải thiện."
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "デュアルコア CPU とクアッドコア CPU では、デュアルコア CPU の方が同時に実行 する処理の数を多くできる。",
+          "vi": "Giữa CPU dual-core và CPU quad-core, CPU dual-core có thể làm tăng số lượng xử lý thực hiện đồng thời hơn."
+        }
+      ],
+      "correct_option_id": "A",
+      "explanation_vi": "CPU 64-bit có thể xử lý dữ liệu với độ dài lớn hơn CPU 32-bit trong một lần, nên ア là đúng. イ sai vì cache nhiều hơn thường giúp giảm truy cập bộ nhớ chính và cải thiện hiệu năng. ウ sai vì giảm xung nhịp thường làm tốc độ xử lý giảm. エ sai vì quad-core thường xử lý đồng thời được nhiều tác vụ hơn dual-core.",
+      "assets": [],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2022r04_ip_qs.pdf",
+        "pages": [
+          37
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2022r04-082",
+      "exam": "2022r04",
+      "question_no": 82,
+      "knowledge_group": "技術要素",
+      "question": {
+        "ja": "A社では、従業員の利用者IDとパスワードを用いて社内システムの利用者認証を行っている。セキュリティを強化するために、このシステムに新たな認証機能を一つ追加することにした。認証機能a～cのうち、このシステムに追加することによって、二要素認証になる機能だけを全て挙げたものはどれか。\na A社の従業員証として本人に支給しているICカードを読み取る認証\nb あらかじめシステムに登録しておいた本人しか知らない秘密の質問に対する答えを入力させる認証\nc あらかじめシステムに登録しておいた本人の顔の特徴と、認証時にカメラで読み取った顔の特徴を照合する認証",
+        "vi": "Tại công ty A, việc xác thực người dùng của hệ thống nội bộ đang được thực hiện bằng user ID và password của nhân viên. Để tăng cường bảo mật, công ty quyết định bổ sung thêm một chức năng xác thực mới cho hệ thống này. Trong các chức năng xác thực a~c, phương án nào liệt kê đầy đủ những chức năng mà khi thêm vào hệ thống này sẽ tạo thành xác thực hai yếu tố?\na Xác thực bằng cách đọc IC card được cấp cho chính người đó như thẻ nhân viên của công ty A\nb Xác thực bằng cách yêu cầu nhập câu trả lời cho câu hỏi bí mật mà chỉ chính người đó biết và đã đăng ký trước trong hệ thống\nc Xác thực bằng cách đối chiếu đặc trưng khuôn mặt của chính người đó đã đăng ký trước trong hệ thống với đặc trưng khuôn mặt được camera đọc tại thời điểm xác thực"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "a",
+          "vi": "a"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "a, b, c",
+          "vi": "a, b, c"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "a, c",
+          "vi": "a, c"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "b, c",
+          "vi": "b, c"
+        }
+      ],
+      "correct_option_id": "C",
+      "explanation_vi": "ID và password thuộc cùng một yếu tố là “điều người dùng biết”, nên thêm b vẫn không thành hai yếu tố. a là “điều người dùng sở hữu” (IC card), còn c là “đặc điểm sinh trắc học”, nên khi kết hợp với password sẽ thành xác thực hai yếu tố. Vì vậy đáp án đúng là C.",
+      "assets": [
+        {
+          "type": "pdf_page",
+          "path": "../IT-PP/2022r04_ip_qs.pdf",
+          "pages": [
+            37
+          ]
+        }
+      ],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2022r04_ip_qs.pdf",
+        "pages": [
+          37
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2022r04-083",
+      "exam": "2022r04",
+      "question_no": 83,
+      "knowledge_group": "技術要素",
+      "question": {
+        "ja": "データを行と列から成る表形式で表すデータベースのモデルはどれか。",
+        "vi": "Mô hình cơ sở dữ liệu nào biểu diễn dữ liệu theo dạng bảng gồm hàng và cột?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "オブジェクトモデル",
+          "vi": "Mô hình đối tượng"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "階層モデル",
+          "vi": "Mô hình phân cấp"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "関係モデル",
+          "vi": "Mô hình quan hệ"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "ネットワークモデル",
+          "vi": "Mô hình mạng"
+        }
+      ],
+      "correct_option_id": "C",
+      "explanation_vi": "Mô hình quan hệ biểu diễn dữ liệu bằng các bảng gồm hàng và cột, nên ウ là đúng. Mô hình phân cấp biểu diễn theo cấu trúc cây, mô hình mạng biểu diễn theo các liên kết mạng lưới, còn mô hình đối tượng quản lý dữ liệu dưới dạng đối tượng. Do đó chỉ có mô hình quan hệ phù hợp.",
+      "assets": [
+        {
+          "type": "pdf_page",
+          "path": "../IT-PP/2022r04_ip_qs.pdf",
+          "pages": [
+            38
+          ]
+        }
+      ],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2022r04_ip_qs.pdf",
+        "pages": [
+          38
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2022r04-084",
+      "exam": "2022r04",
+      "question_no": 84,
+      "knowledge_group": "コンピュータシステム",
+      "question": {
+        "ja": "IoT 機器の記録装置としても用いられ、記録媒体が半導体でできており物理的な駆 動機構をもたないので,HDD と比較して低消費電力で耐衝撃性も高いものはどれか。",
+        "vi": "Thiết bị nào cũng được dùng làm thiết bị lưu trữ cho các thiết bị IoT, có môi trường lưu trữ làm bằng chất bán dẫn và không có cơ cấu truyền động vật lý, nên so với HDD thì tiêu thụ điện năng thấp hơn và khả năng chịu va đập cũng cao hơn?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "DRM",
+          "vi": "DRM"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "DVD",
+          "vi": "DVD"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "HDMI",
+          "vi": "HDMI"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "SSD",
+          "vi": "SSD"
+        }
+      ],
+      "correct_option_id": "D",
+      "explanation_vi": "SSD sử dụng bộ nhớ bán dẫn và không có bộ phận cơ khí chuyển động, nên tiêu thụ điện thấp và bền hơn trước va đập so với HDD. DRM là công nghệ quản lý bản quyền số, DVD là đĩa quang, còn HDMI là giao diện truyền âm thanh/hình ảnh. Vì vậy đáp án đúng là エ.",
+      "assets": [],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2022r04_ip_qs.pdf",
+        "pages": [
+          38
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2022r04-085",
+      "exam": "2022r04",
+      "question_no": 85,
+      "knowledge_group": "企業と法務",
+      "question": {
+        "ja": "情報セキュリティポリシを、基本方針,対策基準,実施手順の三つの文書で構成し たとき、これらに関する説明のうち、適切なものはどれか。",
+        "vi": "Khi chính sách an toàn thông tin được cấu thành bởi ba tài liệu là chính sách cơ bản, tiêu chuẩn đối sách và quy trình thực hiện, thì mô tả nào dưới đây là phù hợp?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "基本方針は、対策基準や実施手順を定めるためのトップマネジメントの意思を示 したものである。",
+          "vi": "Chính sách cơ bản là tài liệu thể hiện ý chí của top management để thiết lập tiêu chuẩn đối sách và quy trình thực hiện."
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "実施手順は、基本方針と対策基準を定めるために実施した作業の手順を記録した ものである。",
+          "vi": "Quy trình thực hiện là tài liệu ghi lại quy trình công việc đã được thực hiện để xây dựng chính sách cơ bản và tiêu chuẩn đối sách."
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "対策基準は, ISMS に準拠した情報セキュリティポリシを策定するための文書の 基準を示したものである。",
+          "vi": "Tiêu chuẩn đối sách là tài liệu thể hiện tiêu chuẩn của các văn bản nhằm xây dựng chính sách an toàn thông tin tuân thủ ISMS."
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "対策基準は、情報セキュリティ事故が発生した後の対策を実施手順よりも詳しく 記述したものである。",
+          "vi": "Tiêu chuẩn đối sách là tài liệu mô tả chi tiết hơn cả quy trình thực hiện về các biện pháp sau khi xảy ra sự cố an toàn thông tin."
+        }
+      ],
+      "correct_option_id": "A",
+      "explanation_vi": "Chính sách cơ bản là văn bản thể hiện phương châm và ý chí của lãnh đạo cấp cao về an toàn thông tin, làm nền tảng để xây dựng tiêu chuẩn đối sách và quy trình thực hiện. イ sai vì quy trình thực hiện là hướng dẫn cách thực hiện các biện pháp, không phải hồ sơ quá trình soạn thảo chính sách. ウ và エ đều sai vì tiêu chuẩn đối sách là các quy tắc, tiêu chuẩn cụ thể để thực thi chính sách, không phải tiêu chuẩn soạn văn bản hay chỉ mô tả đối phó sau sự cố.",
+      "assets": [],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2022r04_ip_qs.pdf",
+        "pages": [
+          38
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2022r04-086",
+      "exam": "2022r04",
+      "question_no": 86,
+      "knowledge_group": "技術要素",
+      "question": {
+        "ja": "情報セキュリティにおけるリスクアセスメントを,リスク特定,リスク分析,リス ク評価の三つのプロセスに分けたとき、リスク分析に関する記述として、最も適切な ものはどれか。",
+        "vi": "Khi chia đánh giá rủi ro trong an toàn thông tin thành ba quy trình: nhận diện rủi ro, phân tích rủi ro, và đánh giá rủi ro, mô tả nào sau đây về phân tích rủi ro là phù hợp nhất?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "受容基準と比較できるように,各リスクのレベルを決定する必要がある。",
+          "vi": "Cần xác định mức độ của từng rủi ro để có thể so sánh với tiêu chí chấp nhận."
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "全ての情報資産を分析の対象にする必要がある。",
+          "vi": "Cần phải lấy tất cả tài sản thông tin làm đối tượng phân tích."
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "特定した全てのリスクについて、同じ分析技法を用いる必要がある。",
+          "vi": "Cần phải sử dụng cùng một kỹ thuật phân tích cho tất cả các rủi ro đã nhận diện."
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "リスクが受容可能かどうかを決定する必要がある。",
+          "vi": "Cần phải quyết định liệu rủi ro có thể chấp nhận được hay không."
+        }
+      ],
+      "correct_option_id": "A",
+      "explanation_vi": "Phân tích rủi ro là bước ước lượng hoặc xác định mức độ rủi ro để làm cơ sở so sánh với tiêu chí chấp nhận, nên phương án A đúng. B sai vì không nhất thiết mọi tài sản đều phải phân tích như nhau; có thể chọn theo phạm vi và mức ưu tiên. C sai vì có thể dùng các kỹ thuật khác nhau tùy loại rủi ro. D là nội dung của bước đánh giá rủi ro, không phải phân tích rủi ro.",
+      "assets": [],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2022r04_ip_qs.pdf",
+        "pages": [
+          39
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2022r04-087",
+      "exam": "2022r04",
+      "question_no": 87,
+      "knowledge_group": "技術要素",
+      "question": {
+        "ja": "メールサーバから電子メールを受信するためのプロトコルの一つであり、次の特徴 をもつものはどれか。\n1 メール情報を PC 内のメールボックスに取り込んで管理する必要がなく、メー ルサーバ上に複数のフォルダで構成されたメールボックスを作成してメール情報 を管理できる。\n2 PC やスマートフォンなど使用する端末が違っても、同一のメールボックスの メール情報を参照,管理できる。",
+        "vi": "Giao thức nào sau đây là một trong các giao thức dùng để nhận email từ mail server và có các đặc điểm sau?\n1 Không cần tải thông tin email về mailbox trên PC để quản lý; có thể tạo mailbox gồm nhiều thư mục ngay trên mail server để quản lý email.\n2 Ngay cả khi dùng các thiết bị khác nhau như PC hay smartphone, vẫn có thể tham chiếu và quản lý thông tin email của cùng một mailbox."
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "IMAP",
+          "vi": "IMAP"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "NTP",
+          "vi": "NTP"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "SMTP",
+          "vi": "SMTP"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "WPA",
+          "vi": "WPA"
+        }
+      ],
+      "correct_option_id": "A",
+      "explanation_vi": "IMAP cho phép quản lý thư trực tiếp trên máy chủ, hỗ trợ nhiều thư mục và đồng bộ giữa nhiều thiết bị, nên A đúng. NTP là giao thức đồng bộ thời gian. SMTP dùng để gửi email, không phải nhận thư theo cách mô tả. WPA là chuẩn bảo mật Wi‑Fi.",
+      "assets": [],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2022r04_ip_qs.pdf",
+        "pages": [
+          39
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2022r04-088",
+      "exam": "2022r04",
+      "question_no": 88,
+      "knowledge_group": "技術要素",
+      "question": {
+        "ja": "IoT デバイスで収集した情報を IoT サーバに送信するときに利用されるデータ形式 に関する次の記述中の a,b に入れる字句の適切な組合せはどれか。\na 形式は、コンマなどの区切り文字で、データの区切りを示すデータ形式で あり, b 形式は、マークアップ言語であり、データの論理構造を,タグを用 いて記述できるデータ形式である。\na\nb",
+        "vi": "Khi gửi thông tin thu thập từ thiết bị IoT tới máy chủ IoT, tổ hợp từ thích hợp điền vào a, b trong mô tả sau về định dạng dữ liệu là gì?\nĐịnh dạng a là định dạng dữ liệu dùng dấu phân cách như dấu phẩy để biểu thị ranh giới dữ liệu; định dạng b là một ngôn ngữ đánh dấu, có thể mô tả cấu trúc logic của dữ liệu bằng thẻ tag.\n\na\nb"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "CSV\nJSON",
+          "vi": "CSV\nJSON"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "CSV\nXML",
+          "vi": "CSV\nXML"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "RSS\nJSON",
+          "vi": "RSS\nJSON"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "RSS\nXML",
+          "vi": "RSS\nXML"
+        }
+      ],
+      "correct_option_id": "B",
+      "explanation_vi": "CSV là định dạng phân tách dữ liệu bằng dấu phẩy hoặc ký tự phân cách tương tự, còn XML là ngôn ngữ đánh dấu dùng tag để biểu diễn cấu trúc dữ liệu, nên B đúng. JSON không phải ngôn ngữ đánh dấu theo cách mô tả ở đây. RSS là định dạng feed, không phù hợp với phần mô tả a.",
+      "assets": [],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2022r04_ip_qs.pdf",
+        "pages": [
+          40
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2022r04-089",
+      "exam": "2022r04",
+      "question_no": 89,
+      "knowledge_group": "技術要素",
+      "question": {
+        "ja": "電子メールを作成するときに指定する送信メッセージに用いられるテキスト形式と HTML 形式に関する記述のうち、適切なものはどれか。",
+        "vi": "Trong các mô tả sau về định dạng text và định dạng HTML dùng cho thông điệp khi tạo email, mô tả nào là phù hợp?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "受信した電子メールを開いたときに、本文に記述されたスクリプトが実行される 可能性があるのは、HTML 形式ではなく、テキスト形式である。",
+          "vi": "Khi mở email đã nhận, khả năng script được viết trong phần thân thư sẽ chạy là ở định dạng text chứ không phải HTML."
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "電子メールにファイルを添付できるのは、テキスト形式ではなく、HTML 形式で ある。",
+          "vi": "Chỉ định dạng HTML mới có thể đính kèm tệp vào email, còn định dạng text thì không thể."
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "電子メールの本文の任意の文字列にハイパリンクを設定できるのは、テキスト形 式ではなく、HTML 形式である。",
+          "vi": "Có thể đặt hyperlink cho chuỗi ký tự bất kỳ trong phần thân email ở định dạng HTML chứ không phải định dạng text."
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "電子メールの本文の文字に色や大きさなどの書式を設定できるのは,HTML 形式 ではなく、テキスト形式である。",
+          "vi": "Có thể thiết lập định dạng như màu sắc, cỡ chữ cho ký tự trong phần thân email ở định dạng text chứ không phải HTML."
+        }
+      ],
+      "correct_option_id": "C",
+      "explanation_vi": "HTML mail cho phép gán hyperlink vào một chuỗi ký tự bất kỳ trong nội dung thư, nên C đúng. A sai vì khả năng liên quan đến script là ở HTML, không phải plain text. B sai vì việc đính kèm tệp không phụ thuộc vào việc thư là text hay HTML. D sai vì định dạng màu sắc, cỡ chữ là chức năng của HTML chứ không phải text thuần.",
+      "assets": [],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2022r04_ip_qs.pdf",
+        "pages": [
+          40
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2022r04-090",
+      "exam": "2022r04",
+      "question_no": 90,
+      "knowledge_group": "コンピュータシステム",
+      "question": {
+        "ja": "ディレクトリ又はファイルがノードに対応する木構造で表現できるファイルシステ ムがある。ルートディレクトリを根として図のように表現したとき,中間ノードであ る節及び末端ノードである葉に対応するものの組合せとして、最も適切なものはどれ か。ここで、空のディレクトリを許すものとする。\n根\n葉\n節\n葉\n葉\n正\n節\n葉",
+        "vi": "Có một hệ thống tệp có thể biểu diễn bằng cấu trúc cây, trong đó thư mục hoặc tệp tương ứng với các node. Khi biểu diễn như hình với thư mục gốc là root, tổ hợp nào sau đây là phù hợp nhất với node trung gian là “nút nhánh” và node tận cùng là “lá”? Giả sử cho phép thư mục rỗng.\n\nGốc\nLá\nNút\nLá\nLá\nĐúng\nNút\nLá"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "ディレクトリ\nディレクトリ又はファイル",
+          "vi": "Nút: Thư mục\nLá: Thư mục hoặc tệp"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "ディレクトリ\nファイル",
+          "vi": "Nút: Thư mục\nLá: Tệp"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "ファイル\nディレクトリ又はファイル",
+          "vi": "Nút: Tệp\nLá: Thư mục hoặc tệp"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "ファイル\nディレクトリ",
+          "vi": "Nút: Tệp\nLá: Thư mục"
+        }
+      ],
+      "correct_option_id": "A",
+      "explanation_vi": "Trong cây thư mục, node trung gian phải là thư mục vì chỉ thư mục mới có thể chứa node con. Do đề cho phép thư mục rỗng, node lá có thể là tệp hoặc cũng có thể là thư mục không chứa gì, nên A đúng. Các phương án còn lại sai vì xem tệp như node trung gian hoặc loại trừ trường hợp thư mục rỗng.",
+      "assets": [
+        {
+          "type": "pdf_page",
+          "path": "../IT-PP/2022r04_ip_qs.pdf",
+          "pages": [
+            41
+          ]
+        }
+      ],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2022r04_ip_qs.pdf",
+        "pages": [
+          41
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2022r04-091",
+      "exam": "2022r04",
+      "question_no": 91,
+      "knowledge_group": "技術要素",
+      "question": {
+        "ja": "ソーシャルエンジニアリングに該当する行為の例はどれか。",
+        "vi": "Ví dụ nào sau đây là hành vi thuộc social engineering?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "あらゆる文字の組合せを総当たりで機械的に入力することによって、パスワード を見つけ出す。",
+          "vi": "Tìm ra mật khẩu bằng cách nhập cơ học theo kiểu vét cạn (brute force) mọi tổ hợp ký tự có thể."
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "肩越しに盗み見して入手したパスワードを利用し、他人になりすましてシステム を不正利用する。",
+          "vi": "Lợi dụng mật khẩu có được bằng cách nhìn trộm qua vai người khác, giả mạo thành người đó để sử dụng hệ thống trái phép."
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "標的のサーバに大量のリクエストを送りつけて過負荷状態にすることによって, サービスの提供を妨げる。",
+          "vi": "Gửi một lượng lớn request đến máy chủ mục tiêu để làm nó rơi vào trạng thái quá tải, từ đó cản trở việc cung cấp dịch vụ."
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "プログラムで確保している記憶領域よりも長いデータを入力することによってバ ッファをあふれさせ、不正にプログラムを実行させる。\n- 41 -'",
+          "vi": "Nhập dữ liệu dài hơn vùng nhớ mà chương trình đã cấp phát để làm tràn buffer, từ đó thực thi chương trình trái phép."
+        }
+      ],
+      "correct_option_id": "B",
+      "explanation_vi": "Social engineering là việc khai thác yếu tố con người để lấy thông tin hoặc tạo điều kiện tấn công, nên hành vi nhìn trộm mật khẩu qua vai rồi dùng nó là đúng. ア là brute force attack, ウ là DoS, còn エ là buffer overflow. Các phương án này đều là tấn công kỹ thuật, không phải social engineering.",
+      "assets": [
+        {
+          "type": "pdf_page",
+          "path": "../IT-PP/2022r04_ip_qs.pdf",
+          "pages": [
+            41
+          ]
+        }
+      ],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2022r04_ip_qs.pdf",
+        "pages": [
+          41
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2022r04-092",
+      "exam": "2022r04",
+      "question_no": 92,
+      "knowledge_group": "技術要素",
+      "question": {
+        "ja": "IoT エリアネットワークの通信などに利用される BLE は,Bluetooth4. 0で追加され た仕様である。BLE に関する記述のうち、適切なものはどれか。",
+        "vi": "BLE được sử dụng trong truyền thông của mạng khu vực IoT, là một đặc tả được bổ sung trong Bluetooth 4.0. Mô tả nào sau đây về BLE là phù hợp?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "Wi-Fi のアクセスポイントとも通信ができるようになった。",
+          "vi": "Đã có thể giao tiếp cả với access point của Wi-Fi."
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "一般的なボタン電池で,半年から数年間の連続動作が可能なほどに低消費電力で ある。",
+          "vi": "Có mức tiêu thụ điện năng thấp đến mức có thể hoạt động liên tục từ nửa năm đến vài năm chỉ với pin cúc áo thông thường."
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "従来の規格である Bluetooth 3.0以前と互換性がある。",
+          "vi": "Tương thích với các chuẩn trước đây là Bluetooth 3.0 trở về trước."
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "デバイスとの通信には、赤外線も使用できる。",
+          "vi": "Trong giao tiếp với thiết bị, cũng có thể sử dụng tia hồng ngoại."
+        }
+      ],
+      "correct_option_id": "B",
+      "explanation_vi": "BLE là Bluetooth Low Energy, đặc trưng lớn nhất là tiêu thụ điện năng rất thấp nên phù hợp cho thiết bị IoT chạy pin lâu dài. ア sai vì BLE không phải chuẩn để giao tiếp trực tiếp với Wi-Fi AP, ウ sai vì BLE không mặc nhiên tương thích ngược với Bluetooth cổ điển, và エ sai vì BLE không dùng hồng ngoại để truyền thông.",
+      "assets": [],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2022r04_ip_qs.pdf",
+        "pages": [
+          42
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2022r04-093",
+      "exam": "2022r04",
+      "question_no": 93,
+      "knowledge_group": "基礎理論",
+      "question": {
+        "ja": "A3判の紙の長辺を半分に折ると,A4判の大きさになり,短辺:長辺の比率は変わら ない。A3判の長辺は A4判の長辺のおよそ何倍か。",
+        "vi": "Khi gấp đôi cạnh dài của tờ giấy khổ A3, ta được kích thước của khổ A4, và tỷ lệ cạnh ngắn : cạnh dài không thay đổi. Cạnh dài của khổ A3 xấp xỉ gấp bao nhiêu lần cạnh dài của khổ A4?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "1.41",
+          "vi": "1.41"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "1.5",
+          "vi": "1.5"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "1.73",
+          "vi": "1.73"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "2",
+          "vi": "2"
+        }
+      ],
+      "correct_option_id": "A",
+      "explanation_vi": "Dòng giấy A có tính chất giữ nguyên tỷ lệ khi chia đôi theo cạnh dài, nên tỷ lệ giữa các cạnh liên quan đến căn bậc hai của 2. Vì vậy cạnh dài A3 ≈ √2 lần cạnh dài A4, tức khoảng 1,41. Các lựa chọn còn lại không phù hợp với tỷ lệ chuẩn của khổ giấy A.",
+      "assets": [],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2022r04_ip_qs.pdf",
+        "pages": [
+          42
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2022r04-094",
+      "exam": "2022r04",
+      "question_no": 94,
+      "knowledge_group": "コンピュータシステム",
+      "question": {
+        "ja": "インクジェットプリンタの印字方式を説明したものはどれか。",
+        "vi": "Mô tả nào sau đây giải thích đúng phương thức in của máy in phun (inkjet printer)?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "インクの微細な粒子を用紙に直接吹き付けて印字する。 $",
+          "vi": "Phun trực tiếp các hạt mực cực nhỏ lên giấy để in."
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "インクリボンを印字用のワイヤなどで用紙に打ち付けて印字する。",
+          "vi": "Dùng dây kim in hoặc bộ phận tương tự đập ruy băng mực lên giấy để in."
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "熱で溶けるインクを印字ヘッドで加熱して用紙に印字する。",
+          "vi": "Gia nhiệt đầu in để làm nóng chảy mực tan bằng nhiệt rồi in lên giấy."
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "レーザ光によって感光体にトナーを付着させて用紙に印字する。",
+          "vi": "Dùng tia laser làm toner bám lên trống cảm quang rồi in lên giấy."
+        }
+      ],
+      "correct_option_id": "A",
+      "explanation_vi": "Máy in phun hoạt động bằng cách phun các giọt mực rất nhỏ trực tiếp lên giấy, nên ア đúng. イ là máy in kim, ウ là kiểu in nhiệt, còn エ là máy in laser. Vì thế các phương án kia không phải cơ chế của inkjet printer.",
+      "assets": [],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2022r04_ip_qs.pdf",
+        "pages": [
+          42
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2022r04-095",
+      "exam": "2022r04",
+      "question_no": 95,
+      "knowledge_group": "技術要素",
+      "question": {
+        "ja": "攻撃対象とは別の Web サイトから盗み出すなどによって、不正に取得した大量の認 証情報を流用し、標的とする Web サイトに不正に侵入を試みるものはどれか。",
+        "vi": "Hình thức nào sau đây là việc lợi dụng một lượng lớn thông tin xác thực đã bị lấy cắp trái phép, chẳng hạn đánh cắp từ một website khác với mục tiêu tấn công, rồi dùng chúng để thử xâm nhập trái phép vào website mục tiêu?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "DoS 攻撃",
+          "vi": "Tấn công DoS"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "SQL インジェクション",
+          "vi": "SQL injection"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "パスワードリスト攻撃",
+          "vi": "Tấn công danh sách mật khẩu (password list attack / credential stuffing)"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "フィッシング",
+          "vi": "Phishing"
+        }
+      ],
+      "correct_option_id": "C",
+      "explanation_vi": "Đây là mô tả điển hình của パスワードリスト攻撃, tức credential stuffing: dùng hàng loạt ID/mật khẩu bị lộ từ dịch vụ khác để đăng nhập thử vào hệ thống mục tiêu. ア là làm gián đoạn dịch vụ, イ là chèn câu lệnh SQL, còn エ là thủ đoạn lừa người dùng cung cấp thông tin chứ không phải tái sử dụng danh sách thông tin đã đánh cắp.",
+      "assets": [],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2022r04_ip_qs.pdf",
+        "pages": [
+          43
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2022r04-096",
+      "exam": "2022r04",
+      "question_no": 96,
+      "knowledge_group": "開発技術",
+      "question": {
+        "ja": "関数 calcX と関数 calcY は、引数 inData を用いて計算を行い、その結果を戻り値とする。関数 calcX を calcX(1) として呼び出すと、関数 calcX の変数 num の値が、1→3→7→13 と変化し、戻り値は 13 となった。関数 calcY を calcY(1) として呼び出すと、関数 calcY の変数 num の値が、1→5→13→25 と変化し、戻り値は 25 となった。プログラム中の a, b に入れる字句の適切な組合せはどれか。\n〔プログラム1〕\n○整数型: calcX(整数型: inData)\n整数型: num, i\nnum ← inData\nfor (i を 1 から 3 まで 1 ずつ増やす)\n  num ← a\nendfor\nreturn num\n\n〔プログラム2〕\n○整数型: calcY(整数型: inData)\n整数型: num, i\nnum ← inData\nfor (b)\n  num ← a\nendfor\nreturn num",
+        "vi": "Hàm calcX và hàm calcY thực hiện tính toán bằng đối số inData và lấy kết quả đó làm giá trị trả về. Khi gọi hàm calcX dưới dạng calcX(1), giá trị của biến num trong hàm calcX thay đổi theo 1 → 3 → 7 → 13, và giá trị trả về là 13. Khi gọi hàm calcY dưới dạng calcY(1), giá trị của biến num trong hàm calcY thay đổi theo 1 → 5 → 13 → 25, và giá trị trả về là 25. Tổ hợp từ/ngữ thích hợp điền vào a, b trong chương trình là gì?\n〔Chương trình 1〕\n○Kiểu số nguyên: calcX(kiểu số nguyên: inData)\nKiểu số nguyên: num, i\nnum ← inData\nfor (i tăng từ 1 đến 3, mỗi lần tăng 1)\n  num ← a\nendfor\nreturn num\n\n〔Chương trình 2〕\n○Kiểu số nguyên: calcY(kiểu số nguyên: inData)\nKiểu số nguyên: num, i\nnum ← inData\nfor (b)\n  num ← a\nendfor\nreturn num"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "a: 2 × num + i\nb: i を 1 から 7 まで 3 ずつ増やす",
+          "vi": "a: 2 × num + i\nb: i tăng từ 1 đến 7, mỗi lần tăng 3"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "a: 2 × num + i\nb: i を 2 から 6 まで 2 ずつ増やす",
+          "vi": "a: 2 × num + i\nb: i tăng từ 2 đến 6, mỗi lần tăng 2"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "a: num + 2 × i\nb: i を 1 から 7 まで 3 ずつ増やす",
+          "vi": "a: num + 2 × i\nb: i tăng từ 1 đến 7, mỗi lần tăng 3"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "a: num + 2 × i\nb: i を 2 から 6 まで 2 ずつ増やす",
+          "vi": "a: num + 2 × i\nb: i tăng từ 2 đến 6, mỗi lần tăng 2"
+        }
+      ],
+      "correct_option_id": "D",
+      "explanation_vi": "Để được dãy 1 → 3 → 7 → 13 ở calcX với i = 1, 2, 3 thì công thức phải là num ← num + 2×i. Áp dụng công thức này cho calcY với i = 2, 4, 6 sẽ cho 1 → 5 → 13 → 25, khớp đề bài. Các phương án dùng 2×num + i sẽ làm num tăng nhanh hơn và không ra các dãy đã cho, còn vòng lặp 1,4,7 cũng không khớp với calcY.",
+      "assets": [
+        {
+          "type": "pdf_page",
+          "path": "../IT-PP/2022r04_ip_qs.pdf",
+          "pages": [
+            43
+          ]
+        }
+      ],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2022r04_ip_qs.pdf",
+        "pages": [
+          43
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2022r04-097",
+      "exam": "2022r04",
+      "question_no": 97,
+      "knowledge_group": "技術要素",
+      "question": {
+        "ja": "水田の水位を計測することによって、水田の水門を自動的に開閉するIoTシステムがある。図中のa, bに入れる字句の適切な組合せはどれか。\n\nIoTデバイス\nIoTサーバ\n水田の水位\na\n通信機能部\n受信した水位データを分析して、水門の開閉指示を行う。\n水田の水門\nb\n凡例：データや信号の送信方向\n\na\nb",
+        "vi": "Có một hệ thống IoT tự động đóng mở cống nước của ruộng lúa bằng cách đo mực nước trong ruộng. Tổ hợp từ/ngữ thích hợp điền vào a, b trong hình là gì?\n\nThiết bị IoT\nMáy chủ IoT\nMực nước của ruộng lúa\na\nBộ phận chức năng truyền thông\nPhân tích dữ liệu mực nước đã nhận được và đưa ra chỉ thị đóng/mở cống nước.\nCống nước của ruộng lúa\nb\nChú thích: hướng truyền dữ liệu hay tín hiệu\n\na\nb"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "アクチュエータ / IoTゲートウェイ",
+          "vi": "Bộ chấp hành (actuator) / IoT gateway"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "アクチュエータ / センサ",
+          "vi": "Bộ chấp hành (actuator) / Cảm biến (sensor)"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "センサ / IoTゲートウェイ",
+          "vi": "Cảm biến (sensor) / IoT gateway"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "センサ / アクチュエータ",
+          "vi": "Cảm biến (sensor) / Bộ chấp hành (actuator)"
+        }
+      ],
+      "correct_option_id": "D",
+      "explanation_vi": "Mực nước là đại lượng cần đo nên a phải là sensor. Cống nước là đối tượng được điều khiển đóng/mở nên b phải là actuator. IoT gateway không trực tiếp làm nhiệm vụ đo mực nước hay đóng mở cống trong sơ đồ này, nên các phương án còn lại sai.",
+      "assets": [
+        {
+          "type": "pdf_page",
+          "path": "../IT-PP/2022r04_ip_qs.pdf",
+          "pages": [
+            44
+          ]
+        }
+      ],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2022r04_ip_qs.pdf",
+        "pages": [
+          44
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2022r04-098",
+      "exam": "2022r04",
+      "question_no": 98,
+      "knowledge_group": "技術要素",
+      "question": {
+        "ja": "関係データベースで管理している“従業員”表から、氏名の列だけを取り出す操作 を何というか。\n従業員\n従業員番号\n氏名\n所属コード\nH001\n試験花子\nG02\nH002\n情報太郎\nGØ1\nH003\n高度次郎\nG03\nH004\n午前桜子\nG03\nH005\n午後三郎\nG02",
+        "vi": "Trong cơ sở dữ liệu quan hệ, thao tác lấy ra chỉ cột “氏名” (họ tên) từ bảng “従業員” (nhân viên) được gọi là gì?\n\nNhân viên\nMã nhân viên\nHọ tên\nMã bộ phận\nH001\n試験花子\nG02\nH002\n情報太郎\nG01\nH003\n高度次郎\nG03\nH004\n午前桜子\nG03\nH005\n午後三郎\nG02"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "結合",
+          "vi": "Kết hợp (join)"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "射影",
+          "vi": "Phép chiếu (projection)"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "選択",
+          "vi": "Lựa chọn (selection)"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "和",
+          "vi": "Hợp (union)"
+        }
+      ],
+      "correct_option_id": "B",
+      "explanation_vi": "Lấy ra chỉ một số cột trong bảng là phép chiếu (projection, 射影). Phép lựa chọn (selection) là lọc theo hàng, kết hợp (join) là ghép nhiều bảng, còn hợp (union) là gộp các tập kết quả cùng cấu trúc. Vì đề hỏi lấy riêng cột họ tên nên đáp án đúng là イ.",
+      "assets": [
+        {
+          "type": "pdf_page",
+          "path": "../IT-PP/2022r04_ip_qs.pdf",
+          "pages": [
+            44
+          ]
+        }
+      ],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2022r04_ip_qs.pdf",
+        "pages": [
+          44
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2022r04-099",
+      "exam": "2022r04",
+      "question_no": 99,
+      "knowledge_group": "コンピュータシステム",
+      "question": {
+        "ja": "1台の物理的なコンピュータ上で、複数の仮想サーバを同時に動作させることによって得られる効果に関する記述a～cのうち、適切なものだけを全て挙げたものはどれか。\na 仮想サーバ上で、それぞれ異なるバージョンのOSを動作させることができ、物理的なコンピュータのリソースを有効活用できる。\nb 仮想サーバの数だけ、物理的なコンピュータを増やしたときと同じ処理能力を得られる。\nc 物理的なコンピュータがもつHDDの容量と同じ容量のデータを、全ての仮想サーバで同時に記録できる。",
+        "vi": "Trong các mô tả a đến c về hiệu quả đạt được khi cho nhiều máy chủ ảo hoạt động đồng thời trên một máy tính vật lý, phương án nào liệt kê tất cả các mô tả đúng?\n\na Có thể chạy các phiên bản OS khác nhau trên từng máy chủ ảo, và có thể tận dụng hiệu quả tài nguyên của máy tính vật lý.\n\nb Có thể đạt được năng lực xử lý tương đương với việc tăng thêm số máy tính vật lý đúng bằng số lượng máy chủ ảo.\n\nc Tất cả các máy chủ ảo đều có thể đồng thời ghi dữ liệu với dung lượng bằng đúng dung lượng HDD mà máy tính vật lý có."
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "a",
+          "vi": "a"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "a, c",
+          "vi": "a, c"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "b",
+          "vi": "b"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "c",
+          "vi": "c"
+        }
+      ],
+      "correct_option_id": "A",
+      "explanation_vi": "Mệnh đề a đúng vì ảo hóa cho phép chạy nhiều OS khác nhau và chia sẻ tài nguyên vật lý hiệu quả. Mệnh đề b sai vì tạo nhiều máy chủ ảo không làm năng lực xử lý tăng như tăng thêm máy vật lý thật; chúng vẫn dùng chung tài nguyên. Mệnh đề c sai vì tổng dung lượng lưu trữ vẫn bị giới hạn bởi HDD vật lý, không phải mỗi máy ảo đều có thể dùng trọn vẹn cùng lúc.",
+      "assets": [
+        {
+          "type": "pdf_page",
+          "path": "../IT-PP/2022r04_ip_qs.pdf",
+          "pages": [
+            45
+          ]
+        }
+      ],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2022r04_ip_qs.pdf",
+        "pages": [
+          45
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2022r04-100",
+      "exam": "2022r04",
+      "question_no": 100,
+      "knowledge_group": "技術要素",
+      "question": {
+        "ja": "社内に設置された無線 LAN ネットワークに接続している業務用の PC で、インタ ーネット上のある Web サイトを閲覧した直後, Web ブラウザが突然終了したり、見知 らぬファイルが作成されたりするなど、マルウェアに感染した可能性が考えられる事 象が発生した。この PC の利用者が最初に取るべき行動として適切なものはどれか。",
+        "vi": "Trên một PC nghiệp vụ đang kết nối với mạng LAN không dây trong công ty, ngay sau khi truy cập một trang Web nào đó trên Internet đã xảy ra các hiện tượng như trình duyệt Web đột ngột thoát, xuất hiện các tệp lạ không rõ nguồn gốc, v.v., nên có khả năng PC đã bị nhiễm malware. Hành động đầu tiên mà người sử dụng PC này nên thực hiện là gì?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "Web ブラウザを再インストールする。",
+          "vi": "Cài đặt lại Web browser."
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "マルウェア対策ソフトのマルウェア定義ファイルを最新にする。",
+          "vi": "Cập nhật file định nghĩa malware của phần mềm chống malware lên mới nhất."
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "無線 LAN との通信を切断し, PC をネットワークから隔離する。",
+          "vi": "Ngắt kết nối với mạng LAN không dây và cách ly PC khỏi mạng."
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "無線通信の暗号化方式を変更する。",
+          "vi": "Thay đổi phương thức mã hóa của truyền thông không dây."
+        }
+      ],
+      "correct_option_id": "C",
+      "explanation_vi": "Khi nghi ngờ nhiễm malware, việc đầu tiên là cô lập máy khỏi mạng để ngăn lây lan, rò rỉ dữ liệu hoặc bị điều khiển từ xa. Sau đó mới tiến hành quét, điều tra và khắc phục. Cài lại trình duyệt, cập nhật mẫu nhận diện hay đổi kiểu mã hóa Wi‑Fi đều không phải bước khẩn cấp đầu tiên.",
+      "assets": [],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2022r04_ip_qs.pdf",
+        "pages": [
+          45
+        ],
+        "answer_source": "answer_key"
+      }
+    }
+  ],
+  "validation": {
+    "complete": true,
+    "expected_questions": 100,
+    "returned_questions": 100,
+    "answers_matched": 100,
+    "options_per_question": 4,
+    "schema_version": 2
+  }
+}

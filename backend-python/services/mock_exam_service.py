@@ -18,6 +18,7 @@ import uuid
 
 import db
 from services import email_service
+from services import quiz_content_service as content
 
 # A cancelled question in the real exam: every answer counts as correct.
 ALL_CORRECT_MARKER = "※"
@@ -145,7 +146,7 @@ async def get_exam_config(certificate_id: int) -> dict:
         certificate_id,
     )
     pool = await db.query_one(
-        "SELECT count(*) AS n FROM certificate_exam_questions WHERE certificate_id = $1",
+        f"SELECT count(*) AS n FROM certificate_exam_questions q WHERE certificate_id = $1 AND {content.BANK_SCOPE}",
         certificate_id,
     )
     available = pool["n"] if pool else 0
@@ -183,8 +184,8 @@ async def build_paper(certificate_id: int, limit: int) -> list[dict]:
     rows are selected by primary key no question can appear twice in one paper.
     """
     rows = await db.query(
-        "SELECT id, question_no, question_ja, answer_label, answer_correct "
-        "FROM certificate_exam_questions WHERE certificate_id = $1 "
+        f"SELECT {content.CONTENT_COLUMNS} "
+        f"FROM certificate_exam_questions q {content.PASSAGE_JOIN} WHERE q.certificate_id = $1 AND {content.BANK_SCOPE} "
         "ORDER BY random() LIMIT $2",
         certificate_id, limit,
     )
@@ -196,9 +197,10 @@ async def build_paper(certificate_id: int, limit: int) -> list[dict]:
                 "id": r["id"],
                 "displayNo": idx,
                 "questionNo": r["question_no"],
-                "questionJa": r["question_ja"],
+                **content.public_question(r),
                 "isTrueFalse": is_true_false(r["answer_label"], r["answer_correct"]),
-                "choices": extract_choice_labels(r["question_ja"], r["answer_label"]),
+                "choices": ([o['label'] for o in content.decoded(r.get('options_json'), [])]
+                            or extract_choice_labels(r["question_ja"], r["answer_label"])),
             }
         )
     return paper
@@ -209,19 +211,26 @@ async def grade_attempt(
     certificate_id: int,
     submissions: list[dict],
     duration_seconds: int | None,
+    persist: bool = True,
 ) -> dict:
     """Grade the submitted answers, persist the attempt, and return a review."""
     if not submissions:
         raise ValueError("No answers submitted")
 
     question_ids = [s["questionId"] for s in submissions]
+    if len(question_ids) != len(set(question_ids)):
+        raise ValueError("Duplicate question IDs")
+    if duration_seconds is not None and duration_seconds < 0:
+        raise ValueError("Invalid duration")
     rows = await db.query(
-        "SELECT id, question_no, question_ja, translation_vi, answer_label, "
-        "answer_correct, explanation_vi, vocab_json "
-        "FROM certificate_exam_questions WHERE id = ANY($1)",
-        question_ids,
+        f"SELECT {content.CONTENT_COLUMNS} "
+        f"FROM certificate_exam_questions q {content.PASSAGE_JOIN} "
+        f"WHERE q.id = ANY($1) AND q.certificate_id=$2 AND {content.BANK_SCOPE}",
+        question_ids, certificate_id,
     )
     by_id = {r["id"]: r for r in rows}
+    if set(by_id) != set(question_ids):
+        raise ValueError("Unknown question or question from another certificate")
 
     selected_by_id = {s["questionId"]: s.get("selectedLabel") for s in submissions}
 
@@ -233,6 +242,12 @@ async def grade_attempt(
             continue
         expected = normalise_label(row["answer_label"])
         chosen = normalise_label(selected_by_id.get(qid))
+        options = content.decoded(row.get('options_json'), [])
+        if options and chosen:
+            selected = next((o for o in options if chosen in (o['id'],o['label'])),None)
+            if selected is None:
+                raise ValueError("Invalid option")
+            chosen = selected['label']
 
         # A cancelled exam question is credited to everyone.
         if expected == ALL_CORRECT_MARKER:
@@ -251,19 +266,27 @@ async def grade_attempt(
             {
                 "questionId": qid,
                 "questionNo": row["question_no"],
-                "questionJa": row["question_ja"],
+                **content.public_question(row, include_translation=True),
                 "selectedLabel": selected_by_id.get(qid) or "",
                 "correctLabel": row["answer_label"],
                 "isCorrect": is_correct,
                 "translationVi": row["translation_vi"],
                 "explanationVi": row["explanation_vi"],
                 "vocab": vocab or [],
+                "correctOptionId": content.answer_details(row)['correctOptionId'],
             }
         )
 
     total = len(results)
     if total == 0:
         raise ValueError("No valid questions in submission")
+
+    if not persist:
+        return {
+            "attemptId": None, "totalQuestions": total, "correctCount": correct_count,
+            "scorePercent": round(correct_count * 100 / total, 1),
+            "durationSeconds": duration_seconds, "results": results,
+        }
 
     attempt = await db.query_one(
         "INSERT INTO mock_exam_attempts "

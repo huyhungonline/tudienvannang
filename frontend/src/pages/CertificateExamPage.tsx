@@ -2,8 +2,9 @@ import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { get } from '../api/client';
 import { Spinner } from '../components/Spinner';
+import { ExamPdfLinks, type ExamPdfReferences } from '../components/ExamPdfLinks';
 
-interface ExamQuestion {
+interface ExamQuestion extends ExamPdfReferences {
   id: number;
   questionNo: number;
   questionJa: string;
@@ -21,11 +22,12 @@ interface VocabItem {
   meaning: string;
 }
 
-interface ExamAnswer {
+interface ExamAnswer extends ExamPdfReferences {
   translationVi: string;
   answerLabel: string;
   explanationVi: string;
   vocab: VocabItem[];
+  options?: { id: string; label: string; vi: string }[];
 }
 
 export function CertificateExamPage() {
@@ -105,6 +107,7 @@ export function CertificateExamPage() {
                   <span className="exam-question-no">問{q.questionNo}</span>
                   <p className="exam-question-text">{q.questionJa}</p>
                 </div>
+                <ExamPdfLinks assets={q.assets} passage={q.passage} />
 
                 {!answer ? (
                   <button
@@ -117,6 +120,8 @@ export function CertificateExamPage() {
                 ) : (
                   <div className="exam-answer-reveal">
                     {answer.translationVi && <p className="exam-translation">Dịch đề: {answer.translationVi}</p>}
+                    {answer.options && <ul>{answer.options.map((o) => <li key={o.id}>{o.label} {o.vi}</li>)}</ul>}
+                    {answer.passage?.text?.vi && <p className="exam-translation">{answer.passage.text.vi}</p>}
                     <p className={`exam-answer-badge ${answer.answerLabel === '×' ? 'incorrect' : 'correct'}`}>
                       Đáp án: {answer.answerLabel}
                     </p>

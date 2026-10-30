@@ -1,13 +1,18 @@
 import json
 import uuid
+import os
+import re
+from pathlib import Path
 from typing import Optional
 
 from fastapi import APIRouter, Depends, HTTPException, Query
+from fastapi.responses import FileResponse
 from pydantic import BaseModel
 
 import db
 from middleware.auth import get_current_user
 from services import mock_exam_service
+from services import quiz_content_service as content
 
 router = APIRouter(prefix="/api/certificates", tags=["certificates"])
 
@@ -97,7 +102,9 @@ async def get_vocabulary(code: str):
 
 
 @router.get("/{code}/exam")
-async def get_exam_questions(code: str, _: str = Depends(require_vip_or_admin)):
+async def get_exam_questions(code: str, _: str = Depends(require_vip_or_admin),
+                             exam: Optional[str] = Query(default=None),
+                             knowledge_group: Optional[str] = Query(default=None)):
     """Return exam questions grouped by exam session, WITHOUT the hidden
     translation/answer/explanation/vocab fields — those are only revealed via
     the exam-question/{id}/answer endpoint when the user clicks 'Show answer'."""
@@ -105,11 +112,7 @@ async def get_exam_questions(code: str, _: str = Depends(require_vip_or_admin)):
     if not cert:
         raise HTTPException(status_code=404, detail="Certificate not found")
 
-    rows = await db.query(
-        "SELECT id, exam_year, exam_round, question_no, question_ja "
-        "FROM certificate_exam_questions WHERE certificate_id = $1 ORDER BY sort_order",
-        cert["id"],
-    )
+    rows = await content.exam_questions(cert['id'],exam,knowledge_group)
 
     grouped: dict[tuple, dict] = {}
     order: list[tuple] = []
@@ -119,7 +122,7 @@ async def get_exam_questions(code: str, _: str = Depends(require_vip_or_admin)):
             grouped[key] = {"year": r["exam_year"], "round": r["exam_round"], "questions": []}
             order.append(key)
         grouped[key]["questions"].append(
-            {"id": r["id"], "questionNo": r["question_no"], "questionJa": r["question_ja"]}
+            content.public_question(r)
         )
 
     return {"exams": [grouped[k] for k in order]}
@@ -129,19 +132,50 @@ async def get_exam_questions(code: str, _: str = Depends(require_vip_or_admin)):
 async def get_exam_answer(question_id: int, _: str = Depends(require_vip_or_admin)):
     """Reveal the hidden answer/translation/explanation/vocab for one question."""
     row = await db.query_one(
-        "SELECT translation_vi, answer_label, explanation_vi, vocab_json "
-        "FROM certificate_exam_questions WHERE id = $1",
+        f"SELECT {content.CONTENT_COLUMNS} FROM certificate_exam_questions q "
+        f"{content.PASSAGE_JOIN} WHERE q.id = $1",
         question_id,
     )
     if not row:
         raise HTTPException(status_code=404, detail="Question not found")
 
-    return {
-        "translationVi": row["translation_vi"],
-        "answerLabel": row["answer_label"],
-        "explanationVi": row["explanation_vi"],
-        "vocab": json.loads(row["vocab_json"]),
-    }
+    return {**content.answer_details(row),
+            'passage':content.public_question(row,include_translation=True)['passage']}
+
+
+@router.get('/documents/{filename}')
+async def get_exam_document(filename: str):
+    if not re.fullmatch(r'\d{4}[a-z0-9_]+_ip_qs\.pdf',filename):
+        raise HTTPException(status_code=404,detail='Document not found')
+    directory=Path(os.getenv('EXAM_PDFS_PATH',str(Path(__file__).resolve().parents[2]/'tool/IT-PP')))
+    if not directory.is_dir() and 'EXAM_PDFS_PATH' not in os.environ:
+        directory=Path('/exam_pdfs')
+    path=directory/filename
+    if not path.is_file():
+        raise HTTPException(status_code=404,detail='Document not found')
+    return FileResponse(path,media_type='application/pdf',filename=filename,content_disposition_type='inline')
+
+
+@router.get('/{code}/topics')
+async def get_exam_topics(code: str, _: str = Depends(require_vip_or_admin)):
+    cert=await mock_exam_service.get_certificate_by_code(code)
+    if not cert:
+        raise HTTPException(status_code=404,detail='Certificate not found')
+    rows=await db.query(f'''SELECT q.knowledge_group AS topic,count(*) AS count
+        FROM certificate_exam_questions q WHERE q.certificate_id=$1 AND {content.BANK_SCOPE}
+        AND q.knowledge_group IS NOT NULL GROUP BY q.knowledge_group ORDER BY q.knowledge_group''',cert['id'])
+    return {'topics':rows}
+
+
+@router.get('/{code}/exams')
+async def list_structured_exams(code: str, _: str = Depends(require_vip_or_admin)):
+    cert=await mock_exam_service.get_certificate_by_code(code)
+    if not cert:
+        raise HTTPException(status_code=404,detail='Certificate not found')
+    return {'exams':await db.query('''SELECT e.source_key AS code,e.exam_year AS year,
+        e.exam_round AS round,count(q.id) AS question_count FROM certificate_exams e
+        JOIN certificate_exam_questions q ON q.exam_id=e.id WHERE e.certificate_id=$1
+        GROUP BY e.id ORDER BY e.source_key''',cert['id'])}
 
 
 # === Mock exam (thi thử) ===
@@ -200,7 +234,7 @@ async def submit_mock_exam(
     body: MockExamSubmission,
     user_id: str = Depends(require_vip_or_admin),
 ):
-    """Grade a finished paper, store the attempt, and return a full review."""
+    """Grade a paper. IT Passport does not persist attempts or send emails."""
     cert = await mock_exam_service.get_certificate_by_code(code)
     if not cert:
         raise HTTPException(status_code=404, detail="Certificate not found")
@@ -211,6 +245,7 @@ async def submit_mock_exam(
             cert["id"],
             [a.model_dump() for a in body.answers],
             body.durationSeconds,
+            persist=code != 'itpp',
         )
     except ValueError as e:
         raise HTTPException(status_code=400, detail=str(e))
@@ -223,5 +258,7 @@ async def get_mock_exam_history(code: str, user_id: str = Depends(require_vip_or
     if not cert:
         raise HTTPException(status_code=404, detail="Certificate not found")
 
+    if code == 'itpp':
+        return {'attempts':[]}
     attempts = await mock_exam_service.list_user_attempts(user_id, cert["id"])
     return {"attempts": attempts}

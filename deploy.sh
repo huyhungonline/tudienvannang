@@ -1,81 +1,18 @@
-#!/bin/bash
-# Deploy script - chạy từ local (WSL) để deploy lên VPS
+#!/usr/bin/env bash
+# Run from WSL. Commit only explicitly staged files; never git add the workspace.
 # Usage: bash deploy.sh [commit message]
-
-set -e
-
-VPS_HOST="14.225.198.235"
-VPS_USER="root"
-VPS_DIR="/root/tudienvannang"
-COMMIT_MSG="${1:-deploy update}"
-
-echo "=== [1/4] Push code lên GitHub ==="
-git add .
-git commit -m "$COMMIT_MSG" || echo "Nothing to commit"
+set -euo pipefail
+cd "$(dirname "$0")"
+VPS_HOST="${VPS_HOST:-14.225.198.235}"
+VPS_USER="${VPS_USER:-root}"
+VPS_DIR="${VPS_DIR:-/root/tudienvannang}"
+COMMIT_MSG="${1:-Deploy structured IT Passport question bank}"
+[[ "$(git branch --show-current)" == main ]] || { echo 'Deploy requires branch main'; exit 1; }
+git diff --quiet || { echo 'Commit or stage the intended tracked changes before deploying'; exit 1; }
+if ! git diff --cached --quiet; then git commit -m "$COMMIT_MSG"; fi
+REVISION=$(git rev-parse HEAD)
+echo "Deploy revision: $REVISION"
 git push origin main
-
-echo ""
-echo "=== [2/4] Kiểm tra .env trên VPS ==="
-ssh "${VPS_USER}@${VPS_HOST}" "test -f '${VPS_DIR}/.env'" || {
-    echo "Thiếu .env trên VPS. Hãy cấu hình file này trước khi deploy."
-    exit 1
-}
-
-# Cảnh báo nếu .env trên VPS thiếu biến so với .env.example.
-# Không tự sửa: cấu hình production do người vận hành quản lý.
-if [ -f .env.example ]; then
-    EXPECTED_KEYS=$(grep -oP '^[A-Za-z_][A-Za-z0-9_]*(?==)' .env.example | sort -u)
-    REMOTE_KEYS=$(ssh "${VPS_USER}@${VPS_HOST}" "grep -oP '^[A-Za-z_][A-Za-z0-9_]*(?==)' '${VPS_DIR}/.env' | sort -u")
-    MISSING=$(comm -23 <(echo "$EXPECTED_KEYS") <(echo "$REMOTE_KEYS"))
-    if [ -n "$MISSING" ]; then
-        echo "CẢNH BÁO: .env trên VPS thiếu các biến sau (có trong .env.example):"
-        echo "$MISSING" | sed 's/^/  - /'
-        echo "Container sẽ dùng giá trị mặc định cho các biến này."
-        read -r -p "Tiếp tục deploy? [y/N] " ans
-        [ "$ans" = "y" ] || { echo "Đã hủy."; exit 1; }
-    else
-        echo "Đủ biến so với .env.example."
-    fi
-fi
-echo "Giữ nguyên .env trên VPS; không chép đè cấu hình khi deploy."
-
-echo ""
-echo "=== [3/4] SSH vào VPS: pull + rebuild ==="
-ssh ${VPS_USER}@${VPS_HOST} << 'REMOTE'
-set -e
-cd /root/tudienvannang
-git pull origin main
-bash configure-book-upload.sh
-docker compose config --quiet
-
-echo ""
-echo "=== [4/4] Rebuild Docker ==="
-docker compose up -d --build --force-recreate
-if [ $? -ne 0 ]; then
-    echo "❌ Docker build failed!"
-    exit 1
-fi
-
-echo ""
-echo "=== Chờ postgres khởi động... ==="
-sleep 8
-
-echo ""
-echo "=== Chạy migrations ==="
-PG_CONTAINER=$(docker ps --format '{{.Names}}' | grep postgres | head -1)
-if [ -n "$PG_CONTAINER" ]; then
-    for f in backend-python/migrations/*.sql; do
-        cat "$f" | docker exec -i "$PG_CONTAINER" psql -U postgres -d english_word_splitter 2>/dev/null || true
-    done
-    echo "✅ Migrations done"
-else
-    echo "⚠️  Postgres container not found!"
-fi
-
-echo ""
-echo "=== Kiểm tra containers ==="
-docker ps --format "table {{.Names}}\t{{.Status}}\t{{.Ports}}"
-
-echo ""
-echo "=== Done! ==="
-REMOTE
+ssh -o BatchMode=yes -o ConnectTimeout=15 "${VPS_USER}@${VPS_HOST}" \
+    "bash -s -- $(printf '%q' "$VPS_DIR") $(printf '%q' "$REVISION")" \
+    < tool/deploy_itpp_remote.sh

@@ -1,0 +1,12 @@
+.deps/
+.venv-wsl/
+.ocr-cache/
+.llm-cache/
+.azure-run.env
+.quiz-cache/
+.quiz-staging/
+structured_backup/
+*.log
+azure_ocr_sample.txt
+pdf_check_report.json
+structured/*report.json

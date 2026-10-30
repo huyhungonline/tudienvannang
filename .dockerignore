@@ -11,3 +11,4 @@ shared/node_modules
 frontend/dist
 backend/dist
 shared/dist
+tool/

@@ -70,7 +70,15 @@ DO $$
 DECLARE cert_id INT;
 BEGIN
     SELECT id INTO cert_id FROM certificates WHERE code = 'itpp';
-    DELETE FROM certificate_exam_questions WHERE certificate_id = cert_id;
+    -- deploy.sh replays seed migrations. Preserve the imported structured bank.
+    IF EXISTS (SELECT 1 FROM information_schema.columns
+               WHERE table_schema = current_schema() AND table_name = 'certificate_exam_questions'
+                 AND column_name = 'source_key') THEN
+        EXECUTE 'DELETE FROM certificate_exam_questions WHERE certificate_id = $1 AND source_key IS NULL'
+            USING cert_id;
+    ELSE
+        DELETE FROM certificate_exam_questions WHERE certificate_id = cert_id;
+    END IF;
 
     INSERT INTO certificate_exam_questions (certificate_id, exam_year, exam_round, question_no, question_ja, translation_vi, answer_correct, answer_label, explanation_vi, vocab_json, sort_order) VALUES (cert_id, '2026', 'Strategy', 1, '問1 生成AIを用いた生成物の取扱いに関して,既存の著作物の著作権者から許諾を得ることが必要となる可能性のあるものだけを,全て挙げたものはどれか。
 a 好みのアーティストの楽曲に似た音楽が得られるように生成AIを用いて楽曲を生成し，その楽曲をインターネット上にアップロードし,無料で公開した。

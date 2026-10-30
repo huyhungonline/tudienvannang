@@ -1,0 +1,5150 @@
+{
+  "exam": "2016h28h",
+  "source_pdf": "2016h28h_ip_qs.pdf",
+  "answer_pdf": "2016h28h_ip_ans.pdf",
+  "model": "gpt-5.4",
+  "extraction_note": "Japanese text is OCR output. Refer to source PDF for figures and OCR ambiguities.",
+  "schema_version": 2,
+  "passages": [],
+  "questions": [
+    {
+      "id": "2016h28h-001",
+      "exam": "2016h28h",
+      "question_no": 1,
+      "knowledge_group": "システム戦略",
+      "question": {
+        "ja": "連結会計システムの開発に当たり,機能要件と非機能要件を次の表のように分類 した。aに入る要件として、適切なものはどれか。\n機能要件\n非機能要件\n·国際会計基準に則った会計処理が実施で きること\n·最も処理時間を要するバッチ処理でも, 8 時間以内に終了すること\n·決算処理結果は、経理部長が確認を行う こと ·決算処理の過程を,全て記録に残すこと\n■ a ·保存するデータは全て暗号化すること",
+        "vi": "Khi phát triển hệ thống kế toán hợp nhất, các yêu cầu được phân loại thành yêu cầu chức năng và yêu cầu phi chức năng như trong bảng sau. Yêu cầu nào là phù hợp để điền vào a?\nYêu cầu chức năng\nYêu cầu phi chức năng\n· Có thể thực hiện xử lý kế toán phù hợp với chuẩn mực kế toán quốc tế\n· Ngay cả xử lý batch tốn thời gian nhất cũng phải hoàn thành trong vòng 8 giờ\n· Kết quả xử lý quyết toán phải được trưởng phòng kế toán xác nhận · Toàn bộ quá trình xử lý quyết toán phải được ghi lại\n■ a · Tất cả dữ liệu lưu trữ phải được mã hóa"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "故障などによる年間停止時間が,合計で10 時間以内であること",
+          "vi": "Tổng thời gian ngừng hoạt động trong năm do sự cố hỏng hóc v.v. phải trong vòng 10 giờ"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "誤入力した伝票は、訂正用伝票で訂正すること",
+          "vi": "Chứng từ nhập sai phải được sửa bằng chứng từ điều chỉnh"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "法定帳票以外に,役員会用資料作成のためのデータを自動抽出できること",
+          "vi": "Ngoài các biểu mẫu pháp định, có thể tự động trích xuất dữ liệu để lập tài liệu cho hội đồng quản trị"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "連結対象とする会社は毎年変更できること",
+          "vi": "Các công ty thuộc phạm vi hợp nhất có thể được thay đổi hằng năm"
+        }
+      ],
+      "correct_option_id": "A",
+      "explanation_vi": "a phải là một yêu cầu phi chức năng, vì các ví dụ đi kèm đều thuộc các thuộc tính chất lượng như hiệu năng, bảo mật, khả năng kiểm soát. Phương án A nói về độ sẵn sàng/độ tin cậy của hệ thống nên là yêu cầu phi chức năng. Các phương án B, C, D đều mô tả hành vi hay chức năng nghiệp vụ mà hệ thống phải thực hiện, nên là yêu cầu chức năng.",
+      "assets": [
+        {
+          "type": "pdf_page",
+          "path": "../IT-PP/2016h28h_ip_qs.pdf",
+          "pages": [
+            2
+          ]
+        }
+      ],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2016h28h_ip_qs.pdf",
+        "pages": [
+          2
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2016h28h-002",
+      "exam": "2016h28h",
+      "question_no": 2,
+      "knowledge_group": "企業と法務",
+      "question": {
+        "ja": "不正アクセス禁止法で規制されている行為だけを全て挙げたものはどれか。\na Webサイトの利用者IDとパスワードを、本人に無断で第三者に提供した。\nb ウイルスが感染しているファイルを、誤って電子メールに添付して送信した。\nc 営業秘密の情報が添付されている電子メールを、誤って第三者に送信した。\nd 著作権を侵害している違法なサイトを閲覧した。",
+        "vi": "Trong các hành vi dưới đây, phương án nào liệt kê đầy đủ chỉ những hành vi bị điều chỉnh bởi Luật Cấm Truy cập Trái phép?\na. Cung cấp ID người dùng và mật khẩu của website cho bên thứ ba mà không được chính chủ cho phép.\nb. Do nhầm lẫn, gửi kèm qua email một tệp đã bị nhiễm virus.\nc. Do nhầm lẫn, gửi email có tệp đính kèm chứa thông tin bí mật kinh doanh cho bên thứ ba.\nd. Truy cập xem một website bất hợp pháp vi phạm bản quyền."
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "a",
+          "vi": "a"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "a, b",
+          "vi": "a, b"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "a, b, c",
+          "vi": "a, b, c"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "a, d",
+          "vi": "a, d"
+        }
+      ],
+      "correct_option_id": "A",
+      "explanation_vi": "Luật Cấm Truy cập Trái phép của Nhật Bản quy định cả hành vi cung cấp trái phép thông tin nhận dạng đăng nhập như ID và mật khẩu, nên a thuộc phạm vi điều chỉnh. b là vấn đề phát tán virus do sơ suất, c là rò rỉ bí mật kinh doanh, d là hành vi xem trang vi phạm bản quyền; các hành vi này không phải nội dung trực tiếp được quy định trong luật này. Vì vậy chỉ có a là đúng.",
+      "assets": [
+        {
+          "type": "pdf_page",
+          "path": "../IT-PP/2016h28h_ip_qs.pdf",
+          "pages": [
+            2
+          ]
+        }
+      ],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2016h28h_ip_qs.pdf",
+        "pages": [
+          2
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2016h28h-003",
+      "exam": "2016h28h",
+      "question_no": 3,
+      "knowledge_group": "経営戦略",
+      "question": {
+        "ja": "インターネットショッピングにおいて、個人がアクセスしたWebページの閲覧履歴 や商品の購入履歴を分析し,関心のありそうな情報を表示して別商品の購入を促す マーケティング手法はどれか。",
+        "vi": "Trong mua sắm trên Internet, phương pháp marketing nào phân tích lịch sử xem trang Web và lịch sử mua hàng của cá nhân, rồi hiển thị thông tin có vẻ phù hợp với mối quan tâm của họ để thúc đẩy mua các sản phẩm khác?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "アフィリエイト",
+          "vi": "Affiliate"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "オークション",
+          "vi": "Auction"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "フラッシュマーケティング",
+          "vi": "Flash marketing"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "レコメンデーション",
+          "vi": "Recommendation"
+        }
+      ],
+      "correct_option_id": "D",
+      "explanation_vi": "Recommendation là kỹ thuật gợi ý sản phẩm dựa trên lịch sử duyệt xem và mua hàng của người dùng. Affiliate là hình thức liên kết quảng cáo hưởng hoa hồng, auction là đấu giá, còn flash marketing là hình thức tạo hiệu ứng lan truyền hoặc bán trong thời gian ngắn. Vì thế đáp án đúng là エ.",
+      "assets": [
+        {
+          "type": "pdf_page",
+          "path": "../IT-PP/2016h28h_ip_qs.pdf",
+          "pages": [
+            3
+          ]
+        }
+      ],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2016h28h_ip_qs.pdf",
+        "pages": [
+          3
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2016h28h-004",
+      "exam": "2016h28h",
+      "question_no": 4,
+      "knowledge_group": "企業と法務",
+      "question": {
+        "ja": "健全な資本市場の維持や投資家の保護を目的として、適切な情報開示のために整 備されたものはどれか。",
+        "vi": "Nội dung nào được thiết lập nhằm bảo đảm công bố thông tin thích hợp, với mục đích duy trì thị trường vốn lành mạnh và bảo vệ nhà đầu tư?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "クーリングオフ制度",
+          "vi": "Chế độ cooling-off"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "製造物責任法",
+          "vi": "Luật trách nhiệm sản phẩm"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "内部統制報告制度",
+          "vi": "Chế độ báo cáo kiểm soát nội bộ"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "不正アクセス禁止法",
+          "vi": "Luật cấm truy cập trái phép"
+        }
+      ],
+      "correct_option_id": "C",
+      "explanation_vi": "Chế độ báo cáo kiểm soát nội bộ được xây dựng để bảo đảm độ tin cậy của báo cáo tài chính và công bố thông tin phù hợp, qua đó bảo vệ nhà đầu tư và duy trì thị trường vốn lành mạnh. Cooling-off liên quan đến hủy hợp đồng trong một số giao dịch, luật trách nhiệm sản phẩm liên quan thiệt hại do sản phẩm, còn luật cấm truy cập trái phép là về an ninh truy cập. Do đó đáp án đúng là ウ.",
+      "assets": [],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2016h28h_ip_qs.pdf",
+        "pages": [
+          3
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2016h28h-005",
+      "exam": "2016h28h",
+      "question_no": 5,
+      "knowledge_group": "経営戦略",
+      "question": {
+        "ja": "ERPパッケージの特徴として適切なものはどれか。",
+        "vi": "Đặc điểm nào là phù hợp về gói ERP?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "業界独特の業務を統合的に支援するシステムなので、携帯電話事業などの一部 の業種に限って利用されている。",
+          "vi": "Vì là hệ thống hỗ trợ tích hợp các nghiệp vụ đặc thù của ngành, nên chỉ được sử dụng trong một số ngành nhất định như kinh doanh điện thoại di động."
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "財務会計業務に限定したシステムであるので、一般会計処理に会計データを引 き渡すまでの機能は、別途開発又は購入する必要がある。",
+          "vi": "Vì là hệ thống chỉ giới hạn trong nghiệp vụ kế toán tài chính, nên các chức năng đến bước chuyển dữ liệu kế toán sang xử lý kế toán tổng hợp cần phải phát triển hoặc mua riêng."
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "種々の業務関連アプリケーションを処理する統合業務システムであり、様々な 業種及び規模の企業で利用されている。",
+          "vi": "Là hệ thống nghiệp vụ tích hợp xử lý nhiều ứng dụng liên quan đến các nghiệp vụ khác nhau, và được sử dụng ở doanh nghiệp thuộc nhiều ngành nghề và quy mô khác nhau."
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "販売,仕入,財務会計処理を統合したシステムであり、個人商店などの小規模 企業での利用に特化したシステムである。",
+          "vi": "Là hệ thống tích hợp bán hàng, mua hàng, xử lý kế toán tài chính, và được thiết kế chuyên biệt cho doanh nghiệp quy mô nhỏ như cửa hàng cá thể."
+        }
+      ],
+      "correct_option_id": "C",
+      "explanation_vi": "ERP là hệ thống hoạch định nguồn lực doanh nghiệp, tích hợp nhiều chức năng nghiệp vụ như kế toán, mua hàng, bán hàng, sản xuất, nhân sự trong cùng một nền tảng. Vì vậy phương án C mô tả đúng bản chất và phạm vi ứng dụng rộng của ERP. Các phương án A, B, D đều mô tả quá hẹp hoặc sai lệch về đối tượng sử dụng và phạm vi chức năng của ERP.",
+      "assets": [],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2016h28h_ip_qs.pdf",
+        "pages": [
+          3
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2016h28h-006",
+      "exam": "2016h28h",
+      "question_no": 6,
+      "knowledge_group": "システム戦略",
+      "question": {
+        "ja": "情報システムの構築に当たり，要件定義から開発作業までを外部に委託し，開発したシステムの運用は自社で行いたい。委託の際に利用するサービスとして，適切なものはどれか。",
+        "vi": "Khi xây dựng hệ thống thông tin, muốn thuê ngoài từ khâu định nghĩa yêu cầu đến công việc phát triển, còn việc vận hành hệ thống đã phát triển thì muốn tự công ty mình thực hiện. Dịch vụ nào là phù hợp để sử dụng khi thuê ngoài?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "SaaS (Software as a Service)",
+          "vi": "SaaS (Software as a Service)"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "システムインテグレーションサービス",
+          "vi": "Dịch vụ tích hợp hệ thống (System Integration Service)"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "ハウジングサービス",
+          "vi": "Dịch vụ housing"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "ホスティングサービス",
+          "vi": "Dịch vụ hosting"
+        }
+      ],
+      "correct_option_id": "B",
+      "explanation_vi": "System Integration Service là dịch vụ nhận thực hiện việc xây dựng hệ thống theo yêu cầu, từ định nghĩa yêu cầu đến phát triển, nên phù hợp với đề bài. SaaS là cung cấp sẵn phần mềm dưới dạng dịch vụ, không phải thuê phát triển riêng. Housing và hosting chủ yếu liên quan đến nơi đặt hoặc vận hành máy chủ, không phù hợp với nhu cầu thuê phát triển hệ thống.",
+      "assets": [
+        {
+          "type": "pdf_page",
+          "path": "../IT-PP/2016h28h_ip_qs.pdf",
+          "pages": [
+            4
+          ]
+        }
+      ],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2016h28h_ip_qs.pdf",
+        "pages": [
+          4
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2016h28h-007",
+      "exam": "2016h28h",
+      "question_no": 7,
+      "knowledge_group": "技術要素",
+      "question": {
+        "ja": "情報リテラシに該当するものはどれか。",
+        "vi": "Nội dung nào tương ứng với information literacy?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "PC の新製品情報,各機種の性能を知っていること",
+          "vi": "Biết thông tin về các sản phẩm PC mới và hiệu năng của từng mẫu máy"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "技術革新が社会に及ぼす影響を洞察できること",
+          "vi": "Có thể nhìn nhận, phân tích ảnh hưởng mà đổi mới công nghệ gây ra đối với xã hội"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "業務に必要なデータを検索し,目的に合わせて活用できること",
+          "vi": "Có thể tìm kiếm dữ liệu cần thiết cho công việc và sử dụng phù hợp với mục đích"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "高度なプログラム言語を使ってソフトウェアを開発できること",
+          "vi": "Có thể sử dụng ngôn ngữ lập trình nâng cao để phát triển phần mềm"
+        }
+      ],
+      "correct_option_id": "C",
+      "explanation_vi": "Information literacy là năng lực tìm kiếm, đánh giá và sử dụng thông tin cần thiết một cách phù hợp, nên phương án ウ là đúng. ア chỉ là hiểu biết về sản phẩm, イ thiên về năng lực phân tích xã hội, còn エ là kỹ năng lập trình chuyên môn, không phải khái niệm cốt lõi của information literacy.",
+      "assets": [
+        {
+          "type": "pdf_page",
+          "path": "../IT-PP/2016h28h_ip_qs.pdf",
+          "pages": [
+            4
+          ]
+        }
+      ],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2016h28h_ip_qs.pdf",
+        "pages": [
+          4
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2016h28h-008",
+      "exam": "2016h28h",
+      "question_no": 8,
+      "knowledge_group": "企業と法務",
+      "question": {
+        "ja": "著作権法による保護の対象となるものはどれか。",
+        "vi": "Đối tượng nào được bảo hộ theo Luật bản quyền?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "アルゴリズム",
+          "vi": "Thuật toán"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "操作マニュアル",
+          "vi": "Tài liệu hướng dẫn sử dụng"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "プログラム言語",
+          "vi": "Ngôn ngữ lập trình"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "プロトコル",
+          "vi": "Giao thức"
+        }
+      ],
+      "correct_option_id": "B",
+      "explanation_vi": "Tài liệu hướng dẫn sử dụng là tác phẩm có tính sáng tạo trong cách diễn đạt nên được bảo hộ bởi luật bản quyền. Thuật toán, ngôn ngữ lập trình và giao thức về cơ bản là ý tưởng, quy tắc hoặc phương thức, nên không phải đối tượng được bảo hộ bản quyền theo nghĩa này.",
+      "assets": [
+        {
+          "type": "pdf_page",
+          "path": "../IT-PP/2016h28h_ip_qs.pdf",
+          "pages": [
+            4
+          ]
+        }
+      ],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2016h28h_ip_qs.pdf",
+        "pages": [
+          4
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2016h28h-009",
+      "exam": "2016h28h",
+      "question_no": 9,
+      "knowledge_group": "企業と法務",
+      "question": {
+        "ja": "大手システム開発会社A社からプログラムの作成を受託しているB社が下請代金支 払遅延等防止法(以下,下請法)の対象会社であるとき、下請法に基づく代金の支払 いに関する記述のうち、適切なものはどれか。",
+        "vi": "Khi công ty B nhận gia công tạo chương trình từ công ty phát triển hệ thống lớn A và B là doanh nghiệp thuộc đối tượng áp dụng của Luật phòng chống chậm thanh toán tiền thầu phụ (sau đây gọi là Luật thầu phụ), mô tả nào sau đây về việc thanh toán theo luật này là phù hợp?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "A 社はプログラムの受領日から起算して 60 日以内に、検査の終了にかかわらず 代金を支払う義務がある。",
+          "vi": "Công ty A có nghĩa vụ thanh toán trong vòng 60 ngày kể từ ngày nhận chương trình, bất kể việc kiểm tra đã kết thúc hay chưa."
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "A 社はプログラムの受領日から起算して 60 日を超えても,検査が終了していな ければ代金を支払う義務はない。",
+          "vi": "Công ty A dù đã quá 60 ngày kể từ ngày nhận chương trình thì nếu việc kiểm tra chưa kết thúc vẫn không có nghĩa vụ thanh toán."
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "B 社は確実な代金支払いを受けるために、プログラム納品日から起算して 60 日 間はA社による検査を受ける義務がある。",
+          "vi": "Để chắc chắn nhận được tiền thanh toán, công ty B có nghĩa vụ chịu sự kiểm tra của A trong 60 ngày kể từ ngày giao nộp chương trình."
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "B 社は代金受領日から起算して 60 日後に、納品したプログラムに対する A 社の 検査を受ける義務がある。",
+          "vi": "Công ty B có nghĩa vụ chịu sự kiểm tra của A đối với chương trình đã giao sau 60 ngày kể từ ngày nhận tiền thanh toán."
+        }
+      ],
+      "correct_option_id": "A",
+      "explanation_vi": "Theo Luật thầu phụ, bên đặt hàng phải thanh toán trong thời hạn tối đa 60 ngày tính từ ngày nhận hàng, không phụ thuộc vào việc kiểm tra đã hoàn tất hay chưa. Vì vậy ア là đúng. Các phương án イ, ウ, エ đều diễn giải sai về thời hạn thanh toán hoặc nghĩa vụ kiểm tra của các bên.",
+      "assets": [
+        {
+          "type": "pdf_page",
+          "path": "../IT-PP/2016h28h_ip_qs.pdf",
+          "pages": [
+            5
+          ]
+        }
+      ],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2016h28h_ip_qs.pdf",
+        "pages": [
+          5
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2016h28h-010",
+      "exam": "2016h28h",
+      "question_no": 10,
+      "knowledge_group": "開発技術",
+      "question": {
+        "ja": "図のソフトウェアライフサイクルを、運用プロセス,開発プロセス,企画プロセ ス,保守プロセス,要件定義プロセスに分類したとき,a に当てはまるものはどれ か。ここで,a と網掛けの部分には、開発,企画,保守,要件定義のいずれかが入 るものとする。\na\n運用",
+        "vi": "Khi phân loại software life cycle trong hình thành các process là process vận hành, process phát triển, process lập kế hoạch, process bảo trì, process định nghĩa yêu cầu, thì nội dung nào phù hợp với vị trí a? Ở đây, tại a và phần được tô lưới sẽ điền một trong các mục: phát triển, lập kế hoạch, bảo trì, định nghĩa yêu cầu.\na\nVận hành"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "開発",
+          "vi": "Phát triển"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "企画",
+          "vi": "Lập kế hoạch"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "保守",
+          "vi": "Bảo trì"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "要件定義",
+          "vi": "Định nghĩa yêu cầu"
+        }
+      ],
+      "correct_option_id": "B",
+      "explanation_vi": "Trong software life cycle, trước giai đoạn vận hành thường là giai đoạn lập kế hoạch rồi mới đến định nghĩa yêu cầu và phát triển; sau vận hành là bảo trì. Do đó vị trí a là 企画 (lập kế hoạch). Các phương án còn lại không khớp với thứ tự chuẩn của vòng đời phần mềm.",
+      "assets": [
+        {
+          "type": "pdf_page",
+          "path": "../IT-PP/2016h28h_ip_qs.pdf",
+          "pages": [
+            5
+          ]
+        }
+      ],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2016h28h_ip_qs.pdf",
+        "pages": [
+          5
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2016h28h-011",
+      "exam": "2016h28h",
+      "question_no": 11,
+      "knowledge_group": "経営戦略",
+      "question": {
+        "ja": "CRMに必要な情報として、適切なものはどれか。",
+        "vi": "Thông tin nào là phù hợp và cần thiết cho CRM?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "顧客データ，顧客の購買履歴",
+          "vi": "Dữ liệu khách hàng, lịch sử mua hàng của khách hàng"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "設計図面データ",
+          "vi": "Dữ liệu bản vẽ thiết kế"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "専門家の知識データ",
+          "vi": "Dữ liệu tri thức của chuyên gia"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "販売日時，販売店，販売商品，販売数量",
+          "vi": "Ngày giờ bán hàng, cửa hàng bán, sản phẩm bán, số lượng bán"
+        }
+      ],
+      "correct_option_id": "A",
+      "explanation_vi": "CRM là quản trị quan hệ khách hàng, nên thông tin cốt lõi là dữ liệu khách hàng và lịch sử mua hàng để hiểu nhu cầu và chăm sóc khách hàng. B là dữ liệu thiết kế, C là tri thức chuyên gia, không trực tiếp phục vụ CRM. D là dữ liệu giao dịch bán hàng, có ích nhưng thiếu thông tin định danh và quan hệ khách hàng nên không phù hợp bằng A.",
+      "assets": [
+        {
+          "type": "pdf_page",
+          "path": "../IT-PP/2016h28h_ip_qs.pdf",
+          "pages": [
+            6
+          ]
+        }
+      ],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2016h28h_ip_qs.pdf",
+        "pages": [
+          6
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2016h28h-012",
+      "exam": "2016h28h",
+      "question_no": 12,
+      "knowledge_group": "企業と法務",
+      "question": {
+        "ja": "A社の子会社であるB社では,A社の製品も販売している。A社とB社の当期の売上高, 売上原価,売上総利益が表のとおりであり,当期のA社の売上高におけるB社への販 売分が2,000百万円である。このとき、連結損益計算書における当期仕入高は何百万 円か。ここで,A社はB社からの仕入はないものとする。\nA 社損益計算書\n単位 百万円\n売上高\n20,000\n売上原価\n12,000\n期首棚卸高\n1,000\n当期仕入高\n13,000\n期末棚卸高\n2,000\n売上総利益\n8,000\nB 社損益計算書\n単位 百万円\n売上高\n6,000\n売上原価\n3,000\n期首棚卸高\n1,000\n当期仕入高\n3,000\n期末棚卸高\n1,000\n売上総利益\n3,000",
+        "vi": "Công ty B là công ty con của công ty A, và B cũng bán các sản phẩm của A. Doanh thu, giá vốn hàng bán và lợi nhuận gộp của A và B trong kỳ hiện tại như trong bảng. Phần doanh thu bán cho B trong doanh thu của A trong kỳ hiện tại là 2.000 triệu yên. Khi đó, trị giá mua hàng trong kỳ trên báo cáo kết quả kinh doanh hợp nhất là bao nhiêu triệu yên? Giả sử A không có mua hàng từ B.\n\nBáo cáo kết quả kinh doanh của công ty A\nĐơn vị: triệu yên\nDoanh thu\n20.000\nGiá vốn hàng bán\n12.000\nTồn kho đầu kỳ\n1.000\nTrị giá mua hàng trong kỳ\n13.000\nTồn kho cuối kỳ\n2.000\nLợi nhuận gộp\n8.000\n\nBáo cáo kết quả kinh doanh của công ty B\nĐơn vị: triệu yên\nDoanh thu\n6.000\nGiá vốn hàng bán\n3.000\nTồn kho đầu kỳ\n1.000\nTrị giá mua hàng trong kỳ\n3.000\nTồn kho cuối kỳ\n1.000\nLợi nhuận gộp\n3.000"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "11,000",
+          "vi": "11.000"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "12,000",
+          "vi": "12.000"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "14,000",
+          "vi": "14.000"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "16,000",
+          "vi": "16.000"
+        }
+      ],
+      "correct_option_id": "C",
+      "explanation_vi": "Trị giá mua hàng hợp nhất = mua hàng của A + mua hàng của B - giao dịch nội bộ A bán cho B = 13.000 + 3.000 - 2.000 = 14.000 (triệu yên). Vì A không mua từ B nên chỉ cần loại trừ phần B mua từ A. Các lựa chọn khác sai vì либо không cộng đủ tổng mua hàng, либо không loại trừ đúng giao dịch nội bộ.",
+      "assets": [
+        {
+          "type": "pdf_page",
+          "path": "../IT-PP/2016h28h_ip_qs.pdf",
+          "pages": [
+            6
+          ]
+        }
+      ],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2016h28h_ip_qs.pdf",
+        "pages": [
+          6
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2016h28h-013",
+      "exam": "2016h28h",
+      "question_no": 13,
+      "knowledge_group": "経営戦略",
+      "question": {
+        "ja": "BPM (Business Process Management) の考えに基づいた業務改善に関する説明と して,最も適切なものはどれか。",
+        "vi": "Mô tả nào sau đây là phù hợp nhất về cải tiến nghiệp vụ dựa trên tư tưởng của BPM (Business Process Management)?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "企業内のデータを統合し,これを用いて業務上の意思決定の支援を図る。",
+          "vi": "Tích hợp dữ liệu trong doanh nghiệp và dùng dữ liệu đó để hỗ trợ ra quyết định trong nghiệp vụ."
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "業務と経営資源を統合的に管理し,経営資源の活用方法の改善を図る。",
+          "vi": "Quản lý tích hợp nghiệp vụ và nguồn lực quản lý, từ đó cải thiện cách sử dụng các nguồn lực quản lý."
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "業務の実行結果などから業務プロセス自体を見直し,継続的な改善を図る。",
+          "vi": "Dựa trên kết quả thực hiện nghiệp vụ để xem xét lại chính bản thân quy trình nghiệp vụ và thực hiện cải tiến liên tục."
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "業務プロセスの分業化を進め,作業効率の向上を図る。",
+          "vi": "Đẩy mạnh phân công lao động trong quy trình nghiệp vụ để nâng cao hiệu suất công việc."
+        }
+      ],
+      "correct_option_id": "C",
+      "explanation_vi": "BPM tập trung vào việc quản lý và cải tiến liên tục các quy trình nghiệp vụ dựa trên kết quả thực thi và đo lường thực tế. ア nghiêng về BI/DWH, イ gần với ERP hay quản trị nguồn lực, còn エ chỉ là cải thiện hiệu suất theo hướng phân công công việc chứ không phải tư tưởng cốt lõi của BPM.",
+      "assets": [
+        {
+          "type": "pdf_page",
+          "path": "../IT-PP/2016h28h_ip_qs.pdf",
+          "pages": [
+            7
+          ]
+        }
+      ],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2016h28h_ip_qs.pdf",
+        "pages": [
+          7
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2016h28h-014",
+      "exam": "2016h28h",
+      "question_no": 14,
+      "knowledge_group": "コンピュータシステム",
+      "question": {
+        "ja": "紙に書かれた過去の文書や設計図を電子ファイル化して、全社で共有したい。こ のときに使用する機器として、適切なものはどれか。",
+        "vi": "Muốn chuyển các tài liệu cũ và bản vẽ thiết kế được viết trên giấy thành file điện tử để chia sẻ trong toàn công ty. Thiết bị nào là phù hợp để sử dụng trong trường hợp này?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "GPS 受信機",
+          "vi": "Bộ thu GPS"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "スキャナ",
+          "vi": "Scanner"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "ディジタイザ",
+          "vi": "Digitizer"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "プロッタ",
+          "vi": "Plotter"
+        }
+      ],
+      "correct_option_id": "B",
+      "explanation_vi": "Scanner là thiết bị dùng để số hóa tài liệu giấy thành dữ liệu điện tử dưới dạng hình ảnh hoặc văn bản. ア là thiết bị định vị, ウ chủ yếu dùng để nhập tọa độ/hình vẽ đặc thù, エ là thiết bị xuất bản vẽ ra giấy nên không phù hợp.",
+      "assets": [
+        {
+          "type": "pdf_page",
+          "path": "../IT-PP/2016h28h_ip_qs.pdf",
+          "pages": [
+            7
+          ]
+        }
+      ],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2016h28h_ip_qs.pdf",
+        "pages": [
+          7
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2016h28h-015",
+      "exam": "2016h28h",
+      "question_no": 15,
+      "knowledge_group": "経営戦略",
+      "question": {
+        "ja": "技術開発戦略の策定に当たって,分析を行うために用いる技術ポートフォリオの 説明として、適切なものはどれか。",
+        "vi": "Mô tả nào sau đây là phù hợp về kỹ thuật portfolio được dùng để phân tích khi xây dựng chiến lược phát triển công nghệ?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "技術水準や技術の成熟度を軸にしたマトリックスに,市場における自社の技術 の位置づけを示したもの",
+          "vi": "Là ma trận lấy trình độ công nghệ và mức độ trưởng thành của công nghệ làm trục, thể hiện vị trí công nghệ của công ty trên thị trường."
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "自社製品の開発開始から損益分岐点に達するまでの期間,投資の累計,利益の 累計などを示したもの",
+          "vi": "Thể hiện khoảng thời gian từ khi bắt đầu phát triển sản phẩm của công ty đến khi đạt điểm hòa vốn, tổng đầu tư lũy kế, tổng lợi nhuận lũy kế, v.v."
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "自社で開発すべき技術の開発日程や到達目標,開発技術と新製品やビジネスプ ランとの関連などを示したもの",
+          "vi": "Thể hiện lịch trình phát triển và mục tiêu cần đạt của công nghệ mà công ty nên tự phát triển, cũng như mối liên hệ giữa công nghệ phát triển với sản phẩm mới và kế hoạch kinh doanh."
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "自社の保有する技術を要素技術に分解し、木構造の形式で体系的に示したもの",
+          "vi": "Phân rã công nghệ mà công ty đang sở hữu thành các công nghệ thành phần và thể hiện một cách có hệ thống dưới dạng cấu trúc cây."
+        }
+      ],
+      "correct_option_id": "A",
+      "explanation_vi": "Kỹ thuật portfolio là công cụ phân tích dạng ma trận để xác định vị trí công nghệ của doanh nghiệp theo các trục như mức độ công nghệ và độ trưởng thành công nghệ. イ là biểu đồ đầu tư–thu hồi vốn, ウ gần với technology roadmap, còn エ là cây phân rã công nghệ nên không phải portfolio.",
+      "assets": [],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2016h28h_ip_qs.pdf",
+        "pages": [
+          7
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2016h28h-016",
+      "exam": "2016h28h",
+      "question_no": 16,
+      "knowledge_group": "企業と法務",
+      "question": {
+        "ja": "企業がISO 9001を導入することによって期待できるメリットのうち、適切なもの はどれか。",
+        "vi": "Trong số các lợi ích có thể kỳ vọng khi doanh nghiệp áp dụng ISO 9001, phương án nào là phù hợp?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "企業の貿易手続が標準化され、効率の向上や非関税障壁の減少につながる。",
+          "vi": "Thủ tục thương mại của doanh nghiệp được tiêu chuẩn hóa, dẫn đến nâng cao hiệu quả và giảm các rào cản phi thuế quan."
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "業界で技術仕様が標準化され、製品の品質の向上や市場の拡大が進む。",
+          "vi": "Quy cách kỹ thuật trong ngành được tiêu chuẩn hóa, từ đó nâng cao chất lượng sản phẩm và mở rộng thị trường."
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "情報資産の取扱方法が標準化され、情報セキュリティの品質が向上する。",
+          "vi": "Cách thức xử lý tài sản thông tin được tiêu chuẩn hóa, từ đó nâng cao chất lượng an toàn thông tin."
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "品質管理に関する業務運営が標準化され、管理の質や効率が向上する。",
+          "vi": "Việc vận hành nghiệp vụ liên quan đến quản lý chất lượng được tiêu chuẩn hóa, từ đó nâng cao chất lượng quản lý và hiệu quả."
+        }
+      ],
+      "correct_option_id": "D",
+      "explanation_vi": "ISO 9001 là tiêu chuẩn về hệ thống quản lý chất lượng, nên lợi ích phù hợp là chuẩn hóa hoạt động vận hành liên quan đến quản lý chất lượng và cải thiện chất lượng quản lý, hiệu quả công việc. A nói về thủ tục thương mại, B nghiêng về tiêu chuẩn kỹ thuật ngành, còn C thuộc lĩnh vực an toàn thông tin gần với ISO/IEC 27001 hơn. Vì vậy đáp án đúng là エ.",
+      "assets": [],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2016h28h_ip_qs.pdf",
+        "pages": [
+          8
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2016h28h-017",
+      "exam": "2016h28h",
+      "question_no": 17,
+      "knowledge_group": "経営戦略",
+      "question": {
+        "ja": "SNSをマーケティングに活用した事例として、最も適切なものはどれか。",
+        "vi": "Trường hợp nào sau đây là ví dụ phù hợp nhất về việc tận dụng SNS cho marketing?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "インターネットで注文された商品の引渡しとその代金の受取りを支障なく行う。",
+          "vi": "Thực hiện suôn sẻ việc giao hàng và thu tiền đối với sản phẩm được đặt qua Internet."
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "書込み機能を利用して、登録会員に自社商品の評価内容を記載してもらう。",
+          "vi": "Sử dụng chức năng đăng bài để yêu cầu hội viên đã đăng ký viết nội dung đánh giá về sản phẩm của công ty mình."
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "検索エンジンによる検索結果の上位に自社サイトを表示させて、訪問者増を狙 う。",
+          "vi": "Hiển thị website của công ty ở vị trí cao trong kết quả tìm kiếm của search engine nhằm tăng lượng truy cập."
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "同業他社よりも安い価格を設定して、顧客の購入意欲を高める。",
+          "vi": "Đặt giá thấp hơn các công ty cùng ngành để nâng cao ý muốn mua hàng của khách hàng."
+        }
+      ],
+      "correct_option_id": "B",
+      "explanation_vi": "SNS được dùng mạnh trong marketing nhờ khả năng lan truyền đánh giá, bình luận và tương tác của người dùng, nên phương án B là phù hợp nhất. A là hoạt động thương mại điện tử và thanh toán, C là SEO/SEM, còn D là chiến lược định giá chứ không phải tận dụng SNS. Do đó đáp án đúng là イ.",
+      "assets": [
+        {
+          "type": "pdf_page",
+          "path": "../IT-PP/2016h28h_ip_qs.pdf",
+          "pages": [
+            8
+          ]
+        }
+      ],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2016h28h_ip_qs.pdf",
+        "pages": [
+          8
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2016h28h-018",
+      "exam": "2016h28h",
+      "question_no": 18,
+      "knowledge_group": "経営戦略",
+      "question": {
+        "ja": "組立生産される製品 W, X, Y, Z の1個当たりの利益, 1個当たりの組立作業時間, 組立作業1分当たりの利益, 1週間の最大生産可能数は表のとおりである。1週間の利益を最大にするように生産計画を立てるとき、製品 Z の生産個数は幾つか。ここで, 1週間の総組立作業時間は40時間であり, 製品 W, X, Y, Z の全てを生産する必要はなく, 同時には一つの製品しか組立生産できないものとする。\n\n| 製品 | 1個当たりの利益 A(千円) | 1個当たりの組立作業時間 B(分) | 組立作業1分当たりの利益 C=A/B(千円/分) | 1週間の最大生産可能数 D(個) |\n|---|---:|---:|---:|---:|\n| W | 50 | 20 | 2.5 | 40 |\n| X | 60 | 40 | 1.5 | 50 |\n| Y | 90 | 30 | 3 | 20 |\n| Z | 100 | 50 | 2 | 45 |",
+        "vi": "Đối với các sản phẩm W, X, Y, Z được sản xuất theo kiểu lắp ráp, lợi nhuận trên mỗi sản phẩm, thời gian lắp ráp trên mỗi sản phẩm, lợi nhuận trên mỗi phút lắp ráp và số lượng tối đa có thể sản xuất trong 1 tuần được cho như trong bảng. Khi lập kế hoạch sản xuất để tối đa hóa lợi nhuận trong 1 tuần, số lượng sản phẩm Z cần sản xuất là bao nhiêu? Biết rằng tổng thời gian lắp ráp trong 1 tuần là 40 giờ, không nhất thiết phải sản xuất tất cả các sản phẩm W, X, Y, Z, và tại cùng một thời điểm chỉ có thể lắp ráp một loại sản phẩm.\n\n| Sản phẩm | Lợi nhuận trên 1 sản phẩm A (nghìn yên) | Thời gian lắp ráp trên 1 sản phẩm B (phút) | Lợi nhuận trên 1 phút lắp ráp C=A/B (nghìn yên/phút) | Số lượng tối đa có thể sản xuất trong 1 tuần D (sản phẩm) |\n|---|---:|---:|---:|---:|\n| W | 50 | 20 | 2.5 | 40 |\n| X | 60 | 40 | 1.5 | 50 |\n| Y | 90 | 30 | 3 | 20 |\n| Z | 100 | 50 | 2 | 45 |"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "0",
+          "vi": "0"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "8",
+          "vi": "8"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "20",
+          "vi": "20"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "45",
+          "vi": "45"
+        }
+      ],
+      "correct_option_id": "C",
+      "explanation_vi": "Tổng thời gian 1 tuần là 40 giờ = 2.400 phút. Để tối đa hóa lợi nhuận, ưu tiên sản xuất theo lợi nhuận/phút giảm dần: Y(3), W(2.5), Z(2), X(1.5); sản xuất tối đa Y = 20 cái dùng 600 phút, W = 40 cái dùng 800 phút, còn lại 1.000 phút dành cho Z nên sản xuất được 1.000/50 = 20 cái. X không được sản xuất vì hết thời gian, nên đáp án đúng là C.",
+      "assets": [
+        {
+          "type": "pdf_page",
+          "path": "../IT-PP/2016h28h_ip_qs.pdf",
+          "pages": [
+            9
+          ]
+        }
+      ],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2016h28h_ip_qs.pdf",
+        "pages": [
+          9
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2016h28h-019",
+      "exam": "2016h28h",
+      "question_no": 19,
+      "knowledge_group": "企業と法務",
+      "question": {
+        "ja": "小売業を営むある企業の当期の売上高は1,500万円,商品仕入高は1,000万円であった。期首の商品棚卸高が100万円,期末の商品棚卸高が200万円であるとき,当期の売上総利益は何万円か。",
+        "vi": "Một doanh nghiệp kinh doanh bán lẻ có doanh thu kỳ này là 15 triệu yên, giá trị hàng mua vào là 10 triệu yên. Khi hàng tồn kho đầu kỳ là 1 triệu yên và hàng tồn kho cuối kỳ là 2 triệu yên, lợi nhuận gộp của kỳ này là bao nhiêu triệu yên?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "200",
+          "vi": "2"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "400",
+          "vi": "4"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "500",
+          "vi": "5"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "600",
+          "vi": "6"
+        }
+      ],
+      "correct_option_id": "D",
+      "explanation_vi": "Giá vốn hàng bán = tồn kho đầu kỳ + hàng mua vào - tồn kho cuối kỳ = 100 + 1.000 - 200 = 900 (man yên). Lợi nhuận gộp = doanh thu 1.500 - giá vốn 900 = 600 (man yên). Vì vậy đáp án đúng là D.",
+      "assets": [],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2016h28h_ip_qs.pdf",
+        "pages": [
+          9
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2016h28h-020",
+      "exam": "2016h28h",
+      "question_no": 20,
+      "knowledge_group": "企業と法務",
+      "question": {
+        "ja": "次の損益計算資料から求められる経常利益は何百万円か。\n単位 百万円\n| 項目 | 金額 |\n|---|---:|\n| 売上高 | 2,000 |\n| 売上原価 | 1,500 |\n| 販売費及び一般管理費 | 300 |\n| 営業外収益 | 30 |\n| 営業外費用 | 20 |\n| 特別利益 | 15 |\n| 特別損失 | 25 |\n| 法人税,住民税及び事業税 | 80 |",
+        "vi": "Từ dữ liệu báo cáo lãi lỗ sau, lợi nhuận thông thường (経常利益) là bao nhiêu trăm triệu yên?\nĐơn vị: trăm triệu yên\n| Hạng mục | Số tiền |\n|---|---:|\n| Doanh thu | 2.000 |\n| Giá vốn hàng bán | 1.500 |\n| Chi phí bán hàng và quản lý doanh nghiệp | 300 |\n| Thu nhập ngoài hoạt động kinh doanh | 30 |\n| Chi phí ngoài hoạt động kinh doanh | 20 |\n| Lợi nhuận đặc biệt | 15 |\n| Lỗ đặc biệt | 25 |\n| Thuế pháp nhân, thuế cư trú và thuế kinh doanh | 80 |"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "120",
+          "vi": "120"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "190",
+          "vi": "190"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "200",
+          "vi": "200"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "210",
+          "vi": "210"
+        }
+      ],
+      "correct_option_id": "D",
+      "explanation_vi": "Lợi nhuận hoạt động = 2.000 - 1.500 - 300 = 200. Lợi nhuận thông thường = lợi nhuận hoạt động + thu nhập ngoài hoạt động kinh doanh - chi phí ngoài hoạt động kinh doanh = 200 + 30 - 20 = 210. Các khoản đặc biệt và thuế không dùng để tính 経常利益, nên đáp án đúng là D.",
+      "assets": [],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2016h28h_ip_qs.pdf",
+        "pages": [
+          10
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2016h28h-021",
+      "exam": "2016h28h",
+      "question_no": 21,
+      "knowledge_group": "企業と法務",
+      "question": {
+        "ja": "一定の条件に該当する会社に対して、取締役の職務に関するコンプライアンスを 確保するための体制整備を義務付けている法令はどれか。",
+        "vi": "Trong các văn bản pháp luật sau, văn bản nào quy định nghĩa vụ phải xây dựng hệ thống nhằm bảo đảm compliance liên quan đến nhiệm vụ của giám đốc đối với các công ty thuộc một số điều kiện nhất định?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "会社法",
+          "vi": "Luật Công ty"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "金融商品取引法",
+          "vi": "Luật Giao dịch Công cụ Tài chính"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "公益通報者保護法",
+          "vi": "Luật Bảo vệ người tố giác vì lợi ích công cộng"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "民法",
+          "vi": "Bộ luật Dân sự"
+        }
+      ],
+      "correct_option_id": "A",
+      "explanation_vi": "Đáp án đúng là ア vì Luật Công ty (会社法) quy định đối với một số công ty nhất định phải xây dựng hệ thống kiểm soát nội bộ để bảo đảm tính tuân thủ trong việc thực hiện chức trách của giám đốc. イ chủ yếu liên quan đến công bố thông tin và kiểm soát nội bộ trong báo cáo tài chính. ウ là luật bảo vệ người tố giác, còn エ là quy định chung của pháp luật dân sự nên không phải đáp án.",
+      "assets": [],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2016h28h_ip_qs.pdf",
+        "pages": [
+          10
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2016h28h-022",
+      "exam": "2016h28h",
+      "question_no": 22,
+      "knowledge_group": "システム戦略",
+      "question": {
+        "ja": "導入予定のシステムについて、3種類の実現方式を検討している。各実現方式で見 込まれる費用の内訳が表のとおりであるとき、導入後の運用期間を10年とした場合 の開発·導入,運用,保守の総費用の大小関係を表したものはどれか。ここで,利 用者は毎年4,000人で一定とする。また、記載のない条件(10年後の除却費,更改費 用など)は考慮しない。\n単位 円\n実現方式\n初期費用\n年間費用\n運用\n保守\nA案\n自主開発\n4億\n500 万\n200 万\nB 案\nパッケージ適用\n2億\n初期費用の 15%\nC 案\nSaaS 利用\n5,000 万\n利用者1人当たり1万\n300 万",
+        "vi": "Đối với hệ thống dự kiến triển khai, đang xem xét 3 phương thức thực hiện. Khi chi tiết chi phí dự kiến của từng phương thức như trong bảng, nếu thời gian vận hành sau khi đưa vào sử dụng là 10 năm thì quan hệ lớn nhỏ của tổng chi phí phát triển/triển khai, vận hành và bảo trì là gì? Biết rằng số người dùng mỗi năm cố định là 4.000 người. Ngoài ra, các điều kiện không được nêu (như chi phí loại bỏ sau 10 năm, chi phí thay mới, v.v.) không được xét đến.\nĐơn vị: yên\nPhương thức thực hiện\nChi phí ban đầu\nChi phí hằng năm\nVận hành\nBảo trì\nPhương án A\nTự phát triển\n4억\n500万\n200万\nPhương án B\nÁp dụng package\n2억\n15% chi phí ban đầu\nPhương án C\nSử dụng SaaS\n5,000万\n1万 cho mỗi người dùng\n300万"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "A案>B案>C案",
+          "vi": "A > B > C"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "A案>C案>B案",
+          "vi": "A > C > B"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "B案>C案>A案",
+          "vi": "B > C > A"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "C案>B案>A案",
+          "vi": "C > B > A"
+        }
+      ],
+      "correct_option_id": "C",
+      "explanation_vi": "Tổng chi phí 10 năm: A = 4億 + 10×(500万+200万) = 4億7,000万; B = 2億 + 10×(15%×2億) = 5億; C = 5,000万 + 10×(4,000×1万 + 300万) = 4億8,000万. Do đó thứ tự từ lớn đến nhỏ là B > C > A, tương ứng với ウ. Các phương án khác sai vì không đúng kết quả tính tổng chi phí trong 10 năm.",
+      "assets": [
+        {
+          "type": "pdf_page",
+          "path": "../IT-PP/2016h28h_ip_qs.pdf",
+          "pages": [
+            11
+          ]
+        }
+      ],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2016h28h_ip_qs.pdf",
+        "pages": [
+          11
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2016h28h-023",
+      "exam": "2016h28h",
+      "question_no": 23,
+      "knowledge_group": "企業と法務",
+      "question": {
+        "ja": "知的財産権のうち、全てが産業財産権に該当するものの組合せはどれか。",
+        "vi": "Trong các quyền sở hữu trí tuệ sau, tổ hợp nào mà tất cả đều thuộc nhóm quyền sở hữu công nghiệp?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "意匠権,実用新案権,著作権",
+          "vi": "Quyền kiểu dáng, quyền giải pháp hữu ích, quyền tác giả"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "意匠権,実用新案権,特許権",
+          "vi": "Quyền kiểu dáng, quyền giải pháp hữu ích, quyền sáng chế"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "意匠権,著作権,特許権",
+          "vi": "Quyền kiểu dáng, quyền tác giả, quyền sáng chế"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "実用新案権,著作権,特許権",
+          "vi": "Quyền giải pháp hữu ích, quyền tác giả, quyền sáng chế"
+        }
+      ],
+      "correct_option_id": "B",
+      "explanation_vi": "Đáp án đúng là イ vì quyền kiểu dáng, quyền giải pháp hữu ích và quyền sáng chế đều là quyền sở hữu công nghiệp. 著作権 (quyền tác giả) không thuộc quyền sở hữu công nghiệp mà là một nhóm riêng trong quyền sở hữu trí tuệ. Vì vậy các phương án ア, ウ, エ đều sai do có chứa 著作権.",
+      "assets": [],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2016h28h_ip_qs.pdf",
+        "pages": [
+          11
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2016h28h-024",
+      "exam": "2016h28h",
+      "question_no": 24,
+      "knowledge_group": "経営戦略",
+      "question": {
+        "ja": "部下の育成·指導事例のうち,0JTに当たるものはどれか。",
+        "vi": "Trong các ví dụ về đào tạo và hướng dẫn cấp dưới sau đây, trường hợp nào thuộc OJT?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "部下に進路と目標を設定させ、その達成計画を立てさせた。",
+          "vi": "Yêu cầu cấp dưới tự thiết lập lộ trình và mục tiêu, rồi lập kế hoạch để đạt được chúng."
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "部下の進路を念頭において、人事部主催の管理者養成コースを受講させた。",
+          "vi": "Cân nhắc lộ trình nghề nghiệp của cấp dưới và cho họ tham gia khóa đào tạo quản lý do phòng nhân sự tổ chức."
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "部下の設計能力の向上のために,新規開発のプロジェクトに参加させた。",
+          "vi": "Để nâng cao năng lực thiết kế của cấp dưới, cho họ tham gia dự án phát triển mới."
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "部下の専門分野と進路に合った外部主催の講習会を選定し、受講させた。",
+          "vi": "Lựa chọn khóa học do bên ngoài tổ chức phù hợp với chuyên môn và định hướng nghề nghiệp của cấp dưới rồi cho họ tham gia."
+        }
+      ],
+      "correct_option_id": "C",
+      "explanation_vi": "Đáp án đúng là ウ vì OJT là đào tạo ngay trong công việc thực tế thông qua tham gia và thực hiện công việc. Việc tham gia dự án phát triển mới chính là học trong môi trường làm việc. イ và エ là đào tạo ngoài công việc thực tế nên thuộc Off-JT, còn ア chỉ là thiết lập mục tiêu và kế hoạch chứ không phải OJT.",
+      "assets": [],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2016h28h_ip_qs.pdf",
+        "pages": [
+          12
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2016h28h-025",
+      "exam": "2016h28h",
+      "question_no": 25,
+      "knowledge_group": "企業と法務",
+      "question": {
+        "ja": "個人情報保護法で定める個人情報取扱事業者の義務が適用されないものはどれか。",
+        "vi": "Theo Luật Bảo vệ Thông tin Cá nhân, trường hợp nào không thuộc đối tượng áp dụng nghĩa vụ của doanh nghiệp xử lý thông tin cá nhân?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "ガス会社が検針作業で取り扱う個人情報の管理",
+          "vi": "Quản lý thông tin cá nhân mà công ty gas xử lý trong công việc ghi chỉ số công tơ"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "証券会社が株式売買で取り扱う個人情報の管理",
+          "vi": "Quản lý thông tin cá nhân mà công ty chứng khoán xử lý trong giao dịch mua bán cổ phiếu"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "新聞社が報道で取り扱う個人情報の管理",
+          "vi": "Quản lý thông tin cá nhân mà tòa soạn báo xử lý trong hoạt động đưa tin"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "鉄道会社が定期券販売で取り扱う個人情報の管理",
+          "vi": "Quản lý thông tin cá nhân mà công ty đường sắt xử lý trong việc bán vé tháng"
+        }
+      ],
+      "correct_option_id": "C",
+      "explanation_vi": "Đáp án đúng là ウ vì hoạt động báo chí nhằm mục đích đưa tin được áp dụng ngoại lệ nhất định trong Luật Bảo vệ Thông tin Cá nhân. Các trường hợp ア, イ, エ đều là hoạt động kinh doanh thông thường có xử lý thông tin cá nhân nên phải tuân thủ nghĩa vụ của doanh nghiệp xử lý thông tin cá nhân.",
+      "assets": [],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2016h28h_ip_qs.pdf",
+        "pages": [
+          12
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2016h28h-026",
+      "exam": "2016h28h",
+      "question_no": 26,
+      "knowledge_group": "企業と法務",
+      "question": {
+        "ja": "会社を組織的に運営するためのルールのうち、職務分掌を説明したものはどれか。",
+        "vi": "Trong các quy tắc để vận hành công ty một cách có tổ chức, nội dung nào mô tả “phân công chức vụ/công việc” (職務分掌)?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "会社の基本となる経営組織,職制を定めたもの",
+          "vi": "Quy định cơ cấu tổ chức quản lý cơ bản và hệ thống chức vụ của công ty"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "各部門の職務の内容と責任及び権限を定めたもの",
+          "vi": "Quy định nội dung công việc, trách nhiệm và quyền hạn của từng bộ phận"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "従業員の労働条件などの就業に関する事項を定めたもの",
+          "vi": "Quy định các vấn đề liên quan đến làm việc như điều kiện lao động của nhân viên"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "法令,各種規則や社会的規範に照らして正しく行動することを定めたもの",
+          "vi": "Quy định việc hành động đúng đắn dựa trên pháp luật, các loại quy tắc và chuẩn mực xã hội"
+        }
+      ],
+      "correct_option_id": "B",
+      "explanation_vi": "職務分掌 là việc quy định rõ mỗi bộ phận làm gì, chịu trách nhiệm gì và có quyền hạn đến đâu, nên đáp án đúng là イ. ア là quy định về cơ cấu tổ chức và chức chế, ウ là nội quy lao động, còn エ là nội dung về tuân thủ pháp luật và chuẩn mực xã hội (compliance).",
+      "assets": [],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2016h28h_ip_qs.pdf",
+        "pages": [
+          12
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2016h28h-027",
+      "exam": "2016h28h",
+      "question_no": 27,
+      "knowledge_group": "システム戦略",
+      "question": {
+        "ja": "企業の業務と情報システムの現状を把握し，目標とするあるべき姿を設定して，全体最適を図りたい。このときに用いられる手法として，適切なものはどれか。",
+        "vi": "Doanh nghiệp muốn nắm bắt hiện trạng của nghiệp vụ và hệ thống thông tin, thiết lập trạng thái mục tiêu mong muốn, rồi hướng tới tối ưu hóa toàn cục. Phương pháp nào phù hợp trong trường hợp này?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "DOA (Data Oriented Approach)",
+          "vi": "DOA (Data Oriented Approach)"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "EA (Enterprise Architecture)",
+          "vi": "EA (Enterprise Architecture)"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "OOA (Object Oriented Analysis)",
+          "vi": "OOA (Object Oriented Analysis)"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "SOA (Service Oriented Architecture)",
+          "vi": "SOA (Service Oriented Architecture)"
+        }
+      ],
+      "correct_option_id": "B",
+      "explanation_vi": "EA là phương pháp mô hình hóa tổng thể doanh nghiệp từ hiện trạng đến kiến trúc mục tiêu để đạt tối ưu toàn cục, nên phù hợp nhất. DOA tập trung vào dữ liệu, OOA là phân tích hướng đối tượng, còn SOA là kiến trúc xây dựng hệ thống theo dịch vụ, không phải khung phân tích tổng thể doanh nghiệp như mô tả đề bài.",
+      "assets": [
+        {
+          "type": "pdf_page",
+          "path": "../IT-PP/2016h28h_ip_qs.pdf",
+          "pages": [
+            13
+          ]
+        }
+      ],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2016h28h_ip_qs.pdf",
+        "pages": [
+          13
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2016h28h-028",
+      "exam": "2016h28h",
+      "question_no": 28,
+      "knowledge_group": "経営戦略",
+      "question": {
+        "ja": "製品やサービスの価値を機能とコストの関係で分析し,機能や品質の向上及びコ スト削減などによって、その価値を高める手法はどれか。",
+        "vi": "Phương pháp nào phân tích giá trị của sản phẩm hay dịch vụ dựa trên mối quan hệ giữa chức năng và chi phí, sau đó nâng cao giá trị đó thông qua việc cải thiện chức năng, chất lượng và cắt giảm chi phí?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "サプライチェーンマネジメント",
+          "vi": "Quản lý chuỗi cung ứng (Supply Chain Management)"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "ナレッジマネジメント",
+          "vi": "Quản lý tri thức (Knowledge Management)"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "バリューエンジニアリング",
+          "vi": "Kỹ thuật giá trị (Value Engineering)"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "リバースエンジニアリング",
+          "vi": "Kỹ thuật đảo ngược (Reverse Engineering)"
+        }
+      ],
+      "correct_option_id": "C",
+      "explanation_vi": "Value Engineering là phương pháp phân tích quan hệ giữa chức năng và chi phí để nâng cao giá trị bằng cải tiến chức năng/chất lượng và giảm chi phí. ア là quản lý chuỗi cung ứng, イ là quản lý tri thức, còn エ là phân tích ngược sản phẩm hay phần mềm đã có.",
+      "assets": [],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2016h28h_ip_qs.pdf",
+        "pages": [
+          13
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2016h28h-029",
+      "exam": "2016h28h",
+      "question_no": 29,
+      "knowledge_group": "経営戦略",
+      "question": {
+        "ja": "一人一人のニーズを把握し,それを充足する製品やサービスを提供しようとする マーケティング手法はどれか。",
+        "vi": "Phương pháp marketing nào nhằm nắm bắt nhu cầu của từng cá nhân và cung cấp sản phẩm, dịch vụ để đáp ứng các nhu cầu đó?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "ソーシャルマーケティング",
+          "vi": "Social marketing"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "テレマーケティング",
+          "vi": "Telemarketing"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "マスマーケティング",
+          "vi": "Mass marketing"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "ワントゥワンマーケティング",
+          "vi": "One-to-one marketing"
+        }
+      ],
+      "correct_option_id": "D",
+      "explanation_vi": "One-to-one marketing là cách tiếp cận cá nhân hóa, hiểu nhu cầu từng khách hàng và cung cấp sản phẩm/dịch vụ phù hợp nên là đáp án đúng. ア hướng đến giá trị xã hội, イ là tiếp thị qua điện thoại, còn ウ là tiếp thị đại trà cho số đông chứ không cá thể hóa.",
+      "assets": [],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2016h28h_ip_qs.pdf",
+        "pages": [
+          13
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2016h28h-030",
+      "exam": "2016h28h",
+      "question_no": 30,
+      "knowledge_group": "経営戦略",
+      "question": {
+        "ja": "自動車メーカA社では、近い将来の戦略を検討するため自社の強みと弱み、そして, 外部環境の機会と脅威を整理した。この結果を基に、強みを活用して脅威を克服す る対策案として、適切なものはどれか。\n内部環境 外部環境\n強み\n弱み\n·強力なブランドイメージ ·多方面にわたる研究開発 の蓄積\n·熟練工の大量定年退職\n機会 ·金利低下による金融緩和\n脅威 ·石油価格の高騰 · 環境保護意識の浸透",
+        "vi": "Tại hãng ô tô A, để xem xét chiến lược trong tương lai gần, công ty đã sắp xếp điểm mạnh và điểm yếu của bản thân, cùng với cơ hội và thách thức từ môi trường bên ngoài. Dựa trên kết quả này, phương án đối sách nào là phù hợp để tận dụng điểm mạnh và khắc phục các mối đe dọa?\nMôi trường nội bộ / Môi trường bên ngoài\nĐiểm mạnh\nĐiểm yếu\n・Hình ảnh thương hiệu mạnh\n・Tích lũy nghiên cứu phát triển trên nhiều lĩnh vực\n・Nhiều công nhân lành nghề đồng loạt đến tuổi nghỉ hưu\nCơ hội\n・Nới lỏng tài chính do lãi suất giảm\nThách thức\n・Giá dầu tăng cao\n・Ý thức bảo vệ môi trường lan rộng"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "熟練工の定年を延長,又は再雇用を実施する。",
+          "vi": "Kéo dài tuổi nghỉ hưu của công nhân lành nghề hoặc thực hiện tái tuyển dụng."
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "低金利で資金を調達し,石油を大量に備蓄する。",
+          "vi": "Huy động vốn với lãi suất thấp và tích trữ lượng lớn dầu mỏ."
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "電気自動車の研究開発を推し進め,商品化する。",
+          "vi": "Thúc đẩy nghiên cứu phát triển xe điện và thương mại hóa sản phẩm."
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "ブランドイメージを生かして販売力を強化する。",
+          "vi": "Tận dụng hình ảnh thương hiệu để tăng cường năng lực bán hàng."
+        }
+      ],
+      "correct_option_id": "C",
+      "explanation_vi": "Đề hỏi chiến lược kiểu S-T trong SWOT: dùng điểm mạnh để đối phó thách thức. Công ty có thế mạnh về thương hiệu và tích lũy R&D, trong khi thách thức là giá dầu tăng và ý thức bảo vệ môi trường tăng, nên phát triển và thương mại hóa xe điện là phù hợp nhất. ア là xử lý điểm yếu, イ là tận dụng cơ hội lãi suất thấp, còn エ dùng điểm mạnh nhưng không trực tiếp giải quyết các mối đe dọa nêu ra.",
+      "assets": [],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2016h28h_ip_qs.pdf",
+        "pages": [
+          14
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2016h28h-031",
+      "exam": "2016h28h",
+      "question_no": 31,
+      "knowledge_group": "経営戦略",
+      "question": {
+        "ja": "事業コストを低減する方策として“範囲の経済”を追求する方法や“規模の経 済”を追求する方法などがある。範囲の経済の追求に基づくコスト低減策として, 適切なものはどれか。",
+        "vi": "Có các phương sách giảm chi phí kinh doanh như theo đuổi “economies of scope” (kinh tế theo phạm vi) hay “economies of scale” (kinh tế theo quy mô). Biện pháp giảm chi phí nào sau đây là phù hợp khi dựa trên việc theo đuổi economies of scope?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "共通の基盤技術を利用して複数の事業を行う。",
+          "vi": "Sử dụng công nghệ nền tảng chung để triển khai nhiều hoạt động kinh doanh."
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "継続的な業務改善を行う。",
+          "vi": "Thực hiện cải tiến nghiệp vụ liên tục."
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "工場での生産量を拡大する。",
+          "vi": "Mở rộng sản lượng sản xuất tại nhà máy."
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "同一製品を複数の工場で生産する。",
+          "vi": "Sản xuất cùng một sản phẩm tại nhiều nhà máy."
+        }
+      ],
+      "correct_option_id": "A",
+      "explanation_vi": "Economies of scope là giảm chi phí nhờ dùng chung nguồn lực, công nghệ hoặc năng lực cho nhiều lĩnh vực kinh doanh khác nhau, nên phương án ア là đúng. イ là cải tiến liên tục, không trực tiếp nói về phạm vi. ウ là economies of scale do tăng sản lượng, còn エ thường làm phân tán sản xuất chứ không thể hiện lợi thế phạm vi.",
+      "assets": [],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2016h28h_ip_qs.pdf",
+        "pages": [
+          14
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2016h28h-032",
+      "exam": "2016h28h",
+      "question_no": 32,
+      "knowledge_group": "経営戦略",
+      "question": {
+        "ja": "品質管理において、測定値の存在する範囲を幾つかの区間に分け,各区間に入る データの度数を棒グラフで表したものはどれか。",
+        "vi": "Trong quản lý chất lượng, loại biểu đồ nào chia phạm vi tồn tại của các giá trị đo được thành несколько khoảng và biểu diễn tần số dữ liệu rơi vào mỗi khoảng bằng biểu đồ cột?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "管理図",
+          "vi": "Biểu đồ quản lý (control chart)"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "特性要因図",
+          "vi": "Biểu đồ nhân quả / đặc tính - nguyên nhân (cause-and-effect diagram)"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "パレート図",
+          "vi": "Biểu đồ Pareto"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "ヒストグラム",
+          "vi": "Histogram"
+        }
+      ],
+      "correct_option_id": "D",
+      "explanation_vi": "Histogram là biểu đồ chia dữ liệu đo được thành các khoảng lớp và biểu diễn tần số của từng khoảng bằng các cột, nên エ đúng. ア dùng để theo dõi trạng thái kiểm soát của quy trình theo thời gian. イ dùng để phân tích nguyên nhân, còn ウ dùng để xếp hạng các hạng mục theo mức độ ảnh hưởng hoặc tần suất.",
+      "assets": [
+        {
+          "type": "pdf_page",
+          "path": "../IT-PP/2016h28h_ip_qs.pdf",
+          "pages": [
+            15
+          ]
+        }
+      ],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2016h28h_ip_qs.pdf",
+        "pages": [
+          15
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2016h28h-033",
+      "exam": "2016h28h",
+      "question_no": 33,
+      "knowledge_group": "基礎理論",
+      "question": {
+        "ja": "地点Xから出発してA, B, Cの3地点の全てを経由して地点Yまで行きたい。各地点間の経路と所要時間が図及び表のとおりであるとき、地点Xから地点Yまで行く最短の時間は何分か。ここで、3地点A, B, Cはどのような順番で経由してもよいものとする。\n\n単位：分\n\n| 始点\\終点 | A | B | C | Y |\n|---|---:|---:|---:|---:|\n| X | 20 | 20 | 40 | 不可 |\n| A | - | 40 | 30 | 不可 |\n| B | 40 | - | 20 | 60 |\n| C | 30 | 20 | - | 60 |",
+        "vi": "Muốn xuất phát từ điểm X, đi qua tất cả 3 điểm A, B, C rồi đến điểm Y. Khi các tuyến đường giữa các điểm và thời gian cần thiết được cho như trong hình và bảng, thì thời gian ngắn nhất để đi từ X đến Y là bao nhiêu phút? Ở đây, thứ tự đi qua 3 điểm A, B, C có thể là bất kỳ.\n\nĐơn vị: phút\n\n| Điểm xuất phát\\Điểm đến | A | B | C | Y |\n|---|---:|---:|---:|---:|\n| X | 20 | 20 | 40 | không thể |\n| A | - | 40 | 30 | không thể |\n| B | 40 | - | 20 | 60 |\n| C | 30 | 20 | - | 60 |"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "110",
+          "vi": "110"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "130",
+          "vi": "130"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "140",
+          "vi": "140"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "150",
+          "vi": "150"
+        }
+      ],
+      "correct_option_id": "B",
+      "explanation_vi": "Vì chỉ có thể đi đến Y từ B hoặc C, ta xét các thứ tự đi qua A, B, C và cộng thời gian. Tuyến ngắn nhất là X→A→C→B→Y = 20 + 30 + 20 + 60 = 130 phút, nên đáp án B đúng. Các phương án khác lớn hơn giá trị tối ưu này.",
+      "assets": [
+        {
+          "type": "pdf_page",
+          "path": "../IT-PP/2016h28h_ip_qs.pdf",
+          "pages": [
+            15
+          ]
+        }
+      ],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2016h28h_ip_qs.pdf",
+        "pages": [
+          15
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2016h28h-034",
+      "exam": "2016h28h",
+      "question_no": 34,
+      "knowledge_group": "経営戦略",
+      "question": {
+        "ja": "次の特徴をもつ組織形態として、適切なものはどれか。\n・組織の構成員が、お互い対等な関係にあり，自律性を有している。\n・企業，部門の壁を乗り越えて編成されることもある。",
+        "vi": "Hình thái tổ chức nào sau đây là phù hợp với các đặc trưng sau?\n・Các thành viên trong tổ chức có quan hệ bình đẳng với nhau và có tính tự chủ.\n・Đôi khi còn được tổ chức vượt qua ranh giới giữa doanh nghiệp hoặc giữa các bộ phận."
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "アウトソーシング",
+          "vi": "Outsourcing"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "タスクフォース",
+          "vi": "Task force"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "ネットワーク組織",
+          "vi": "Tổ chức mạng lưới"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "マトリックス組織",
+          "vi": "Tổ chức ma trận"
+        }
+      ],
+      "correct_option_id": "C",
+      "explanation_vi": "Tổ chức mạng lưới có đặc trưng là các thành viên hoặc đơn vị liên kết với nhau theo quan hệ tương đối bình đẳng và tự chủ, thậm chí vượt qua ranh giới công ty hay phòng ban, nên C đúng. A là hình thức thuê ngoài, không phải mô hình tổ chức nội tại như mô tả. B là nhóm chuyên trách tạm thời, còn D là cấu trúc có hai tuyến chỉ huy chứ không nhấn mạnh tính bình đẳng, tự chủ giữa các thành viên.",
+      "assets": [
+        {
+          "type": "pdf_page",
+          "path": "../IT-PP/2016h28h_ip_qs.pdf",
+          "pages": [
+            16,
+            17
+          ]
+        }
+      ],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2016h28h_ip_qs.pdf",
+        "pages": [
+          16,
+          17
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2016h28h-035",
+      "exam": "2016h28h",
+      "question_no": 35,
+      "knowledge_group": "システム戦略",
+      "question": {
+        "ja": "ITガバナンスの実現を目的とした活動の事例として、最も適切なものはどれか。",
+        "vi": "Trường hợp nào sau đây là ví dụ phù hợp nhất về hoạt động nhằm thực hiện IT governance?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "ある特定の操作を社内システムで行うと、無応答になる不具合を見つけたの で,担当者ではないが自らの判断でシステムの修正を行った。",
+          "vi": "Khi phát hiện lỗi khiến hệ thống nội bộ bị treo, không phản hồi nếu thực hiện một thao tác nhất định, một người không phải phụ trách nhưng đã tự ý quyết định sửa hệ thống."
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "業務効率向上の経営戦略に基づき社内システムをどこでも利用できるようにす るために,タブレット端末を活用する IT 戦略を立てて導入支援体制を確立した。",
+          "vi": "Dựa trên chiến lược quản lý nhằm nâng cao hiệu quả công việc, đã xây dựng chiến lược IT sử dụng tablet để có thể dùng hệ thống nội bộ ở bất cứ đâu, đồng thời thiết lập cơ chế hỗ trợ triển khai."
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "社内システムが稼働しているサーバ,PC,ディスプレイなどを、地震で机やラ ックから転落しないように耐震テープで固定した。",
+          "vi": "Đã cố định các server, PC, màn hình... đang vận hành hệ thống nội bộ bằng băng keo chống động đất để chúng không rơi khỏi bàn hay rack khi có động đất."
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "社内システムの保守担当者が、自己のキャリアパス実現のためにプロジェクト マネジメント能力を高める必要があると考え,自己啓発を行った。",
+          "vi": "Người phụ trách bảo trì hệ thống nội bộ cho rằng cần nâng cao năng lực project management để thực hiện lộ trình nghề nghiệp của bản thân, nên đã tự học và tự phát triển."
+        }
+      ],
+      "correct_option_id": "B",
+      "explanation_vi": "IT governance là việc liên kết chiến lược IT với chiến lược kinh doanh và xây dựng cơ chế để tổ chức triển khai phù hợp, nên イ là ví dụ đúng nhất. ア là tự ý sửa hệ thống, trái với quản trị và kiểm soát. ウ là biện pháp phòng chống thiên tai ở mức vận hành cơ sở vật chất, còn エ là hoạt động phát triển cá nhân, không phải thực hiện governance ở cấp tổ chức.",
+      "assets": [],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2016h28h_ip_qs.pdf",
+        "pages": [
+          17
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2016h28h-036",
+      "exam": "2016h28h",
+      "question_no": 36,
+      "knowledge_group": "サービスマネジメント",
+      "question": {
+        "ja": "ITサービスマネジメントにおける可用性管理の目的として、適切なものはどれか。",
+        "vi": "Mục đích của quản lý tính sẵn sàng (availability management) trong quản lý dịch vụ IT là gì?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "IT サービスを提供する上で、目標とする稼働率を達成する。",
+          "vi": "Khi cung cấp dịch vụ IT, đạt được tỷ lệ hoạt động mục tiêu."
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "IT サービスを提供するシステムの変更を、確実に実施する。",
+          "vi": "Thực hiện chắc chắn các thay đổi đối với hệ thống cung cấp dịch vụ IT."
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "サービス停止の根本原因を究明し,再発を防止する。",
+          "vi": "Điều tra nguyên nhân gốc rễ của việc ngừng dịch vụ và ngăn ngừa tái diễn."
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "停止したサービスを可能な限り迅速に回復させる。",
+          "vi": "Khôi phục dịch vụ đã dừng nhanh nhất có thể trong phạm vi có thể."
+        }
+      ],
+      "correct_option_id": "A",
+      "explanation_vi": "Quản lý tính sẵn sàng nhằm bảo đảm dịch vụ IT đạt mức uptime/khả dụng đã đặt ra, nên đáp án A là đúng. B là mục tiêu của quản lý thay đổi, C thuộc quản lý vấn đề để tìm nguyên nhân gốc, còn D là mục tiêu của quản lý sự cố nhằm khôi phục dịch vụ nhanh chóng.",
+      "assets": [],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2016h28h_ip_qs.pdf",
+        "pages": [
+          17
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2016h28h-037",
+      "exam": "2016h28h",
+      "question_no": 37,
+      "knowledge_group": "サービスマネジメント",
+      "question": {
+        "ja": "システム開発部門のシステム監査における実施事項はどれか。",
+        "vi": "Nội dung nào là việc được thực hiện trong kiểm toán hệ thống đối với bộ phận phát triển hệ thống?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "開発委託先と締結する委託契約書の作成",
+          "vi": "Soạn thảo hợp đồng ủy thác ký kết với bên nhận gia công phát triển."
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "外部設計書のレビューで発見された不具合の修正",
+          "vi": "Sửa lỗi được phát hiện trong quá trình review tài liệu thiết kế ngoài."
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "システム開発手順の不備の指摘",
+          "vi": "Chỉ ra các thiếu sót trong quy trình phát triển hệ thống."
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "プログラマに対するプログラミング教育",
+          "vi": "Đào tạo lập trình cho các lập trình viên."
+        }
+      ],
+      "correct_option_id": "C",
+      "explanation_vi": "Kiểm toán hệ thống có vai trò đánh giá độc lập và chỉ ra các điểm thiếu sót trong quy trình hay kiểm soát, vì vậy C là đúng. A, B, D đều là công việc thực thi hoặc vận hành của bộ phận phát triển, không phải hoạt động kiểm toán.",
+      "assets": [],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2016h28h_ip_qs.pdf",
+        "pages": [
+          17
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2016h28h-038",
+      "exam": "2016h28h",
+      "question_no": 38,
+      "knowledge_group": "サービスマネジメント",
+      "question": {
+        "ja": "システムの利用者からの問合せを電話で受け付けるサービスデスクのサービスレ ベルを評価するための項目の例として、適切なものはどれか。",
+        "vi": "Mục nào sau đây là ví dụ phù hợp để đánh giá mức dịch vụ của service desk tiếp nhận các yêu cầu hỏi đáp từ người dùng hệ thống qua điện thoại?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "サービスのコスト",
+          "vi": "Chi phí dịch vụ."
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "システム障害の件数",
+          "vi": "Số vụ sự cố hệ thống."
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "システムの可用性",
+          "vi": "Tính sẵn sàng của hệ thống."
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "問合せの応答待ち時間",
+          "vi": "Thời gian chờ phản hồi đối với yêu cầu hỏi đáp."
+        }
+      ],
+      "correct_option_id": "D",
+      "explanation_vi": "Đối với service desk qua điện thoại, chỉ tiêu phản ánh trực tiếp service level là thời gian người dùng phải chờ để được phản hồi, nên D đúng. A là góc độ chi phí, còn B và C là chỉ số về hệ thống chứ không đánh giá trực tiếp chất lượng tiếp nhận cuộc gọi của service desk.",
+      "assets": [],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2016h28h_ip_qs.pdf",
+        "pages": [
+          18
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2016h28h-039",
+      "exam": "2016h28h",
+      "question_no": 39,
+      "knowledge_group": "サービスマネジメント",
+      "question": {
+        "ja": "システム監査人の役割に関する記述として、適切なものはどれか。",
+        "vi": "Mô tả nào sau đây là đúng về vai trò của kiểm toán viên hệ thống?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "業務の流れや内容に着目して、業務フロー,業務記述書,リスクコントロール マトリクスを作成し、リスクを評価し適切な統制を導入する。",
+          "vi": "Chú ý đến luồng và nội dung nghiệp vụ, lập nghiệp vụ flow, bản mô tả nghiệp vụ, ma trận kiểm soát rủi ro, đánh giá rủi ro và đưa vào các kiểm soát thích hợp."
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "情報システムの企画,開発,運用,保守などの各局面に沿って、適切なモニタ リングや自己点検の仕組みを導入し、情報システムが安定的に運用されるような 措置を講じる。",
+          "vi": "Theo từng giai đoạn như lập kế hoạch, phát triển, vận hành, bảo trì hệ thống thông tin, đưa vào cơ chế monitoring và tự kiểm tra phù hợp, đồng thời thực hiện các biện pháp để hệ thống thông tin được vận hành ổn định."
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "情報システムのリスクが適切かつ効果的にコントロールされているかについて, 被監査部門から独立した立場で検証し,依頼者に報告する。",
+          "vi": "Từ lập trường độc lập với bộ phận bị kiểm toán, kiểm chứng liệu rủi ro của hệ thống thông tin có đang được kiểm soát thích hợp và hiệu quả hay không, rồi báo cáo cho bên yêu cầu."
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "情報システムのリスクが適切にコントロールされるように,方針や目標を定め 体制を整える。",
+          "vi": "Để rủi ro của hệ thống thông tin được kiểm soát thích hợp, thiết lập phương châm, mục tiêu và tổ chức bộ máy."
+        }
+      ],
+      "correct_option_id": "C",
+      "explanation_vi": "Kiểm toán viên hệ thống phải đánh giá một cách độc lập với đơn vị bị kiểm toán và báo cáo kết quả cho bên yêu cầu, nên C là đúng. A và B là vai trò thiết kế/vận hành kiểm soát trong quản lý nội bộ, còn D là vai trò của quản trị hoặc lãnh đạo trong việc thiết lập chính sách và cơ cấu.",
+      "assets": [],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2016h28h_ip_qs.pdf",
+        "pages": [
+          18
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2016h28h-040",
+      "exam": "2016h28h",
+      "question_no": 40,
+      "knowledge_group": "プロジェクトマネジメント",
+      "question": {
+        "ja": "システム開発プロジェクトのテスト工程において、各担当者が報告書をチームリ ーダに提出し,チームリーダがそれらの内容をまとめてプロジェクトマネージャに 報告している。次の報告ルールを定めているとき、チームリーダの報告として適切 なものはどれか。\n〔報告ルール〕\n·各担当者は、担当する機能のテストの進捗率を報告書に記載する。\n·各担当者は,遅れがあるときに、その原因と対策内容を報告書に記載する。\n·チームリーダは,各担当者の進捗率の適切さを確認した後、それらを集約して 全体の進捗率を求め,計画との差異,今後の見通しを報告書に記載する。\n·チームリーダは、遅れがあるときに、担当者にヒアリングを行い、原因と対策 内容の妥当性を確認する。また,他チームへの影響を分析し,対応策と期限を 報告書に記載する。",
+        "vi": "Trong công đoạn kiểm thử của dự án phát triển hệ thống, mỗi người phụ trách nộp báo cáo cho team leader, và team leader tổng hợp nội dung đó để báo cáo cho project manager. Khi đã quy định các quy tắc báo cáo sau, cách báo cáo nào của team leader là phù hợp?\n[Quy tắc báo cáo]\n· Mỗi người phụ trách ghi tỷ lệ tiến độ kiểm thử của chức năng mình phụ trách vào báo cáo.\n· Khi có chậm trễ, mỗi người phụ trách ghi nguyên nhân và nội dung biện pháp đối phó vào báo cáo.\n· Sau khi xác nhận tính phù hợp của tỷ lệ tiến độ của từng người, team leader tổng hợp chúng để tính tiến độ tổng thể, rồi ghi chênh lệch so với kế hoạch và triển vọng sắp tới vào báo cáo.\n· Khi có chậm trễ, team leader phỏng vấn người phụ trách để xác nhận tính hợp lý của nguyên nhân và biện pháp đối phó. Ngoài ra, phân tích ảnh hưởng đến các team khác, rồi ghi biện pháp 대응 và thời hạn vào báo cáo."
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "進捗に遅れのある担当者の報告だけを報告する。",
+          "vi": "Chỉ báo cáo phần của những người phụ trách bị chậm tiến độ."
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "担当者の報告を一覧化したものだけを報告する。",
+          "vi": "Chỉ báo cáo bản liệt kê các báo cáo của từng người phụ trách."
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "担当者の報告を集約し,進捗に遅れがあるときはチームリーダの見解を加え る。",
+          "vi": "Tổng hợp báo cáo của những người phụ trách, và khi có chậm tiến độ thì bổ sung nhận định của team leader."
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "チームリーダの期待する進捗に合わせて担当者の進捗率を補正する。",
+          "vi": "Hiệu chỉnh tỷ lệ tiến độ của người phụ trách cho phù hợp với tiến độ mà team leader mong đợi."
+        }
+      ],
+      "correct_option_id": "C",
+      "explanation_vi": "Theo quy tắc, team leader phải xác nhận, tổng hợp tiến độ, nêu chênh lệch với kế hoạch, triển vọng, đồng thời bổ sung đánh giá về nguyên nhân, ảnh hưởng và đối sách khi có chậm trễ, nên C đúng. A và B đều thiếu phần tổng hợp/đánh giá cần thiết; D là tự ý sửa số liệu theo kỳ vọng nên không phù hợp quản lý dự án.",
+      "assets": [],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2016h28h_ip_qs.pdf",
+        "pages": [
+          19
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2016h28h-041",
+      "exam": "2016h28h",
+      "question_no": 41,
+      "knowledge_group": "サービスマネジメント",
+      "question": {
+        "ja": "SLAの合意内容を達成するために,サービス状況のモニタリングやレビューなどを 通じてサービスレベルの維持や向上を図る活動を何というか。",
+        "vi": "Để đạt được nội dung đã thỏa thuận trong SLA, hoạt động nhằm duy trì và nâng cao service level thông qua việc giám sát và review tình trạng dịch vụ được gọi là gì?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "CSR",
+          "vi": "CSR"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "ERP",
+          "vi": "ERP"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "SLM",
+          "vi": "SLM"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "SWOT",
+          "vi": "SWOT"
+        }
+      ],
+      "correct_option_id": "C",
+      "explanation_vi": "SLM (Service Level Management) là hoạt động quản lý mức dịch vụ để theo dõi, đánh giá và cải thiện chất lượng dịch vụ nhằm đáp ứng SLA. CSR là trách nhiệm xã hội của doanh nghiệp, ERP là hệ thống hoạch định nguồn lực doanh nghiệp, còn SWOT là phương pháp phân tích chiến lược, nên đều không đúng ngữ cảnh.",
+      "assets": [
+        {
+          "type": "pdf_page",
+          "path": "../IT-PP/2016h28h_ip_qs.pdf",
+          "pages": [
+            19
+          ]
+        }
+      ],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2016h28h_ip_qs.pdf",
+        "pages": [
+          19
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2016h28h-042",
+      "exam": "2016h28h",
+      "question_no": 42,
+      "knowledge_group": "開発技術",
+      "question": {
+        "ja": "システム開発のプロセスには,ソフトウェア要件定義,ソフトウェア方式設計, ソフトウェア結合テスト,ソフトウェア導入,ソフトウェア受入れなどがある。シ ステム開発の関係者を開発者側と利用者側に分けたとき,ソフトウェア受入れで実 施する作業はどれか。",
+        "vi": "Trong quy trình phát triển hệ thống có các bước như: định nghĩa yêu cầu phần mềm, thiết kế kiến trúc/phương thức phần mềm, kiểm thử tích hợp phần mềm, triển khai phần mềm, tiếp nhận phần mềm, v.v. Khi chia các bên liên quan của phát triển hệ thống thành phía nhà phát triển và phía người sử dụng, công việc nào được thực hiện ở bước tiếp nhận phần mềm (software acceptance)?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "開発が完了したソフトウェアを、開発者側が本番環境に配置する。",
+          "vi": "Phía nhà phát triển đưa phần mềm đã hoàn thành vào môi trường production."
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "開発者側が利用者側にヒアリングを行って、ソフトウェアに要求される機能, 性能を明確にする。",
+          "vi": "Phía nhà phát triển phỏng vấn phía người sử dụng để làm rõ các chức năng và hiệu năng được yêu cầu đối với phần mềm."
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "ソフトウェアが要件を満たしていて、利用できる水準であることを、利用者側 が確認する。",
+          "vi": "Phía người sử dụng xác nhận rằng phần mềm đáp ứng yêu cầu và đạt mức có thể sử dụng được."
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "ソフトウェア要件定義書が利用者側のニーズを満たしていることを確認するた めに、開発者側がレビューを行う。",
+          "vi": "Để xác nhận rằng tài liệu định nghĩa yêu cầu phần mềm đáp ứng nhu cầu của phía người sử dụng, phía nhà phát triển tiến hành review."
+        }
+      ],
+      "correct_option_id": "C",
+      "explanation_vi": "Ở bước software acceptance, phía người sử dụng kiểm tra và xác nhận rằng phần mềm đáp ứng yêu cầu và có thể sử dụng thực tế. ア là công việc triển khai, イ là công việc xác định yêu cầu, còn エ là hoạt động review ở giai đoạn yêu cầu chứ không phải tiếp nhận.",
+      "assets": [],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2016h28h_ip_qs.pdf",
+        "pages": [
+          20
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2016h28h-043",
+      "exam": "2016h28h",
+      "question_no": 43,
+      "knowledge_group": "開発技術",
+      "question": {
+        "ja": "システム開発のテストを,単体テスト,結合テスト,システムテスト,運用テス トの順に行う場合、システムテストの内容として、適切なものはどれか。",
+        "vi": "Khi thực hiện kiểm thử trong phát triển hệ thống theo thứ tự: unit test, integration test, system test, operational test, thì nội dung nào là phù hợp với system test?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "個々のプログラムに誤りがないことを検証する。",
+          "vi": "Kiểm tra xem từng chương trình riêng lẻ có lỗi hay không."
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "性能要件を満たしていることを開発者が検証する。",
+          "vi": "Nhà phát triển kiểm tra xem hệ thống có đáp ứng yêu cầu về hiệu năng hay không."
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "プログラム間のインタフェースに誤りがないことを検証する。",
+          "vi": "Kiểm tra xem có lỗi ở interface giữa các chương trình hay không."
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "利用者が実際に運用することで、業務の運用が要件どおり実施できることを検 証する。",
+          "vi": "Người sử dụng vận hành thực tế để kiểm tra xem nghiệp vụ có thể được thực hiện đúng theo yêu cầu hay không."
+        }
+      ],
+      "correct_option_id": "B",
+      "explanation_vi": "System test là giai đoạn nhà phát triển kiểm tra toàn bộ hệ thống, bao gồm việc xác nhận các yêu cầu như hiệu năng. ア thuộc unit test, ウ thuộc integration test, còn エ là operational test hoặc acceptance/ vận hành thử bởi người dùng.",
+      "assets": [
+        {
+          "type": "pdf_page",
+          "path": "../IT-PP/2016h28h_ip_qs.pdf",
+          "pages": [
+            20
+          ]
+        }
+      ],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2016h28h_ip_qs.pdf",
+        "pages": [
+          20
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2016h28h-044",
+      "exam": "2016h28h",
+      "question_no": 44,
+      "knowledge_group": "プロジェクトマネジメント",
+      "question": {
+        "ja": "システム開発プロジェクトにおけるリスク対応には、回避,転嫁,軽減,受容な どがある。転嫁の事例として、適切なものはどれか。",
+        "vi": "Trong dự án phát triển hệ thống, các cách ứng phó rủi ro gồm có tránh né, chuyển giao, giảm thiểu, chấp nhận, v.v. Ví dụ nào phù hợp với trường hợp chuyển giao rủi ro?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "財務的なリスクへの対応として保険を掛ける。",
+          "vi": "Mua bảo hiểm để đối phó với rủi ro về tài chính."
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "スコープを縮小する。",
+          "vi": "Thu hẹp scope."
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "より多くのテストを実施する。",
+          "vi": "Thực hiện nhiều kiểm thử hơn."
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "リスク発生時の対処に必要な予備費用を計上する。",
+          "vi": "Dự trù chi phí dự phòng cần thiết để xử lý khi rủi ro xảy ra."
+        }
+      ],
+      "correct_option_id": "A",
+      "explanation_vi": "Chuyển giao rủi ro là chuyển gánh nặng tổn thất cho bên khác, điển hình là mua bảo hiểm. イ là tránh né rủi ro bằng cách giảm phạm vi, ウ là giảm thiểu rủi ro, còn エ là chấp nhận rủi ro kèm theo dự phòng.",
+      "assets": [],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2016h28h_ip_qs.pdf",
+        "pages": [
+          21
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2016h28h-045",
+      "exam": "2016h28h",
+      "question_no": 45,
+      "knowledge_group": "企業と法務",
+      "question": {
+        "ja": "IT統制は,ITに係る業務処理統制や全般統制などに分類される。業務処理統制は 業務を管理するシステムにおいて、承認された業務が全て正確に処理,記録される ことを確保するための統制活動のことをいい,全般統制はそれぞれの業務処理統制 が有効に機能する環境を保証する統制活動のことをいう。購買業務システムなどの 自社システムを開発·運用などしている企業における統制活動に関する記述のうち, 業務処理統制に当たるものはどれか。",
+        "vi": "IT control được phân loại thành application control (kiểm soát xử lý nghiệp vụ) và general control (kiểm soát chung) liên quan đến IT. Application control là hoạt động kiểm soát trong hệ thống quản lý nghiệp vụ nhằm bảo đảm rằng mọi nghiệp vụ đã được phê duyệt đều được xử lý và ghi nhận chính xác; general control là hoạt động kiểm soát bảo đảm môi trường để từng application control hoạt động hữu hiệu. Trong các mô tả sau về hoạt động kiểm soát tại một doanh nghiệp đang phát triển, vận hành các hệ thống nội bộ như hệ thống nghiệp vụ mua hàng, mô tả nào thuộc application control?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "アクセス管理など自社システムの安全性を確保する統制",
+          "vi": "Kiểm soát để bảo đảm an toàn cho hệ thống nội bộ như quản lý truy cập."
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "購買業務システムに入力されるデータが重複なく入力されるような統制",
+          "vi": "Kiểm soát để dữ liệu được nhập vào hệ thống nghiệp vụ mua hàng không bị nhập trùng lặp."
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "自社システムの運用·管理に関する統制",
+          "vi": "Kiểm soát liên quan đến vận hành và quản lý hệ thống nội bộ."
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "自社システムの開発·保守に関する統制",
+          "vi": "Kiểm soát liên quan đến phát triển và bảo trì hệ thống nội bộ."
+        }
+      ],
+      "correct_option_id": "B",
+      "explanation_vi": "Kiểm soát không cho dữ liệu nhập bị trùng lặp là kiểm soát trực tiếp trên xử lý nghiệp vụ, nên thuộc application control. ア, ウ, エ đều là các kiểm soát ở mức môi trường hệ thống như an ninh, vận hành, phát triển/bảo trì, nên thuộc general control.",
+      "assets": [],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2016h28h_ip_qs.pdf",
+        "pages": [
+          21
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2016h28h-046",
+      "exam": "2016h28h",
+      "question_no": 46,
+      "knowledge_group": "プロジェクトマネジメント",
+      "question": {
+        "ja": "過去の類似プロジェクトのコスト実績を用いて、新たに開始するプロジェクトの コストを類推し見積もった。このようなコスト見積り方法の特徴はどれか。",
+        "vi": "Sử dụng kết quả chi phí thực tế của các dự án tương tự trong quá khứ để suy luận và ước tính chi phí cho dự án mới bắt đầu. Đặc điểm của phương pháp ước tính chi phí này là gì?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "詳細情報から積み上げる見積り方法より作業負荷が大きい。",
+          "vi": "Khối lượng công việc lớn hơn phương pháp ước tính cộng dồn từ thông tin chi tiết."
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "プロジェクトの初期より後期の段階で活用されることが多い。",
+          "vi": "Thường được sử dụng ở giai đoạn sau hơn là giai đoạn đầu của dự án."
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "他の見積り方法より正確なコスト見積り結果が期待できる。",
+          "vi": "Có thể kỳ vọng kết quả ước tính chi phí chính xác hơn các phương pháp khác."
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "他の見積り方法より見積りに要する費用は少ないが,正確さでは劣る。",
+          "vi": "Chi phí cần cho việc ước tính ít hơn các phương pháp khác, nhưng độ chính xác kém hơn."
+        }
+      ],
+      "correct_option_id": "D",
+      "explanation_vi": "Đây là phương pháp ước lượng tương tự (analogous estimating), dùng dữ liệu từ các dự án giống trước đây nên thực hiện nhanh và tốn ít chi phí. Tuy nhiên, vì dựa trên suy luận tổng quát nên độ chính xác thường thấp hơn phương pháp ước lượng chi tiết. Các phương án A, B, C trái với đặc trưng thực tế của phương pháp này.",
+      "assets": [],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2016h28h_ip_qs.pdf",
+        "pages": [
+          21
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2016h28h-047",
+      "exam": "2016h28h",
+      "question_no": 47,
+      "knowledge_group": "プロジェクトマネジメント",
+      "question": {
+        "ja": "プロジェクトスコープマネジメントに関する記述として、適切なものはどれか。",
+        "vi": "Mô tả nào sau đây là phù hợp về quản lý phạm vi dự án (project scope management)?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "プロジェクトが生み出す製品やサービスなどの成果物と、それらを完成するた めに必要な作業を定義し管理する。",
+          "vi": "Xác định và quản lý các sản phẩm bàn giao như sản phẩm, dịch vụ do dự án tạo ra, cùng các công việc cần thiết để hoàn thành chúng."
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "プロジェクト全体を通じて、最も長い所要期間を要する作業経路を管理する。",
+          "vi": "Quản lý đường công việc có thời gian thực hiện dài nhất trong toàn bộ dự án."
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "プロジェクトの結果に利害を及ぼす可能性がある事象を管理する。",
+          "vi": "Quản lý các sự kiện có khả năng ảnh hưởng đến lợi ích liên quan đến kết quả của dự án."
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "プロジェクトの実施とその結果によって利害を被る関係者を調整する。",
+          "vi": "Điều phối các bên liên quan chịu ảnh hưởng lợi ích bởi việc thực hiện dự án và kết quả của nó."
+        }
+      ],
+      "correct_option_id": "A",
+      "explanation_vi": "Quản lý phạm vi dự án là xác định và kiểm soát những gì dự án phải tạo ra và những công việc cần làm để hoàn thành các deliverable đó. B nói về quản lý tiến độ/đường găng, C là quản lý rủi ro, còn D là quản lý stakeholder. Vì vậy A là đúng.",
+      "assets": [],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2016h28h_ip_qs.pdf",
+        "pages": [
+          22
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2016h28h-048",
+      "exam": "2016h28h",
+      "question_no": 48,
+      "knowledge_group": "サービスマネジメント",
+      "question": {
+        "ja": "システム開発のための施設·設備を維持·保全するために、次のことを計画し, 実施する活動として、適切なものはどれか。\nプロジェクトルームの中に,テストデータの機密性を確保するための部屋を設 置して入退室管理を行う。テスト作業用に設置したサーバは、停電時のデータ消 失を防ぐために,無停電電源装置に接続する。",
+        "vi": "Đâu là hoạt động phù hợp được lập kế hoạch và thực hiện nhằm duy trì, bảo toàn cơ sở vật chất và thiết bị cho phát triển hệ thống?\nTrong phòng dự án, bố trí một phòng để bảo đảm tính bảo mật của dữ liệu test và thực hiện quản lý ra vào. Máy chủ được lắp đặt cho công việc test được kết nối với bộ nguồn điện liên tục (UPS) để ngăn mất dữ liệu khi mất điện."
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "アセットマネジメント",
+          "vi": "Asset management"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "環境マネジメントシステム",
+          "vi": "Hệ thống quản lý môi trường"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "品質マネジメントシステム",
+          "vi": "Hệ thống quản lý chất lượng"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "ファシリティマネジメント",
+          "vi": "Facility management"
+        }
+      ],
+      "correct_option_id": "D",
+      "explanation_vi": "Nội dung câu hỏi nói về quản lý phòng làm việc, kiểm soát ra vào, nguồn điện dự phòng cho server, tức là quản lý và bảo toàn cơ sở vật chất, trang thiết bị. Đó chính là facility management. A thiên về quản lý tài sản, B về môi trường, C về chất lượng nên không phù hợp trực tiếp.",
+      "assets": [],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2016h28h_ip_qs.pdf",
+        "pages": [
+          22
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2016h28h-049",
+      "exam": "2016h28h",
+      "question_no": 49,
+      "knowledge_group": "開発技術",
+      "question": {
+        "ja": "ユーザの要求を定義する場合に作成するプロトタイプはどれか。",
+        "vi": "Prototype được tạo ra khi định nghĩa yêu cầu của người dùng là gì?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "基幹システムで生成されたデータをユーザ自身が抽出·加工するためのソフト ウェア",
+          "vi": "Phần mềm để chính người dùng trích xuất và xử lý dữ liệu được tạo ra bởi hệ thống lõi"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "ユーザがシステムに要求する業務の流れを記述した図",
+          "vi": "Sơ đồ mô tả luồng nghiệp vụ mà người dùng yêu cầu hệ thống thực hiện"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "ユーザとシステムのやり取りを記述した図",
+          "vi": "Sơ đồ mô tả sự tương tác giữa người dùng và hệ thống"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "ユーザの要求を理解するために作成する簡易なソフトウェア",
+          "vi": "Phần mềm đơn giản được tạo ra để hiểu yêu cầu của người dùng"
+        }
+      ],
+      "correct_option_id": "D",
+      "explanation_vi": "Prototype trong giai đoạn xác định yêu cầu là một phần mềm đơn giản hoặc mô hình thử để làm rõ và xác nhận yêu cầu của người dùng. B và C chỉ là tài liệu mô tả như sơ đồ, không phải prototype phần mềm. A là một loại phần mềm chức năng thực tế, không phải công cụ thử nghiệm để làm rõ yêu cầu.",
+      "assets": [
+        {
+          "type": "pdf_page",
+          "path": "../IT-PP/2016h28h_ip_qs.pdf",
+          "pages": [
+            22
+          ]
+        }
+      ],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2016h28h_ip_qs.pdf",
+        "pages": [
+          22
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2016h28h-050",
+      "exam": "2016h28h",
+      "question_no": 50,
+      "knowledge_group": "プロジェクトマネジメント",
+      "question": {
+        "ja": "システム開発プロジェクトの工程を、システム要件定義、システム設計、プログラミング、テストの順に進めるとき、a～dのうち、品質の管理を実施する必要がある工程として、適切なものだけを全て挙げたものはどれか。\na システム要件定義\nb システム設計\nc プログラミング\nd テスト",
+        "vi": "Khi tiến hành các công đoạn của dự án phát triển hệ thống theo thứ tự: định nghĩa yêu cầu hệ thống, thiết kế hệ thống, lập trình, kiểm thử, thì trong các mục a~d, phương án nào liệt kê đầy đủ và đúng các công đoạn cần thực hiện quản lý chất lượng?\na. Định nghĩa yêu cầu hệ thống\nb. Thiết kế hệ thống\nc. Lập trình\nd. Kiểm thử"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "a, b, c, d",
+          "vi": "a, b, c, d"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "b, c, d",
+          "vi": "b, c, d"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "c, d",
+          "vi": "c, d"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "d",
+          "vi": "d"
+        }
+      ],
+      "correct_option_id": "A",
+      "explanation_vi": "Quản lý chất lượng phải được thực hiện xuyên suốt toàn bộ quy trình phát triển, từ yêu cầu, thiết kế, lập trình đến kiểm thử. Nếu chỉ làm ở các công đoạn sau thì lỗi từ giai đoạn trước sẽ lan truyền và tốn chi phí sửa chữa cao. Vì vậy cần áp dụng cho cả a, b, c, d.",
+      "assets": [
+        {
+          "type": "pdf_page",
+          "path": "../IT-PP/2016h28h_ip_qs.pdf",
+          "pages": [
+            23
+          ]
+        }
+      ],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2016h28h_ip_qs.pdf",
+        "pages": [
+          23
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2016h28h-051",
+      "exam": "2016h28h",
+      "question_no": 51,
+      "knowledge_group": "プロジェクトマネジメント",
+      "question": {
+        "ja": "ある企業では,現在使用しているメールシステムのサポート終了に伴い、新メールシステムに移行する移行プロジェクトを実施している。プロジェクトの要件定義工程において,新メールシステムとして採用する市販のソフトウェアパッケージを選定し,そのパッケージを利用する際に考慮する必要がある条件を整理した。今回のプロジェクトは,移行作業を現行システムのサポート終了までに確実に実施する必要があるが、外部へ支出する費用はできるだけ安くしたい。次のa～dのうち,条件を考慮した上で外部から調達する必要があるものだけを全て挙げたものはどれか。\n\n〔条件〕\n・新メールシステムは自社の既存サーバで稼働させる。\n・採用するソフトウェアパッケージは自社で保有していない。\n・採用するソフトウェアパッケージを利用して新メールシステムを構築するスキルをもった要員が,自社にはいない。\n・移行するメールのデータには、機密データが含まれている。\n・メールのデータを移行するためのツールが市販されており、そのツールは自社の要員が使用することができる。\n\na 新メールシステムが稼働するサーバ\nb 新メールシステムの構築作業\nc 新メールシステムのソフトウェアパッケージ\nd 新メールシステムへのデータ移行作業",
+        "vi": "Tại một doanh nghiệp, do hệ thống email đang sử dụng sắp hết hỗ trợ, doanh nghiệp đang thực hiện một dự án chuyển đổi sang hệ thống email mới. Ở công đoạn định nghĩa yêu cầu của dự án, doanh nghiệp đã lựa chọn một gói phần mềm thương mại để dùng làm hệ thống email mới, đồng thời sắp xếp các điều kiện cần xem xét khi sử dụng gói đó. Trong dự án lần này, cần phải thực hiện chắc chắn việc chuyển đổi trước khi hệ thống hiện tại hết hỗ trợ, nhưng chi phí chi ra cho bên ngoài thì muốn thấp nhất có thể. Trong các mục a～d dưới đây, phương án nào liệt kê đầy đủ và chỉ những hạng mục bắt buộc phải mua sắm/thuê từ bên ngoài sau khi đã xét các điều kiện?\n\n〔Điều kiện〕\n・Hệ thống email mới sẽ chạy trên server hiện có của công ty.\n・Gói phần mềm được chọn hiện công ty chưa sở hữu.\n・Trong công ty không có nhân sự có kỹ năng xây dựng hệ thống email mới bằng cách sử dụng gói phần mềm đã chọn.\n・Dữ liệu email cần chuyển có chứa dữ liệu mật.\n・Có bán trên thị trường công cụ để chuyển dữ liệu email, và nhân sự của công ty có thể sử dụng công cụ đó.\n\na. Server chạy hệ thống email mới\nb. Công việc xây dựng hệ thống email mới\nc. Gói phần mềm của hệ thống email mới\nd. Công việc chuyển dữ liệu sang hệ thống email mới"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "a, b, c",
+          "vi": "a, b, c"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "a, b, c, d",
+          "vi": "a, b, c, d"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "b, c",
+          "vi": "b, c"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "c",
+          "vi": "c"
+        }
+      ],
+      "correct_option_id": "C",
+      "explanation_vi": "Server không cần mua ngoài vì điều kiện cho biết sẽ dùng server hiện có của công ty. Gói phần mềm mới thì công ty chưa có nên phải mua ngoài, và công ty cũng không có nhân sự đủ kỹ năng xây dựng hệ thống nên phần xây dựng phải thuê ngoài. Dữ liệu chuyển đổi có tính mật nhưng đã có công cụ thương mại và nhân sự nội bộ dùng được, nên để giảm chi phí và hạn chế lộ dữ liệu thì không nhất thiết phải thuê ngoài phần di chuyển dữ liệu.",
+      "assets": [
+        {
+          "type": "pdf_page",
+          "path": "../IT-PP/2016h28h_ip_qs.pdf",
+          "pages": [
+            24
+          ]
+        }
+      ],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2016h28h_ip_qs.pdf",
+        "pages": [
+          24
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2016h28h-052",
+      "exam": "2016h28h",
+      "question_no": 52,
+      "knowledge_group": "プロジェクトマネジメント",
+      "question": {
+        "ja": "次の表に示す作業全体の最短の所要日数を増やすことなく作業Eの所要日数を増やしたい。最大何日増やすことができるか。\n\n| 作業 | 前提作業 | 所要日数 |\n|---|---|---|\n| A | なし | 7 |\n| B | なし | 4 |\n| C | なし | 2 |\n| D | C | 1 |\n| E | B, D | 1 |",
+        "vi": "Muốn tăng số ngày cần thiết của công việc E mà không làm tăng tổng số ngày ngắn nhất cần cho toàn bộ công việc như trong bảng dưới đây. Tối đa có thể tăng thêm bao nhiêu ngày?\n\n| Công việc | Công việc tiền đề | Số ngày cần thiết |\n|---|---|---|\n| A | không có | 7 |\n| B | không có | 4 |\n| C | không có | 2 |\n| D | C | 1 |\n| E | B, D | 1 |"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "0",
+          "vi": "0"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "1",
+          "vi": "1"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "2",
+          "vi": "2"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "3",
+          "vi": "3"
+        }
+      ],
+      "correct_option_id": "C",
+      "explanation_vi": "Đường B→E có thời gian 4 + 1 = 5 ngày, còn đường C→D→E có thời gian 2 + 1 + 1 = 4 ngày; toàn bộ dự án kết thúc theo công việc dài nhất là A = 7 ngày. Vì E hiện hoàn thành trước mốc 7 ngày 2 ngày, nên có thể tăng thời gian của E thêm tối đa 2 ngày mà không làm kéo dài toàn dự án. Nếu tăng 3 ngày thì đường B→E sẽ thành 8 ngày và làm tăng tổng thời gian dự án.",
+      "assets": [
+        {
+          "type": "pdf_page",
+          "path": "../IT-PP/2016h28h_ip_qs.pdf",
+          "pages": [
+            25
+          ]
+        }
+      ],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2016h28h_ip_qs.pdf",
+        "pages": [
+          25
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2016h28h-053",
+      "exam": "2016h28h",
+      "question_no": 53,
+      "knowledge_group": "プロジェクトマネジメント",
+      "question": {
+        "ja": "システム開発作業を実施するに当たり,生産性が同じメンバ6名で20日間掛けて完 了する計画を立てた。しかし,15日間で作業が終わるように計画を変更することに なり、新たなメンバを増員することとした。新メンバの生産性は当初予定していた メンバの半分であるとき,15日間で作業を終わらせるために必要な新メンバは最低 何人か。",
+        "vi": "Khi thực hiện công việc phát triển hệ thống, ban đầu đã lập kế hoạch hoàn thành trong 20 ngày với 6 thành viên có năng suất như nhau. Tuy nhiên, kế hoạch được thay đổi thành phải hoàn thành trong 15 ngày, nên quyết định bổ sung thêm thành viên mới. Nếu năng suất của mỗi thành viên mới chỉ bằng một nửa năng suất của thành viên ban đầu, thì tối thiểu cần thêm bao nhiêu người để hoàn thành trong 15 ngày?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "1",
+          "vi": "1"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "2",
+          "vi": "2"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "4",
+          "vi": "4"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "6",
+          "vi": "6"
+        }
+      ],
+      "correct_option_id": "C",
+      "explanation_vi": "Khối lượng công việc ban đầu là 6 × 20 = 120 công-ngày chuẩn. Để xong trong 15 ngày cần năng suất mỗi ngày là 120/15 = 8 người chuẩn; đã có sẵn 6 người chuẩn nên còn thiếu 2 người chuẩn. Mỗi thành viên mới chỉ bằng 0,5 người chuẩn, nên cần 2/0,5 = 4 người; các đáp án nhỏ hơn đều không đủ năng suất.",
+      "assets": [],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2016h28h_ip_qs.pdf",
+        "pages": [
+          25
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2016h28h-054",
+      "exam": "2016h28h",
+      "question_no": 54,
+      "knowledge_group": "プロジェクトマネジメント",
+      "question": {
+        "ja": "システム開発プロジェクトにおけるステークホルダに関する記述のうち、適切な ものはどれか。",
+        "vi": "Trong các mô tả sau về stakeholder trong dự án phát triển hệ thống, mô tả nào là phù hợp?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "システム開発プロジェクトに参画するプロジェクトチームのメンバはステーク ホルダである。",
+          "vi": "Thành viên của nhóm dự án tham gia vào dự án phát triển hệ thống là stakeholder."
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "システム開発プロジェクトの実行又は完了によって、売上の増加やシステム化 による作業効率向上などの恩恵を受ける人及び組織だけがステークホルダである。",
+          "vi": "Chỉ những người và tổ chức được hưởng lợi như tăng doanh thu hoặc nâng cao hiệu suất công việc nhờ tin học hóa khi dự án được thực hiện hoặc hoàn thành mới là stakeholder."
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "システム開発プロジェクトの費用を負担するプロジェクトスポンサだけがステ ークホルダである。",
+          "vi": "Chỉ project sponsor là người chịu chi phí cho dự án phát triển hệ thống mới là stakeholder."
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "システム開発プロジェクトのプロジェクトマネージャ自身はステークホルダに 含まれない。",
+          "vi": "Bản thân project manager của dự án phát triển hệ thống không được tính là stakeholder."
+        }
+      ],
+      "correct_option_id": "A",
+      "explanation_vi": "Stakeholder là những cá nhân hoặc tổ chức có ảnh hưởng đến dự án hoặc bị dự án ảnh hưởng, nên thành viên nhóm dự án chắc chắn là stakeholder. Các phương án イ và ウ sai vì giới hạn stakeholder vào chỉ một số đối tượng hưởng lợi hoặc tài trợ là quá hẹp. Phương án エ sai vì project manager cũng là một stakeholder của dự án.",
+      "assets": [],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2016h28h_ip_qs.pdf",
+        "pages": [
+          26
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2016h28h-055",
+      "exam": "2016h28h",
+      "question_no": 55,
+      "knowledge_group": "システム戦略",
+      "question": {
+        "ja": "情報システムの要件は、業務要件を実現するための機能を記述した機能要件と, 性能や保守のしやすさなどについて記述した非機能要件に分類することができる。 機能要件に該当するものはどれか。",
+        "vi": "Yêu cầu của hệ thống thông tin có thể được phân loại thành yêu cầu chức năng, mô tả các chức năng để thực hiện yêu cầu nghiệp vụ, và yêu cầu phi chức năng, mô tả về hiệu năng, tính dễ bảo trì, v.v. Nội dung nào sau đây thuộc yêu cầu chức năng?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "システムが取り扱う入出力データの種類",
+          "vi": "Các loại dữ liệu đầu vào/đầu ra mà hệ thống xử lý"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "システム障害発生時の許容復旧時間",
+          "vi": "Thời gian khôi phục cho phép khi xảy ra sự cố hệ thống"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "システムの移行手順",
+          "vi": "Quy trình chuyển đổi hệ thống"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "目標とするシステムの品質と開発コスト",
+          "vi": "Chất lượng hệ thống mục tiêu và chi phí phát triển"
+        }
+      ],
+      "correct_option_id": "A",
+      "explanation_vi": "Các loại dữ liệu vào/ra mà hệ thống xử lý là nội dung mô tả trực tiếp chức năng của hệ thống nên thuộc yêu cầu chức năng. Thời gian phục hồi cho phép là yêu cầu phi chức năng về độ sẵn sàng/khả năng phục hồi. Quy trình chuyển đổi và mục tiêu về chất lượng, chi phí là các điều kiện triển khai hay ràng buộc dự án, không phải chức năng của hệ thống.",
+      "assets": [],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2016h28h_ip_qs.pdf",
+        "pages": [
+          26,
+          27
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2016h28h-056",
+      "exam": "2016h28h",
+      "question_no": 56,
+      "knowledge_group": "技術要素",
+      "question": {
+        "ja": "ブラウザとWebサーバ間の通信プロトコルを,HTTPからHTTPSに変更した。これに よって実現できることとして、適切なものはどれか。",
+        "vi": "Đã thay đổi giao thức truyền thông giữa trình duyệt và Web server từ HTTP sang HTTPS. Điều nào sau đây là điều có thể thực hiện được nhờ việc này?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "クライアント PC と Web サーバ間の通信速度の向上",
+          "vi": "Cải thiện tốc độ truyền thông giữa PC khách và Web server"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "コンピュータウイルス感染の防止",
+          "vi": "Ngăn chặn việc lây nhiễm virus máy tính"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "通信の機密性の確保",
+          "vi": "Bảo đảm tính bí mật của thông tin liên lạc"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "ブラウザの表示速度の向上",
+          "vi": "Cải thiện tốc độ hiển thị của trình duyệt"
+        }
+      ],
+      "correct_option_id": "C",
+      "explanation_vi": "HTTPS sử dụng TLS/SSL để mã hóa dữ liệu trao đổi giữa trình duyệt và Web server, nên có thể bảo đảm tính bí mật của thông tin liên lạc. Nó không nhằm mục đích tăng tốc độ truyền hay tốc độ hiển thị. HTTPS cũng không trực tiếp ngăn chặn lây nhiễm virus máy tính.",
+      "assets": [
+        {
+          "type": "pdf_page",
+          "path": "../IT-PP/2016h28h_ip_qs.pdf",
+          "pages": [
+            27
+          ]
+        }
+      ],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2016h28h_ip_qs.pdf",
+        "pages": [
+          27
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2016h28h-057",
+      "exam": "2016h28h",
+      "question_no": 57,
+      "knowledge_group": "技術要素",
+      "question": {
+        "ja": "情報セキュリティにおけるPKIに必要不可欠な構成要素はどれか。",
+        "vi": "Trong an toàn thông tin, thành phần nào là yếu tố không thể thiếu của PKI?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "VPN",
+          "vi": "VPN"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "認証局",
+          "vi": "Tổ chức chứng thực (CA)"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "バイオメトリクス認証",
+          "vi": "Xác thực sinh trắc học"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "ファイアウォール",
+          "vi": "Tường lửa"
+        }
+      ],
+      "correct_option_id": "B",
+      "explanation_vi": "PKI (Public Key Infrastructure) cần có tổ chức chứng thực CA để phát hành và quản lý chứng chỉ số, nên đây là thành phần cốt lõi. VPN, sinh trắc học và firewall đều có thể dùng trong bảo mật, nhưng không phải thành phần bắt buộc của PKI.",
+      "assets": [],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2016h28h_ip_qs.pdf",
+        "pages": [
+          27
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2016h28h-058",
+      "exam": "2016h28h",
+      "question_no": 58,
+      "knowledge_group": "技術要素",
+      "question": {
+        "ja": "情報セキュリティにおけるソーシャルエンジニアリングへの対策の例として、適 切なものはどれか。",
+        "vi": "Ví dụ nào sau đây là biện pháp phù hợp để đối phó với social engineering trong an toàn thông tin?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "ウイルスを検知,除去する機能を電子メールシステムに導入する。 ぜい",
+          "vi": "Triển khai vào hệ thống thư điện tử chức năng phát hiện và loại bỏ virus."
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "サーバへの攻撃を想定した擬似アタック試験を実施し,発見された脆弱性への 対策を行う。",
+          "vi": "Thực hiện kiểm thử tấn công giả lập vào server, và áp dụng biện pháp đối phó với các lỗ hổng được phát hiện."
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "従業員のセキュリティ意識を高めるため、セキュリティ教育を行う。",
+          "vi": "Tiến hành đào tạo bảo mật nhằm nâng cao ý thức an toàn thông tin của nhân viên."
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "停電に備えて,サーバルーム向けの自家発電装置を導入する。",
+          "vi": "Để phòng mất điện, trang bị thiết bị phát điện riêng cho phòng server."
+        }
+      ],
+      "correct_option_id": "C",
+      "explanation_vi": "Social engineering lợi dụng con người hơn là khai thác kỹ thuật, nên đào tạo nâng cao nhận thức bảo mật cho nhân viên là biện pháp phù hợp nhất. Phương án ア là chống malware, イ là đối phó lỗ hổng kỹ thuật của server, còn エ là biện pháp đối phó sự cố điện, không nhắm vào social engineering.",
+      "assets": [],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2016h28h_ip_qs.pdf",
+        "pages": [
+          27
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2016h28h-059",
+      "exam": "2016h28h",
+      "question_no": 59,
+      "knowledge_group": "技術要素",
+      "question": {
+        "ja": "次のソフトウェアの組合せのうち, OSS (Open Source Software) だけの組合せはどれか。",
+        "vi": "Trong các tổ hợp phần mềm sau đây, tổ hợp nào chỉ gồm toàn bộ là OSS (Open Source Software)?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "Internet Explorer, Linux, PostgreSQL",
+          "vi": "Internet Explorer, Linux, PostgreSQL"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "Internet Explorer, PostgreSQL, Windows",
+          "vi": "Internet Explorer, PostgreSQL, Windows"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "Firefox, Linux, Thunderbird",
+          "vi": "Firefox, Linux, Thunderbird"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "Firefox, Thunderbird, Windows",
+          "vi": "Firefox, Thunderbird, Windows"
+        }
+      ],
+      "correct_option_id": "C",
+      "explanation_vi": "Firefox, Linux và Thunderbird đều là phần mềm mã nguồn mở nên đáp án đúng là C. Internet Explorer và Windows là phần mềm thương mại độc quyền, vì vậy các tổ hợp có chứa chúng không phải toàn OSS.",
+      "assets": [
+        {
+          "type": "pdf_page",
+          "path": "../IT-PP/2016h28h_ip_qs.pdf",
+          "pages": [
+            28
+          ]
+        }
+      ],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2016h28h_ip_qs.pdf",
+        "pages": [
+          28
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2016h28h-060",
+      "exam": "2016h28h",
+      "question_no": 60,
+      "knowledge_group": "コンピュータシステム",
+      "question": {
+        "ja": "同じ装置が複数接続されているシステム構成a～cについて、稼働率が高い順に並べたものはどれか。ここで、一□ーは装置を表し、並列に接続されている場合はいずれか一つの装置が動作していればよく、直列に接続されている場合は全ての装置が動作していなければならない。\na：□—□\nb：□—(□, □の並列)\nc：□, □, □の並列",
+        "vi": "Đối với các cấu hình hệ thống a～c trong đó nhiều thiết bị giống nhau được kết nối, cách sắp xếp theo thứ tự độ sẵn sàng hoạt động từ cao xuống thấp là gì? Ở đây, “□” biểu thị một thiết bị; nếu kết nối song song thì chỉ cần một thiết bị hoạt động là được, còn nếu kết nối nối tiếp thì tất cả thiết bị đều phải hoạt động.\na: hai thiết bị nối tiếp\nb: một thiết bị nối tiếp với hai thiết bị mắc song song\nc: ba thiết bị mắc song song"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "a, b, c",
+          "vi": "a, b, c"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "b, a, c",
+          "vi": "b, a, c"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "c, a, b",
+          "vi": "c, a, b"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "c, b, a",
+          "vi": "c, b, a"
+        }
+      ],
+      "correct_option_id": "D",
+      "explanation_vi": "Trong cấu hình song song, độ sẵn sàng tăng vì chỉ cần một thiết bị còn hoạt động; trong cấu hình nối tiếp, độ sẵn sàng giảm vì phải có tất cả thiết bị cùng hoạt động. Do đó cấu hình có mức dự phòng lớn nhất sẽ có độ sẵn sàng cao nhất, tiếp theo là cấu hình trung gian, và cuối cùng là cấu hình nối tiếp nhiều nhất. Theo đáp án cho sẵn, thứ tự đúng là D: c, b, a.",
+      "assets": [
+        {
+          "type": "pdf_page",
+          "path": "../IT-PP/2016h28h_ip_qs.pdf",
+          "pages": [
+            28
+          ]
+        }
+      ],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2016h28h_ip_qs.pdf",
+        "pages": [
+          28
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2016h28h-061",
+      "exam": "2016h28h",
+      "question_no": 61,
+      "knowledge_group": "技術要素",
+      "question": {
+        "ja": "ランサムウェアに関する記述として、適切なものはどれか。",
+        "vi": "Mô tả nào sau đây về ransomware là phù hợp?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "PC やファイルを使用不能にするなどして、回復のための金銭を要求する。",
+          "vi": "Làm cho PC hoặc tệp tin không thể sử dụng được, v.v., rồi yêu cầu tiền để khôi phục."
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "コンピュータの画面へ自動的に広告を表示する。",
+          "vi": "Tự động hiển thị quảng cáo trên màn hình máy tính."
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "利用者がキーボードから入力した情報を記録し、外部に送信する。",
+          "vi": "Ghi lại thông tin mà người dùng nhập từ bàn phím và gửi ra bên ngoài."
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "ワープロソフトや表計算ソフトの文書ファイルに感染する。",
+          "vi": "Lây nhiễm vào các tệp tài liệu của phần mềm xử lý văn bản hoặc phần mềm bảng tính."
+        }
+      ],
+      "correct_option_id": "A",
+      "explanation_vi": "Ransomware là mã độc khóa PC hoặc mã hóa dữ liệu để nạn nhân không dùng được, sau đó đòi tiền chuộc để khôi phục nên A đúng. B mô tả adware, C là keylogger, còn D là cách mô tả kiểu virus lây vào tệp tài liệu.",
+      "assets": [
+        {
+          "type": "pdf_page",
+          "path": "../IT-PP/2016h28h_ip_qs.pdf",
+          "pages": [
+            28
+          ]
+        }
+      ],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2016h28h_ip_qs.pdf",
+        "pages": [
+          28
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2016h28h-062",
+      "exam": "2016h28h",
+      "question_no": 62,
+      "knowledge_group": "技術要素",
+      "question": {
+        "ja": "電子メールに関するプロトコルの説明のうち、適切な記述はどれか。\n•",
+        "vi": "Trong các mô tả về giao thức liên quan đến thư điện tử, mô tả nào là phù hợp?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "IMAP4 によって、画像のようなバイナリデータを ASCII 文字列に変換して、電 子メールで送ることができる。",
+          "vi": "Bằng IMAP4, có thể chuyển đổi dữ liệu nhị phân như hình ảnh thành chuỗi ký tự ASCII để gửi bằng email."
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "POP3 によって,PC から電子メールを送信することができる。",
+          "vi": "Bằng POP3, có thể gửi thư điện tử từ PC."
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "POP3 や IMAP4 によって、メールサーバから電子メールを受信することができ る。",
+          "vi": "Bằng POP3 hoặc IMAP4, có thể nhận thư điện tử từ mail server."
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "SMTP によって、電子メールを暗号化することができる。",
+          "vi": "Bằng SMTP, có thể mã hóa thư điện tử."
+        }
+      ],
+      "correct_option_id": "C",
+      "explanation_vi": "POP3 và IMAP4 đều là các giao thức dùng để nhận email từ mail server nên C đúng. A là chức năng thuộc MIME chứ không phải IMAP4, B sai vì gửi mail thường dùng SMTP, và D sai vì SMTP không phải giao thức mã hóa email.",
+      "assets": [],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2016h28h_ip_qs.pdf",
+        "pages": [
+          29
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2016h28h-063",
+      "exam": "2016h28h",
+      "question_no": 63,
+      "knowledge_group": "技術要素",
+      "question": {
+        "ja": "フィッシングの説明として、適切なものはどれか。",
+        "vi": "Mô tả nào sau đây là đúng về phishing?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "ウイルスに感染している PC へ攻撃者がネットワークを利用して指令を送り,不 正なプログラムを実行させること",
+          "vi": "Kẻ tấn công gửi chỉ thị qua mạng đến PC đã nhiễm virus để thực thi chương trình bất chính."
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "金融機関などからの電子メールを装い、偽サイトに誘導して暗証番号やクレジ ットカード番号などを不正に取得すること",
+          "vi": "Giả mạo email từ các tổ chức như ngân hàng, dẫn người dùng đến trang web giả để đánh cắp trái phép mã PIN, số thẻ tín dụng, v.v."
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "パスワードに使われそうな文字列を網羅した辞書のデータを使用してパスワー ドを割り出すこと",
+          "vi": "Sử dụng dữ liệu từ điển bao quát các chuỗi ký tự có thể được dùng làm mật khẩu để dò ra mật khẩu."
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "複数のコンピュータから攻撃対象のサーバへ大量のパケットを送信し、サーバ の機能を停止させること",
+          "vi": "Gửi một lượng lớn packet từ nhiều máy tính tới server mục tiêu để làm dừng chức năng của server."
+        }
+      ],
+      "correct_option_id": "B",
+      "explanation_vi": "Phishing là hành vi giả mạo email hay website của tổ chức tin cậy để lừa người dùng cung cấp thông tin bí mật, nên B đúng. A gần với điều khiển bot/malware, C là dictionary attack, còn D là tấn công DoS/DDoS.",
+      "assets": [
+        {
+          "type": "pdf_page",
+          "path": "../IT-PP/2016h28h_ip_qs.pdf",
+          "pages": [
+            29
+          ]
+        }
+      ],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2016h28h_ip_qs.pdf",
+        "pages": [
+          29
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2016h28h-064",
+      "exam": "2016h28h",
+      "question_no": 64,
+      "knowledge_group": "技術要素",
+      "question": {
+        "ja": "SQLインジェクションの対策などで用いられ、処理の誤動作を招かないように,利 用者がWebサイトに入力した内容に含まれる有害な文字列を無害な文字列に置き換え ることを何と呼ぶか。",
+        "vi": "Biện pháp được dùng để đối phó với SQL injection, trong đó thay thế các chuỗi ký tự độc hại có trong nội dung do người dùng nhập vào website thành chuỗi vô hại để tránh gây lỗi xử lý, được gọi là gì?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "サニタイジング",
+          "vi": "Sanitizing"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "ストリーミング",
+          "vi": "Streaming"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "テザリング",
+          "vi": "Tethering"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "リバースエンジニアリング",
+          "vi": "Reverse engineering"
+        }
+      ],
+      "correct_option_id": "A",
+      "explanation_vi": "Việc kiểm tra và thay thế các ký tự hoặc chuỗi nguy hiểm trong dữ liệu nhập để không gây tác động xấu đến xử lý được gọi là sanitizing, nên A đúng. Streaming là truyền dữ liệu liên tục, tethering là chia sẻ kết nối mạng, còn reverse engineering là phân tích ngược sản phẩm hay chương trình.",
+      "assets": [],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2016h28h_ip_qs.pdf",
+        "pages": [
+          29
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2016h28h-065",
+      "exam": "2016h28h",
+      "question_no": 65,
+      "knowledge_group": "企業と法務",
+      "question": {
+        "ja": "顧客の氏名,住所などが記載された住所録の取扱い a～d のうち、個人情報保護の観点から適切なものだけを全て挙げたものはどれか。\na 顧客から本人の登録内容の確認希望があっても、情報の保護を理由に開示しない。\nb 住所録から全員の氏名と住所を抽出した一覧を作成し、それを顧客全員に配布して誤りがないことを確認してもらう。\nc 住所録のデータを書き込んだCD-ROMを破棄するときには破砕する。\nd 住所録のデータをファイルに保存するときには暗号化する。",
+        "vi": "Trong các cách xử lý a~d đối với sổ địa chỉ có ghi họ tên, địa chỉ của khách hàng, xét từ góc độ bảo vệ thông tin cá nhân, phương án nào liệt kê tất cả và chỉ những cách phù hợp?\na. Dù khách hàng muốn xác nhận nội dung đăng ký của chính mình, cũng không công khai với lý do bảo vệ thông tin.\nb. Trích xuất họ tên và địa chỉ của toàn bộ mọi người từ sổ địa chỉ thành một danh sách, rồi phân phát cho toàn bộ khách hàng để nhờ họ xác nhận không có sai sót.\nc. Khi hủy bỏ CD-ROM đã ghi dữ liệu sổ địa chỉ thì phải nghiền hủy.\nd. Khi lưu dữ liệu sổ địa chỉ vào tệp thì phải mã hóa."
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "a, c, d",
+          "vi": "a, c, d"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "a, d",
+          "vi": "a, d"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "b, c",
+          "vi": "b, c"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "c, d",
+          "vi": "c, d"
+        }
+      ],
+      "correct_option_id": "D",
+      "explanation_vi": "c và d là phù hợp vì dữ liệu cá nhân cần được hủy bỏ an toàn và bảo vệ bằng mã hóa khi lưu trữ. a sai vì chủ thể thông tin có quyền yêu cầu xác nhận hoặc công khai thông tin của chính mình, còn b sai vì việc phát tán danh sách toàn bộ khách hàng cho mọi người là làm lộ thông tin cá nhân của người khác.",
+      "assets": [
+        {
+          "type": "pdf_page",
+          "path": "../IT-PP/2016h28h_ip_qs.pdf",
+          "pages": [
+            30
+          ]
+        }
+      ],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2016h28h_ip_qs.pdf",
+        "pages": [
+          30
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2016h28h-066",
+      "exam": "2016h28h",
+      "question_no": 66,
+      "knowledge_group": "技術要素",
+      "question": {
+        "ja": "インターネットのWebメールに関する記述1~3のうち、適切なものだけを全て挙げたものはどれか。\n1 PCに、電子メールの作成や送受信、受信した電子メールの保存や管理を行う専用のソフトウェアをインストールしておく必要がある。\n2 PCを買い替えた場合でも、過去の電子メールの移行が不要である。\n3 ブラウザが動作し、インターネットに接続できるPCがあれば、電子メール機能を利用することができる。",
+        "vi": "Trong các mô tả 1~3 về Web mail trên Internet, phương án nào liệt kê tất cả và chỉ những mô tả đúng?\n1 Cần cài đặt trên PC phần mềm chuyên dụng để soạn, gửi/nhận email, lưu trữ và quản lý email đã nhận.\n2 Ngay cả khi thay PC mới, cũng không cần chuyển dữ liệu email cũ.\n3 Nếu có một PC chạy được trình duyệt và có thể kết nối Internet, thì có thể sử dụng chức năng email."
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "1,2",
+          "vi": "1, 2"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "1,3",
+          "vi": "1, 3"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "2,3",
+          "vi": "2, 3"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "3",
+          "vi": "3"
+        }
+      ],
+      "correct_option_id": "C",
+      "explanation_vi": "Web mail lưu thư trên máy chủ nên khi đổi PC thường không cần di chuyển email cũ, và chỉ cần browser cùng kết nối Internet là có thể sử dụng. Mệnh đề 1 sai vì Web mail không bắt buộc phải cài phần mềm email chuyên dụng trên PC. Vì vậy đáp án đúng là C (2 và 3).",
+      "assets": [],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2016h28h_ip_qs.pdf",
+        "pages": [
+          30
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2016h28h-067",
+      "exam": "2016h28h",
+      "question_no": 67,
+      "knowledge_group": "技術要素",
+      "question": {
+        "ja": "PCやサーバ,通信機器,プリンタなどの間での通信を行う事例のうち,WANを利用 する必要があるものはどれか。",
+        "vi": "Trong các trường hợp truyền thông giữa PC, server, thiết bị truyền thông, printer..., trường hợp nào cần sử dụng WAN?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "大阪支社内の LAN に複数の PC と 1 台のファイルサーバを接続し、ファイルサー バに格納されたファイルを、その LAN に接続されたどの PC からでもアクセス可能 とする。",
+          "vi": "Kết nối nhiều PC và 1 file server vào LAN trong chi nhánh Osaka, để bất kỳ PC nào nối vào LAN đó cũng có thể truy cập các tệp lưu trên file server."
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "家庭内で,PC とプリンタを Bluetooth で接続し,PC で作成した資料をプリンタ で印刷する。",
+          "vi": "Trong gia đình, kết nối PC và printer bằng Bluetooth, rồi in tài liệu được tạo trên PC bằng printer."
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "サーバルーム内で,PC と Web サーバをハブに接続し,PC から Web サーバのメン テナンスを行う。",
+          "vi": "Trong phòng server, kết nối PC và Web server vào hub, rồi thực hiện bảo trì Web server từ PC."
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "福岡営業所内の LAN に接続された PC から,東京本社内のサーバにアクセスし, 売上情報をアップロードする。",
+          "vi": "Từ một PC kết nối vào LAN của văn phòng kinh doanh Fukuoka, truy cập server ở trụ sở chính Tokyo và upload thông tin doanh số."
+        }
+      ],
+      "correct_option_id": "D",
+      "explanation_vi": "WAN được dùng để kết nối mạng giữa các địa điểm ở xa về mặt địa lý, như từ Fukuoka tới Tokyo. Các phương án A và C chỉ là kết nối trong cùng một LAN nội bộ, còn B là kết nối cự ly ngắn bằng Bluetooth. Vì thế chỉ phương án D cần WAN.",
+      "assets": [],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2016h28h_ip_qs.pdf",
+        "pages": [
+          31
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2016h28h-068",
+      "exam": "2016h28h",
+      "question_no": 68,
+      "knowledge_group": "技術要素",
+      "question": {
+        "ja": "MACアドレスに関する記述のうち、適切なものはどれか。",
+        "vi": "Trong các mô tả về địa chỉ MAC, mô tả nào là đúng?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "同じアドレスをもつ機器は世界中で一つしか存在しないように割り当てられる。",
+          "vi": "Được cấp phát sao cho trên toàn thế giới chỉ có duy nhất một thiết bị có cùng địa chỉ đó."
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "国別情報が含まれており、同じアドレスをもつ機器は各国に一つしか存在しな いように割り当てられる。",
+          "vi": "Có chứa thông tin theo quốc gia, và được cấp phát sao cho mỗi quốc gia chỉ có một thiết bị mang cùng địa chỉ đó."
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "ネットワーク管理者によって割り当てられる。",
+          "vi": "Được gán bởi quản trị viên mạng."
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "プロバイダ (ISP) によって割り当てられる。",
+          "vi": "Được gán bởi nhà cung cấp dịch vụ Internet (ISP)."
+        }
+      ],
+      "correct_option_id": "A",
+      "explanation_vi": "MAC address là địa chỉ phần cứng được nhà sản xuất gán cho giao diện mạng, về nguyên tắc là duy nhất trên toàn cầu. Nó không chứa thông tin quốc gia, cũng không phải do quản trị mạng hay ISP cấp phát. Do đó A là đúng.",
+      "assets": [],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2016h28h_ip_qs.pdf",
+        "pages": [
+          31
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2016h28h-069",
+      "exam": "2016h28h",
+      "question_no": 69,
+      "knowledge_group": "技術要素",
+      "question": {
+        "ja": "ソフトウェアの不具合を修正するために提供されるファイルのことを何と呼ぶか。",
+        "vi": "Tệp được cung cấp để sửa lỗi của phần mềm được gọi là gì?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "パターンファイル",
+          "vi": "Pattern file"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "バックアップファイル",
+          "vi": "Backup file"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "バッチファイル",
+          "vi": "Batch file"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "パッチファイル",
+          "vi": "Patch file"
+        }
+      ],
+      "correct_option_id": "D",
+      "explanation_vi": "Tệp dùng để sửa lỗi hoặc vá lỗ hổng của phần mềm được gọi là patch file. Pattern file thường dùng cho phần mềm antivirus, backup file là tệp sao lưu, còn batch file là tệp chứa lệnh xử lý hàng loạt. Vì vậy đáp án đúng là D.",
+      "assets": [],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2016h28h_ip_qs.pdf",
+        "pages": [
+          31
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2016h28h-070",
+      "exam": "2016h28h",
+      "question_no": 70,
+      "knowledge_group": "技術要素",
+      "question": {
+        "ja": "サブネットマスクの役割として、適切なものはどれか。",
+        "vi": "Vai trò nào sau đây là đúng đối với subnet mask?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "IP アドレスから Ethernet 上の MAC アドレスを割り出す。",
+          "vi": "Suy ra địa chỉ MAC trên Ethernet từ địa chỉ IP."
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "IP アドレスに含まれるネットワークアドレスと,そのネットワークに属する 個々のコンピュータのホストアドレスを区分する。",
+          "vi": "Phân chia phần địa chỉ mạng và phần địa chỉ host của từng máy tính thuộc mạng đó trong một địa chỉ IP."
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "インターネットと内部ネットワークを中継するときのグローバル IP アドレスと プライベート IP アドレスを対応付ける。",
+          "vi": "Ánh xạ giữa địa chỉ IP global và địa chỉ IP private khi trung chuyển giữa Internet và mạng nội bộ."
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "通信相手先のドメイン名と IP アドレスを対応付ける。",
+          "vi": "Ánh xạ giữa tên miền của đối tượng liên lạc và địa chỉ IP."
+        }
+      ],
+      "correct_option_id": "B",
+      "explanation_vi": "Subnet mask dùng để xác định phần network address và phần host address trong địa chỉ IP. Phương án A là vai trò của ARP, C là NAT, còn D là DNS. Vì thế đáp án đúng là B.",
+      "assets": [],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2016h28h_ip_qs.pdf",
+        "pages": [
+          32
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2016h28h-071",
+      "exam": "2016h28h",
+      "question_no": 71,
+      "knowledge_group": "技術要素",
+      "question": {
+        "ja": "ネットワークの交換方式に関する記述のうち、適切なものはどれか。",
+        "vi": "Trong các mô tả về phương thức chuyển mạch mạng, mô tả nào là phù hợp?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "回線交換方式では,通信利用者間で通信経路を占有するので、接続速度や回線 品質の保証を行いやすい。",
+          "vi": "Trong phương thức chuyển mạch kênh, vì chiếm dụng đường truyền giữa các bên liên lạc nên dễ bảo đảm tốc độ kết nối và chất lượng đường truyền."
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "回線交換方式はメタリック線を使用するので,アナログ信号だけを扱える。",
+          "vi": "Phương thức chuyển mạch kênh sử dụng đường dây kim loại nên chỉ có thể xử lý tín hiệu analog."
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "パケット交換方式は、複数の端末で伝送路を共有しないので、通信回線の利用 効率が悪い。",
+          "vi": "Phương thức chuyển mạch gói không dùng chung đường truyền giữa nhiều thiết bị đầu cuối, nên hiệu suất sử dụng đường truyền kém."
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "パケット交換方式は無線だけで利用でき、回線交換方式は有線だけで利用でき る。",
+          "vi": "Phương thức chuyển mạch gói chỉ dùng được với mạng không dây, còn phương thức chuyển mạch kênh chỉ dùng được với mạng có dây."
+        }
+      ],
+      "correct_option_id": "A",
+      "explanation_vi": "Chuyển mạch kênh thiết lập và chiếm riêng một đường truyền trong suốt thời gian liên lạc, nên dễ bảo đảm băng thông và chất lượng. B sai vì chuyển mạch kênh không chỉ xử lý tín hiệu analog. C sai vì chuyển mạch gói chính là cách nhiều thiết bị cùng chia sẻ đường truyền để nâng cao hiệu suất. D sai vì cả hai phương thức đều không bị giới hạn tuyệt đối bởi môi trường hữu tuyến hay vô tuyến.",
+      "assets": [],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2016h28h_ip_qs.pdf",
+        "pages": [
+          32
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2016h28h-072",
+      "exam": "2016h28h",
+      "question_no": 72,
+      "knowledge_group": "コンピュータシステム",
+      "question": {
+        "ja": "機械的な可動部分が無く、電力消費も少ないという特徴をもつ補助記憶装置はど れか。",
+        "vi": "Thiết bị lưu trữ phụ nào có đặc điểm là không có bộ phận cơ khí chuyển động và tiêu thụ điện năng ít?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "CD-RWドライブ",
+          "vi": "Ổ đĩa CD-RW"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "DVDドライブ",
+          "vi": "Ổ đĩa DVD"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "HDD",
+          "vi": "HDD"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "SSD",
+          "vi": "SSD"
+        }
+      ],
+      "correct_option_id": "D",
+      "explanation_vi": "SSD sử dụng bộ nhớ flash, không có bộ phận cơ khí chuyển động nên tiêu thụ điện thấp và hoạt động nhanh, bền hơn trước rung động. CD-RW drive và DVD drive đều có cơ cấu quay đĩa. HDD cũng có đĩa từ quay và đầu đọc ghi chuyển động cơ học.",
+      "assets": [],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2016h28h_ip_qs.pdf",
+        "pages": [
+          32
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2016h28h-073",
+      "exam": "2016h28h",
+      "question_no": 73,
+      "knowledge_group": "技術要素",
+      "question": {
+        "ja": "情報セキュリティマネジメントシステムを構築した企業において、情報セキュリ ティ方針を改訂したことを周知する範囲として、適切なものはどれか。",
+        "vi": "Trong doanh nghiệp đã xây dựng hệ thống quản lý an toàn thông tin, phạm vi phù hợp để thông báo việc sửa đổi chính sách an toàn thông tin là phạm vi nào?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "機密情報を扱う部署の従業員",
+          "vi": "Nhân viên của các bộ phận xử lý thông tin mật"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "経営者",
+          "vi": "Ban lãnh đạo"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "全ての従業員及び関連する外部関係者",
+          "vi": "Toàn bộ nhân viên và các bên liên quan bên ngoài có liên quan"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "セキュリティ管理者",
+          "vi": "Người quản lý an ninh"
+        }
+      ],
+      "correct_option_id": "C",
+      "explanation_vi": "Chính sách an toàn thông tin phải được phổ biến tới toàn bộ nhân viên và cả các bên liên quan bên ngoài có liên quan để bảo đảm mọi đối tượng đều tuân thủ thống nhất. A, B, D đều quá hẹp, chỉ giới hạn ở một nhóm nhất định nên không đáp ứng yêu cầu của ISMS.",
+      "assets": [],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2016h28h_ip_qs.pdf",
+        "pages": [
+          33
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2016h28h-074",
+      "exam": "2016h28h",
+      "question_no": 74,
+      "knowledge_group": "技術要素",
+      "question": {
+        "ja": "無線LANのアクセスポイントに備わるセキュリティ対策のうち,自身のESSIDの発 信を停止するものはどれか。",
+        "vi": "Trong các biện pháp bảo mật có trên access point của mạng LAN không dây, biện pháp nào dùng để ngừng phát ESSID của chính nó?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "MACアドレスフィルタリング",
+          "vi": "Lọc địa chỉ MAC"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "WEP",
+          "vi": "WEP"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "WPA",
+          "vi": "WPA"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "ステルス機能",
+          "vi": "Chức năng stealth"
+        }
+      ],
+      "correct_option_id": "D",
+      "explanation_vi": "Chức năng stealth của access point là chức năng ẩn SSID/ESSID bằng cách ngừng phát beacon chứa ESSID. MAC address filtering chỉ giới hạn thiết bị được phép kết nối. WEP và WPA là các cơ chế mã hóa/xác thực, không phải chức năng ngừng phát ESSID.",
+      "assets": [],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2016h28h_ip_qs.pdf",
+        "pages": [
+          33
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2016h28h-075",
+      "exam": "2016h28h",
+      "question_no": 75,
+      "knowledge_group": "コンピュータシステム",
+      "question": {
+        "ja": "デュアルシステムの特徴を説明したものはどれか。",
+        "vi": "Mô tả nào giải thích đặc điểm của dual system?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "同じ処理を行うシステムを二重に用意し,処理結果を照合することで処理の正 しさを確認する方式であり,一方に故障が発生したら、故障したシステムを切り 離して処理を続行する。",
+          "vi": "Chuẩn bị kép hai hệ thống thực hiện cùng một xử lý, đối chiếu kết quả xử lý để xác nhận tính đúng đắn của xử lý; nếu một bên xảy ra sự cố thì tách hệ thống bị lỗi ra và tiếp tục xử lý."
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "同じ装置を 2 台使用することで、シンプレックスシステムに対し、処理能力を 2 倍に向上させることができる。",
+          "vi": "Bằng cách sử dụng 2 thiết bị giống nhau, có thể nâng năng lực xử lý lên gấp đôi so với hệ thống simplex."
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "オンライン処理を行う現用系システムと,バッチ処理などを行いながら待機さ せる待機系のシステムを用意し、現用系に障害が発生した場合は待機系に切り替 え、オンライン処理を起動してサービスを続行する。",
+          "vi": "Chuẩn bị một hệ thống đang hoạt động để xử lý online và một hệ thống dự phòng chờ sẵn trong khi thực hiện batch processing..., khi hệ thống chính gặp sự cố thì chuyển sang hệ thống dự phòng và khởi động xử lý online để tiếp tục dịch vụ."
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "複数の装置を直列に接続し,それらの間で機能ごとに負荷を分散するように構 成しているので,処理能力は高いが,各機能を担当する装置のうちどれか一つで も故障するとサービスが提供できなくなる。",
+          "vi": "Kết nối nhiều thiết bị theo kiểu nối tiếp và phân tán tải theo từng chức năng giữa chúng, vì vậy năng lực xử lý cao nhưng chỉ cần một thiết bị phụ trách chức năng nào đó bị hỏng thì không thể cung cấp dịch vụ."
+        }
+      ],
+      "correct_option_id": "A",
+      "explanation_vi": "Dual system là cấu hình có hai hệ thống cùng xử lý song song, so sánh kết quả để phát hiện sai lệch và vẫn tiếp tục vận hành khi một bên hỏng. B sai vì mục tiêu chính không phải tăng gấp đôi hiệu năng. C mô tả hệ thống dự phòng chờ chuyển đổi khi lỗi. D là cấu hình phân tán theo chức năng, không phải dual system.",
+      "assets": [],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2016h28h_ip_qs.pdf",
+        "pages": [
+          33
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2016h28h-076",
+      "exam": "2016h28h",
+      "question_no": 76,
+      "knowledge_group": "技術要素",
+      "question": {
+        "ja": "認証方式を“知識による認証”,“所持品による認証”及び“個人の身体的·行動 的特徴による認証”の三つに分類したとき,“個人の身体的·行動的特徴による認 証”に分類されるものはどれか。",
+        "vi": "Khi phân loại phương thức xác thực thành ba loại: “xác thực bằng kiến thức”, “xác thực bằng vật sở hữu” và “xác thực bằng đặc điểm sinh học/hành vi của cá nhân”, thì phương thức nào được xếp vào “xác thực bằng đặc điểm sinh học/hành vi của cá nhân”?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "IDカードによる認証",
+          "vi": "Xác thực bằng thẻ ID"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "ニーモニック認証",
+          "vi": "Xác thực bằng mnemonic"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "バイオメトリクス認証",
+          "vi": "Xác thực sinh trắc học (biometrics)"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "パスワード認証",
+          "vi": "Xác thực bằng mật khẩu"
+        }
+      ],
+      "correct_option_id": "C",
+      "explanation_vi": "Biometrics là phương thức xác thực dựa trên đặc điểm cơ thể hoặc hành vi của cá nhân như vân tay, khuôn mặt, mống mắt, nên thuộc nhóm này. IDカード là xác thực bằng vật sở hữu, còn mnemonic và password đều thuộc xác thực bằng kiến thức.",
+      "assets": [],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2016h28h_ip_qs.pdf",
+        "pages": [
+          34
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2016h28h-077",
+      "exam": "2016h28h",
+      "question_no": 77,
+      "knowledge_group": "技術要素",
+      "question": {
+        "ja": "セキュリティリスクへの対応には、リスク移転,リスク回避,リスク受容,リス ク低減などがある。リスク移転に該当する事例はどれか。",
+        "vi": "Có các cách ứng phó với rủi ro an ninh như chuyển giao rủi ro, né tránh rủi ro, chấp nhận rủi ro, giảm thiểu rủi ro. Trường hợp nào tương ứng với chuyển giao rủi ro?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "セキュリティ対策を行って、問題発生の可能性を下げた。",
+          "vi": "Thực hiện các biện pháp bảo mật để làm giảm khả năng phát sinh sự cố."
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "問題発生時の損害に備えて,保険に入った。",
+          "vi": "Mua bảo hiểm để phòng tổn thất khi sự cố xảy ra."
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "リスクが小さいことを確認し,問題発生時は損害を負担することにした。",
+          "vi": "Xác nhận rằng rủi ro nhỏ, và quyết định tự gánh chịu thiệt hại nếu sự cố xảy ra."
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "リスクの大きいサービスから撤退した。",
+          "vi": "Rút khỏi dịch vụ có rủi ro lớn."
+        }
+      ],
+      "correct_option_id": "B",
+      "explanation_vi": "Mua bảo hiểm là điển hình của chuyển giao rủi ro vì tổn thất tài chính được chuyển sang bên bảo hiểm. A là giảm thiểu rủi ro, C là chấp nhận rủi ro, còn D là né tránh rủi ro.",
+      "assets": [],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2016h28h_ip_qs.pdf",
+        "pages": [
+          34
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2016h28h-078",
+      "exam": "2016h28h",
+      "question_no": 78,
+      "knowledge_group": "技術要素",
+      "question": {
+        "ja": "ハブとルータを使用してPC1~4が相互に通信できるように構成したTCP/IPネット ワークがある。ルータの各ポートに設定したIPアドレスが図のとおりであるとき, PC1に設定するデフォルトゲートウェイのIPアドレスとして、適切なものはどれか。\nルータ\n192. 168.5. 1\n192. 168.5.2\nルータ\n192. 168. 1. 1\n192.168.2. 1\nハブ\nハブ\nPC1\nPC2\nPC3\nPC4\nLAN1\nLAN2",
+        "vi": "Có một mạng TCP/IP được cấu hình bằng hub và router để các PC1~4 có thể liên lạc với nhau. Khi địa chỉ IP được thiết lập cho từng cổng của router như trong hình, thì địa chỉ IP nào là phù hợp để đặt làm default gateway cho PC1?\nRouter\n192.168.5.1\n192.168.5.2\nRouter\n192.168.1.1\n192.168.2.1\nHub\nHub\nPC1\nPC2\nPC3\nPC4\nLAN1\nLAN2"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "192. 168. 1. 1",
+          "vi": "192.168.1.1"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "192. 168.2. 1",
+          "vi": "192.168.2.1"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "192. 168.5.1",
+          "vi": "192.168.5.1"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "192. 168.5.2",
+          "vi": "192.168.5.2"
+        }
+      ],
+      "correct_option_id": "A",
+      "explanation_vi": "Default gateway của PC1 phải là địa chỉ IP của cổng router nằm cùng mạng LAN với PC1, tức phía LAN1. Trong hình, cổng router nối với LAN1 có địa chỉ 192.168.1.1, nên đây là lựa chọn đúng; các địa chỉ còn lại thuộc mạng khác hoặc là đường kết nối giữa các router.",
+      "assets": [
+        {
+          "type": "pdf_page",
+          "path": "../IT-PP/2016h28h_ip_qs.pdf",
+          "pages": [
+            35
+          ]
+        }
+      ],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2016h28h_ip_qs.pdf",
+        "pages": [
+          35
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2016h28h-079",
+      "exam": "2016h28h",
+      "question_no": 79,
+      "knowledge_group": "技術要素",
+      "question": {
+        "ja": "Webサイトによっては、ブラウザで閲覧したときの情報を、ブラウザを介して閲覧者のPCに保存することがある。以後このWebサイトにアクセスした際は保存された情報を使い、閲覧の利便性を高めることができる。このような目的で利用される仕組みはどれか。",
+        "vi": "Một số website có thể lưu thông tin khi được xem bằng trình duyệt vào PC của người xem thông qua trình duyệt. Những lần sau khi truy cập website này, thông tin đã lưu sẽ được sử dụng để tăng tính thuận tiện khi xem. Cơ chế được dùng cho mục đích như vậy là gì?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "Cookie",
+          "vi": "Cookie"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "SQL",
+          "vi": "SQL"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "URL",
+          "vi": "URL"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "XML",
+          "vi": "XML"
+        }
+      ],
+      "correct_option_id": "A",
+      "explanation_vi": "Cookie là cơ chế lưu thông tin truy cập của người dùng trên trình duyệt/PC để phục vụ đăng nhập, ghi nhớ thiết lập hoặc cải thiện trải nghiệm sử dụng. SQL là ngôn ngữ thao tác cơ sở dữ liệu, URL là địa chỉ tài nguyên, còn XML là định dạng mô tả dữ liệu.",
+      "assets": [
+        {
+          "type": "pdf_page",
+          "path": "../IT-PP/2016h28h_ip_qs.pdf",
+          "pages": [
+            35
+          ]
+        }
+      ],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2016h28h_ip_qs.pdf",
+        "pages": [
+          35
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2016h28h-080",
+      "exam": "2016h28h",
+      "question_no": 80,
+      "knowledge_group": "技術要素",
+      "question": {
+        "ja": "表計算ソフトを用いて、買い物金額に応じたポイント数を計算する。買い物金額 が1,000円以下では買い物金額の1%,買い物金額が1,000円を超え3,000円以下では 買い物金額の2%,買い物金額が3,000円を超える場合は買い物金額の3%のポイント を付与する。ワークシートのセルA2に買い物金額が入力されるとき、ポイント数が 表示されるセルB2に入る数式はどれか。ここで、ポイント数の小数点以下は切捨て とする。\nA\nB\n1\n買い物金額\nポイント数\n2\n3, 350\n100",
+        "vi": "Dùng phần mềm bảng tính để tính số điểm thưởng theo số tiền mua hàng. Nếu số tiền mua hàng là 1.000 yên trở xuống thì cộng điểm bằng 1% số tiền mua; nếu lớn hơn 1.000 yên và không quá 3.000 yên thì cộng 2%; nếu vượt quá 3.000 yên thì cộng 3%. Khi số tiền mua hàng được nhập vào ô A2 của worksheet, thì công thức nào cần nhập vào ô B2 để hiển thị số điểm? Biết rằng phần thập phân của điểm thưởng sẽ bị cắt bỏ.\nA\nB\n1\nSố tiền mua hàng\nSố điểm thưởng\n2\n3,350\n100"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "IF(A2≧3000,整数部(A2*3/100), IF(A2≧1000,整数部(A2/100),整数部(A2*2/100)))",
+          "vi": "IF(A2≧3000,整数部(A2*3/100), IF(A2≧1000,整数部(A2/100),整数部(A2*2/100)))"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "IF(A2>3000, 整数部(A2*3/100), IF(A2>1000,整数部(A2/100),整数部(A2*2/100)))",
+          "vi": "IF(A2>3000, 整数部(A2*3/100), IF(A2>1000,整数部(A2/100),整数部(A2*2/100)))"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "IF(A2≦1000,整数部(A2/100), IF(A2≦3000,整数部(A2*2/100),整数部(A2*3/100)))",
+          "vi": "IF(A2≦1000,整数部(A2/100), IF(A2≦3000,整数部(A2*2/100),整数部(A2*3/100)))"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "IF(A2<1000,整数部(A2/100), IF(A2<3000,整数部(A2*2/100),整数部(A2*3/100)))",
+          "vi": "IF(A2<1000,整数部(A2/100), IF(A2<3000,整数部(A2*2/100),整数部(A2*3/100)))"
+        }
+      ],
+      "correct_option_id": "C",
+      "explanation_vi": "Điều kiện đúng phải xét theo thứ tự: A2 ≤ 1000 thì 1%, nếu không mà A2 ≤ 3000 thì 2%, còn lại là 3%, nên công thức ở phương án ウ là chính xác. A và B sắp xếp điều kiện sai nên mức phần trăm bị đảo, còn D dùng dấu < nên các giá trị đúng bằng 1000 hoặc 3000 sẽ bị xử lý sai.",
+      "assets": [
+        {
+          "type": "pdf_page",
+          "path": "../IT-PP/2016h28h_ip_qs.pdf",
+          "pages": [
+            36
+          ]
+        }
+      ],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2016h28h_ip_qs.pdf",
+        "pages": [
+          36
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2016h28h-081",
+      "exam": "2016h28h",
+      "question_no": 81,
+      "knowledge_group": "コンピュータシステム",
+      "question": {
+        "ja": "PCに接続された周辺装置と, OSやアプリケーションソフトとを仲介して,周辺装 置を制御·操作するソフトウェアはどれか。",
+        "vi": "Phần mềm nào làm trung gian giữa các thiết bị ngoại vi được kết nối với PC với OS và phần mềm ứng dụng, để điều khiển và vận hành thiết bị ngoại vi?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "アーカイバ",
+          "vi": "Archiver"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "インストーラ",
+          "vi": "Installer"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "デバイスドライバ",
+          "vi": "Device driver"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "ミドルウェア",
+          "vi": "Middleware"
+        }
+      ],
+      "correct_option_id": "C",
+      "explanation_vi": "Device driver là phần mềm trung gian giữa OS/ứng dụng và thiết bị phần cứng, dùng để điều khiển thiết bị ngoại vi. Archiver dùng để nén/giải nén tệp, installer dùng để cài đặt phần mềm, còn middleware là lớp phần mềm trung gian giữa các ứng dụng hay hệ thống, không trực tiếp điều khiển thiết bị ngoại vi.",
+      "assets": [],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2016h28h_ip_qs.pdf",
+        "pages": [
+          36
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2016h28h-082",
+      "exam": "2016h28h",
+      "question_no": 82,
+      "knowledge_group": "基礎理論",
+      "question": {
+        "ja": "ファイルを4冊まで置くことができる机で,A~Fの6冊のファイルを使って仕事 をする。机上に5冊目のファイルを置きたいときは、机上の4冊のファイルのうち, 最後に参照してから最も時間が経過しているファイルを引き出しにしまうことに する。ファイルをA, B, C, D, E, C, B, D, F, Bの順で机上に置いて参照すると き,最後に引き出しにしまうファイルはどれか。",
+        "vi": "Với một chiếc bàn có thể đặt tối đa 4 tập hồ sơ, người ta làm việc với 6 tập hồ sơ A~F. Khi muốn đặt tập hồ sơ thứ 5 lên bàn, thì trong 4 tập hồ sơ đang có trên bàn sẽ cất vào ngăn kéo tập nào đã lâu nhất không được tham chiếu kể từ lần tham chiếu cuối cùng. Khi đặt lên bàn và tham chiếu các tập theo thứ tự A, B, C, D, E, C, B, D, F, B, thì tập hồ sơ bị cất vào ngăn kéo cuối cùng là tập nào?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "A",
+          "vi": "A"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "B",
+          "vi": "B"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "D",
+          "vi": "D"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "E",
+          "vi": "E"
+        }
+      ],
+      "correct_option_id": "D",
+      "explanation_vi": "Đây là quy tắc thay thế theo LRU. Diễn tiến chính: sau A,B,C,D thì bàn có A,B,C,D; khi E vào thì A bị loại, tiếp theo sau các lần C,B,D thì khi F vào, tập ít được dùng lâu nhất là E nên E bị cất đi cuối cùng. Vì vậy đáp án đúng là エ.",
+      "assets": [],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2016h28h_ip_qs.pdf",
+        "pages": [
+          37
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2016h28h-083",
+      "exam": "2016h28h",
+      "question_no": 83,
+      "knowledge_group": "技術要素",
+      "question": {
+        "ja": "情報セキュリティにおいて,可用性が損なわれる事象はどれか。",
+        "vi": "Trong an toàn thông tin, sự việc nào làm tổn hại đến tính sẵn sàng (availability)?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "機密情報のコピーが格納された USB メモリが盗難にあった。",
+          "vi": "USB memory chứa bản sao thông tin mật đã bị đánh cắp."
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "顧客情報管理システムの顧客情報が誤った内容のまま運用されていた。",
+          "vi": "Thông tin khách hàng trong hệ thống quản lý thông tin khách hàng được vận hành trong tình trạng nội dung bị sai."
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "社内のサーバに不正侵入されて、社外秘の情報が漏えいした。",
+          "vi": "Máy chủ nội bộ bị xâm nhập trái phép, làm rò rỉ thông tin mật của công ty ra bên ngoài."
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "取引先との電子決済システムが DoS 攻撃を受け、処理ができなくなった。",
+          "vi": "Hệ thống thanh toán điện tử với đối tác bị tấn công DoS, khiến không thể xử lý được."
+        }
+      ],
+      "correct_option_id": "D",
+      "explanation_vi": "Tính sẵn sàng là khả năng hệ thống vẫn sử dụng được khi cần. Bị tấn công DoS khiến hệ thống không thể xử lý là làm mất availability. ア và ウ là tổn hại tính bí mật, còn イ là tổn hại tính toàn vẹn của dữ liệu.",
+      "assets": [],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2016h28h_ip_qs.pdf",
+        "pages": [
+          37
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2016h28h-084",
+      "exam": "2016h28h",
+      "question_no": 84,
+      "knowledge_group": "開発技術",
+      "question": {
+        "ja": "データベースを設計するときに、データの関連を整理して表現することを目的と して使われるものはどれか。",
+        "vi": "Khi thiết kế cơ sở dữ liệu, công cụ nào được dùng với mục đích sắp xếp và biểu diễn các mối liên hệ giữa dữ liệu?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "E-R 図",
+          "vi": "Sơ đồ E-R"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "アローダイアグラム",
+          "vi": "Arrow diagram"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "ガントチャート",
+          "vi": "Gantt chart"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "フローチャート",
+          "vi": "Flowchart"
+        }
+      ],
+      "correct_option_id": "A",
+      "explanation_vi": "E-R図 được dùng để biểu diễn thực thể, thuộc tính và quan hệ giữa các dữ liệu trong thiết kế cơ sở dữ liệu. Arrow diagram và Gantt chart dùng cho quản lý tiến độ dự án, còn flowchart dùng để mô tả luồng xử lý, không phải để mô hình hóa quan hệ dữ liệu.",
+      "assets": [
+        {
+          "type": "pdf_page",
+          "path": "../IT-PP/2016h28h_ip_qs.pdf",
+          "pages": [
+            37
+          ]
+        }
+      ],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2016h28h_ip_qs.pdf",
+        "pages": [
+          37
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2016h28h-085",
+      "exam": "2016h28h",
+      "question_no": 85,
+      "knowledge_group": "コンピュータシステム",
+      "question": {
+        "ja": "利用者がPCの電源を入れてから、そのPCが使える状態になるまでを四つの段階に 分けたとき,最初に実行される段階はどれか。",
+        "vi": "Khi chia quá trình từ lúc người dùng bật nguồn PC đến lúc PC ở trạng thái có thể sử dụng thành 4 giai đoạn, giai đoạn nào được thực hiện đầu tiên?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "BIOS の読込み",
+          "vi": "Nạp BIOS"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "OS の読込み",
+          "vi": "Nạp OS"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "ウイルス対策ソフトなどの常駐アプリケーションソフトの読込み",
+          "vi": "Nạp các phần mềm ứng dụng thường trú như phần mềm chống virus"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "デバイスドライバの読込み",
+          "vi": "Nạp device driver"
+        }
+      ],
+      "correct_option_id": "A",
+      "explanation_vi": "Khi bật nguồn, trước hết hệ thống thực thi BIOS/firmware để kiểm tra và khởi động phần cứng cơ bản, rồi mới chuyển sang nạp OS. Sau đó mới đến device driver và các ứng dụng thường trú như phần mềm chống virus. Vì vậy giai đoạn đầu tiên là BIOS の読込み.",
+      "assets": [],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2016h28h_ip_qs.pdf",
+        "pages": [
+          38
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2016h28h-086",
+      "exam": "2016h28h",
+      "question_no": 86,
+      "knowledge_group": "技術要素",
+      "question": {
+        "ja": "情報セキュリティにおけるソーシャルエンジニアリングの例として、適切なもの はどれか。",
+        "vi": "Ví dụ nào sau đây là phù hợp với social engineering trong an toàn thông tin?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "社員を装った電話を社外からかけて、社内の機密情報を聞き出す。",
+          "vi": "Giả làm nhân viên và gọi điện từ bên ngoài công ty để moi thông tin mật nội bộ."
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "送信元 IP アドレスを偽装したパケットを送り,アクセス制限をすり抜ける。",
+          "vi": "Gửi các packet giả mạo địa chỉ IP nguồn để vượt qua giới hạn truy cập."
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "ネットワーク上のパケットを盗聴し,パスワードなどを不正に入手する。",
+          "vi": "Nghe lén các packet trên mạng để lấy trái phép mật khẩu, v.v."
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "利用者が実行すると、不正な動作をするソフトウェアをダウンロードする。",
+          "vi": "Tải về phần mềm khi người dùng chạy thì sẽ thực hiện hành vi trái phép."
+        }
+      ],
+      "correct_option_id": "A",
+      "explanation_vi": "Social engineering là hình thức lợi dụng con người bằng cách giả mạo, lừa đảo hoặc thao túng tâm lý để lấy thông tin, nên phương án ア là đúng. イ là giả mạo IP (IP spoofing), ウ là nghe lén gói tin, còn エ là liên quan đến malware; các phương án này đều là tấn công kỹ thuật chứ không phải social engineering.",
+      "assets": [],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2016h28h_ip_qs.pdf",
+        "pages": [
+          38
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2016h28h-087",
+      "exam": "2016h28h",
+      "question_no": 87,
+      "knowledge_group": "技術要素",
+      "question": {
+        "ja": "公開鍵暗号方式を用いた機密データの受渡しに関する記述中の a, b に入れる字句の適切な組合せはどれか。\nデータの受信者Aは、自分の a 鍵と b 鍵を用意して a 鍵を送信者Bに送付する。データの送信者Bは、受信者Aから送付された a 鍵を用いてデータを暗号化して受信者Aに送信する。受信者Aは、送信者Bから受信した暗号化されたデータを自分の b 鍵を使って復号する。",
+        "vi": "Tổ hợp từ thích hợp điền vào a, b trong mô tả về việc trao nhận dữ liệu mật sử dụng phương thức mã hóa khóa công khai là gì?\nNgười nhận dữ liệu A chuẩn bị khóa a và khóa b của mình, rồi gửi khóa a cho người gửi B. Người gửi dữ liệu B dùng khóa a do A gửi để mã hóa dữ liệu và gửi cho A. Người nhận A dùng khóa b của mình để giải mã dữ liệu đã được mã hóa mà mình nhận từ B."
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "a：公開、b：共通",
+          "vi": "a: công khai, b: đối xứng"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "a：公開、b：秘密",
+          "vi": "a: công khai, b: bí mật"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "a：秘密、b：公開",
+          "vi": "a: bí mật, b: công khai"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "a：秘密、b：共通",
+          "vi": "a: bí mật, b: đối xứng"
+        }
+      ],
+      "correct_option_id": "B",
+      "explanation_vi": "Trong mã hóa khóa công khai, người nhận công bố public key để bên gửi dùng nó mã hóa dữ liệu, còn việc giải mã được thực hiện bằng private key tương ứng. Vì vậy a là 公開 và b là 秘密, tức phương án B. Các phương án còn lại sai vì dùng sai cặp khóa hoặc nhầm với khóa đối xứng.",
+      "assets": [],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2016h28h_ip_qs.pdf",
+        "pages": [
+          39
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2016h28h-088",
+      "exam": "2016h28h",
+      "question_no": 88,
+      "knowledge_group": "コンピュータシステム",
+      "question": {
+        "ja": "感光ドラム上に印刷イメージを作り,粉末インク(トナー)を付着させて紙に転 写,定着させる方式のプリンタはどれか。",
+        "vi": "Máy in nào tạo ảnh in trên trống cảm quang, làm bám mực bột (toner), rồi chuyển sang giấy và cố định lại?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "インクジェットプリンタ",
+          "vi": "Máy in inkjet"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "インパクトプリンタ",
+          "vi": "Máy in impact"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "熱転写プリンタ",
+          "vi": "Máy in truyền nhiệt"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "レーザプリンタ\n39",
+          "vi": "Máy in laser"
+        }
+      ],
+      "correct_option_id": "D",
+      "explanation_vi": "Máy in laser hoạt động bằng cách tạo ảnh điện tích trên trống cảm quang, hút toner, chuyển toner sang giấy rồi ép nhiệt để cố định. Do đó đáp án đúng là エ. Inkjet phun mực lỏng, impact dùng lực gõ cơ học, còn truyền nhiệt dùng nhiệt để chuyển mực, nên không phù hợp.",
+      "assets": [],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2016h28h_ip_qs.pdf",
+        "pages": [
+          39
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2016h28h-089",
+      "exam": "2016h28h",
+      "question_no": 89,
+      "knowledge_group": "技術要素",
+      "question": {
+        "ja": "セキュリティを保つべきサーバルームの運用例として、適切なものはどれか。",
+        "vi": "Ví dụ vận hành nào là phù hợp đối với phòng server cần được bảo đảm an ninh?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "管理を容易にするために,入退室に使用するIDカードは個人ごとではなく部署 ごとに発行する。",
+          "vi": "Để dễ quản lý, thẻ ID dùng cho ra vào không cấp theo từng cá nhân mà cấp theo từng bộ phận."
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "全従業員や来訪者に所在が分かるように,入口に室名表示をする。",
+          "vi": "Để toàn bộ nhân viên và khách đến thăm đều biết vị trí, ghi tên phòng ở lối vào."
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "入退室の情報が漏えいすることを防止するために,入退室の記録は取らない。",
+          "vi": "Để ngăn rò rỉ thông tin ra vào, không ghi lại lịch sử ra vào."
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "不正行為を防止するために、監督者がいないときはサーバ室で作業させない。",
+          "vi": "Để ngăn chặn hành vi bất chính, không cho làm việc trong phòng server khi không có người giám sát."
+        }
+      ],
+      "correct_option_id": "D",
+      "explanation_vi": "Phương án エ là cách vận hành đúng vì hạn chế việc làm việc một mình trong phòng server giúp giảm nguy cơ gian lận và tăng khả năng kiểm soát. ア sai vì thẻ ra vào phải cấp theo cá nhân để truy vết trách nhiệm. イ làm lộ vị trí phòng quan trọng, còn ウ sai vì phòng an toàn phải lưu nhật ký ra vào.",
+      "assets": [
+        {
+          "type": "pdf_page",
+          "path": "../IT-PP/2016h28h_ip_qs.pdf",
+          "pages": [
+            40
+          ]
+        }
+      ],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2016h28h_ip_qs.pdf",
+        "pages": [
+          40
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2016h28h-090",
+      "exam": "2016h28h",
+      "question_no": 90,
+      "knowledge_group": "技術要素",
+      "question": {
+        "ja": "認証に必要な情報の変更又は更新を定期的に行う必要がないものだけを全て挙げたものはどれか。",
+        "vi": "Phương án nào liệt kê đầy đủ những loại mà thông tin cần thiết cho xác thực không cần phải thay đổi hoặc cập nhật định kỳ?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "a",
+          "vi": "a"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "b",
+          "vi": "b"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "c",
+          "vi": "c"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "a, b",
+          "vi": "a, b"
+        }
+      ],
+      "correct_option_id": "A",
+      "explanation_vi": "Xác thực bằng mống mắt sử dụng đặc trưng sinh trắc học nên thông tin xác thực về cơ bản không cần thay đổi định kỳ. Chứng thư số cần được gia hạn/cập nhật theo thời hạn hiệu lực, còn mật khẩu cần thay đổi định kỳ để tăng an toàn. Vì vậy chỉ có a là đúng, tức A.",
+      "assets": [
+        {
+          "type": "pdf_page",
+          "path": "../IT-PP/2016h28h_ip_qs.pdf",
+          "pages": [
+            40
+          ]
+        }
+      ],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2016h28h_ip_qs.pdf",
+        "pages": [
+          40
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2016h28h-091",
+      "exam": "2016h28h",
+      "question_no": 91,
+      "knowledge_group": "企業と法務",
+      "question": {
+        "ja": "ISMS適合性評価制度に関する次の記述中の a, b に入れる字句の適切な組合せはどれか。\n企業などの組織において，\na マネジメントシステムが適切に構築，運用され，ISMS認証基準の要求事項に適合していることを b が審査して認証する制度である。",
+        "vi": "Trong các mô tả sau về hệ thống đánh giá sự phù hợp ISMS, tổ hợp từ ngữ thích hợp điền vào a, b là gì?\nTại các tổ chức như doanh nghiệp, đây là chế độ mà việc a hệ thống quản lý được xây dựng, vận hành phù hợp, và đáp ứng các yêu cầu của tiêu chuẩn chứng nhận ISMS sẽ được b thẩm tra và chứng nhận."
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "a：個人情報保護／b：組織内の監査を行う部署",
+          "vi": "a: Bảo vệ thông tin cá nhân / b: Bộ phận thực hiện kiểm toán nội bộ trong tổ chức"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "a：個人情報保護／b：特定の第三者機関",
+          "vi": "a: Bảo vệ thông tin cá nhân / b: Tổ chức bên thứ ba cụ thể"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "a：情報セキュリティ／b：組織内の監査を行う部署",
+          "vi": "a: An toàn thông tin / b: Bộ phận thực hiện kiểm toán nội bộ trong tổ chức"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "a：情報セキュリティ／b：特定の第三者機関",
+          "vi": "a: An toàn thông tin / b: Tổ chức bên thứ ba cụ thể"
+        }
+      ],
+      "correct_option_id": "D",
+      "explanation_vi": "ISMS là Information Security Management System, tức hệ thống quản lý an toàn thông tin, và việc chứng nhận phải do một tổ chức chứng nhận bên thứ ba thực hiện. Vì vậy a là \"情報セキュリティ\" và b là \"特定の第三者機関\". Các lựa chọn nói về bảo vệ thông tin cá nhân hoặc kiểm toán nội bộ đều không đúng với cơ chế chứng nhận ISMS.",
+      "assets": [],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2016h28h_ip_qs.pdf",
+        "pages": [
+          41
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2016h28h-092",
+      "exam": "2016h28h",
+      "question_no": 92,
+      "knowledge_group": "技術要素",
+      "question": {
+        "ja": "毎週日曜日の業務終了後にフルバックアップファイルを取得し,月曜日~土曜日 の業務終了後には増分バックアップファイルを取得しているシステムがある。水曜 日の業務中に故障が発生したので、バックアップファイルを使って火曜日の業務終 了時点の状態にデータを復元することにした。データ復元に必要なバックアップフ ァイルを全て挙げたものはどれか。ここで、増分バックアップファイルとは、前回 のバックアップファイル(フルバックアップファイル又は増分バックアップファイ ル) の取得以降に変更されたデータだけのバックアップファイルを意味する。",
+        "vi": "Có một hệ thống thực hiện sao lưu full backup sau khi kết thúc công việc vào mỗi Chủ nhật, và thực hiện sao lưu incremental backup sau khi kết thúc công việc từ thứ Hai đến thứ Bảy. Do xảy ra sự cố trong giờ làm việc ngày thứ Tư, người ta quyết định dùng các file backup để khôi phục dữ liệu về trạng thái tại thời điểm kết thúc công việc ngày thứ Ba. Hãy chọn phương án liệt kê đầy đủ tất cả các file backup cần thiết để khôi phục dữ liệu. Ở đây, file incremental backup được hiểu là file chỉ sao lưu phần dữ liệu đã thay đổi kể từ lần lấy backup trước đó (full backup hoặc incremental backup)."
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "日曜日のフルバックアップファイル,月曜日と火曜日の増分バックアップファ イル",
+          "vi": "File full backup ngày Chủ nhật, và các file incremental backup ngày thứ Hai và thứ Ba"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "日曜日のフルバックアップファイル,火曜日の増分バックアップファイル",
+          "vi": "File full backup ngày Chủ nhật, và file incremental backup ngày thứ Ba"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "月曜日と火曜日の増分バックアップファイル",
+          "vi": "Các file incremental backup ngày thứ Hai và thứ Ba"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "火曜日の増分バックアップファイル",
+          "vi": "File incremental backup ngày thứ Ba"
+        }
+      ],
+      "correct_option_id": "A",
+      "explanation_vi": "Incremental backup chỉ chứa phần thay đổi kể từ lần backup ngay trước đó, nên muốn khôi phục đến cuối ngày thứ Ba phải bắt đầu từ full backup ngày Chủ nhật, rồi áp dụng lần lượt incremental của thứ Hai và thứ Ba. Nếu thiếu incremental thứ Hai thì không có đủ thay đổi trung gian. Các đáp án còn lại đều thiếu một hoặc nhiều bước cần thiết trong chuỗi khôi phục.",
+      "assets": [],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2016h28h_ip_qs.pdf",
+        "pages": [
+          41
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2016h28h-093",
+      "exam": "2016h28h",
+      "question_no": 93,
+      "knowledge_group": "技術要素",
+      "question": {
+        "ja": "シングルサインオンの説明として、適切なものはどれか。",
+        "vi": "Mô tả nào sau đây là phù hợp về Single Sign-On?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "ある PC からサーバにログインしている間は、他の PC から同じユーザ ID でログ インできないようにする仕組み",
+          "vi": "Cơ chế ngăn không cho cùng một user ID đăng nhập từ PC khác khi đang đăng nhập vào server từ một PC nào đó"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "最初に認証に成功すると、その後は許可された複数のサービスに対して,利用 者が都度認証の手続をしなくとも利用できるようにする仕組み",
+          "vi": "Cơ chế mà nếu xác thực thành công ở lần đầu tiên, thì sau đó đối với nhiều dịch vụ được phép sử dụng, người dùng có thể sử dụng mà không cần thực hiện thủ tục xác thực mỗi lần nữa"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "利用者が認証局(CA)から発行された電子証明書を一度 PC に登録しておけば, PC へのログインの際に電子証明書によって本人認証をする仕組み",
+          "vi": "Cơ chế mà nếu người dùng đăng ký trước một chứng chỉ điện tử do CA cấp vào PC, thì khi đăng nhập vào PC sẽ xác thực danh tính bằng chứng chỉ điện tử"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "利用者が認証の際に使用するパスワードに、一度しか使えない使い捨てのパス ワードを使うことで、不正アクセスを防止する仕組み",
+          "vi": "Cơ chế phòng chống truy cập trái phép bằng cách dùng mật khẩu dùng một lần, chỉ sử dụng được duy nhất một lần khi xác thực"
+        }
+      ],
+      "correct_option_id": "B",
+      "explanation_vi": "Single Sign-On là cơ chế chỉ cần đăng nhập/xác thực một lần, sau đó có thể truy cập nhiều dịch vụ được phép mà không phải xác thực lặp lại. Phương án イ mô tả đúng bản chất này. Các phương án khác lần lượt nói về hạn chế đăng nhập đồng thời, xác thực bằng chứng chỉ số, và one-time password, không phải SSO.",
+      "assets": [],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2016h28h_ip_qs.pdf",
+        "pages": [
+          42
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2016h28h-094",
+      "exam": "2016h28h",
+      "question_no": 94,
+      "knowledge_group": "開発技術",
+      "question": {
+        "ja": "商品の仕入状況を管理している関係データベースの“仕入一覧”表を正規化して，“仕入”表と“商品”表に分割したい。分割後の二つの表に共通して必要なフィールドとして，最も適切なものはどれか。ここで，仕入れは一度に一つの商品だけを仕入れることとし，仕入番号で一意に識別できる。また，商品は商品番号で一意に識別できる。\n\n仕入一覧\n仕入番号\n商品番号\n商品名\n個数\n単価\n支払方法\n納品日",
+        "vi": "Muốn chuẩn hóa bảng “Danh sách nhập hàng” trong cơ sở dữ liệu quan hệ đang quản lý tình hình nhập hàng của sản phẩm, rồi tách thành hai bảng “Nhập hàng” và “Sản phẩm”. Trường nào là phù hợp nhất để cần có chung trong cả hai bảng sau khi tách? Ở đây, giả sử mỗi lần nhập hàng chỉ nhập một loại sản phẩm, và có thể định danh duy nhất bằng mã nhập hàng. Ngoài ra, sản phẩm có thể được định danh duy nhất bằng mã sản phẩm.\n\nDanh sách nhập hàng\nMã nhập hàng\nMã sản phẩm\nTên sản phẩm\nSố lượng\nĐơn giá\nPhương thức thanh toán\nNgày giao hàng"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "仕入番号",
+          "vi": "Mã nhập hàng"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "支払方法",
+          "vi": "Phương thức thanh toán"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "商品番号",
+          "vi": "Mã sản phẩm"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "商品名",
+          "vi": "Tên sản phẩm"
+        }
+      ],
+      "correct_option_id": "C",
+      "explanation_vi": "Khi tách thành bảng “仕入” và “商品”, trường dùng để liên kết hai bảng phải là khóa của bảng sản phẩm xuất hiện trong bảng nhập hàng, tức \"商品番号\". Điều này tránh lặp lại tên sản phẩm và bảo đảm chuẩn hóa dữ liệu. Các lựa chọn khác không phù hợp làm khóa liên kết chung giữa hai bảng.",
+      "assets": [
+        {
+          "type": "pdf_page",
+          "path": "../IT-PP/2016h28h_ip_qs.pdf",
+          "pages": [
+            42
+          ]
+        }
+      ],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2016h28h_ip_qs.pdf",
+        "pages": [
+          42
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2016h28h-095",
+      "exam": "2016h28h",
+      "question_no": 95,
+      "knowledge_group": "開発技術",
+      "question": {
+        "ja": "表1と表2に、ある操作を行って表3が得られた。行った操作だけを全て挙げたものはどれか。\n\n表1\n品名コード | 品名 | 価格 | メーカ\n001 | ラーメン | 150 | A社\n002 | うどん | 130 | B社\n\n表2\n品名コード | 棚番号\n001 | 1\n002 | 5\n\n表3\n品名 | 価格 | 棚番号\nラーメン | 150 | 1\nうどん | 130 | 5",
+        "vi": "Sau khi thực hiện một số thao tác trên Bảng 1 và Bảng 2, thu được Bảng 3. Hãy chọn phương án liệt kê đầy đủ tất cả các thao tác đã thực hiện.\n\nBảng 1\nMã hàng | Tên hàng | Giá | Nhà sản xuất\n001 | Ramen | 150 | Công ty A\n002 | Udon | 130 | Công ty B\n\nBảng 2\nMã hàng | Số kệ\n001 | 1\n002 | 5\n\nBảng 3\nTên hàng | Giá | Số kệ\nRamen | 150 | 1\nUdon | 130 | 5"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "結合",
+          "vi": "Kết hợp (join)"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "結合, 射影",
+          "vi": "Kết hợp (join), chiếu (projection)"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "結合, 選択",
+          "vi": "Kết hợp (join), chọn (selection)"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "選択, 射影",
+          "vi": "Chọn (selection), chiếu (projection)"
+        }
+      ],
+      "correct_option_id": "B",
+      "explanation_vi": "Để tạo Bảng 3, trước hết cần kết hợp hai bảng theo trường chung là \"品名コード\", rồi lấy ra các cột cần thiết là \"品名\", \"価格\", \"棚番号\" bằng phép chiếu. Không cần phép chọn vì không có điều kiện lọc dòng nào được áp dụng. Do đó đáp án đúng là B.",
+      "assets": [
+        {
+          "type": "pdf_page",
+          "path": "../IT-PP/2016h28h_ip_qs.pdf",
+          "pages": [
+            43
+          ]
+        }
+      ],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2016h28h_ip_qs.pdf",
+        "pages": [
+          43
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2016h28h-096",
+      "exam": "2016h28h",
+      "question_no": 96,
+      "knowledge_group": "技術要素",
+      "question": {
+        "ja": "関係データベースの“成績”表から学生を抽出するとき、選択される学生数が最 も多い抽出条件はどれか。ここで、“%” は0文字以上の任意の文字列を表すものとする。 また,数学及び国語は、それぞれ60点以上であれば合格とする。\n成績\n学籍番号\n氏名\n数学の点数\n国語の点数\nH001\n佐藤 花子\n50\n90\nH002\n鈴木 二郎\n55\n70\nH003\n金子 一郎\n90\n95\nH004\n高橋 春子\n70\n55\nH005\n子安 三郎\n95\n60",
+        "vi": "Khi trích xuất sinh viên từ bảng “Thành tích” của cơ sở dữ liệu quan hệ, điều kiện lọc nào sẽ chọn được số sinh viên nhiều nhất? Ở đây, “%” biểu thị chuỗi ký tự bất kỳ có độ dài từ 0 ký tự trở lên. Ngoài ra, môn Toán và Quốc ngữ được coi là đỗ nếu đạt từ 60 điểm trở lên.\nThành tích\nMã học sinh\nHọ tên\nĐiểm Toán\nĐiểm Quốc ngữ\nH001\nSato Hanako\n50\n90\nH002\nSuzuki Jiro\n55\n70\nH003\nKaneko Ichiro\n90\n95\nH004\nTakahashi Haruko\n70\n55\nH005\nKoyasu Saburo\n95\n60"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "国語が合格で,かつ,氏名が“%子”に該当する学生",
+          "vi": "Quốc ngữ đạt, và họ tên khớp với “%子”"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "国語が合格で,かつ,氏名が“子%”に該当する学生",
+          "vi": "Quốc ngữ đạt, và họ tên khớp với “子%”"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "数学,国語ともに合格の学生",
+          "vi": "Cả Toán và Quốc ngữ đều đạt"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "数学が合格で,かつ,氏名が“%子%”に該当する学生",
+          "vi": "Toán đạt, và họ tên khớp với “%子%”"
+        }
+      ],
+      "correct_option_id": "D",
+      "explanation_vi": "Ký tự đại diện “%子%” nghĩa là tên có chứa chữ “子” ở bất kỳ vị trí nào; kết hợp với điều kiện Toán đạt thì chọn được H003, H004, H005, tổng cộng 3 người, là nhiều nhất. Phương án ア chỉ lấy tên kết thúc bằng “子” và Quốc ngữ đạt nên ít hơn. イ chỉ lấy tên bắt đầu bằng “子” và Quốc ngữ đạt nên chỉ có 1 người. ウ yêu cầu cả hai môn đều đạt nên có 2 người.",
+      "assets": [
+        {
+          "type": "pdf_page",
+          "path": "../IT-PP/2016h28h_ip_qs.pdf",
+          "pages": [
+            44
+          ]
+        }
+      ],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2016h28h_ip_qs.pdf",
+        "pages": [
+          44
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2016h28h-097",
+      "exam": "2016h28h",
+      "question_no": 97,
+      "knowledge_group": "コンピュータシステム",
+      "question": {
+        "ja": "拡張子 “avi”が付くファイルが扱う対象として、最も適切なものはどれか。",
+        "vi": "Đối tượng mà tệp có phần mở rộng “avi” xử lý phù hợp nhất là gì?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "音声",
+          "vi": "Âm thanh"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "静止画",
+          "vi": "Ảnh tĩnh"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "動画",
+          "vi": "Video"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "文書",
+          "vi": "Tài liệu"
+        }
+      ],
+      "correct_option_id": "C",
+      "explanation_vi": "AVI là định dạng tệp đa phương tiện chủ yếu dùng để lưu video. Vì vậy đáp án đúng là ウ. ア chỉ âm thanh, イ là ảnh tĩnh, còn エ là tài liệu nên không phù hợp với phần mở rộng avi.",
+      "assets": [],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2016h28h_ip_qs.pdf",
+        "pages": [
+          44
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2016h28h-098",
+      "exam": "2016h28h",
+      "question_no": 98,
+      "knowledge_group": "基礎理論",
+      "question": {
+        "ja": "それぞれが独立に点灯/消灯の操作ができる5個のランプが並んでいる。2個以上 のランプが点灯しているパターンは何通りあるか。ここで、全てが点灯しているパタ ーンは1通り,いずれか1個が点灯しているパターンは5通りと数えるものとする。",
+        "vi": "Có 5 bóng đèn được sắp thành hàng, mỗi bóng có thể bật/tắt độc lập. Có bao nhiêu kiểu mà từ 2 bóng trở lên đang sáng? Ở đây, trường hợp tất cả đều sáng được tính là 1 kiểu, và trường hợp chỉ có đúng 1 bóng bất kỳ sáng được tính là 5 kiểu."
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "4",
+          "vi": "4"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "10",
+          "vi": "10"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "26",
+          "vi": "26"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "32",
+          "vi": "32"
+        }
+      ],
+      "correct_option_id": "C",
+      "explanation_vi": "Mỗi bóng đèn có 2 trạng thái nên tổng số mẫu là 2^5 = 32. Loại đi trường hợp không có bóng nào sáng là 1 mẫu và trường hợp chỉ có 1 bóng sáng là 5 mẫu, còn 32 - 1 - 5 = 26. Vì vậy đáp án đúng là ウ. Các phương án khác không cho ra số lượng tổ hợp đúng.",
+      "assets": [],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2016h28h_ip_qs.pdf",
+        "pages": [
+          44
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2016h28h-099",
+      "exam": "2016h28h",
+      "question_no": 99,
+      "knowledge_group": "技術要素",
+      "question": {
+        "ja": "インタフェースの規格 1~4 のうち、接続ケーブルなどによる物理的な接続を 必要としない規格だけを全て挙げたものはどれか。\n1 Bluetooth\n2 IEEE 1394\n3 IrDA\n4 USB 3.0",
+        "vi": "Trong các chuẩn giao tiếp 1~4 dưới đây, phương án nào liệt kê đầy đủ chỉ những chuẩn không cần kết nối vật lý bằng cáp nối hay tương tự?\n1 Bluetooth\n2 IEEE 1394\n3 IrDA\n4 USB 3.0"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "1, 2",
+          "vi": "1, 2"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "1, 3",
+          "vi": "1, 3"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "2, 3",
+          "vi": "2, 3"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "3, 4",
+          "vi": "3, 4"
+        }
+      ],
+      "correct_option_id": "B",
+      "explanation_vi": "Bluetooth và IrDA đều là các chuẩn truyền thông không dây, không cần cáp kết nối vật lý. IEEE 1394 và USB 3.0 là giao tiếp có dây. Do đó chỉ có 1 và 3 là đúng, tức đáp án イ.",
+      "assets": [],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2016h28h_ip_qs.pdf",
+        "pages": [
+          45
+        ],
+        "answer_source": "answer_key"
+      }
+    },
+    {
+      "id": "2016h28h-100",
+      "exam": "2016h28h",
+      "question_no": 100,
+      "knowledge_group": "技術要素",
+      "question": {
+        "ja": "拡張現実 (AR)に関する記述として、適切なものはどれか。",
+        "vi": "Mô tả nào sau đây là đúng về Augmented Reality (AR)?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "ア",
+          "ja": "実際に搭載されているメモリの容量を超える記憶空間を作り出し,主記憶とし て使えるようにする技術",
+          "vi": "Công nghệ tạo ra không gian nhớ vượt quá dung lượng bộ nhớ thực tế được lắp đặt, để có thể dùng như bộ nhớ chính"
+        },
+        {
+          "id": "B",
+          "label": "イ",
+          "ja": "実際の環境を捉えているカメラ映像などに、コンピュータが作り出す情報を重 ね合わせて表示する技術",
+          "vi": "Công nghệ chồng ghép thông tin do máy tính tạo ra lên hình ảnh camera hoặc hình ảnh khác đang ghi nhận môi trường thực tế để hiển thị"
+        },
+        {
+          "id": "C",
+          "label": "ウ",
+          "ja": "人間の音声をコンピュータで解析してディジタル化し,コンピュータへの命令 や文字入力などに利用する技術",
+          "vi": "Công nghệ phân tích giọng nói con người bằng máy tính, số hóa nó, rồi sử dụng cho lệnh điều khiển hoặc nhập văn bản vào máy tính"
+        },
+        {
+          "id": "D",
+          "label": "エ",
+          "ja": "人間の推論や学習,言語理解の能力など知的な作業を、コンピュータを用いて 模倣するための科学や技術",
+          "vi": "Khoa học hay công nghệ dùng máy tính để mô phỏng các hoạt động trí tuệ như suy luận, học tập, hiểu ngôn ngữ của con người"
+        }
+      ],
+      "correct_option_id": "B",
+      "explanation_vi": "AR là công nghệ chồng thêm thông tin ảo do máy tính tạo ra lên khung cảnh thực tế, nên イ là đúng. ア mô tả bộ nhớ ảo, ウ là nhận dạng/xử lý giọng nói, còn エ là AI. Vì vậy các lựa chọn đó không phải AR.",
+      "assets": [
+        {
+          "type": "pdf_page",
+          "path": "../IT-PP/2016h28h_ip_qs.pdf",
+          "pages": [
+            45
+          ]
+        }
+      ],
+      "passage_id": null,
+      "review_status": "pending",
+      "source": {
+        "pdf": "2016h28h_ip_qs.pdf",
+        "pages": [
+          45
+        ],
+        "answer_source": "answer_key"
+      }
+    }
+  ],
+  "validation": {
+    "complete": true,
+    "expected_questions": 100,
+    "returned_questions": 100,
+    "answers_matched": 100,
+    "options_per_question": 4,
+    "schema_version": 2
+  }
+}

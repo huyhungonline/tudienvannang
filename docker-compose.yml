@@ -28,6 +28,7 @@ services:
       - RECAPTCHA_SECRET_KEY=${RECAPTCHA_SECRET_KEY}
       - AUDIO_FILES_PATH=/audio
       - BOOK_IMAGES_PATH=/book_images
+      - EXAM_PDFS_PATH=/exam_pdfs
       - SMTP_HOST=${SMTP_HOST:-pro203.emailserver.vn}
       - SMTP_PORT=${SMTP_PORT:-465}
       - SMTP_USER=${SMTP_USER:-admin@jaenglish.com}
@@ -40,6 +41,7 @@ services:
     volumes:
       - ./audio:/audio
       - ./book_images:/book_images
+      - ./tool/IT-PP:/exam_pdfs:ro
     depends_on:
       - postgres
     healthcheck:
