@@ -10,7 +10,7 @@ mkdir -p backups/deploy
 exec 9>backups/deploy/.lock
 flock -n 9 || { echo 'Another deployment is running'; exit 1; }
 compose() {
-    if docker compose version >/dev/null 2>&1; then docker compose "$@"; else docker-compose "$@"; fi
+    if docker compose version >/dev/null 2>&1; then docker compose "$@" </dev/null; else docker-compose "$@" </dev/null; fi
 }
 OLD_REVISION=$(git rev-parse HEAD)
 BACKUP_DIR="$PWD/backups/deploy/$(date -u +%Y%m%dT%H%M%SZ)-${OLD_REVISION:0:8}"

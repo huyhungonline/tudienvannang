@@ -14,5 +14,5 @@ REVISION=$(git rev-parse HEAD)
 echo "Deploy revision: $REVISION"
 git push origin main
 ssh -o BatchMode=yes -o ConnectTimeout=15 "${VPS_USER}@${VPS_HOST}" \
-    "bash -s -- $(printf '%q' "$VPS_DIR") $(printf '%q' "$REVISION")" \
+    "remote_script=\$(mktemp /tmp/itpp-deploy.XXXXXX); trap 'rm -f \"\$remote_script\"' EXIT; cat >\"\$remote_script\"; bash \"\$remote_script\" $(printf '%q' "$VPS_DIR") $(printf '%q' "$REVISION")" \
     < tool/deploy_itpp_remote.sh
