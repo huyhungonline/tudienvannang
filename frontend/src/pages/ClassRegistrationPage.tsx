@@ -41,7 +41,7 @@ export function ClassRegistrationPage() {
           <li key={code}>
             <div className="class-registration-actions">
               <Link to={`/dang-ki-lop-hoc/${code}`}>{title}</Link>
-              {code === 'it-passport' && <a className="btn-submit" href="/downloads/IT_Passport_46_Slide_v9_2022_2025.pdf" download="IT_Passport_46_Slide_v9_2022_2025.pdf">📥 Download bài giảng</a>}
+              {code === 'it-passport' && <a className="btn-submit" href="/downloads/IT_Passport_Hoc_Vien_v12.pdf" download="IT_Passport_Hoc_Vien_v12.pdf">📥 Download bài giảng</a>}
             </div>
           </li>
         ))}
