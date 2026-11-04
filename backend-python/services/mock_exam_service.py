@@ -25,6 +25,23 @@ ALL_CORRECT_MARKER = "※"
 
 TRUE_FALSE_LABELS = {"○", "×"}
 
+# IT Passport: the nine knowledge groups roll up into three scored fields.
+ITPP_FIELD_OF = {
+    "企業と法務": "strategy", "経営戦略": "strategy", "システム戦略": "strategy",
+    "開発技術": "management", "プロジェクトマネジメント": "management",
+    "サービスマネジメント": "management",
+    "基礎理論": "technology", "コンピュータシステム": "technology",
+    "技術要素": "technology",
+}
+# Real paper composition (100 questions), in display order.
+ITPP_FIELD_QUOTA = {"strategy": 35, "management": 20, "technology": 45}
+ITPP_FIELD_NAMES = {
+    "strategy": "ストラテジ系", "management": "マネジメント系", "technology": "テクノロジ系",
+}
+ITPP_PASS_TOTAL = 600
+ITPP_PASS_FIELD = 300
+SCORE_SCALE = 1000
+
 
 def normalise_label(label: str | None) -> str:
     """Reduce a stored or submitted label to its bare marker.
@@ -177,18 +194,57 @@ async def get_exam_config(certificate_id: int) -> dict:
     }
 
 
-async def build_paper(certificate_id: int, limit: int) -> list[dict]:
+async def _pick_by_field_quota(certificate_id: int, limit: int) -> list[dict]:
+    """Random questions following the real 35/20/45 field composition.
+
+    A field short of its quota is topped up from the leftover pool so the paper
+    still reaches `limit` questions.
+    """
+    pool = await db.query(
+        f"SELECT {content.CONTENT_COLUMNS} "
+        f"FROM certificate_exam_questions q {content.PASSAGE_JOIN} WHERE q.certificate_id = $1 AND {content.BANK_SCOPE} "
+        "ORDER BY random()",
+        certificate_id,
+    )
+    by_field: dict[str, list[dict]] = {f: [] for f in ITPP_FIELD_QUOTA}
+    for r in pool:
+        field = ITPP_FIELD_OF.get(r.get("knowledge_group"))
+        if field:
+            by_field[field].append(r)
+
+    # Scale the quota when the paper is smaller than the real 100 questions.
+    total_quota = sum(ITPP_FIELD_QUOTA.values())
+    chosen: list[dict] = []
+    for field, quota in ITPP_FIELD_QUOTA.items():
+        want = round(quota * limit / total_quota)
+        chosen.extend(by_field[field][:want])
+    chosen_ids = {r["id"] for r in chosen}
+    spare = [r for r in pool if r["id"] not in chosen_ids]
+    chosen.extend(spare[: max(0, limit - len(chosen))])
+    chosen = chosen[:limit]
+
+    # Present in field order (strategy, management, technology) like the real paper.
+    order = list(ITPP_FIELD_QUOTA)
+    chosen.sort(key=lambda r: order.index(ITPP_FIELD_OF.get(r.get("knowledge_group"), "technology")))
+    return chosen
+
+
+async def build_paper(certificate_id: int, limit: int, code: str | None = None) -> list[dict]:
     """Pick `limit` distinct random questions, exposing no answer data.
 
     Randomness comes from `ORDER BY random()` over the whole pool, and because
     rows are selected by primary key no question can appear twice in one paper.
+    IT Passport papers follow the real field composition instead.
     """
-    rows = await db.query(
-        f"SELECT {content.CONTENT_COLUMNS} "
-        f"FROM certificate_exam_questions q {content.PASSAGE_JOIN} WHERE q.certificate_id = $1 AND {content.BANK_SCOPE} "
-        "ORDER BY random() LIMIT $2",
-        certificate_id, limit,
-    )
+    if code == "itpp":
+        rows = await _pick_by_field_quota(certificate_id, limit)
+    else:
+        rows = await db.query(
+            f"SELECT {content.CONTENT_COLUMNS} "
+            f"FROM certificate_exam_questions q {content.PASSAGE_JOIN} WHERE q.certificate_id = $1 AND {content.BANK_SCOPE} "
+            "ORDER BY random() LIMIT $2",
+            certificate_id, limit,
+        )
 
     paper = []
     for idx, r in enumerate(rows, start=1):
@@ -206,12 +262,54 @@ async def build_paper(certificate_id: int, limit: int) -> list[dict]:
     return paper
 
 
+def itpp_scoring(results: list[dict]) -> dict:
+    """Estimated 1000-point score and pass/fail, per the real IT Passport rules.
+
+    The official score uses IRT and is not published, so each question is worth
+    an equal share. Pass = total >= 600 and every field >= 300.
+    """
+    fields = {f: [0, 0] for f in ITPP_FIELD_QUOTA}  # [correct, total]
+    for r in results:
+        field = ITPP_FIELD_OF.get(r.get("knowledgeGroup"))
+        if field:
+            fields[field][1] += 1
+            fields[field][0] += 1 if r["isCorrect"] else 0
+
+    total = sum(t for _, t in fields.values())
+    correct = sum(c for c, _ in fields.values())
+    total_score = round(correct * SCORE_SCALE / total) if total else 0
+
+    field_scores = []
+    failing = []
+    for field, (c, t) in fields.items():
+        score = round(c * SCORE_SCALE / t) if t else 0
+        field_scores.append({
+            "field": field, "nameJa": ITPP_FIELD_NAMES[field],
+            "correct": c, "total": t, "score": score,
+            "passed": score >= ITPP_PASS_FIELD,
+        })
+        if t and score < ITPP_PASS_FIELD:
+            failing.append(field)
+
+    return {
+        "totalScore": total_score,
+        "maxScore": SCORE_SCALE,
+        "passTotal": ITPP_PASS_TOTAL,
+        "passField": ITPP_PASS_FIELD,
+        "fieldScores": field_scores,
+        "passed": total_score >= ITPP_PASS_TOTAL and not failing,
+        "totalPassed": total_score >= ITPP_PASS_TOTAL,
+        "failingFields": failing,
+    }
+
+
 async def grade_attempt(
     user_id: str,
     certificate_id: int,
     submissions: list[dict],
     duration_seconds: int | None,
     persist: bool = True,
+    scoring: str | None = None,
 ) -> dict:
     """Grade the submitted answers, persist the attempt, and return a review."""
     if not submissions:
@@ -281,11 +379,13 @@ async def grade_attempt(
     if total == 0:
         raise ValueError("No valid questions in submission")
 
+    extra = {"itppScore": itpp_scoring(results)} if scoring == "itpp" else {}
+
     if not persist:
         return {
             "attemptId": None, "totalQuestions": total, "correctCount": correct_count,
             "scorePercent": round(correct_count * 100 / total, 1),
-            "durationSeconds": duration_seconds, "results": results,
+            "durationSeconds": duration_seconds, "results": results, **extra,
         }
 
     attempt = await db.query_one(
@@ -327,6 +427,7 @@ async def grade_attempt(
         "scorePercent": score_percent,
         "durationSeconds": duration_seconds,
         "results": results,
+        **extra,
     }
 
 

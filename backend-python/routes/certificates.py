@@ -219,7 +219,7 @@ async def start_mock_exam(code: str, _: str = Depends(require_vip_or_admin)):
     if config["effectiveCount"] == 0:
         raise HTTPException(status_code=404, detail="No questions available")
 
-    questions = await mock_exam_service.build_paper(cert["id"], config["effectiveCount"])
+    questions = await mock_exam_service.build_paper(cert["id"], config["effectiveCount"], code)
 
     return {
         "certificate": {"code": cert["code"], "nameJa": cert["name_ja"], "nameVi": cert["name_vi"]},
@@ -246,6 +246,7 @@ async def submit_mock_exam(
             [a.model_dump() for a in body.answers],
             body.durationSeconds,
             persist=code != 'itpp',
+            scoring='itpp' if code == 'itpp' else None,
         )
     except ValueError as e:
         raise HTTPException(status_code=400, detail=str(e))

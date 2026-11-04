@@ -36,7 +36,28 @@ interface QuestionResult extends ExamPdfReferences {
   options?: { id: string; label: string; vi: string }[];
 }
 
+interface FieldScore {
+  field: string;
+  nameJa: string;
+  correct: number;
+  total: number;
+  score: number;
+  passed: boolean;
+}
+
+interface ItppScore {
+  totalScore: number;
+  maxScore: number;
+  passTotal: number;
+  passField: number;
+  fieldScores: FieldScore[];
+  passed: boolean;
+  totalPassed: boolean;
+  failingFields: string[];
+}
+
 interface GradeResult {
+  itppScore?: ItppScore;
   attemptId: number | null;
   totalQuestions: number;
   correctCount: number;
@@ -301,6 +322,28 @@ export function CertificateMockExamPage() {
 
       {result && (
         <>
+          {result.itppScore && (
+            <div className={`mock-score-card itpp-score ${result.itppScore.passed ? 'is-pass' : 'is-fail'}`}>
+              <div className="mock-score-main">
+                {result.itppScore.totalScore}
+                <small> / {result.itppScore.maxScore}</small>
+              </div>
+              <div className="mock-score-detail">
+                <strong>{result.itppScore.passed ? 'ĐẠT' : 'CHƯA ĐẠT'}</strong>
+                {' '}(cần ≥ {result.itppScore.passTotal} điểm tổng và mỗi phần ≥ {result.itppScore.passField})
+                <ul className="itpp-field-scores">
+                  {result.itppScore.fieldScores.map((f) => (
+                    <li key={f.field} className={f.passed ? '' : 'is-fail'}>
+                      {f.nameJa}: <strong>{f.score}</strong>/1000 ({f.correct}/{f.total} câu){' '}
+                      {f.passed ? '✅' : '❌'}
+                    </li>
+                  ))}
+                </ul>
+                <em>Điểm ước tính (mỗi câu đúng có trọng số bằng nhau); điểm thật của kỳ thi dùng IRT nên có thể chênh lệch.</em>
+              </div>
+            </div>
+          )}
+
           <div className="mock-score-card">
             <div className="mock-score-main">{result.scorePercent}%</div>
             <div className="mock-score-detail">

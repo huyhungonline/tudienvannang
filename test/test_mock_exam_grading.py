@@ -18,6 +18,7 @@ from services.mock_exam_service import (  # noqa: E402
     normalise_label,
     extract_choice_labels,
     is_true_false,
+    itpp_scoring,
 )
 
 failures = []
@@ -112,6 +113,26 @@ check("paren stored vs bare submitted", grade("(4)", "4"), True)
 check("unanswered counts as wrong", grade("ア", None), False)
 check("cancelled question always correct", grade("※ — Tất cả thí sinh được công nhận đúng", "ア"), True)
 check("cancelled question correct even if unanswered", grade("※", None), True)
+
+def itpp_results(s_ok, m_ok, t_ok):
+    groups = [("経営戦略", 35, s_ok), ("開発技術", 20, m_ok), ("技術要素", 45, t_ok)]
+    return [
+        {"knowledgeGroup": g, "isCorrect": i < ok}
+        for g, n, ok in groups for i in range(n)
+    ]
+
+
+print("itpp scoring")
+all_ok = itpp_scoring(itpp_results(35, 20, 45))
+check("perfect score is 1000 and passes", (all_ok["totalScore"], all_ok["passed"]), (1000, True))
+exact = itpp_scoring(itpp_results(21, 12, 27))
+check("60 correct = 600 passes", (exact["totalScore"], exact["passed"]), (600, True))
+low = itpp_scoring(itpp_results(21, 12, 26))
+check("59 correct = 590 fails", (low["totalScore"], low["passed"]), (590, False))
+lopsided = itpp_scoring(itpp_results(35, 3, 45))
+check("high total but field < 300 fails",
+      (lopsided["totalScore"] >= 600, lopsided["passed"], lopsided["failingFields"]),
+      (True, False, ["management"]))
 
 print()
 if failures:
