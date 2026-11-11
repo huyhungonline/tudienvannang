@@ -234,7 +234,7 @@ async def submit_mock_exam(
     body: MockExamSubmission,
     user_id: str = Depends(require_vip_or_admin),
 ):
-    """Grade a paper. IT Passport does not persist attempts or send emails."""
+    """Grade a paper and store the attempt in the learner's exam history."""
     cert = await mock_exam_service.get_certificate_by_code(code)
     if not cert:
         raise HTTPException(status_code=404, detail="Certificate not found")
@@ -245,7 +245,6 @@ async def submit_mock_exam(
             cert["id"],
             [a.model_dump() for a in body.answers],
             body.durationSeconds,
-            persist=code != 'itpp',
             scoring='itpp' if code == 'itpp' else None,
         )
     except ValueError as e:
@@ -259,7 +258,15 @@ async def get_mock_exam_history(code: str, user_id: str = Depends(require_vip_or
     if not cert:
         raise HTTPException(status_code=404, detail="Certificate not found")
 
-    if code == 'itpp':
-        return {'attempts':[]}
     attempts = await mock_exam_service.list_user_attempts(user_id, cert["id"])
     return {"attempts": attempts}
+
+
+@router.get("/me/mock-exam-attempts")
+async def get_my_mock_exam_attempts(
+    user_id: str = Depends(get_current_user),
+    limit: int = Query(default=10, ge=1, le=50),
+    offset: int = Query(default=0, ge=0),
+):
+    """All of the signed-in user's mock exam attempts, for My Page."""
+    return await mock_exam_service.list_all_user_attempts(user_id, limit, offset)

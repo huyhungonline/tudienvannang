@@ -8,6 +8,7 @@ from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from apscheduler.triggers.cron import CronTrigger
 
 import db
+from services import mock_exam_service
 from routes import words, audio, auth, history, reading_posts, admin, nhk_news, classroom, books, certificates
 from services.nhk_mailer_service import send_daily_news
 from services.mail_queue_service import run_mail_queue
@@ -37,6 +38,10 @@ async def daily_news_job():
 async def lifespan(app: FastAPI):
     # Startup: initialize DB pool
     await db.get_pool()
+    try:
+        await mock_exam_service.ensure_schema()
+    except Exception as e:
+        logger.error(f"Mock exam history schema setup failed: {e}")
     mail_stop = asyncio.Event()
     mail_worker = asyncio.create_task(run_mail_queue(mail_stop))
 

@@ -121,14 +121,14 @@ export function CertificateMockExamPage() {
       get<{ certificate: { nameJa: string }; config: ExamConfig }>(
         `/certificates/${code}/mock-exam/info`
       ),
-      (code === 'itpp' ? Promise.resolve({ attempts: [] as AttemptHistory[] }) : get<{ attempts: AttemptHistory[] }>(`/certificates/${code}/mock-exam/history`)).catch(
+      get<{ attempts: AttemptHistory[] }>(`/certificates/${code}/mock-exam/history`).catch(
         () => ({ attempts: [] as AttemptHistory[] })
       ),
     ])
       .then(([info, hist]) => {
         setConfig(info.config);
         setCertName(info.certificate.nameJa);
-        setHistory(hist.attempts);
+        setHistory(hist.attempts ?? []);
       })
       .catch(() => setError('Không tải được thông tin đề thi.'))
       .finally(() => setLoading(false));

@@ -81,6 +81,8 @@ class PostgreSQLIntegrationTests(unittest.IsolatedAsyncioTestCase):
         app.dependency_overrides[certificates.require_vip_or_admin]=lambda:'test-user'
         with patch.object(db,'query',side_effect=query), patch.object(db,'query_one',side_effect=query_one), \
              patch.object(db,'execute',new_callable=AsyncMock) as writes, \
+             patch.object(mock,'save_attempt',new_callable=AsyncMock,return_value=7) as saved, \
+             patch.object(mock,'list_user_attempts',new_callable=AsyncMock,return_value=[]) as listed, \
              patch.object(mock,'_send_result_email',new_callable=AsyncMock) as email:
             transport=httpx.ASGITransport(app=app)
             async with httpx.AsyncClient(transport=transport,base_url='http://test') as api:
@@ -114,7 +116,9 @@ class PostgreSQLIntegrationTests(unittest.IsolatedAsyncioTestCase):
                 graded=await api.post('/api/certificates/itpp/mock-exam/submit',json={'answers':[{'questionId':qid,'selectedLabel':option_id}],'durationSeconds':5})
                 self.assertEqual(graded.status_code,200)
                 self.assertEqual(graded.json()['correctCount'],1)
-                self.assertIsNone(graded.json()['attemptId'])
+                self.assertEqual(graded.json()['attemptId'],7)
+                saved.assert_awaited_once()
+                self.assertEqual(saved.await_args.args[6]['maxScore'],1000)
                 writes.assert_not_awaited()
                 email.assert_not_awaited()
                 for answers in ([{'questionId':qid,'selectedLabel':label}]*2,
@@ -126,10 +130,11 @@ class PostgreSQLIntegrationTests(unittest.IsolatedAsyncioTestCase):
                 self.assertEqual(other.status_code,400)
                 history=await api.get('/api/certificates/itpp/mock-exam/history')
                 self.assertEqual(history.json(),{'attempts':[]})
+                listed.assert_awaited()
                 docs_response=await api.get('/api/certificates/documents/2016h28a_ip_qs.pdf')
                 self.assertEqual(docs_response.status_code,200)
                 self.assertEqual(docs_response.headers['content-type'],'application/pdf')
-        print('Integration passed: rollback schema; 1700 imports; repeat import; API; grading without writes/email')
+        print('Integration passed: rollback schema; 1700 imports; repeat import; API; grading saves attempt, no email')
 
     async def test_bootstrap_older_database(self):
         schema='itpp_bootstrap_'+uuid.uuid4().hex

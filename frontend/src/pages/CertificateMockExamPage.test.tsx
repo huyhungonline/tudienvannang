@@ -11,7 +11,7 @@ const questions = [1, 2].map(n => ({ id: n, displayNo: n, questionNo: n, questio
   options: ['ア', 'イ', 'ウ', 'エ'].map((label, i) => ({ id: 'ABCD'[i], label, ja: `選択肢 ${n}-${i + 1}` })) }));
 beforeEach(() => {
   vi.spyOn(window, 'scrollTo').mockImplementation(() => {});
-  vi.mocked(get).mockImplementation(async path => path.endsWith('/info') ? { certificate: { nameJa: 'ITパスポート試験' }, config } : { config, questions });
+  vi.mocked(get).mockImplementation(async path => path.endsWith('/info') ? { certificate: { nameJa: 'ITパスポート試験' }, config } : path.endsWith('/history') ? { attempts: [] } : { config, questions });
   vi.mocked(post).mockResolvedValue({ attemptId: null, totalQuestions: 2, correctCount: 1, scorePercent: 50, durationSeconds: 10, results: [] });
 });
 afterEach(() => { cleanup(); vi.useRealTimers(); vi.restoreAllMocks(); vi.resetAllMocks(); });
@@ -43,7 +43,7 @@ test('one-question CBT keeps answers and flags across navigation; submits only a
   await waitFor(() => expect(post).toHaveBeenCalledTimes(1));
   expect(post).toHaveBeenCalledWith('/certificates/itpp/mock-exam/submit', expect.objectContaining({ answers: [{ questionId: 1, selectedLabel: 'イ' }, { questionId: 2, selectedLabel: null }] }));
   expect(screen.queryByRole('timer')).not.toBeInTheDocument();
-  expect(get).not.toHaveBeenCalledWith(expect.stringContaining('/history'));
+  expect(get).toHaveBeenCalledWith('/certificates/itpp/mock-exam/history');
 });
 
 test('empty or failed paper stays on setup with an actionable error', async () => {

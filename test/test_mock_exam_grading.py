@@ -19,6 +19,8 @@ from services.mock_exam_service import (  # noqa: E402
     extract_choice_labels,
     is_true_false,
     itpp_scoring,
+    select_ids_by_field_quota,
+    ITPP_FIELD_OF,
 )
 
 failures = []
@@ -133,6 +135,27 @@ lopsided = itpp_scoring(itpp_results(35, 3, 45))
 check("high total but field < 300 fails",
       (lopsided["totalScore"] >= 600, lopsided["passed"], lopsided["failingFields"]),
       (True, False, ["management"]))
+
+# --- Random paper selection ---------------------------------------------
+groups = {"strategy": "経営戦略", "management": "開発技術", "technology": "基礎理論"}
+index = [(i, groups["strategy"]) for i in range(1, 401)]     + [(i, groups["management"]) for i in range(401, 701)]     + [(i, groups["technology"]) for i in range(701, 1201)]
+paper_a = select_ids_by_field_quota(index, 100)
+paper_b = select_ids_by_field_quota(index, 100)
+
+
+def field_counts(ids):
+    f = {i: ITPP_FIELD_OF[g] for i, g in index}
+    return tuple(sum(1 for i in ids if f[i] == k) for k in ("strategy", "management", "technology"))
+
+
+check("paper has 100 distinct questions", (len(paper_a), len(set(paper_a))), (100, 100))
+check("paper follows 35/20/45 quota", field_counts(paper_a), (35, 20, 45))
+check("two papers differ", paper_a != paper_b, True)
+seq = [ITPP_FIELD_OF[dict(index)[i]] for i in paper_a]
+check("papers ordered strategy->management->technology",
+      seq == ["strategy"] * 35 + ["management"] * 20 + ["technology"] * 45, True)
+small = select_ids_by_field_quota(index[:10], 100)
+check("small pool returns what exists", len(small), 10)
 
 print()
 if failures:

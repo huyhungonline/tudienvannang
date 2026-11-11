@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { get, del, ApiError } from '../api/client';
 import { Spinner } from '../components/Spinner';
@@ -79,7 +79,8 @@ export function HistoryPage() {
   if (loading) {
     return (
       <div className="history-page">
-        <h2>My Page</h2>
+        <Link to="/my-page" className="my-page-back">← My Page</Link>
+        <h2>Lịch sử tra cứu</h2>
         <p className="loading-text"><Spinner /> Loading...</p>
       </div>
     );
@@ -87,7 +88,8 @@ export function HistoryPage() {
 
   return (
     <div className="history-page">
-      <h2>My Page</h2>
+      <Link to="/my-page" className="my-page-back">← My Page</Link>
+      <h2>Lịch sử tra cứu</h2>
 
       {error && <div className="form-error">{error}</div>}
 

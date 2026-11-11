@@ -13,7 +13,9 @@ comparison goes through `normalise_label()`.
 """
 import asyncio
 import json
+import random
 import re
+import time
 import uuid
 
 import db
@@ -151,7 +153,21 @@ DEFAULT_QUESTION_COUNT = 30
 DEFAULT_DURATION_MINUTES = 60
 
 
+CONFIG_TTL = 300
+_config_cache: dict[int, tuple[float, dict]] = {}
+
+
 async def get_exam_config(certificate_id: int) -> dict:
+    """Cached wrapper: /info and /start both need it and it rarely changes."""
+    cached = _config_cache.get(certificate_id)
+    if cached and time.monotonic() - cached[0] < CONFIG_TTL:
+        return dict(cached[1])
+    config = await _load_exam_config(certificate_id)
+    _config_cache[certificate_id] = (time.monotonic(), config)
+    return dict(config)
+
+
+async def _load_exam_config(certificate_id: int) -> dict:
     """Real-exam format for a certificate: paper size and time limit.
 
     Falls back to a sensible default so a newly added certificate still works
@@ -194,39 +210,69 @@ async def get_exam_config(certificate_id: int) -> dict:
     }
 
 
-async def _pick_by_field_quota(certificate_id: int, limit: int) -> list[dict]:
-    """Random questions following the real 35/20/45 field composition.
+# The bank only changes on import, so its (id, field) index is cached briefly.
+# Only the index is cached: each paper is still drawn at random per request.
+POOL_INDEX_TTL = 300
+_pool_index: dict[int, tuple[float, list[tuple[int, str | None]]]] = {}
 
-    A field short of its quota is topped up from the leftover pool so the paper
-    still reaches `limit` questions.
-    """
-    pool = await db.query(
-        f"SELECT {content.CONTENT_COLUMNS} "
-        f"FROM certificate_exam_questions q {content.PASSAGE_JOIN} WHERE q.certificate_id = $1 AND {content.BANK_SCOPE} "
-        "ORDER BY random()",
+
+async def _pool_index_for(certificate_id: int) -> list[tuple[int, str | None]]:
+    cached = _pool_index.get(certificate_id)
+    if cached and time.monotonic() - cached[0] < POOL_INDEX_TTL:
+        return cached[1]
+    rows = await db.query(
+        f"SELECT q.id, q.knowledge_group FROM certificate_exam_questions q "
+        f"WHERE q.certificate_id = $1 AND {content.BANK_SCOPE}",
         certificate_id,
     )
-    by_field: dict[str, list[dict]] = {f: [] for f in ITPP_FIELD_QUOTA}
-    for r in pool:
-        field = ITPP_FIELD_OF.get(r.get("knowledge_group"))
+    index = [(r["id"], r["knowledge_group"]) for r in rows]
+    _pool_index[certificate_id] = (time.monotonic(), index)
+    return index
+
+
+def select_ids_by_field_quota(index: list[tuple[int, str | None]], limit: int) -> list[int]:
+    """Random question ids following the real 35/20/45 field composition.
+
+    A field short of its quota is topped up from the leftover pool so the paper
+    still reaches `limit` questions. Result is ordered strategy, management,
+    technology like the real paper.
+    """
+    by_field: dict[str, list[int]] = {f: [] for f in ITPP_FIELD_QUOTA}
+    for qid, group in index:
+        field = ITPP_FIELD_OF.get(group)
         if field:
-            by_field[field].append(r)
+            by_field[field].append(qid)
+    for ids in by_field.values():
+        random.shuffle(ids)
 
     # Scale the quota when the paper is smaller than the real 100 questions.
     total_quota = sum(ITPP_FIELD_QUOTA.values())
-    chosen: list[dict] = []
+    chosen: list[int] = []
     for field, quota in ITPP_FIELD_QUOTA.items():
         want = round(quota * limit / total_quota)
         chosen.extend(by_field[field][:want])
-    chosen_ids = {r["id"] for r in chosen}
-    spare = [r for r in pool if r["id"] not in chosen_ids]
+    chosen_set = set(chosen)
+    spare = [qid for qid, _ in index if qid not in chosen_set]
+    random.shuffle(spare)
     chosen.extend(spare[: max(0, limit - len(chosen))])
     chosen = chosen[:limit]
 
-    # Present in field order (strategy, management, technology) like the real paper.
+    field_of = {qid: ITPP_FIELD_OF.get(g, "technology") for qid, g in index}
     order = list(ITPP_FIELD_QUOTA)
-    chosen.sort(key=lambda r: order.index(ITPP_FIELD_OF.get(r.get("knowledge_group"), "technology")))
+    chosen.sort(key=lambda qid: order.index(field_of[qid]))
     return chosen
+
+
+async def _pick_by_field_quota(certificate_id: int, limit: int) -> list[dict]:
+    ids = select_ids_by_field_quota(await _pool_index_for(certificate_id), limit)
+    rows = await db.query(
+        f"SELECT {content.CONTENT_COLUMNS} "
+        f"FROM certificate_exam_questions q {content.PASSAGE_JOIN} "
+        f"WHERE q.certificate_id = $1 AND q.id = ANY($2)",
+        certificate_id, ids,
+    )
+    by_id = {r["id"]: r for r in rows}
+    return [by_id[i] for i in ids if i in by_id]
 
 
 async def build_paper(certificate_id: int, limit: int, code: str | None = None) -> list[dict]:
@@ -301,6 +347,35 @@ def itpp_scoring(results: list[dict]) -> dict:
         "totalPassed": total_score >= ITPP_PASS_TOTAL,
         "failingFields": failing,
     }
+
+
+async def save_attempt(
+    user_id: str,
+    certificate_id: int,
+    total: int,
+    correct_count: int,
+    duration_seconds: int | None,
+    results: list[dict],
+    score: dict | None = None,
+) -> int:
+    """Store an attempt and all its answers atomically in one statement."""
+    row = await db.query_one(
+        "WITH a AS ("
+        "  INSERT INTO mock_exam_attempts "
+        "  (user_id, certificate_id, total_questions, correct_count, duration_seconds, score_json) "
+        "  VALUES ($1, $2, $3, $4, $5, $6::jsonb) RETURNING id"
+        ") "
+        "INSERT INTO mock_exam_attempt_answers (attempt_id, question_id, selected_label, is_correct) "
+        "SELECT a.id, t.q, t.s, t.c FROM a, "
+        "unnest($7::int[], $8::text[], $9::bool[]) AS t(q, s, c) "
+        "RETURNING attempt_id",
+        uuid.UUID(user_id), certificate_id, total, correct_count, duration_seconds,
+        json.dumps(score) if score is not None else None,
+        [r["questionId"] for r in results],
+        [r["selectedLabel"] for r in results],
+        [r["isCorrect"] for r in results],
+    )
+    return row["attempt_id"]
 
 
 async def grade_attempt(
@@ -388,40 +463,30 @@ async def grade_attempt(
             "durationSeconds": duration_seconds, "results": results, **extra,
         }
 
-    attempt = await db.query_one(
-        "INSERT INTO mock_exam_attempts "
-        "(user_id, certificate_id, total_questions, correct_count, duration_seconds) "
-        "VALUES ($1, $2, $3, $4, $5) RETURNING id, finished_at",
-        uuid.UUID(user_id), certificate_id, total, correct_count, duration_seconds,
-    )
-
-    for r in results:
-        await db.execute(
-            "INSERT INTO mock_exam_attempt_answers "
-            "(attempt_id, question_id, selected_label, is_correct) "
-            "VALUES ($1, $2, $3, $4) "
-            "ON CONFLICT (attempt_id, question_id) DO NOTHING",
-            attempt["id"], r["questionId"], r["selectedLabel"], r["isCorrect"],
-        )
-
     score_percent = round(correct_count * 100 / total, 1)
-
-    # Email the score. Runs in the background so a slow or failing SMTP server
-    # never delays or breaks the result the learner is waiting for.
-    asyncio.create_task(
-        _send_result_email(
-            user_id=user_id,
-            certificate_id=certificate_id,
-            total=total,
-            correct_count=correct_count,
-            score_percent=score_percent,
-            duration_seconds=duration_seconds,
-            results=results,
-        )
+    attempt_id = await save_attempt(
+        user_id, certificate_id, total, correct_count, duration_seconds, results,
+        extra.get("itppScore"),
     )
+
+    # Email the score (IT Passport results are shown on screen and in My Page
+    # only). Runs in the background so a slow or failing SMTP server never
+    # delays or breaks the result the learner is waiting for.
+    if scoring != "itpp":
+        asyncio.create_task(
+            _send_result_email(
+                user_id=user_id,
+                certificate_id=certificate_id,
+                total=total,
+                correct_count=correct_count,
+                score_percent=score_percent,
+                duration_seconds=duration_seconds,
+                results=results,
+            )
+        )
 
     return {
-        "attemptId": attempt["id"],
+        "attemptId": attempt_id,
         "totalQuestions": total,
         "correctCount": correct_count,
         "scorePercent": score_percent,
@@ -481,22 +546,65 @@ async def _send_result_email(
         print(f"Mock exam result email failed for user {user_id}: {e}")
 
 
+def _attempt_view(r: dict) -> dict:
+    score = r.get("score_json")
+    if isinstance(score, str):
+        score = json.loads(score)
+    return {
+        "attemptId": r["id"],
+        "totalQuestions": r["total_questions"],
+        "correctCount": r["correct_count"],
+        "scorePercent": round(r["correct_count"] * 100 / r["total_questions"], 1)
+        if r["total_questions"] else 0,
+        "durationSeconds": r["duration_seconds"],
+        "finishedAt": r["finished_at"].isoformat(),
+        "itppScore": score,
+    }
+
+
 async def list_user_attempts(user_id: str, certificate_id: int, limit: int = 10) -> list[dict]:
     rows = await db.query(
-        "SELECT id, total_questions, correct_count, duration_seconds, finished_at "
+        "SELECT id, total_questions, correct_count, duration_seconds, finished_at, score_json "
         "FROM mock_exam_attempts WHERE user_id = $1 AND certificate_id = $2 "
         "ORDER BY finished_at DESC LIMIT $3",
         uuid.UUID(user_id), certificate_id, limit,
     )
-    return [
-        {
-            "attemptId": r["id"],
-            "totalQuestions": r["total_questions"],
-            "correctCount": r["correct_count"],
-            "scorePercent": round(r["correct_count"] * 100 / r["total_questions"], 1)
-            if r["total_questions"] else 0,
-            "durationSeconds": r["duration_seconds"],
-            "finishedAt": r["finished_at"].isoformat(),
-        }
-        for r in rows
-    ]
+    return [_attempt_view(r) for r in rows]
+
+
+async def list_all_user_attempts(user_id: str, limit: int, offset: int) -> dict:
+    """Every certificate's attempts for the My Page exam history, newest first."""
+    rows = await db.query(
+        "SELECT a.id, a.total_questions, a.correct_count, a.duration_seconds, "
+        "a.finished_at, a.score_json, c.code, c.category, c.name_ja, c.name_vi "
+        "FROM mock_exam_attempts a JOIN certificates c ON c.id = a.certificate_id "
+        "WHERE a.user_id = $1 ORDER BY a.finished_at DESC, a.id DESC LIMIT $2 OFFSET $3",
+        uuid.UUID(user_id), limit, offset,
+    )
+    total = await db.query_one(
+        "SELECT count(*) AS n FROM mock_exam_attempts WHERE user_id = $1", uuid.UUID(user_id)
+    )
+    return {
+        "attempts": [
+            {**_attempt_view(r), "certificate": {
+                "code": r["code"], "category": r["category"],
+                "nameJa": r["name_ja"], "nameVi": r["name_vi"],
+            }}
+            for r in rows
+        ],
+        "total": total["n"] if total else 0,
+    }
+
+
+def reset_caches() -> None:
+    """Forget cached config and question index (used by tests and after imports)."""
+    _config_cache.clear()
+    _pool_index.clear()
+
+
+async def ensure_schema() -> None:
+    """Create the attempt tables if a deployment has not applied the migrations."""
+    from pathlib import Path
+    folder = Path(__file__).resolve().parents[1] / "migrations"
+    for name in ("036_mock_exam_attempts.sql", "042_mock_exam_attempt_score.sql"):
+        await db.execute((folder / name).read_text(encoding="utf-8"))

@@ -6,6 +6,8 @@ import { BooksPage } from './pages/BooksPage';
 import { LoginPage } from './pages/LoginPage';
 import { RegisterPage } from './pages/RegisterPage';
 import { HistoryPage } from './pages/HistoryPage';
+import { MyPage } from './pages/MyPage';
+import { ExamHistoryPage } from './pages/ExamHistoryPage';
 import { ReadingPostsPage } from './pages/ReadingPostsPage';
 import { ResetPasswordPage } from './pages/ResetPasswordPage';
 import { AboutPage } from './pages/AboutPage';
@@ -40,7 +42,9 @@ function App() {
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/history" element={<HistoryPage />} />
-            <Route path="/my-page" element={<HistoryPage />} />
+            <Route path="/my-page" element={<MyPage />} />
+            <Route path="/my-page/searches" element={<HistoryPage />} />
+            <Route path="/my-page/exams" element={<ExamHistoryPage />} />
             <Route path="/reading-posts" element={<ReadingPostsPage />} />
             <Route path="/reset-password" element={<ResetPasswordPage />} />
             <Route path="/forgot-password" element={<ForgotPasswordPage />} />
